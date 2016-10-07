@@ -1,0 +1,13 @@
+﻿<form ng-submit="onSubmit()">
+    <div>
+        First Name <input type="text" name="FirstName" ng-model="obj.FirstName"/>
+    </div>
+    <div>
+        Last Name <input type="text" name="LastName" ng-model="obj.LastName"/>
+    </div>
+    <formly-form model="obj.List" fields="userFields">
+    </formly-form>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>

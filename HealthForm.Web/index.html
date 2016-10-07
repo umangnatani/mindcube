@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <base href="/hf/">
+    <link href="/hf/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/hf/Content/site.css" rel="stylesheet" />
+
+    <script src="/hf/Scripts/modernizr-2.6.2.js"></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/hf/">Application name</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/hf/">Home</a></li>
+                    <li><a href="/hf/Help">API</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+
+
+
+        <h2>View</h2>
+        <p>
+            <a href="#/view">View Client</a>
+        </p>
+
+
+        <div ng-view=""></div>
+
+        <hr />
+        <footer>
+            <p>&copy; 2016 - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-resource.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+    <script src="/hf/Scripts/smart-table.js"></script>
+    <script src="/hf/Scripts/myApp.js"></script>
+    <script src="/hf/Scripts/Services/ClientService.js"></script>
+    <script src="/hf/Scripts/Controllers/ClientController.js"></script>
+
+    <script src="/hf/Scripts/jquery-1.10.2.js"></script>
+
+    <script src="/hf/Scripts/bootstrap.js"></script>
+    <script src="/hf/Scripts/respond.js"></script>
+
+
+</body>
+</html>

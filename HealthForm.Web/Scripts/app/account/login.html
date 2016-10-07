@@ -1,0 +1,30 @@
+﻿<div growl inline="true"></div>
+<busy-indicator></busy-indicator>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Login
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="maintainPatientInfoForm" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-2 control-label">User Id</label>
+                <div class="col-md-4">
+                    <input class="form-control" type="text" ng-model="obj.UserId"
+                           validate-on="blur" required required-message="'Title is required'">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Password</label>
+                <div class="col-md-5">
+                    <input class="form-control" type="password" ng-model="obj.Password" />
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary" ng-click="saveList()">Submit</button>
+        </div>
+    </div>
+</div>

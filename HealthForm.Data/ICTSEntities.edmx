@@ -1,0 +1,1711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HealthForm.Data.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CodeDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MasterCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="Field1" Type="nvarchar" MaxLength="400" />
+          <Property Name="Field2" Type="nvarchar" MaxLength="400" />
+          <Property Name="Field3" Type="nvarchar" MaxLength="400" />
+          <Property Name="Field4" Type="nvarchar" MaxLength="400" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CodeMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ListTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="ObjectId" Type="int" />
+          <Property Name="ObjectCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ListColumn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ListId" Type="int" Nullable="false" />
+          <Property Name="ColumnTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ColumnDesc" Type="nvarchar" MaxLength="500" />
+          <Property Name="ColumnType" Type="nvarchar" MaxLength="10" />
+          <Property Name="ColumnOrder" Type="int" />
+          <Property Name="LabelCols" Type="nvarchar" MaxLength="10" />
+          <Property Name="ValueCols" Type="nvarchar" MaxLength="10" />
+          <Property Name="ValueLength" Type="int" />
+          <Property Name="IsRequired" Type="bit" Nullable="false" />
+          <Property Name="TextAreaCols" Type="int" />
+          <Property Name="TextAreaRows" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ListColumnOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ListColumnId" Type="int" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ListColumnValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="ObjectCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ListColumnId" Type="int" Nullable="false" />
+          <Property Name="OptionId" Type="int" />
+          <Property Name="OptionText" Type="nvarchar" MaxLength="4000" />
+          <Property Name="DtEnt" Type="date" Nullable="false" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ListValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="ObjectCode" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ListId" Type="int" Nullable="false" />
+          <Property Name="JSONText" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PatientInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="InsCompany" Type="nvarchar" MaxLength="100" />
+          <Property Name="InsId" Type="nvarchar" MaxLength="100" />
+          <Property Name="DtEnt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="EntityId" Type="int" Nullable="false" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ObjectCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="HashedPassword" Type="nvarchar" MaxLength="200" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="IsLocked" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="URL" Type="nvarchar" MaxLength="200" />
+          <Property Name="Icon" Type="nvarchar" MaxLength="200" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="Field1" Type="nvarchar" MaxLength="200" />
+          <Property Name="Field2" Type="nvarchar" MaxLength="200" />
+          <Property Name="Field3" Type="nvarchar" MaxLength="200" />
+          <Property Name="Field4" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="DtEnt" Type="date" Nullable="false" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CaseAllegations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AllegationId" Type="int" />
+          <Property Name="CaseId" Type="int" />
+          <Property Name="CorrespId" Type="int" />
+          <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CaseAllegationsSubject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseAllegationId" Type="int" />
+          <Property Name="IndividualId" Type="int" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CaseIndividual">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IndividualId" Type="int" Nullable="false" />
+          <Property Name="CaseId" Type="int" />
+          <Property Name="CorrespId" Type="int" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+          <Property Name="IsComplainant" Type="bit" />
+          <Property Name="IsWB" Type="bit" />
+          <Property Name="WBComments" Type="nvarchar(max)" />
+          <Property Name="IsSubjectResponse" Type="bit" />
+          <Property Name="DraftSentDt" Type="datetime" />
+          <Property Name="ResponseDueDt" Type="datetime" />
+          <Property Name="RequestedExtension" Type="bit" />
+          <Property Name="ExtensionDueDt" Type="datetime" />
+          <Property Name="ResponseReceiveDt" Type="datetime" />
+          <Property Name="IsJudicialAction" Type="bit" />
+          <Property Name="ReferralStatusId" Type="int" />
+          <Property Name="IsLEA" Type="bit" />
+          <Property Name="LEADt" Type="datetime" />
+          <Property Name="LEAgency" Type="nvarchar(max)" />
+          <Property Name="IsSA" Type="bit" />
+          <Property Name="SADt" Type="datetime" />
+          <Property Name="SAResponseDt" Type="datetime" />
+          <Property Name="IsSAProsecuting" Type="bit" />
+          <Property Name="IsGrandJury" Type="bit" />
+          <Property Name="IsIndicted" Type="bit" />
+          <Property Name="AcceptanceDt" Type="datetime" />
+          <Property Name="RestAmount" Type="nvarchar(max)" />
+          <Property Name="IsPTI" Type="bit" />
+          <Property Name="ProbTermId" Type="int" />
+          <Property Name="ProbTerm" Type="char" MaxLength="10" />
+          <Property Name="CommServiceHours" Type="char" MaxLength="10" />
+          <Property Name="SpecialConditions" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CaseProgram">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="CaseId" Type="int" />
+          <Property Name="CorrespId" Type="int" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ObjectId" Type="int" />
+          <Property Name="ObjectType" Type="nvarchar" MaxLength="10" />
+          <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CommentDt" Type="datetime" Nullable="false" />
+          <Property Name="CommentType" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Correspondence">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="CustomId" Type="nvarchar" MaxLength="50" />
+          <Property Name="ForeignId" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ReportingId" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="SourceId" Type="int" />
+          <Property Name="AssignedId" Type="int" />
+          <Property Name="ReviewedId" Type="int" />
+          <Property Name="isSelf" Type="bit" />
+          <Property Name="ReceivedDt" Type="datetime" />
+          <Property Name="AssignedDt" Type="datetime" />
+          <Property Name="DueDt" Type="datetime" />
+          <Property Name="ReviewDt" Type="datetime" />
+          <Property Name="isWB" Type="bit" />
+          <Property Name="isLetterSent" Type="bit" />
+          <Property Name="LetterDt" Type="datetime" />
+          <Property Name="Explaination" Type="nvarchar(max)" />
+          <Property Name="RecordLocation" Type="nvarchar(max)" />
+          <Property Name="DispositionId" Type="int" />
+          <Property Name="DecisionDt" Type="datetime" />
+          <Property Name="ClosedDt" Type="datetime" />
+          <Property Name="IdentifyCosts" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdentifyCostsDt" Type="datetime" />
+          <Property Name="AvoidanceCosts" Type="nvarchar" MaxLength="50" />
+          <Property Name="AvoidanceCostsDt" Type="datetime" />
+          <Property Name="QuestionCosts" Type="nvarchar" MaxLength="50" />
+          <Property Name="QuestionCostsDt" Type="datetime" />
+          <Property Name="RecoveredCosts" Type="nvarchar" MaxLength="50" />
+          <Property Name="RecoveredCostsDt" Type="datetime" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CorrespondenceRRF">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CorrespId" Type="int" Nullable="false" />
+          <Property Name="ProgramId" Type="int" />
+          <Property Name="isPending" Type="bit" />
+          <Property Name="RequestDt" Type="datetime" />
+          <Property Name="DueDt" Type="datetime" />
+          <Property Name="ReceivedDt" Type="datetime" />
+          <Property Name="CAPDueDt" Type="datetime" />
+          <Property Name="isExtension" Type="bit" />
+          <Property Name="IsInadequate" Type="bit" />
+          <Property Name="IsAdditionalInfo" Type="bit" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Individual">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="MiddleName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Title" Type="varchar(max)" />
+          <Property Name="SurName" Type="nvarchar(max)" />
+          <Property Name="NickName" Type="nvarchar(max)" />
+          <Property Name="Address1" Type="nvarchar(max)" />
+          <Property Name="ddress2" Type="nvarchar(max)" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="State" Type="nvarchar(max)" />
+          <Property Name="Zip" Type="nvarchar(max)" />
+          <Property Name="LicenseNo" Type="nvarchar(max)" />
+          <Property Name="Agency" Type="nvarchar(max)" />
+          <Property Name="SupLastName" Type="nvarchar(max)" />
+          <Property Name="SupFirstName" Type="nvarchar(max)" />
+          <Property Name="SupMiddleName" Type="nvarchar(max)" />
+          <Property Name="WorkAddress1" Type="nvarchar(max)" />
+          <Property Name="WorkAddress2" Type="nvarchar(max)" />
+          <Property Name="WorkCity" Type="nvarchar(max)" />
+          <Property Name="WorkPhone" Type="nvarchar(max)" />
+          <Property Name="WorkZip" Type="nvarchar(max)" />
+          <Property Name="WorkState" Type="nvarchar(max)" />
+          <Property Name="CellPhone" Type="nvarchar(max)" />
+          <Property Name="HomePhone" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Email2" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="nvarchar(max)" />
+          <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="EntBy" Type="int" />
+          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="ChgBy" Type="int" />
+          <Property Name="ChgDt" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__CaseAlleg__CaseA__45BE5BA9">
+          <End Role="CaseAllegations" Type="Self.CaseAllegations" Multiplicity="0..1" />
+          <End Role="CaseAllegationsSubject" Type="Self.CaseAllegationsSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseAllegations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseAllegationsSubject">
+              <PropertyRef Name="CaseAllegationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CaseAlleg__Indiv__46B27FE2">
+          <End Role="Individual" Type="Self.Individual" Multiplicity="0..1" />
+          <End Role="CaseAllegationsSubject" Type="Self.CaseAllegationsSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individual">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseAllegationsSubject">
+              <PropertyRef Name="IndividualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entity__ClientId__17036CC0">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Entity" Type="Self.Entity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entity">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entity__ParentId__19DFD96B">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="0..1" />
+          <End Role="Entity1" Type="Self.Entity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entity1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Program__EntityI__18EBB532">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK_CodeDetail_CodeMaster" />-->
+        <Association Name="FK_List_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="List" Type="Self.List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="List">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListColumn_List">
+          <End Role="List" Type="Self.List" Multiplicity="1" />
+          <End Role="ListColumn" Type="Self.ListColumn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="List">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListColumn">
+              <PropertyRef Name="ListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListColumnOption_ListColumn">
+          <End Role="ListColumn" Type="Self.ListColumn" Multiplicity="0..1" />
+          <End Role="ListColumnOption" Type="Self.ListColumnOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListColumn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListColumnOption">
+              <PropertyRef Name="ListColumnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListColumnValue_ListColumn">
+          <End Role="ListColumn" Type="Self.ListColumn" Multiplicity="1" />
+          <End Role="ListColumnValue" Type="Self.ListColumnValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListColumn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListColumnValue">
+              <PropertyRef Name="ListColumnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListValue_List">
+          <End Role="List" Type="Self.List" Multiplicity="1" />
+          <End Role="ListValue" Type="Self.ListValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="List">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListValue">
+              <PropertyRef Name="ListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HealthFormDataStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CodeDetail" EntityType="Self.CodeDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CodeMaster" EntityType="Self.CodeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entity" EntityType="Self.Entity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListColumn" EntityType="Self.ListColumn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListColumnOption" EntityType="Self.ListColumnOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListColumnValue" EntityType="Self.ListColumnValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListValue" EntityType="Self.ListValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientInfo" EntityType="Self.PatientInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMenu" EntityType="Self.UserMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CaseAllegations" EntityType="Self.CaseAllegations" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="CaseAllegationsSubject" EntityType="Self.CaseAllegationsSubject" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="CaseIndividual" EntityType="Self.CaseIndividual" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="CaseProgram" EntityType="Self.CaseProgram" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Correspondence" EntityType="Self.Correspondence" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="CorrespondenceRRF" EntityType="Self.CorrespondenceRRF" Schema="inv" store:Type="Tables" />
+          <EntitySet Name="Individual" EntityType="Self.Individual" Schema="inv" store:Type="Tables" />
+          <AssociationSet Name="FK__CaseAlleg__CaseA__45BE5BA9" Association="Self.FK__CaseAlleg__CaseA__45BE5BA9">
+            <End Role="CaseAllegations" EntitySet="CaseAllegations" />
+            <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CaseAlleg__Indiv__46B27FE2" Association="Self.FK__CaseAlleg__Indiv__46B27FE2">
+            <End Role="Individual" EntitySet="Individual" />
+            <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entity__ClientId__17036CC0" Association="Self.FK__Entity__ClientId__17036CC0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Entity" EntitySet="Entity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entity__ParentId__19DFD96B" Association="Self.FK__Entity__ParentId__19DFD96B">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Entity1" EntitySet="Entity" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Program__EntityI__18EBB532" Association="Self.FK__Program__EntityI__18EBB532">
+            <End Role="Entity" EntitySet="Entity" />
+            <End Role="Program" EntitySet="Program" />
+          </AssociationSet>
+          <AssociationSet Name="FK_List_Client" Association="Self.FK_List_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="List" EntitySet="List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListColumn_List" Association="Self.FK_ListColumn_List">
+            <End Role="List" EntitySet="List" />
+            <End Role="ListColumn" EntitySet="ListColumn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListColumnOption_ListColumn" Association="Self.FK_ListColumnOption_ListColumn">
+            <End Role="ListColumn" EntitySet="ListColumn" />
+            <End Role="ListColumnOption" EntitySet="ListColumnOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListColumnValue_ListColumn" Association="Self.FK_ListColumnValue_ListColumn">
+            <End Role="ListColumn" EntitySet="ListColumn" />
+            <End Role="ListColumnValue" EntitySet="ListColumnValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListValue_List" Association="Self.FK_ListValue_List">
+            <End Role="List" EntitySet="List" />
+            <End Role="ListValue" EntitySet="ListValue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Client" Association="Self.FK_User_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HealthForm.Data" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Entities" Relationship="Self.FK__Entity__ClientId__17036CC0" FromRole="Client" ToRole="Entity" />
+          <NavigationProperty Name="Lists" Relationship="Self.FK_List_Client" FromRole="Client" ToRole="List" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Client" FromRole="Client" ToRole="User" />
+        </EntityType>
+        <EntityType Name="CodeDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasterCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Field1" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Field2" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Field3" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Field4" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CodeMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Entity__ClientId__17036CC0" FromRole="Entity" ToRole="Client" />
+          <NavigationProperty Name="Entity1" Relationship="Self.FK__Entity__ParentId__19DFD96B" FromRole="Entity" ToRole="Entity1" />
+          <NavigationProperty Name="Entity2" Relationship="Self.FK__Entity__ParentId__19DFD96B" FromRole="Entity1" ToRole="Entity" />
+          <NavigationProperty Name="Programs" Relationship="Self.FK__Program__EntityI__18EBB532" FromRole="Entity" ToRole="Program" />
+        </EntityType>
+        <EntityType Name="List">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ListTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="ObjectId" Type="Int32" />
+          <Property Name="ObjectCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_List_Client" FromRole="List" ToRole="Client" />
+          <NavigationProperty Name="ListColumns" Relationship="Self.FK_ListColumn_List" FromRole="List" ToRole="ListColumn" />
+          <NavigationProperty Name="ListValues" Relationship="Self.FK_ListValue_List" FromRole="List" ToRole="ListValue" />
+        </EntityType>
+        <EntityType Name="ListColumn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ListId" Type="Int32" Nullable="false" />
+          <Property Name="ColumnTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ColumnDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ColumnType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ColumnOrder" Type="Int32" />
+          <Property Name="LabelCols" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ValueCols" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ValueLength" Type="Int32" />
+          <Property Name="IsRequired" Type="Boolean" Nullable="false" />
+          <Property Name="TextAreaCols" Type="Int32" />
+          <Property Name="TextAreaRows" Type="Int32" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="List" Relationship="Self.FK_ListColumn_List" FromRole="ListColumn" ToRole="List" />
+          <NavigationProperty Name="ListColumnOptions" Relationship="Self.FK_ListColumnOption_ListColumn" FromRole="ListColumn" ToRole="ListColumnOption" />
+          <NavigationProperty Name="ListColumnValues" Relationship="Self.FK_ListColumnValue_ListColumn" FromRole="ListColumn" ToRole="ListColumnValue" />
+        </EntityType>
+        <EntityType Name="ListColumnOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ListColumnId" Type="Int32" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ListColumn" Relationship="Self.FK_ListColumnOption_ListColumn" FromRole="ListColumnOption" ToRole="ListColumn" />
+        </EntityType>
+        <EntityType Name="ListColumnValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ListColumnId" Type="Int32" Nullable="false" />
+          <Property Name="OptionId" Type="Int32" />
+          <Property Name="OptionText" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="DtEnt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ListColumn" Relationship="Self.FK_ListColumnValue_ListColumn" FromRole="ListColumnValue" ToRole="ListColumn" />
+        </EntityType>
+        <EntityType Name="ListValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ListId" Type="Int32" Nullable="false" />
+          <Property Name="JSONText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="List" Relationship="Self.FK_ListValue_List" FromRole="ListValue" ToRole="List" />
+        </EntityType>
+        <EntityType Name="PatientInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="InsCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InsId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DtEnt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EntityId" Type="Int32" Nullable="false" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Entity" Relationship="Self.FK__Program__EntityI__18EBB532" FromRole="Program" ToRole="Entity" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Desc" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ObjectCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HashedPassword" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_User_Client" FromRole="User" ToRole="Client" />
+          <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
+        </EntityType>
+        <EntityType Name="UserMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="Field1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Field2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Field3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Field4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="DtEnt" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="CaseAllegation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AllegationId" Type="Int32" />
+          <Property Name="CaseId" Type="Int32" />
+          <Property Name="CorrespId" Type="Int32" />
+          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CaseAllegationsSubjects" Relationship="Self.FK__CaseAlleg__CaseA__45BE5BA9" FromRole="CaseAllegations" ToRole="CaseAllegationsSubject" />
+        </EntityType>
+        <EntityType Name="CaseAllegationsSubject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseAllegationId" Type="Int32" />
+          <Property Name="IndividualId" Type="Int32" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CaseAllegation" Relationship="Self.FK__CaseAlleg__CaseA__45BE5BA9" FromRole="CaseAllegationsSubject" ToRole="CaseAllegations" />
+          <NavigationProperty Name="Individual" Relationship="Self.FK__CaseAlleg__Indiv__46B27FE2" FromRole="CaseAllegationsSubject" ToRole="Individual" />
+        </EntityType>
+        <EntityType Name="CaseIndividual">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IndividualId" Type="Int32" Nullable="false" />
+          <Property Name="CaseId" Type="Int32" />
+          <Property Name="CorrespId" Type="Int32" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <Property Name="IsComplainant" Type="Boolean" />
+          <Property Name="IsWB" Type="Boolean" />
+          <Property Name="WBComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsSubjectResponse" Type="Boolean" />
+          <Property Name="DraftSentDt" Type="DateTime" Precision="3" />
+          <Property Name="ResponseDueDt" Type="DateTime" Precision="3" />
+          <Property Name="RequestedExtension" Type="Boolean" />
+          <Property Name="ExtensionDueDt" Type="DateTime" Precision="3" />
+          <Property Name="ResponseReceiveDt" Type="DateTime" Precision="3" />
+          <Property Name="IsJudicialAction" Type="Boolean" />
+          <Property Name="ReferralStatusId" Type="Int32" />
+          <Property Name="IsLEA" Type="Boolean" />
+          <Property Name="LEADt" Type="DateTime" Precision="3" />
+          <Property Name="LEAgency" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsSA" Type="Boolean" />
+          <Property Name="SADt" Type="DateTime" Precision="3" />
+          <Property Name="SAResponseDt" Type="DateTime" Precision="3" />
+          <Property Name="IsSAProsecuting" Type="Boolean" />
+          <Property Name="IsGrandJury" Type="Boolean" />
+          <Property Name="IsIndicted" Type="Boolean" />
+          <Property Name="AcceptanceDt" Type="DateTime" Precision="3" />
+          <Property Name="RestAmount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPTI" Type="Boolean" />
+          <Property Name="ProbTermId" Type="Int32" />
+          <Property Name="ProbTerm" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CommServiceHours" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SpecialConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CaseProgram">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="CaseId" Type="Int32" />
+          <Property Name="CorrespId" Type="Int32" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CorrespondenceRRF">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CorrespId" Type="Int32" Nullable="false" />
+          <Property Name="ProgramId" Type="Int32" />
+          <Property Name="isPending" Type="Boolean" />
+          <Property Name="RequestDt" Type="DateTime" Precision="3" />
+          <Property Name="DueDt" Type="DateTime" Precision="3" />
+          <Property Name="ReceivedDt" Type="DateTime" Precision="3" />
+          <Property Name="CAPDueDt" Type="DateTime" Precision="3" />
+          <Property Name="isExtension" Type="Boolean" />
+          <Property Name="IsInadequate" Type="Boolean" />
+          <Property Name="IsAdditionalInfo" Type="Boolean" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Individual">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SurName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NickName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ddress2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Zip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LicenseNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Agency" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupLastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupFirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupMiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkAddress1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkAddress2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkZip" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkState" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HomePhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CaseAllegationsSubjects" Relationship="Self.FK__CaseAlleg__Indiv__46B27FE2" FromRole="Individual" ToRole="CaseAllegationsSubject" />
+        </EntityType>
+        <Association Name="FK__Entity__ClientId__17036CC0">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Entity" Type="Self.Entity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entity">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_List_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="List" Type="Self.List" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="List">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Entity__ParentId__19DFD96B">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="0..1" />
+          <End Role="Entity1" Type="Self.Entity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entity1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Program__EntityI__18EBB532">
+          <End Role="Entity" Type="Self.Entity" Multiplicity="1" />
+          <End Role="Program" Type="Self.Program" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Program">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListColumn_List">
+          <End Role="List" Type="Self.List" Multiplicity="1" />
+          <End Role="ListColumn" Type="Self.ListColumn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="List">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListColumn">
+              <PropertyRef Name="ListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListValue_List">
+          <End Role="List" Type="Self.List" Multiplicity="1" />
+          <End Role="ListValue" Type="Self.ListValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="List">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListValue">
+              <PropertyRef Name="ListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListColumnOption_ListColumn">
+          <End Role="ListColumn" Type="Self.ListColumn" Multiplicity="0..1" />
+          <End Role="ListColumnOption" Type="Self.ListColumnOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListColumn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListColumnOption">
+              <PropertyRef Name="ListColumnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListColumnValue_ListColumn">
+          <End Role="ListColumn" Type="Self.ListColumn" Multiplicity="1" />
+          <End Role="ListColumnValue" Type="Self.ListColumnValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ListColumn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListColumnValue">
+              <PropertyRef Name="ListColumnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CaseAlleg__CaseA__45BE5BA9">
+          <End Role="CaseAllegations" Type="Self.CaseAllegation" Multiplicity="0..1" />
+          <End Role="CaseAllegationsSubject" Type="Self.CaseAllegationsSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseAllegations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseAllegationsSubject">
+              <PropertyRef Name="CaseAllegationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CaseAlleg__Indiv__46B27FE2">
+          <End Role="Individual" Type="Self.Individual" Multiplicity="0..1" />
+          <End Role="CaseAllegationsSubject" Type="Self.CaseAllegationsSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individual">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseAllegationsSubject">
+              <PropertyRef Name="IndividualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ICTSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="CodeDetails" EntityType="Self.CodeDetail" />
+          <EntitySet Name="CodeMasters" EntityType="Self.CodeMaster" />
+          <EntitySet Name="Entities" EntityType="Self.Entity" />
+          <EntitySet Name="Lists" EntityType="Self.List" />
+          <EntitySet Name="ListColumns" EntityType="Self.ListColumn" />
+          <EntitySet Name="ListColumnOptions" EntityType="Self.ListColumnOption" />
+          <EntitySet Name="ListColumnValues" EntityType="Self.ListColumnValue" />
+          <EntitySet Name="ListValues" EntityType="Self.ListValue" />
+          <EntitySet Name="PatientInfoes" EntityType="Self.PatientInfo" />
+          <EntitySet Name="Programs" EntityType="Self.Program" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserMenus" EntityType="Self.UserMenu" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="CaseAllegations" EntityType="Self.CaseAllegation" />
+          <EntitySet Name="CaseAllegationsSubjects" EntityType="Self.CaseAllegationsSubject" />
+          <EntitySet Name="CaseIndividuals" EntityType="Self.CaseIndividual" />
+          <EntitySet Name="CasePrograms" EntityType="Self.CaseProgram" />
+          <EntitySet Name="CorrespondenceRRFs" EntityType="Self.CorrespondenceRRF" />
+          <EntitySet Name="Individuals" EntityType="Self.Individual" />
+          <AssociationSet Name="FK__Entity__ClientId__17036CC0" Association="Self.FK__Entity__ClientId__17036CC0">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Entity" EntitySet="Entities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_List_Client" Association="Self.FK_List_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="List" EntitySet="Lists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Client" Association="Self.FK_User_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Entity__ParentId__19DFD96B" Association="Self.FK__Entity__ParentId__19DFD96B">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Entity1" EntitySet="Entities" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Program__EntityI__18EBB532" Association="Self.FK__Program__EntityI__18EBB532">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Program" EntitySet="Programs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListColumn_List" Association="Self.FK_ListColumn_List">
+            <End Role="List" EntitySet="Lists" />
+            <End Role="ListColumn" EntitySet="ListColumns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListValue_List" Association="Self.FK_ListValue_List">
+            <End Role="List" EntitySet="Lists" />
+            <End Role="ListValue" EntitySet="ListValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListColumnOption_ListColumn" Association="Self.FK_ListColumnOption_ListColumn">
+            <End Role="ListColumn" EntitySet="ListColumns" />
+            <End Role="ListColumnOption" EntitySet="ListColumnOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListColumnValue_ListColumn" Association="Self.FK_ListColumnValue_ListColumn">
+            <End Role="ListColumn" EntitySet="ListColumns" />
+            <End Role="ListColumnValue" EntitySet="ListColumnValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRole" EntitySet="UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CaseAlleg__CaseA__45BE5BA9" Association="Self.FK__CaseAlleg__CaseA__45BE5BA9">
+            <End Role="CaseAllegations" EntitySet="CaseAllegations" />
+            <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CaseAlleg__Indiv__46B27FE2" Association="Self.FK__CaseAlleg__Indiv__46B27FE2">
+            <End Role="Individual" EntitySet="Individuals" />
+            <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubjects" />
+          </AssociationSet>
+          <EntitySet Name="Correspondences" EntityType="HealthForm.Data.Correspondence" />
+          <EntitySet Name="Comments" EntityType="HealthForm.Data.Comment" />
+        </EntityContainer>
+        <EntityType Name="Correspondence">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="CustomId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ForeignId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReportingId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="SourceId" Type="Int32" />
+          <Property Name="AssignedId" Type="Int32" />
+          <Property Name="ReviewedId" Type="Int32" />
+          <Property Name="isSelf" Type="Boolean" />
+          <Property Name="ReceivedDt" Type="DateTime" Precision="3" />
+          <Property Name="AssignedDt" Type="DateTime" Precision="3" />
+          <Property Name="DueDt" Type="DateTime" Precision="3" />
+          <Property Name="ReviewDt" Type="DateTime" Precision="3" />
+          <Property Name="isWB" Type="Boolean" />
+          <Property Name="isLetterSent" Type="Boolean" />
+          <Property Name="LetterDt" Type="DateTime" Precision="3" />
+          <Property Name="Explaination" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RecordLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DispositionId" Type="Int32" />
+          <Property Name="DecisionDt" Type="DateTime" Precision="3" />
+          <Property Name="ClosedDt" Type="DateTime" Precision="3" />
+          <Property Name="IdentifyCosts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdentifyCostsDt" Type="DateTime" Precision="3" />
+          <Property Name="AvoidanceCosts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AvoidanceCostsDt" Type="DateTime" Precision="3" />
+          <Property Name="QuestionCosts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QuestionCostsDt" Type="DateTime" Precision="3" />
+          <Property Name="RecoveredCosts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RecoveredCostsDt" Type="DateTime" Precision="3" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ObjectId" Type="Int32" />
+          <Property Name="ObjectType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CommentDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CommentType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HealthFormDataStoreContainer" CdmEntityContainer="ICTSEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="HealthForm.Data.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CodeDetails">
+            <EntityTypeMapping TypeName="HealthForm.Data.CodeDetail">
+              <MappingFragment StoreEntitySet="CodeDetail">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MasterCode" ColumnName="MasterCode" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field3" ColumnName="Field3" />
+                <ScalarProperty Name="Field4" ColumnName="Field4" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CodeMasters">
+            <EntityTypeMapping TypeName="HealthForm.Data.CodeMaster">
+              <MappingFragment StoreEntitySet="CodeMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entities">
+            <EntityTypeMapping TypeName="HealthForm.Data.Entity">
+              <MappingFragment StoreEntitySet="Entity">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lists">
+            <EntityTypeMapping TypeName="HealthForm.Data.List">
+              <MappingFragment StoreEntitySet="List">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ListTitle" ColumnName="ListTitle" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListColumns">
+            <EntityTypeMapping TypeName="HealthForm.Data.ListColumn">
+              <MappingFragment StoreEntitySet="ListColumn">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ListId" ColumnName="ListId" />
+                <ScalarProperty Name="ColumnTitle" ColumnName="ColumnTitle" />
+                <ScalarProperty Name="ColumnDesc" ColumnName="ColumnDesc" />
+                <ScalarProperty Name="ColumnType" ColumnName="ColumnType" />
+                <ScalarProperty Name="ColumnOrder" ColumnName="ColumnOrder" />
+                <ScalarProperty Name="LabelCols" ColumnName="LabelCols" />
+                <ScalarProperty Name="ValueCols" ColumnName="ValueCols" />
+                <ScalarProperty Name="ValueLength" ColumnName="ValueLength" />
+                <ScalarProperty Name="IsRequired" ColumnName="IsRequired" />
+                <ScalarProperty Name="TextAreaCols" ColumnName="TextAreaCols" />
+                <ScalarProperty Name="TextAreaRows" ColumnName="TextAreaRows" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListColumnOptions">
+            <EntityTypeMapping TypeName="HealthForm.Data.ListColumnOption">
+              <MappingFragment StoreEntitySet="ListColumnOption">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="ListColumnId" ColumnName="ListColumnId" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListColumnValues">
+            <EntityTypeMapping TypeName="HealthForm.Data.ListColumnValue">
+              <MappingFragment StoreEntitySet="ListColumnValue">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+                <ScalarProperty Name="ListColumnId" ColumnName="ListColumnId" />
+                <ScalarProperty Name="OptionId" ColumnName="OptionId" />
+                <ScalarProperty Name="OptionText" ColumnName="OptionText" />
+                <ScalarProperty Name="DtEnt" ColumnName="DtEnt" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListValues">
+            <EntityTypeMapping TypeName="HealthForm.Data.ListValue">
+              <MappingFragment StoreEntitySet="ListValue">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+                <ScalarProperty Name="ListId" ColumnName="ListId" />
+                <ScalarProperty Name="JSONText" ColumnName="JSONText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientInfoes">
+            <EntityTypeMapping TypeName="HealthForm.Data.PatientInfo">
+              <MappingFragment StoreEntitySet="PatientInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="InsCompany" ColumnName="InsCompany" />
+                <ScalarProperty Name="InsId" ColumnName="InsId" />
+                <ScalarProperty Name="DtEnt" ColumnName="DtEnt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="HealthForm.Data.Program">
+              <MappingFragment StoreEntitySet="Program">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="HealthForm.Data.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HealthForm.Data.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMenus">
+            <EntityTypeMapping TypeName="HealthForm.Data.UserMenu">
+              <MappingFragment StoreEntitySet="UserMenu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field3" ColumnName="Field3" />
+                <ScalarProperty Name="Field4" ColumnName="Field4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="HealthForm.Data.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="DtEnt" ColumnName="DtEnt" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseAllegations">
+            <EntityTypeMapping TypeName="HealthForm.Data.CaseAllegation">
+              <MappingFragment StoreEntitySet="CaseAllegations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AllegationId" ColumnName="AllegationId" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CorrespId" ColumnName="CorrespId" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseAllegationsSubjects">
+            <EntityTypeMapping TypeName="HealthForm.Data.CaseAllegationsSubject">
+              <MappingFragment StoreEntitySet="CaseAllegationsSubject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CaseAllegationId" ColumnName="CaseAllegationId" />
+                <ScalarProperty Name="IndividualId" ColumnName="IndividualId" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseIndividuals">
+            <EntityTypeMapping TypeName="HealthForm.Data.CaseIndividual">
+              <MappingFragment StoreEntitySet="CaseIndividual">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IndividualId" ColumnName="IndividualId" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CorrespId" ColumnName="CorrespId" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+                <ScalarProperty Name="IsComplainant" ColumnName="IsComplainant" />
+                <ScalarProperty Name="IsWB" ColumnName="IsWB" />
+                <ScalarProperty Name="WBComments" ColumnName="WBComments" />
+                <ScalarProperty Name="IsSubjectResponse" ColumnName="IsSubjectResponse" />
+                <ScalarProperty Name="DraftSentDt" ColumnName="DraftSentDt" />
+                <ScalarProperty Name="ResponseDueDt" ColumnName="ResponseDueDt" />
+                <ScalarProperty Name="RequestedExtension" ColumnName="RequestedExtension" />
+                <ScalarProperty Name="ExtensionDueDt" ColumnName="ExtensionDueDt" />
+                <ScalarProperty Name="ResponseReceiveDt" ColumnName="ResponseReceiveDt" />
+                <ScalarProperty Name="IsJudicialAction" ColumnName="IsJudicialAction" />
+                <ScalarProperty Name="ReferralStatusId" ColumnName="ReferralStatusId" />
+                <ScalarProperty Name="IsLEA" ColumnName="IsLEA" />
+                <ScalarProperty Name="LEADt" ColumnName="LEADt" />
+                <ScalarProperty Name="LEAgency" ColumnName="LEAgency" />
+                <ScalarProperty Name="IsSA" ColumnName="IsSA" />
+                <ScalarProperty Name="SADt" ColumnName="SADt" />
+                <ScalarProperty Name="SAResponseDt" ColumnName="SAResponseDt" />
+                <ScalarProperty Name="IsSAProsecuting" ColumnName="IsSAProsecuting" />
+                <ScalarProperty Name="IsGrandJury" ColumnName="IsGrandJury" />
+                <ScalarProperty Name="IsIndicted" ColumnName="IsIndicted" />
+                <ScalarProperty Name="AcceptanceDt" ColumnName="AcceptanceDt" />
+                <ScalarProperty Name="RestAmount" ColumnName="RestAmount" />
+                <ScalarProperty Name="IsPTI" ColumnName="IsPTI" />
+                <ScalarProperty Name="ProbTermId" ColumnName="ProbTermId" />
+                <ScalarProperty Name="ProbTerm" ColumnName="ProbTerm" />
+                <ScalarProperty Name="CommServiceHours" ColumnName="CommServiceHours" />
+                <ScalarProperty Name="SpecialConditions" ColumnName="SpecialConditions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CasePrograms">
+            <EntityTypeMapping TypeName="HealthForm.Data.CaseProgram">
+              <MappingFragment StoreEntitySet="CaseProgram">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+                <ScalarProperty Name="CorrespId" ColumnName="CorrespId" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CorrespondenceRRFs">
+            <EntityTypeMapping TypeName="HealthForm.Data.CorrespondenceRRF">
+              <MappingFragment StoreEntitySet="CorrespondenceRRF">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CorrespId" ColumnName="CorrespId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="isPending" ColumnName="isPending" />
+                <ScalarProperty Name="RequestDt" ColumnName="RequestDt" />
+                <ScalarProperty Name="DueDt" ColumnName="DueDt" />
+                <ScalarProperty Name="ReceivedDt" ColumnName="ReceivedDt" />
+                <ScalarProperty Name="CAPDueDt" ColumnName="CAPDueDt" />
+                <ScalarProperty Name="isExtension" ColumnName="isExtension" />
+                <ScalarProperty Name="IsInadequate" ColumnName="IsInadequate" />
+                <ScalarProperty Name="IsAdditionalInfo" ColumnName="IsAdditionalInfo" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Individuals">
+            <EntityTypeMapping TypeName="HealthForm.Data.Individual">
+              <MappingFragment StoreEntitySet="Individual">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="ddress2" ColumnName="ddress2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="LicenseNo" ColumnName="LicenseNo" />
+                <ScalarProperty Name="Agency" ColumnName="Agency" />
+                <ScalarProperty Name="SupLastName" ColumnName="SupLastName" />
+                <ScalarProperty Name="SupFirstName" ColumnName="SupFirstName" />
+                <ScalarProperty Name="SupMiddleName" ColumnName="SupMiddleName" />
+                <ScalarProperty Name="WorkAddress1" ColumnName="WorkAddress1" />
+                <ScalarProperty Name="WorkAddress2" ColumnName="WorkAddress2" />
+                <ScalarProperty Name="WorkCity" ColumnName="WorkCity" />
+                <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+                <ScalarProperty Name="WorkZip" ColumnName="WorkZip" />
+                <ScalarProperty Name="WorkState" ColumnName="WorkState" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Correspondences">
+            <EntityTypeMapping TypeName="HealthForm.Data.Correspondence">
+              <MappingFragment StoreEntitySet="Correspondence">
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="RecoveredCostsDt" ColumnName="RecoveredCostsDt" />
+                <ScalarProperty Name="RecoveredCosts" ColumnName="RecoveredCosts" />
+                <ScalarProperty Name="QuestionCostsDt" ColumnName="QuestionCostsDt" />
+                <ScalarProperty Name="QuestionCosts" ColumnName="QuestionCosts" />
+                <ScalarProperty Name="AvoidanceCostsDt" ColumnName="AvoidanceCostsDt" />
+                <ScalarProperty Name="AvoidanceCosts" ColumnName="AvoidanceCosts" />
+                <ScalarProperty Name="IdentifyCostsDt" ColumnName="IdentifyCostsDt" />
+                <ScalarProperty Name="IdentifyCosts" ColumnName="IdentifyCosts" />
+                <ScalarProperty Name="ClosedDt" ColumnName="ClosedDt" />
+                <ScalarProperty Name="DecisionDt" ColumnName="DecisionDt" />
+                <ScalarProperty Name="DispositionId" ColumnName="DispositionId" />
+                <ScalarProperty Name="RecordLocation" ColumnName="RecordLocation" />
+                <ScalarProperty Name="Explaination" ColumnName="Explaination" />
+                <ScalarProperty Name="LetterDt" ColumnName="LetterDt" />
+                <ScalarProperty Name="isLetterSent" ColumnName="isLetterSent" />
+                <ScalarProperty Name="isWB" ColumnName="isWB" />
+                <ScalarProperty Name="ReviewDt" ColumnName="ReviewDt" />
+                <ScalarProperty Name="DueDt" ColumnName="DueDt" />
+                <ScalarProperty Name="AssignedDt" ColumnName="AssignedDt" />
+                <ScalarProperty Name="ReceivedDt" ColumnName="ReceivedDt" />
+                <ScalarProperty Name="isSelf" ColumnName="isSelf" />
+                <ScalarProperty Name="ReviewedId" ColumnName="ReviewedId" />
+                <ScalarProperty Name="AssignedId" ColumnName="AssignedId" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ReportingId" ColumnName="ReportingId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ForeignId" ColumnName="ForeignId" />
+                <ScalarProperty Name="CustomId" ColumnName="CustomId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="HealthForm.Data.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="CommentType" ColumnName="CommentType" />
+                <ScalarProperty Name="CommentDt" ColumnName="CommentDt" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ObjectType" ColumnName="ObjectType" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

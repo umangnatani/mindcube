@@ -1,0 +1,37 @@
+/*################ Theme Header With shrink Effect Start #####################*/
+#umang-header[umang-lpanel-effect="shrink"] .umang-right-header[umang-position-type="relative"] {
+  margin-left: 200px;
+   padding-right: 0;
+}
+#umang-header[umang-lpanel-effect="shrink"].umang-minimized-lpanel .umang-right-header[umang-position-type="relative"] {
+  margin-left: 50px;
+  padding-right: 0;
+}
+#umang-header[umang-lpanel-effect="shrink"] .umang-right-header[umang-position-type="fixed"] {
+	padding-right: 200px;
+	margin-left: 200px;
+}
+#umang-header[umang-lpanel-effect="shrink"].umang-minimized-lpanel .umang-right-header[umang-position-type="fixed"] {
+padding-right: 50px;
+	margin-left: 50px;
+}
+#umang-header[umang-lpanel-effect="shrink"] .umang-right-header[umang-position-type="relative"] .umang-sidebar-toggle a:after {
+    margin-left: 0px;
+}
+#umang-header.umang-minimized-lpanel[umang-lpanel-effect="shrink"] .umang-right-header[umang-position-type="relative"] .umang-sidebar-toggle a:after {
+    margin-left: 0px;
+}
+#umang-header[umang-lpanel-effect="shrink"] .umang-right-header[umang-position-type="fixed"] .umang-sidebar-toggle a:after {
+    left: 0px;
+}
+#umang-header.umang-minimized-lpanel[umang-lpanel-effect="shrink"] .umang-right-header[umang-position-type="fixed"] .umang-sidebar-toggle a:after {
+    left: 0px;
+}
+
+#umangapp-container[umang-lpanel-effect="shrink"] #main-content{
+	margin-left: 200px;
+}
+#umangapp-container[umang-lpanel-effect="shrink"].umang-minimized-lpanel #main-content{
+	margin-left: 50px;
+}
+/*################ Theme Header With shrink Effect Close #####################*/

@@ -1,0 +1,526 @@
+﻿/* ----------- Table of Contents ----------------- */
+
+/* Section1: Default Body Style with padding due to Bootstrap fixed header */
+
+/* Section2: Helper and Utility Styles: Aligment, Padding, Float, Border etc. */
+
+/* Section3: Color Styles: Panel, Well colors and Text colors. */
+
+/* Section4: Logo and Header Style  */
+
+/* Section5: Div Based Table Layout Style  */
+
+/* Section6: Indidual Element Style  */
+
+/* Section7: Telerik Grid Override Style  */
+
+/* Section8: jQuery UI Override Style  */
+
+/* Section9: Bootstrap override Style  */
+
+/* Section10: Validation Helper Style  */
+
+/* Section11: Misc Style  */
+
+/*Section12: Select2 Override Style*/
+
+/*Section13: Section for Chart box Override styles*/
+
+/* Section14: CSS for Numbered Lists with circle background -------------- */
+
+/* Section 15: Section For Icons in input elements*/
+
+
+
+/* Section1: Default Body Style with padding due to Bootstrap fixed header -- Start */
+
+body {
+	/*font-size: .85em;*/
+	font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+	color: #232323;
+}
+
+.padding {
+		padding-top: 60px;
+	}
+
+@media (min-width: 768px) {
+	.padding {
+		padding-top: 120px;
+	}
+}
+
+.padding-zero{
+	padding-top: 10px;
+}
+
+header, footer, nav, section {
+	display: block;
+}
+
+
+/* Section1: -- End */
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Section2: Helper and Utility Styles: Aligment, Padding, Float, Border etc. -- Start */
+
+.wrap-no
+{
+	white-space: nowrap;
+}
+
+.margin-no
+{
+	margin:0;
+}
+
+
+.align-right{
+	text-align: right;
+}
+
+.justifyText{
+	text-align: justify;
+}
+
+.line-separator{
+
+height:1px;
+
+}
+
+.panel-top{
+    border-bottom:1px solid #e1e1e1; 
+    padding:5px; 
+    margin:-15px -15px 10px -15px;
+}
+
+.panel-bottom{
+    border-top:1px solid #e1e1e1; 
+    padding:5px; 
+    margin:10px -15px -15px -15px;
+    border-radius: 4px;
+}
+
+.panel-middle{
+    border-top:1px solid #e1e1e1; 
+    border-bottom:1px solid #e1e1e1; 
+    padding:5px; 
+    margin:10px -15px 10px -15px;
+}
+
+.well-top{
+    border-bottom:1px solid #e1e1e1; 
+    padding:5px; 
+    /*margin:-15px -15px 10px -15px;*/
+    margin:-9px -9px 10px -9px;
+    border-radius: 3px;
+}
+
+.well-bottom{
+    border-top:1px solid #e1e1e1; 
+    padding:5px; 
+    margin:10px -9px -9px -9px;
+    border-radius: 3px;
+}
+
+.well-middle{
+    border-top:1px solid #e1e1e1; 
+    border-bottom:1px solid #e1e1e1; 
+    padding:5px; 
+    margin:10px -9px 10px -9px;
+}
+
+/* Section2: Helper and Utility Styles: Aligment, Padding, Float, Border etc. -- End */
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* Section5: Div Based Table Layout Style  -- Start -- */
+
+@media (min-width: 768px) {
+	.data-table .data-label
+{
+	text-align: right;
+}
+
+}
+
+
+.data-label
+{
+	color: #13558E;
+	margin-top: 5px;
+}
+
+.data-value
+{
+	color: #792a2a;
+	margin-top: 5px;
+}
+
+
+
+.data-table  .row{
+	margin-bottom: 5px;
+  }
+
+/*.data-table  .row:last-child{
+	margin: 0;
+  }*/
+
+.border-bottom{
+	border-bottom: 1px solid #f1f1f1;
+  }
+
+.data-table div[class*="col-md-"] {
+	 padding-left: 8px; 
+	 padding-right: 0px;
+	min-height: 25px;
+  }
+
+
+/* Section5: Div Based Table Layout Style  -- End -- */
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* Section6: Indidual Element Style  -- Start -- */
+
+
+
+
+/* Section6: Indidual Element Style  -- End -- */
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* Section7: Telerik Grid Override Style ------------ Start-- */
+
+.t-grid
+{
+	color:#000;
+	font-size:12px;
+	font-family: Verdana, Geneva, sans-serif;
+
+}
+
+
+.t-grid tr td {
+	overflow:visible;
+}
+
+
+.t-grid-header .t-header .t-link {
+margin: 0;
+padding: 0;
+}
+
+.t-grouping-header, .t-grid-toolbar {
+/*padding: 0 5px;*/
+ height: auto; 
+ line-height: normal; 
+}
+
+.t-filter-options select {
+width: 130px;
+}
+
+
+.t-upload-button{
+	 width:  auto;
+}
+
+.t-popup{
+        width: 140px !important;
+    }
+
+
+/* Section7: Telerik Grid Override Style ------------ End-- */
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* Section8: jQuery UI Override Style  ---------- Start ---- */
+
+/* jQuery Popup Override  ---  Start */
+
+
+
+.ui-dialog
+{
+   z-index: 1060 !important;
+}
+
+
+
+/* jQuery Popup Override  ---  End */
+
+
+
+/* Section8: jQuery UI Override Style  ---------- End ---- */
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+/* Section9: Bootstrap override Style  ----------------------------------------- Start -- */
+
+.form-horizontal .control-label, .form-horizontal .col-form-label {
+    padding-right: 0;
+    color: #13558e;
+    font-weight:normal;
+}
+
+input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.md-textarea {
+    border: 1px solid #ccc !important;
+    height: auto !important;
+    border-radius: .25rem;
+}
+
+.form-control {
+    padding: .5rem 0 .5rem .5rem;
+    line-height: 1.5;
+    margin-top: 0; 
+    margin-bottom: 0; 
+}
+
+label {
+    font-size: .90rem;
+}
+
+
+/*.tab-content {
+    padding: 0;
+}*/
+
+/* Section9: Bootstrap override Style  ----------------------------------------- End -- */
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+/* Section10: Validation Helper Style  --------- Start --*/
+
+.field-validation-error {
+	color: #f00;
+}
+
+.field-validation-valid {
+	display: none;
+}
+
+/*.input-validation-error {
+	border: 1px solid #f00;
+	background-color: #fee;
+}*/
+
+.validation-summary-errors {
+	font-weight: bold;
+	color: #f00;
+}
+
+.validation-summary-valid {
+	display: none;
+}
+
+
+/* Section10: -- End */
+
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+/* Section11: Misc Style --------------- Start */
+
+
+.div-tabs, .div-tabs ul{
+	margin-bottom :1px;
+} 
+
+.actionicons
+{
+	width:25px;
+	height:25px;
+}
+
+.page-title{
+	margin:0;
+    font-family: "Roboto",sans-serif;
+}
+
+.div-collapse
+{
+	cursor: pointer;
+}
+
+.link {
+    color:blue !important;
+    text-decoration: underline;
+}
+
+
+
+/* Qtip2 overrides ------------- Start*/
+
+.myCustomClass{
+	width: 600px;
+	max-width: 600px !important;
+}
+
+
+/* Qtip2 overrides ------------- End*/
+
+/* Section11: Misc Style --------------- End */
+.t-filter-options{
+    z-index: 1;
+}
+
+/*Section12: Section for Select2 Override styles*/
+
+/*END*/
+
+
+
+/* Section14: CSS for Numbered Lists with circle background -------------- */
+.numberlist{
+    width:450px;
+ 
+}
+.numberlist ol{
+                counter-reset: li;
+                list-style: none;
+                *list-style: decimal;
+                /*font: 15px 'trebuchet MS', 'lucida sans';*/
+                /*padding: 0;*/
+                padding-bottom:2px;
+                margin-bottom: 4em;
+ 
+}
+.numberlist ol ol{
+                margin: 0 0 0 2em;
+            }
+ 
+.numberlist a{
+                position: relative;
+                display: block;
+                padding: .4em .4em .4em 2em;
+                *padding: .4em;
+                margin: .5em 0;
+                background: #FFF;
+                color: #444;
+                text-decoration: none;
+                -moz-border-radius: .3em;
+                -webkit-border-radius: .3em;
+                border-radius: .3em;
+            }
+ 
+.numberlist a:hover{
+                background: #cbe7f8;
+                text-decoration:underline;
+            }
+
+.numberlist a:hover:before{
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+}
+.numberlist a:before{
+                /*content: counter(li);
+                counter-increment: li;*/
+                font-family: FontAwesome;
+                /*content: "\f061";*/
+                position: relative;
+                left: -.1em;
+                top: 50%;
+                margin-top: -1em;
+                background: #87ceeb;
+                height: 2em;
+                width: 2em;
+                line-height: 2em;
+                border: .4em solid #fff;
+                text-align: center;
+                /*font-weight: bold;*/
+                -moz-border-radius: 2em;
+                -webkit-border-radius: 2em;
+                border-radius: 2em;
+                color:#ff6a00;
+            }
+ 
+
+
+
+
+.badge-custom {
+padding: 5px;
+background: #87ceeb;
+border: .3em solid #fff;
+text-align: center;
+font-weight: bold;
+-moz-border-radius: 2em;
+-webkit-border-radius: 2em;
+border-radius: 2em;
+}
+
+
+/* End css list with numeber circle background -------------- */
+
+
+/*  Section For Icons in input elements*/
+.left-inner-addon {
+    position: relative;
+}
+.left-inner-addon input, .left-inner-addon select {
+    padding-left: 30px;    
+}
+.left-inner-addon i {
+    position: absolute;
+    padding: 8px;
+    pointer-events: none;
+}
+
+.right-inner-addon {
+    position: relative;
+}
+.right-inner-addon input {
+    padding-right: 30px;    
+}
+.right-inner-addon i {
+    position: absolute;
+    right: 0;
+    padding: 8px;
+    pointer-events: none;
+}
+
+/*END*/
+
+.text-pt-sans{
+    color: #333;
+    font-family: 'PT Sans', sans-serif;
+}
+
+[disabled] { /* Text and background colour, medium red on light yellow */
+background-color:#e7e7e7 !important;
+}
+
+
+
+/*END*/

@@ -1,0 +1,101 @@
+﻿<div growl inline="true"></div>
+<busy-indicator></busy-indicator>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        Maintain
+    </div>
+    <div class="panel-body">
+        <form novalidate  name="entryForm" class="form-horizontal">
+            <input type="hidden" name="ListId" ng-model="obj.ListId" />
+            <input type="hidden" name="Id" ng-model="obj.Id" />
+
+            <div class="form-group">
+                <label class="col-md-1 control-label">Title</label>
+                <div class="col-md-5">
+                    <input class="form-control" name="ColumnTitle" type="text" ng-model="obj.ColumnTitle" required />
+                    <div ng-messages="entryForm.ColumnTitle.$error" ng-if="entryForm.ColumnTitle.$touched" role="alert">
+                        <div ng-message="required">This field is required</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-1 control-label">Description</label>
+                <div class="col-md-11">
+                    <input class="form-control" name="ColumnDesc" type="text" ng-model="obj.ColumnDesc" />
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label class="col-md-1 control-label">Type</label>
+                <div class="col-md-5 selectContainer">
+                    <select ng-model="obj.ColumnType" class="form-control black" required ng-options="option.Code as option.Text for option in columntypes">
+                        <option value="">-- Select --</option>
+                    </select>
+                    <input type="hidden" name="ColumnType" ng-value="obj.ColumnTypeMultiple" />
+                </div>
+
+            </div>
+
+            
+                <div class="form-group" ng-show='obj.ColumnType === "D" || obj.ColumnType === "C" || obj.ColumnType === "R"'>
+                    <label class="col-md-1 control-label">Options</label>
+                    <div class="col-md-2" data-ng-repeat="choice in obj.ListColumnOptions">
+                        <input type="hidden" ng-model="choice.Id">
+                        <input class="form-control" type="text" ng-model="choice.Text" name="" placeholder="Enter option" style="width:80%; display:inline">
+                        <button class="remove" ng-click="removeChoice($index)">X</button>
+                        
+                    </div>
+                    <div class="col-md-1"><button class="addfields" ng-click="addNewChoice()">Add More</button></div>
+                    </div>
+                    
+            
+            
+
+            <div class="form-group">
+                <label class="col-md-1 control-label">Label Class</label>
+                <div class="col-md-2">
+                    <input class="form-control" name="LabelCols" type="text" ng-model="obj.LabelCols" />
+
+                </div>
+                <label class="col-md-1 control-label col-md-offset-2">Value Class</label>
+                <div class="col-md-2">
+                    <input class="form-control" name="ValueCols" type="text" ng-model="obj.ValueCols" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-1 control-label">Value Length</label>
+                <div class="col-md-2">
+                    <input class="form-control" name="ValueLength" type="text" ng-model="obj.ValueLength" />
+
+                </div>
+                <label class="col-md-1 control-label col-md-offset-2">Is Required</label>
+                <div class="col-md-2 checkbox">
+                    <label><input type="checkbox" ng-model="obj.IsRequired" /></label>
+                </div>
+            </div>
+            <div class="form-group" ng-show='obj.ColumnType === "TA"'>
+                <label class="col-md-1 control-label">Rows</label>
+                <div class="col-md-2">
+                    <input class="form-control" name="TextAreaRows" type="text" ng-model="obj.TextAreaRows" />
+
+                </div>
+                <label class="col-md-1 control-label col-md-offset-2">Columns</label>
+                <div class="col-md-2">
+                    <input class="form-control" name="TextAreaCols" type="text" ng-model="obj.TextAreaCols" />
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer">
+        <div class="clearfix">
+            <div class="pull-right">
+                <fieldset ng-disabled="isSaving">
+                    <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="entryForm.$invalid">Save</button>
+                    <button type="button" class="btn btn-primary" ng-click="makeInactive()">Inactivate</button>
+                </fieldset>
+</div>
+        </div>
+    </div>
+</div>

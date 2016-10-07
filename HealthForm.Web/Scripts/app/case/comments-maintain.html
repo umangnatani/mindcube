@@ -1,0 +1,35 @@
+﻿<div ng-controller="caseCommentsController">
+    <div ng-repeat="comment in list">
+        <div class="row">
+            <div class="col-sm-2">
+                {{comment.CommentDt | date : 'MM/dd/yyyy'}}
+            </div>
+            <div class="col-sm-4">
+                {{comment.Comments}}
+            </div>
+            <div class="col-sm-2">
+                <a href="JavaScript:void(0)" ng-click="editChild(comment)">Edit</a>
+                <a href="JavaScript:void(0)" ng-click="deleteChild(comment.Id, 'comments')">Delete</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="CommentDt" class="col-form-label">Date</label>
+
+        <input type="text" ng-model="childObj.CommentDt" id="CommentDt" class="form-control" required>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <label for="Comments" class="col-form-label">Work Log</label>
+                <textarea ng-model="childObj.Comments" ID="Comments" class="form-control" required />
+            </div>
+        </div>
+
+
+    </div>
+    <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+
+</div>

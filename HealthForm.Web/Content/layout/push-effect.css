@@ -1,0 +1,42 @@
+/*################ Theme Header With Content Push Effect Start #####################*/
+#umang-header[umang-lpanel-effect="push"] .umang-right-header[umang-position-type="fixed"] {
+    margin-left: 200px;
+    margin-right: -200px;
+	padding-right:0px
+}
+#umang-header.umang-minimized-lpanel[umang-lpanel-effect="push"] .umang-right-header[umang-position-type="fixed"] {
+     margin-left: 50px;
+	margin-right: 0px;
+	padding-right:50px
+}
+#umang-header[umang-lpanel-effect="push"] .umang-right-header[umang-position-type="relative"] {
+    margin-left: 200px;
+    margin-right: -200px;
+}
+#umang-header[umang-lpanel-effect="push"].umang-minimized-lpanel .umang-right-header[umang-position-type="relative"] {
+    margin-left: 50px;
+	margin-right: 0px;
+}
+#umang-header[umang-lpanel-effect="push"] .umang-right-header[umang-position-type="relative"] .umang-sidebar-toggle a:after {
+ margin-left:  0px;
+}
+#umang-header.umang-minimized-lpanel[umang-lpanel-effect="push"] .umang-right-header[umang-position-type="relative"] .umang-sidebar-toggle a:after {
+ margin-left:  0px;
+}
+#umang-header[umang-lpanel-effect="push"] .umang-right-header[umang-position-type="fixed"] .umang-sidebar-toggle a:after {
+    margin-left:  0px;
+}
+#umang-header.umang-minimized-lpanel[umang-lpanel-effect="push"] .umang-right-header[umang-position-type="fixed"] .umang-sidebar-toggle a:after {
+    margin-left:  0px;
+}
+
+#umangapp-container[umang-lpanel-effect="push"] #main-content{
+	margin-left: 200px;
+	margin-right: -200px;
+}
+#umangapp-container[umang-lpanel-effect="push"].umang-minimized-lpanel #main-content{
+	 margin-left: 50px;
+     margin-right: 0px;	 
+}
+
+/*################ Theme Header With Content Push Effect Close #####################*/

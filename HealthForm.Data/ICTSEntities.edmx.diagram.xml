@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="77d9566f58cf4d44a0473dc3eccc4b49" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="HealthForm.Data.Client" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CodeDetail" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CodeMaster" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Entity" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.List" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.ListColumn" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.ListColumnOption" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.ListColumnValue" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.ListValue" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.PatientInfo" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Program" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Role" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.User" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.UserMenu" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.UserRole" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseAllegation" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseAllegationsSubject" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseIndividual" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseProgram" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CorrespondenceRRF" Width="1.5" PointX="13.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Individual" Width="1.5" PointX="7.75" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="HealthForm.Data.FK__Entity__ClientId__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_List_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_User_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK__Entity__ParentId__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK__Program__EntityI__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_ListColumn_List" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_ListValue_List" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_ListColumnOption_ListColumn" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_ListColumnValue_ListColumn" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_UserRole_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_UserRole_User" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK__CaseAlleg__CaseA__45BE5BA9" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HealthForm.Data.Correspondence" Width="1.5" PointX="10.5" PointY="21.625" />
+        <EntityTypeShape EntityType="HealthForm.Data.Comment" Width="1.5" PointX="12.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

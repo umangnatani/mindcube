@@ -1,0 +1,33 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        Maintain
+    </div>
+    <div class="panel-body">
+        <form role="form" novalidate angular-validator name="maintainListForm" angular-validator-submit="Register()" class="form-horizontal">
+                
+                    
+                        <div class="form-group">
+                            <label class="col-md-1 control-label">Title</label>
+                            <div class="col-md-4">
+                                <input class="form-control" name="ListTitle" type="text" ng-model="obj.ListTitle"
+                                       validate-on="blur" required required-message="'Title is required'">
+                            </div>
+            
+                <label class="col-md-2 control-label">Client</label>
+                <div class="col-md-5 selectContainer">
+                    <select ng-model="obj.ClientId" class="form-control black" ng-options="option.Id as option.ClientName for option in clients" required></select>
+                    <input type="hidden" name="ClientId" ng-value="obj.ClientId" />
+                </div>
+
+            </div>
+                
+            </form>
+    </div>
+    <div class="clearfix">
+        <div class="pull-right">
+            <button type="button" class="btn btn-danger" ng-click="cancelEdit()">Cancel</button>
+            <button type="button" class="btn btn-primary" ng-click="saveList()">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="makeInactive()">Inactivate</button>
+        </div>
+    </div>
+</div>

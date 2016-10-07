@@ -1,0 +1,167 @@
+
+/*#################### Right navigation Style Start Here ##################################*/
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-left-header,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-left-header {
+  right: 0;
+}
+
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-right-header,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-right-header  {
+  margin-left: 0;
+  margin-right: 200px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"].left-navbar,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"].left-navbar {
+  float: right;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .right-navbar,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .right-navbar {
+  float: left;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-sidebar-toggle a:after,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-sidebar-toggle a:after {
+  right: 0;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .left-navbar li:last-child,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .left-navbar li:last-child {
+  padding-right: 50px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .left-navbar li:first-child,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .left-navbar li:first-child {
+  padding-right: 0px;
+}
+
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] #umang-left-panel,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] #umang-left-panel {
+  right: 0;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] #main-content,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] #main-content {
+  margin-left: 0;
+  margin-right: 200px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] #styleSelector,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] #styleSelector {
+  left: -200px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .selector-toggle > a,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .selector-toggle > a {
+  border-radius: 0 4px 4px 0;
+  left: 228px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] #styleSelector.open,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] #styleSelector.open {
+  right: 0;
+  left: 0;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .selector-toggle > a:before,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .selector-toggle > a:before {
+    content: "\f101";
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .open .selector-toggle > a:before,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .open .selector-toggle > a:before {
+    content: "\f100";
+}
+ 
+ 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] #umang-left-panel .panel-list > li.umang-has-menu > ul > li.umang-has-menu > ul > li > a span.menu-text,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] #umang-left-panel .panel-list > li.umang-has-menu > ul > li.umang-has-menu > ul > li > a span.menu-text {
+    padding-left: auto;
+    padding-right: 25px;
+}
+ 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] #umang-left-panel .panel-list > li.umang-has-menu > ul > li.umang-has-menu > ul > li > ul > li > a span.menu-text,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] #umang-left-panel .panel-list > li.umang-has-menu > ul > li.umang-has-menu > ul > li > ul > li > a span.menu-text {
+  padding-left: auto;
+  padding-right: 35px;
+ 
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] #umang-header.umang-minimized-lpanel > .umang-right-header,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] #umang-header.umang-minimized-lpanel > .umang-right-header {
+  margin-left: 0px;
+  margin-right: 50px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #main-content,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #main-content  {
+  margin-left: 0px;
+  margin-right: 50px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel {
+  direction: rtl;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li:hover > a span.menu-text, 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li:focus > a span.menu-text,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li:hover > a span.menu-text, 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li:focus > a span.menu-text {
+  right: 52px;
+  left:auto;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list li:hover a .label,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list li:hover a .label {
+  left: 5px;
+  right: auto;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li:hover > a, 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li:focus > a,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li:hover > a, 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li:focus > a {
+  border-radius: 4px 0px 0px 4px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu:hover > ul.umang-sub-menu, 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu:focus > ul.umang-sub-menu,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu:hover > ul.umang-sub-menu, 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu:focus > ul.umang-sub-menu  {
+  left: auto;
+  right: 50px;
+}
+ 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu li.umang-has-menu > a:after,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu li.umang-has-menu > a:after {
+    float: left;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu li.umang-has-menu:hover > a:after,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu li.umang-has-menu:focus > a:after,body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu li.umang-has-menu:hover > a:after,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu li.umang-has-menu:focus > a:after  {
+    float: left;
+}
+ 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul.umang-sub-menu > li > a span.menu-text:before,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul.umang-sub-menu > li > a span.menu-text:before {
+    font-family: FontAwesome;
+    content: "\f0d9";
+    font-size: 14px;
+    position: relative;
+    float: right;
+    left: 4px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul.umang-sub-menu > li.umang-has-menu > ul.umang-sub-menu > li > a span.menu-text:before,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul.umang-sub-menu > li.umang-has-menu > ul.umang-sub-menu > li > a span.menu-text:before {
+    font-family: FontAwesome;
+    content: "\f0d9";
+    font-size: 14px;
+    position: relative;
+    float: right;
+    left: 4px;
+}
+ 
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul > li.umang-has-menu > ul > li > a span.menu-text,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul > li.umang-has-menu > ul > li > a span.menu-text {
+  padding-left: auto;
+  padding-right: 0px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul.umang-sub-menu > li.umang-has-menu > ul.umang-sub-menu > li.umang-has-menu > ul.umang-sub-menu > li > a span.menu-text:before,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul.umang-sub-menu > li.umang-has-menu > ul.umang-sub-menu > li.umang-has-menu > ul.umang-sub-menu > li > a span.menu-text:before {
+  font-family: FontAwesome;
+  content: "\f0d9";
+  font-size: 14px;
+  position: relative;
+  float: right;
+  left: 4px;
+}
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="desktop"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul > li.umang-has-menu > ul > li > ul > li > a span.menu-text,
+body[umang-nav-placement="right"] #umangapp-wrapper[umang-device-type="tablet"] .umang-minimized-lpanel #umang-left-panel .panel-list > li.umang-has-menu > ul > li.umang-has-menu > ul > li > ul > li > a span.menu-text {
+  padding-left: auto;
+  padding-right: 0px;
+}
+/*#################### Right Sidebar Style Close Here ##################################*/

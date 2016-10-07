@@ -1,0 +1,37 @@
+/*################ Theme Header With Content Overlay Effect Start #####################*/
+#umang-header[umang-lpanel-effect="overlay"] .umang-right-header[umang-position-type="fixed"] {
+  margin-left:  0px;
+  padding-right: 0px;
+}
+#umang-header[umang-lpanel-effect="overlay"].umang-minimized-lpanel .umang-right-header[umang-position-type="fixed"] {
+    margin-left:  50px;
+    padding-right: 50px;
+}
+#umang-header[umang-lpanel-effect="overlay"] .umang-right-header[umang-position-type="relative"] {
+  margin-left: 0px;
+}
+#umang-header.umang-minimized-lpanel[umang-lpanel-effect="overlay"] .umang-right-header[umang-position-type="relative"] {
+  margin-left: 50px;   
+}
+#umang-header[umang-lpanel-effect="overlay"] .umang-right-header[umang-position-type="relative"] .umang-sidebar-toggle a:after {
+    margin-left:  200px;
+	
+}
+#umang-header.umang-minimized-lpanel[umang-lpanel-effect="overlay"] .umang-right-header[umang-position-type="relative"] .umang-sidebar-toggle a:after {
+     margin-left: 0px;
+}
+#umang-header[umang-lpanel-effect="overlay"] .umang-right-header[umang-position-type="fixed"] .umang-sidebar-toggle a:after {
+  margin-left:  200px;
+}
+#umang-header.umang-minimized-lpanel[umang-lpanel-effect="overlay"] .umang-right-header[umang-position-type="fixed"] .umang-sidebar-toggle a:after {
+    margin-left:  0px; 
+}
+
+
+#umangapp-container[umang-lpanel-effect="overlay"] #main-content{
+	 margin-left: 50px;
+}
+#umangapp-container[umang-lpanel-effect="overlay"].umang-minimized-lpanel #main-content{
+	 margin-left: 50px;
+}
+/*################ Theme Header With Content Overlay Effect Close #####################*/
