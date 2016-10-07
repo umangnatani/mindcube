@@ -30,7 +30,6 @@
       });
         
 
-
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('Id').withTitle('Id'),
             DTColumnBuilder.newColumn('ClientName').withTitle('Client Name'),
