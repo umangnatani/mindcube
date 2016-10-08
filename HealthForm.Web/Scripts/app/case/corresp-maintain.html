@@ -1,5 +1,4 @@
-﻿<div growl inline="true"></div>
-<busy-indicator></busy-indicator>
+﻿<busy-indicator></busy-indicator>
 <h4>
     Maintain
 </h4>
@@ -7,55 +6,56 @@
 
 <div class="card">
     <div class="card-block">
-        <form class="form-horizontal" name="EntryForm">
+        
 
             <uib-tabset active="activeForm">
                 <uib-tab index="0" heading="General">
 
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="RecFName" class="col-form-label">Received From</label>
-                                <input type="text" ng-model="vm.FirstName" ID="FirstName" class="form-control" required>
+                    <form class="form-horizontal" name="entryForm" novalidate>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="RecFName" class="col-form-label">Received From</label>
+                                    <input type="text" ng-model="vm.FirstName" name="FirstName" class="form-control" validator="required">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-4 offset-sm-1">
-                            <div class="form-group">
-                                <label for="ReceivedDt" class="col-form-label">Received Date</label>
+                            <div class="col-sm-4 offset-sm-1">
+                                <div class="form-group">
+                                    <label for="ReceivedDt" class="col-form-label">Received Date</label>
 
-                                <input type="text" ng-model="vm.ReceivedDt" id="ReceivedDt" class="form-control" required>
+                                    <input type="text" ng-model="vm.ReceivedDt" name="ReceivedDt" class="form-control" validator="required">
+                                </div>
                             </div>
-                        </div>
 
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="Category" class="col-form-label">Category</label>
-                                <select ng-model="vm.CategoryId" class="form-control" ng-options="option.Id as option.Text for option in Categories">
-                                    <option value="">-- Select --</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-4 offset-sm-1">
-                            <div class="form-group">
-                                <label for="Category" class="col-form-label">Source</label>
-                                <select ng-model="vm.SourceId" class="form-control" ng-options="option.Id as option.Text for option in Sources">
-                                    <option value="">-- Select --</option>
-                                </select>
-                            </div>
                         </div>
 
-                    </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="Category" class="col-form-label">Category</label>
+                                    <select ng-model="vm.CategoryId" name="CategoryId" class="form-control" ng-options="option.Id as option.Text for option in Categories" validator="required">
+                                        <option value="">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 offset-sm-1">
+                                <div class="form-group">
+                                    <label for="Category" class="col-form-label">Source</label>
+                                    <select ng-model="vm.SourceId" name="SourceId" class="form-control" ng-options="option.Id as option.Text for option in Sources" validator="required">
+                                        <option value="">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                    <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+                        </div>
 
-                    
-                       
+                        <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
+                        <button validation-reset="entryForm" class="btn btn-default">Reset</button>
+                    </form>
 
-                </uib-tab>
+
+
+</uib-tab>
                 <uib-tab index="1" heading="Status" ng-if="vm.Id > 0" select="tabClick('comments')">
 
                     
@@ -64,7 +64,7 @@
                 </uib-tab>
             </uib-tabset>
                 
-    </form>
+    
 
 </div>
 </div>

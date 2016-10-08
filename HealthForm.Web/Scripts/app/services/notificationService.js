@@ -48,4 +48,4 @@
 
     }
 
-})(angular.module('common.core'));
+})(angular.module('MyApp'));

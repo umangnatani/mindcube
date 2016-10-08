@@ -3,9 +3,9 @@
 
     app.factory('helperService', helperService);
 
-    helperService.$inject = ['growl', 'growlMessages', '$base64', '$cookies', '$rootScope', '$http'];
+    helperService.$inject = ['$base64', '$cookies', '$rootScope', '$http'];
 
-    function helperService(growl, growlMessages, $base64, $cookies, $rootScope, $http) {
+    function helperService($base64, $cookies, $rootScope, $http) {
 
         var service = {
             showMessage: showMessage,
@@ -64,12 +64,12 @@
 
         function showMessage(response, scope) {
             if (response.data.Code > 0) {
-                growl.success(response.data.Message);
+                //growl.success(response.data.Message);
                 //$rootScope.isBusy = true;
             }
 
             else {
-                growl.error(response.data.Message);
+                //growl.error(response.data.Message);
                 //$rootScope.isBusy = false;
             }
             $rootScope.isBusy = false;
@@ -78,7 +78,7 @@
         }
 
         function preparePost(scope) {
-            growlMessages.destroyAllMessages();
+            //growlMessages.destroyAllMessages();
             $rootScope.isBusy = true;
             //scope.obj.Active = 1;
         }
@@ -87,7 +87,7 @@
       
     }
 
-})(angular.module('common.core'));
+})(angular.module('MyApp'));
 
 
 (function (app) {
@@ -116,7 +116,7 @@
         };
     }
 
-})(angular.module('common.core'));
+})(angular.module('MyApp'));
 
 
 

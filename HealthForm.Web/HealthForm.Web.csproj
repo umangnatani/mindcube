@@ -303,12 +303,14 @@
     <Content Include="Content\plugin\angular-datatables.css" />
     <Content Include="Content\plugin\angular-datatables.min.css" />
     <Content Include="Content\plugin\angular-growl.min.css" />
+    <Content Include="Content\plugin\angular-toastr.min.css" />
     <Content Include="Content\plugin\bootstrap-datetimepicker.css" />
     <Content Include="Content\plugin\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\plugin\calendar.css" />
     <Content Include="Content\plugin\fullcalendar.css" />
     <Content Include="Content\plugin\fullcalendar.print.css" />
     <Content Include="Content\plugin\jquery.dataTables.min.css" />
+    <Content Include="Content\plugin\ngToast.min.css" />
     <Content Include="Content\plugin\select2-bootstrap.css" />
     <Content Include="Content\plugin\select2-spinner.gif" />
     <Content Include="Content\plugin\select2.css" />
@@ -365,8 +367,6 @@
     <Content Include="Scripts\app\list\listController.js" />
     <Content Include="Scripts\app\list\maintain.html" />
     <Content Include="Scripts\app\list\menu.html" />
-    <Content Include="Scripts\app\modules\common.core.js" />
-    <Content Include="Scripts\app\modules\common.ui.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\patient\maintain.html" />
     <Content Include="Scripts\app\patient\patientController.js" />
@@ -375,6 +375,7 @@
     <Content Include="Scripts\app\services\myService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
     <Content Include="Scripts\app\test\testController.js" />
+    <Content Include="Scripts\base\angular-animate.min.js" />
     <Content Include="Scripts\base\angular-base64.js" />
     <Content Include="Scripts\base\angular-cookies.js" />
     <Content Include="Scripts\base\angular-cookies.min.js" />
@@ -382,6 +383,7 @@
     <Content Include="Scripts\base\angular-messages.min.js" />
     <Content Include="Scripts\base\angular-route.js" />
     <Content Include="Scripts\base\angular-route.min.js" />
+    <Content Include="Scripts\base\angular-sanitize.min.js" />
     <Content Include="Scripts\base\angular.js" />
     <Content Include="Scripts\base\angular.min.js" />
     <Content Include="Scripts\base\bootstrap.js" />
@@ -408,6 +410,12 @@
     <Content Include="Scripts\plugin\angular-formly-templates-bootstrap.min.js" />
     <Content Include="Scripts\plugin\angular-growl.js" />
     <Content Include="Scripts\plugin\angular-growl.min.js" />
+    <Content Include="Scripts\plugin\angular-toastr.min.js" />
+    <Content Include="Scripts\plugin\angular-toastr.tpls.min.js" />
+    <Content Include="Scripts\plugin\angular-validation-rule.js" />
+    <Content Include="Scripts\plugin\angular-validation-rule.min.js" />
+    <Content Include="Scripts\plugin\angular-validation.js" />
+    <Content Include="Scripts\plugin\angular-validation.min.js" />
     <Content Include="Scripts\plugin\api-check.min.js" />
     <Content Include="Scripts\plugin\Background_Cycle.js" />
     <Content Include="Scripts\plugin\bootbox.min.js" />
@@ -425,6 +433,7 @@
     <Content Include="Scripts\plugin\jquery.qtip.min.js" />
     <Content Include="Scripts\plugin\moment.js" />
     <Content Include="Scripts\plugin\moment.min.js" />
+    <Content Include="Scripts\plugin\ngToast.min.js" />
     <Content Include="Scripts\plugin\select2.min.js" />
     <Content Include="Scripts\plugin\TimePickerAddon.js" />
     <Content Include="Scripts\app\client\index.html" />

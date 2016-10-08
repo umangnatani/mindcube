@@ -3,14 +3,29 @@
 
     'use strict';
 
-    angular.module("MyApp", ['common.core', 'common.ui']).config(config)
+    angular.module("MyApp", ['ngRoute',
+                            'ngCookies',
+                            'base64',
+                            'ui.bootstrap',
+                            'ngMessages',
+                            'ngAnimate',
+                            'toastr', // For growl notifications
+                            'ui.grid',
+                            'ui.grid.pagination',
+                            'ui.grid.saveState',
+                            'datatables',
+                            'formly',
+                            'formlyBootstrap',
+                            'validation', // For form validation
+                            'validation.rule' // For form validation rules
+    ]).config(config)
     .run(run);
 
-    config.$inject = ['$routeProvider', 'growlProvider', '$httpProvider', 'formlyConfigProvider'];
+    config.$inject = ['$routeProvider', '$httpProvider', 'formlyConfigProvider', 'toastrConfig', '$validationProvider'];
 
 
 
-    function config($routeProvider, growlProvider, $httpProvider, formlyConfigProvider) {
+    function config($routeProvider, $httpProvider, formlyConfigProvider, toastrConfig, $validationProvider) {
         $routeProvider.
              when('/', {
                  templateUrl: 'Scripts/app/home/main.html',
@@ -91,6 +106,15 @@
 
 
         formlyConfigProvider.removeWrapperByName('bootstrapLabel');
+
+        angular.extend(toastrConfig, {
+            positionClass: 'toast-bottom-right',
+            closeButton: true,
+            timeOut: 10000,
+        });
+
+        $validationProvider.showSuccessMessage = false;
+        $validationProvider.setValidMethod('submit-only');
 
         //formlyConfigProvider.setWrapper({
         //    name: 'inputWrapper', // optional. Defaults to name || types.join(' ') || 'default'

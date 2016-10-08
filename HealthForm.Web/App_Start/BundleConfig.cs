@@ -54,7 +54,7 @@ namespace HealthForm.Web
 
             bundles.Add(new ScriptBundle("~/bundles/appJS").Include(
              "~/Scripts/app/app.js",
-             "~/Scripts/app/modules/common.core.js",
+             "~/Scripts/app/modules/MyApp.js",
              "~/Scripts/app/modules/common.ui.js",
              "~/Scripts/app/services/apiService.js",
              "~/Scripts/app/services/notificationService.js",

@@ -23,7 +23,7 @@
 
     app.directive('busyIndicator', busyIndicator);
 
-})(angular.module('common.core'));
+})(angular.module('MyApp'));
 
 
 
@@ -76,7 +76,7 @@
 
     app.directive('listForm', listForm);
 
-}(angular.module('common.core')));
+}(angular.module('MyApp')));
 
 
 //(function (app) {
@@ -115,4 +115,4 @@
 
 //    app.directive('listForm', listForm);
 
-//}(angular.module('common.core')));
+//}(angular.module('MyApp')));

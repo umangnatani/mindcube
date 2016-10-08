@@ -3,9 +3,9 @@
 
     app.factory('myService', myService);
 
-    myService.$inject = ['$http', '$location', '$rootScope', 'growl', 'growlMessages', '$cookies'];
+    myService.$inject = ['$http', '$location', '$rootScope', '$cookies', 'toastr'];
 
-    function myService($http, $location, $rootScope, growl, growlMessages, $cookies) {
+    function myService($http, $location, $rootScope, $cookies, toastr) {
         var service = {
             save: save,
             get: get,
@@ -68,7 +68,7 @@
 
         function getList(url, scope, data, objList, success, failure) {
             preparePost();
-            return post(url, scope[vm],
+            return post(url, data,
                 function (result) {
                     scope[objList] = result.data;
                     if (success)
@@ -105,19 +105,23 @@
 
 
         function preparePost() {
-            growlMessages.destroyAllMessages();
+            //growlMessages.destroyAllMessages();
             $rootScope.isBusy = true;
         }
 
 
         function showMessage(response, scope, vm) {
             if (response.data.Code > 0) {
-                growl.success(response.data.Message);
+                //ngToast.create({
+                //    className: 'success',
+                //    content: response.data.Message
+                //});
+                toastr.success(response.data.Message);
                 //$rootScope.isBusy = true;
             }
 
             else {
-                growl.error(response.data.Message);
+                toastr.error(response.data.Message);
                 //$rootScope.isBusy = false;
             }
             $rootScope.isBusy = false;
@@ -148,4 +152,4 @@
         //#endregion
     }
 
-})(angular.module('common.core'));
+})(angular.module('MyApp'));
