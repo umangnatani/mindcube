@@ -17,14 +17,14 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="RecFName" class="col-form-label">Received From</label>
-                                <input type="text" ng-model="obj.vm.FirstName" ID="FirstName" class="form-control" required>
+                                <input type="text" ng-model="vm.FirstName" ID="FirstName" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-sm-4 offset-sm-1">
                             <div class="form-group">
                                 <label for="ReceivedDt" class="col-form-label">Received Date</label>
 
-                                <input type="text" ng-model="obj.vm.ReceivedDt" id="ReceivedDt" class="form-control" required>
+                                <input type="text" ng-model="vm.ReceivedDt" id="ReceivedDt" class="form-control" required>
                             </div>
                         </div>
 
@@ -34,7 +34,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="Category" class="col-form-label">Category</label>
-                                <select ng-model="obj.vm.CategoryId" class="form-control" ng-options="option.Id as option.Text for option in Categories">
+                                <select ng-model="vm.CategoryId" class="form-control" ng-options="option.Id as option.Text for option in Categories">
                                     <option value="">-- Select --</option>
                                 </select>
                             </div>
@@ -42,7 +42,7 @@
                         <div class="col-sm-4 offset-sm-1">
                             <div class="form-group">
                                 <label for="Category" class="col-form-label">Source</label>
-                                <select ng-model="obj.vm.SourceId" class="form-control" ng-options="option.Id as option.Text for option in Sources">
+                                <select ng-model="vm.SourceId" class="form-control" ng-options="option.Id as option.Text for option in Sources">
                                     <option value="">-- Select --</option>
                                 </select>
                             </div>
@@ -56,7 +56,7 @@
                        
 
                 </uib-tab>
-                <uib-tab index="1" heading="Status" ng-if="obj.vm.Id > 0" select="tabClick('comments')">
+                <uib-tab index="1" heading="Status" ng-if="vm.Id > 0" select="tabClick('comments')">
 
                     
                     <div ng-include src="'scripts/app/case/comments-maintain.html'"></div>

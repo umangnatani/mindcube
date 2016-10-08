@@ -12,7 +12,7 @@
 
 
         $scope.search = function () {
-            myService.post('api/clients1/Search?Filter=' + $scope.filter, null,
+            myService.save('api/clients1/Search?Filter=' + $scope.filter, null,
              success);
         }
 
@@ -98,10 +98,10 @@
 
         $scope.vm = {Id: $routeParams.id};
         
-        myService.loadModel('api/clients1/details', $scope, 'vm');
+        myService.getById('api/clients1/details', $scope, 'vm');
 
         $scope.save = function () {
-            myService.post('api/clients1/maintain', $scope, 'vm')
+            myService.save('api/clients1/maintain', $scope, 'vm')
         }
       
 

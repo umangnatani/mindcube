@@ -7,7 +7,7 @@
 
     function correspMaintController($scope, $location, $routeParams, myService) {
 
-        $scope.obj = {
+        $scope.vm = {
             Id: $routeParams.id,
             FirstName: 'Umang',
             ReceivedDt: '10/1/2016',
@@ -15,7 +15,7 @@
             //CaseComments: [{ CommentDt: '10/8/2019', Comments: 'Test' }]
         };
 
-        $scope.EntityObject = { ObjectId: $scope.obj.Id, ObjectType: 'csp' }
+        
 
         $scope.deleteChild = function (id, type) {
             //alert(type);
@@ -24,52 +24,35 @@
             });
         }
 
-        //$scope.objectId = $scope.obj.Id;
-        $scope.childObj = $scope.EntityObject;
+      
         
 
-        myService.loadModel('api/correspondences/details', $scope.obj.Id, $scope.obj, function (results) {
-            $scope.obj = results.data;
-            console.log(results.data);
-            console.log($scope.obj);
-        });
+        myService.getById('api/correspondences/details', $scope, 'vm');
 
         $scope.$on("modelUpdated", function (evt, data) {
-            myService.loadModel('api/correspondences/details', $scope.obj.Id, $scope.obj);
+            myService.getById('api/correspondences/details', $scope, 'vm');
         });
 
         $scope.tabClick = function (tabname) {
+            $scope.EntityObject = { ObjectId: $scope.vm.Id, ObjectType: 'csp' }
+            $scope.childVm = $scope.EntityObject;
             $scope.$broadcast(tabname);
         };
 
         
 
-        //myService.get('api/codedetails/list/OPTION_TYPE',
-        //    function (response) {
-        //        $scope.Categories = response.data;
-        //    });
-        //$scope.Categories = {};
         myService.getCode($scope, 'Categories', 'CORRESP_CATEGORY');
         myService.getCode($scope, 'Sources', 'CORRESP_SOURCE');
 
        
 
         $scope.save = function () {
-            //if (!$scope.comments.Id) {
-            //    alert('no');
-            //    $scope.obj.CaseComments.push($scope.comments);
-
-            //}
-                
-            //    $scope.obj.CaseComments[$scope.comments.index]($scope.comments);
-            //else
-            //    $scope.obj.CaseComments.push($scope.comments);
-
+            
             var url = 'api/correspondences/maintain';
 
-            myService.post(url, $scope.obj, function () {
-                $scope.EntityObject.ObjectId = $scope.obj.Id;
-                console.log($scope.obj);
+            myService.save(url, $scope, 'vm', function () {
+                //$scope.EntityObject.ObjectId = $scope.vm.Id;
+                console.log($scope.vm);
             })
         }
 
@@ -91,37 +74,21 @@
     function caseCommentsController($scope, $location, $routeParams, myService) {
 
         $scope.$on("comments", function (evt, data) {
-            myService.getList('api/comments/list', $scope, $scope.EntityObject);
-            //$scope.childObj = {};
-            $scope.childObj.Comments = '';
+            myService.getList('api/comments/list', $scope, $scope.EntityObject, 'list');
+            //$scope.childVm = {};
+            $scope.childVm.Comments = '';
         });
 
         
 
-        $scope.editChild = function (childObj) {
-            $scope.childObj = JSON.parse(JSON.stringify(childObj));
-            //console.log($scope.comments);
-            //$scope.$broadcast("caseClick", JSON.parse(JSON.stringify(comment)));
-            //$scope.comments.index = $index;
+        $scope.editChild = function (childVm) {
+            $scope.childVm = JSON.parse(JSON.stringify(childVm));
         }
 
         
-        
-
-        //$scope.obj = { EntDt: '10/1/2016', CommentDt: '10/5/2099', CorrespId: $scope.objectId };
-
-        //$scope.obj = $scope.$parent.comments;
-
-        //$scope.$on("caseClick", function (evt, data) {
-        //    $scope.obj = data;
-        //});
-
-        //myService.loadModel('api/clients1/details', $scope);
 
         $scope.save = function () {
-            //$scope.obj = $scope.childObj;
-            //console.log($scope.obj);
-            myService.post('api/comments/maintain', $scope.childObj, function () {
+            myService.save('api/comments/maintain', $scope, 'childVm', function () {
                 $scope.$emit("comments");
             });
             

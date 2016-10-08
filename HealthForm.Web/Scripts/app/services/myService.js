@@ -7,10 +7,11 @@
 
     function myService($http, $location, $rootScope, growl, growlMessages, $cookies) {
         var service = {
+            save: save,
             get: get,
             post: post,
             getCode: getCode,
-            loadModel: loadModel,
+            getById: getById,
             getList: getList,
             deleteRecord: deleteRecord
         };
@@ -29,7 +30,7 @@
 
 
         // load Form Model via api
-        function loadModel(url, scope, vm, success) {
+        function getById(url, scope, vm, success) {
             if (scope[vm].Id) {
                 get(url + '/' + scope[vm].Id, function (results) {
                     scope[vm] = results.data;
@@ -65,23 +66,14 @@
         }
 
 
-        function getList(url, scope, data, success, failure) {
+        function getList(url, scope, data, objList, success, failure) {
             preparePost();
-            return $http.post(url, data)
-                    .then(function (result) {
-                        scope.list = result.data;
-                        if (success)
-                            success(result);
-                    }, function (error) {
-                        if (error.status == '401') {
-                            //notificationService.displayError('Authentication required.');
-                            $rootScope.previousState = $location.path();
-                            $location.path('/login');
-                        }
-                        else if (failure != null) {
-                            failure(error);
-                        }
-                    });
+            return post(url, scope[vm],
+                function (result) {
+                    scope[objList] = result.data;
+                    if (success)
+                        success(result);
+                }, failure);
         }
 
 
@@ -101,11 +93,43 @@
                     });
         }
 
-        function post(url, scope, vm, success, failure) {
+        function save(url, scope, vm, success, failure) {
             preparePost();
-            return $http.post(url, scope[vm])
+            return post(url, scope[vm], 
+                function (result) {
+                    showMessage(result, scope, vm);
+                    if (success)
+                        success(result);
+            }, failure);
+        }
+
+
+        function preparePost() {
+            growlMessages.destroyAllMessages();
+            $rootScope.isBusy = true;
+        }
+
+
+        function showMessage(response, scope, vm) {
+            if (response.data.Code > 0) {
+                growl.success(response.data.Message);
+                //$rootScope.isBusy = true;
+            }
+
+            else {
+                growl.error(response.data.Message);
+                //$rootScope.isBusy = false;
+            }
+            $rootScope.isBusy = false;
+            if (response.data.Object)
+                scope[vm] = response.data.Object;
+        }
+
+
+
+        function post(url, data, success, failure) {
+            return $http.post(url, data)
                     .then(function (result) {
-                        showMessage(result, scope[vm])
                         if (success)
                             success(result);
                     }, function (error) {
@@ -120,27 +144,6 @@
                     });
         }
 
-
-        function preparePost() {
-            growlMessages.destroyAllMessages();
-            $rootScope.isBusy = true;
-        }
-
-
-        function showMessage(response, objScope) {
-            if (response.data.Code > 0) {
-                growl.success(response.data.Message);
-                //$rootScope.isBusy = true;
-            }
-
-            else {
-                growl.error(response.data.Message);
-                //$rootScope.isBusy = false;
-            }
-            $rootScope.isBusy = false;
-            if (response.data.Object && objScope)
-                objScope = response.data.Object;
-        }
 
         //#endregion
     }
