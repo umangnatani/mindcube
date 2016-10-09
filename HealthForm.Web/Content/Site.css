@@ -290,7 +290,7 @@ width: 130px;
 
 /* Section9: Bootstrap override Style  ----------------------------------------- Start -- */
 
-.form-horizontal .control-label, .form-horizontal .col-form-label {
+.form-horizontal .control-label, .col-form-label {
     padding-right: 0;
     color: #13558e;
     font-weight:normal;

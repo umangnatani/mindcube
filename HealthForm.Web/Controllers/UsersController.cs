@@ -15,10 +15,11 @@ namespace HealthForm.Web.Controllers
     public class UsersController : ApiController
     {
 
-        private IEntityService<User> _Service;
-        public UsersController(IEntityService<User> Service)
+        private UserService _Service;
+
+        public UsersController()
         {
-            _Service = Service;
+            _Service = new UserService();
         }
 
 
@@ -38,29 +39,22 @@ namespace HealthForm.Web.Controllers
         }
 
 
+
         [HttpPost]
         public IHttpActionResult Login(HealthForm.Data.User poco)
         {
-            var user = _Service.FindBy(x => x.UserId == poco.UserId).Include("UserRoles.Role").SingleOrDefault();
+            var user = _Service.validateUser(poco.UserId, poco.Password);
 
-            RetrunType rt = new RetrunType();
+            
 
             if ( user != null)
             {
-                if (string.Equals(Encrypt.EncryptPassword(poco.Password, user.Salt), user.HashedPassword)) {
-                    SessionHandler.UserInfo = user;
-                    rt.Code = 1;
-                    rt.Message = "Worked";
-                }
-                else
-                {
-                    rt.Code = 0;
-                    rt.Message = "Failed";
-                }
+                user = _Service.Repository.FindBy(x => x.Id == user.Id).Include("UserRoles.Role").SingleOrDefault();
+                SessionHandler.UserInfo = user;
             }
 
 
-            return Ok(rt);
+            return Ok(user);
         }
 
 

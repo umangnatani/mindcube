@@ -1,1 +1,30 @@
-﻿<div ng-view=""></div>
+﻿@model List<HealthForm.Data.UserMenu>
+
+<div id="umangapp-wrapper" class="umang-hide-lpanel" umang-device-type="desktop">
+    @{Html.RenderPartial("_Header");}
+    <div id="umangapp-container" umang-color-type="lpanel-bg2" umang-lpanel-effect="shrink">
+        @{Html.RenderPartial("_Menu");}
+
+        <section id="main-content">
+            @*@{Html.RenderPartial("_PageTitle");}*@
+
+
+            <div class="inner-content">
+
+                <div ui-view=""></div>
+
+            </div>
+        </section>
+        @*@{Html.RenderPartial("_SideBar");}*@
+    </div>
+</div>
+
+
+
+@section scripts {
+
+<script type="text/javascript">
+    MenuVM = @Html.Raw(Json.Encode(@Model));
+</script>
+
+}

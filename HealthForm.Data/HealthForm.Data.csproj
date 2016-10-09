@@ -136,7 +136,6 @@
     <Compile Include="Service\CommonService.cs" />
     <Compile Include="Service\CorrespondenceService.cs" />
     <Compile Include="Service\Factory.cs" />
-    <Compile Include="Service\IListColumnService.cs" />
     <Compile Include="Service\Service.cs" />
     <Compile Include="Service\UserService.cs" />
     <Compile Include="Service\ListColumnService.cs" />

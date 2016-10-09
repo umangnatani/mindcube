@@ -49,10 +49,8 @@
     <Compile Include="Repository\AbstractFactory.cs" />
     <Compile Include="Repository\Disposable.cs" />
     <Compile Include="Repository\EntityBaseRepository.cs" />
-    <Compile Include="Repository\EntityService.cs" />
     <Compile Include="Repository\IEntityBase.cs" />
     <Compile Include="Repository\IEntityBaseRepository.cs" />
-    <Compile Include="Repository\IEntityService.cs" />
     <Compile Include="Repository\IUnitOfWork.cs" />
     <Compile Include="Models\Models.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />

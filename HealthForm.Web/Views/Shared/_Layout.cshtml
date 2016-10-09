@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <base href="/">
+    <base href="@Url.Content("~")">
     
     @*@Styles.Render("~/Content/base/baseCSS")
     @Styles.Render("~/Content/plugin/pluginCSS")
@@ -16,37 +16,14 @@
 
 </head>
 <body umang-navigation-type="vertical" umang-nav-placement="left" theme-layout="wide-layout" theme-bg="bg1" ng-controller="rootController" ng-cloak>
-    <div id="umangapp-wrapper" class="umang-hide-lpanel" umang-device-type="desktop">
-        @{Html.RenderPartial("_Header");}
-        <div id="umangapp-container" umang-color-type="lpanel-bg2" umang-lpanel-effect="shrink">
-            @{Html.RenderPartial("_Menu");}
+    @RenderBody()
+    
 
-            <section id="{{MainSectionId}}">
-                @*@{Html.RenderPartial("_PageTitle");}*@
-                
+    <script type="text/javascript">
+        var _webRoot = '@Url.Content("~")';
+        var MenuVM = [];
+    </script>
 
-                <div class="inner-content">
-                    
-
-                    @RenderBody()
-                </div>
-            </section>
-            @*@{Html.RenderPartial("_SideBar");}*@
-        </div>
-    </div>
-
-
-
-
-
-    @*@Scripts.Render("~/bundles/baseJS")
-
-    @Scripts.Render("~/bundles/pluginJS")
-
-
-    @Scripts.Render("~/bundles/layoutJS")
-
-    @Scripts.Render("~/bundles/appJS"*@
 
     @{Html.RenderPartial("_Scripts");}
 

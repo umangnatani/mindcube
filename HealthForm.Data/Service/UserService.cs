@@ -8,24 +8,14 @@ using System.Data.Entity;
 
 namespace HealthForm.Data
 {
-    public class UserService
+    public class UserService: Service<User>
     {
-        private IEntityService<User> _service;
-
-        public UserService()
-        {
-            DbContext conext = new ICTSEntities();
-
-
-            _service = new EntityService<User>(new EntityBaseRepository<User>(conext), new UnitOfWork(conext));
-            
-        }
 
 
         public User validateUser(string UserId, string Password)
         {
 
-            var user = _service.FindBy(x => x.UserId == UserId).SingleOrDefault();
+            var user = Repository.FindBy(x => x.UserId == UserId).SingleOrDefault();
 
             bool validUser = false;
 

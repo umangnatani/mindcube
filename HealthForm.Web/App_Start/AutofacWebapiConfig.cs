@@ -44,13 +44,13 @@ namespace HealthForm.Web
                    .As(typeof(IEntityBaseRepository<>))
                    .InstancePerRequest();
 
-            builder.RegisterGeneric(typeof(EntityService<>))
-                   .As(typeof(IEntityService<>))
-                   .InstancePerRequest();
+            //builder.RegisterGeneric(typeof(EntityService<>))
+            //       .As(typeof(IEntityService<>))
+            //       .InstancePerRequest();
 
-            builder.RegisterType<ListColumnService>()
-                   .As<IListColumnService>()
-                   .InstancePerRequest();
+            //builder.RegisterType<ListColumnService>()
+            //       .As<IListColumnService>()
+            //       .InstancePerRequest();
 
             //// Services
             //builder.RegisterType<EncryptionService>()

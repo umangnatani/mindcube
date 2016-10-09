@@ -43,7 +43,7 @@
         };
 
         function actionsHtml(data, type, full, meta) {
-            return '<a class="btn btn-sm btn-warning" ng-href="#/client/maintain/' + data.Id + '">' +
+            return '<a class="btn btn-sm btn-warning" ui-sref="client_maintain({id:' + data.Id + '})">' +
     '   <i class="fa fa-edit"></i>' +
     '</a>';
                 
@@ -92,11 +92,11 @@
 
     app.controller('clientMaintController', clientMaintController)
 
-    clientMaintController.$inject = ['$scope', '$location', '$routeParams', 'myService'];
+    clientMaintController.$inject = ['$scope', '$location', '$stateParams', 'myService'];
 
-    function clientMaintController($scope, $location, $routeParams, myService) {
+    function clientMaintController($scope, $location, $stateParams, myService) {
 
-        $scope.vm = {Id: $routeParams.id};
+        $scope.vm = {Id: $stateParams.id};
         
         myService.getById('api/clients1/details', $scope, 'vm');
 

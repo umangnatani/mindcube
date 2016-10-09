@@ -13,17 +13,18 @@ namespace HealthForm.Web.Controllers
 {
     public class ListColumnsController : ApiController
     {
-        private IListColumnService _Service;
-        public ListColumnsController(IListColumnService Service)
+        private ListColumnService _Service;
+
+        public ListColumnsController()
         {
-            _Service = Service;
+            _Service = new ListColumnService();
         }
 
 
         [HttpGet]
         public IQueryable<ListColumn> List(int id)
         {
-            return _Service.FindBy(x => x.ListId == id, "ListColumnOptions");
+            return _Service.Repository.FindBy(x => x.ListId == id, "ListColumnOptions");
         }
 
 
@@ -32,7 +33,7 @@ namespace HealthForm.Web.Controllers
         public IHttpActionResult Details(int id)
         {
 
-            return Ok(_Service.GetById(id));
+            return Ok(_Service.Repository.GetById(id));
         }
 
 

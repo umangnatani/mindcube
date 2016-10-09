@@ -10,11 +10,11 @@ namespace HealthForm.Web.Controllers
 {
     public class ListFormsController : Controller
     {
-        private IListColumnService _Service;
+        private ListColumnService _Service;
 
-        public ListFormsController(IListColumnService Service)
+        public ListFormsController()
         {
-            _Service = Service;
+            _Service = new ListColumnService();
         }
         public ActionResult Index()
         {
@@ -25,7 +25,7 @@ namespace HealthForm.Web.Controllers
         [HttpGet]
         public ActionResult List(int id)
         {
-            return View(_Service.FindBy(x => x.ListId == id).ToList());
+            return View(_Service.Repository.FindBy(x => x.ListId == id).ToList());
         }
 
     }

@@ -3,12 +3,12 @@
 
     app.controller('correspMaintController', correspMaintController)
 
-    correspMaintController.$inject = ['$scope', '$location', '$routeParams', 'myService'];
+    correspMaintController.$inject = ['$scope', '$location', '$stateParams', 'myService'];
 
-    function correspMaintController($scope, $location, $routeParams, myService) {
+    function correspMaintController($scope, $location, $stateParams, myService) {
 
         $scope.vm = {
-            Id: $routeParams.id,
+            Id: $stateParams.id,
             FirstName: 'Umang',
             ReceivedDt: '10/1/2016',
             //CaseComments:[],

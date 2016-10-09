@@ -20,17 +20,18 @@ namespace HealthForm.Web.Controllers
 
     public class ListValuesController : ApiController
     {
-        private IEntityService<ListValue> _Service;
-        public ListValuesController(IEntityService<ListValue> Service)
+        private Service<ListValue> _Service;
+
+        public ListValuesController()
         {
-            _Service = Service;
+            _Service = new Service<ListValue>();
         }
 
 
         [HttpGet]
         public ListValue List(int ListId, int ObjectId)
         {
-            return _Service.FindBy(x => x.ListId == ListId && x.ObjectId == ObjectId).FirstOrDefault();
+            return _Service.Repository.FindBy(x => x.ListId == ListId && x.ObjectId == ObjectId).FirstOrDefault();
         }
 
 

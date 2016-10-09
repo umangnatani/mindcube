@@ -235,7 +235,6 @@
     <Compile Include="Controllers\ListFormsController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\ListValuesController.cs" />
-    <Compile Include="Controllers\PatientInfoController.cs" />
     <Compile Include="Controllers\UserMenuController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UtilController.cs" />
@@ -412,6 +411,7 @@
     <Content Include="Scripts\plugin\angular-growl.min.js" />
     <Content Include="Scripts\plugin\angular-toastr.min.js" />
     <Content Include="Scripts\plugin\angular-toastr.tpls.min.js" />
+    <Content Include="Scripts\plugin\angular-ui-router.min.js" />
     <Content Include="Scripts\plugin\angular-validation-rule.js" />
     <Content Include="Scripts\plugin\angular-validation-rule.min.js" />
     <Content Include="Scripts\plugin\angular-validation.js" />

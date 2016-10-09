@@ -10,15 +10,15 @@ using EntLib;
 
 namespace HealthForm.Data
 {
-    public class ListColumnService : EntityService<ListColumn>, IListColumnService
+    public class ListColumnService : Service<ListColumn>
     {
         private IEntityBaseRepository<ListColumnOption> _columnRep;
         private IEntityBaseRepository<ListColumnValue> _valueRep;
 
-        public ListColumnService(IEntityBaseRepository<ListColumn> Repository, IUnitOfWork unitOfWork, IEntityBaseRepository<ListColumnOption> ColumnRepository, IEntityBaseRepository<ListColumnValue> ValueRep) : base(Repository, unitOfWork)
+        public ListColumnService()
         {
-            _columnRep = ColumnRepository;
-            _valueRep = ValueRep;
+            _columnRep = getRepository<ListColumnOption>() ;
+            _valueRep = getRepository<ListColumnValue>();
         }
 
         
@@ -48,31 +48,13 @@ namespace HealthForm.Data
 
             }
             else
-                _Repository.Add(poco);
-
-
-            RetrunType rt = new RetrunType();
-            try
-            {
-                _unitOfWork.Commit();
-                rt.Code = poco.Id;
-                rt.Object = poco;
-            }
-            catch (Exception e)
-            {
-                rt.Code = 0;
-                rt.Message = e.Message;
-            }
-
-            return rt;
+                Repository.Add(poco);
 
 
 
+            return this.UoW.Save(poco);
 
-            //if (ListId > 0) {
 
-            //    _ChildService.SaveWithOptions(oldList, poco.ListColumnOptions);
-            //}
         }
 
     }

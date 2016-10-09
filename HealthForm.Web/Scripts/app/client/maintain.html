@@ -1,34 +1,35 @@
-﻿<busy-indicator></busy-indicator>
-<h4>
-    Maintain
-</h4>
+﻿<div ng-controller="clientMaintController">
+    <busy-indicator></busy-indicator>
+    <h4>
+        Maintain
+    </h4>
 
-<div class="card">
-    <div class="card-block">
+    <div class="card">
+        <div class="card-block">
 
-        <form role="form" novalidate name="entryForm">
-            
-            <div class="row">
-                <div class="col-sm-10">
-                    <div class="form-group">
-                        <label for="ClientName" class="col-form-label">Client Name</label>
-                        <input type="hidden" ng-model="vm.Id">
-                        <input type="text" ng-model="vm.ClientName" name="ClientName" class="form-control" validator="required" valid-method="submit">
+            <form role="form" novalidate name="entryForm">
+
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label for="ClientName" class="col-form-label">Client Name</label>
+                            <input type="hidden" ng-model="vm.Id">
+                            <input type="text" ng-model="vm.ClientName" name="ClientName" class="form-control" validator="required" valid-method="submit">
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            
 
-            <div class="clearfix">
-                <div>
-                    <!--<button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>-->
-                    <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
+
+                <div class="clearfix">
+                    <div>
+                        <!--<button type="button" class="btn btn-danger" ng-click="cancel()">Cancel</button>-->
+                        <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
 
+        </div>
     </div>
 </div>
-
 

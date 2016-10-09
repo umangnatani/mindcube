@@ -13,7 +13,10 @@
             getCode: getCode,
             getById: getById,
             getList: getList,
-            deleteRecord: deleteRecord
+            deleteRecord: deleteRecord,
+            login: login,
+            removeCredentials: removeCredentials,
+            restoreCredentials: restoreCredentials
         };
 
         return service;
@@ -150,6 +153,65 @@
 
 
         //#endregion
+
+
+
+        //login function
+
+        function login(scope, vm, success, failure) {
+            var data = "grant_type=password&username=" + scope[vm].UserId + "&password=" + scope[vm].Password;
+
+            return $http.post('token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+                    .then(function (result) {
+                        $rootScope.UserInfo = {
+                            isLoggedIn: true,
+                            UserId: scope[vm].UserId,
+                            token: result.data.access_token
+                        };
+                        //debugger;
+
+                        $http.defaults.headers.common['Authorization'] = "Bearer " + $rootScope.UserInfo.token;
+
+                        post('api/users/login', scope[vm], function (obj) {
+                            //console.log(obj.data);
+                        })
+
+                        $cookies.putObject('UserInfo', $rootScope.UserInfo, {
+                            //expires: new Date(2017, 1, 1),
+                            path: '/'
+                        });
+
+
+
+                        
+                        //console.log($cookies.getObject('UserInfo'));
+                        
+                        if (success)
+                            success(result);
+
+                    }, function (error) {
+                        if (error.status == '400') {
+                            toastr.error(error.data.error_description);
+                        }
+                        else {
+                            console.log(error);
+                        }
+                    });
+
+
+        }
+
+        function removeCredentials() {
+            $rootScope.UserInfo = {};
+            $cookies.remove('UserInfo', { path: '/' });
+        }
+
+        function restoreCredentials() {
+            $rootScope.UserInfo = $cookies.getObject('UserInfo');
+            if ($rootScope.UserInfo) {
+                $http.defaults.headers.common['Authorization'] = "Bearer " + $rootScope.UserInfo.token;
+            }
+        }
     }
 
 })(angular.module('MyApp'));

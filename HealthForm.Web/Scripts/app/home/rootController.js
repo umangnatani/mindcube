@@ -3,18 +3,37 @@
 
     app.controller('rootController', rootController);
 
-    rootController.$inject = ['$scope', '$location', '$rootScope', '$cookies', 'apiService'];
-    function rootController($scope, $location, $rootScope, $cookies, apiService) {
+    rootController.$inject = ['$scope', '$location', '$rootScope', 'myService', '$window'];
 
-        $scope.UserInfo = {};
+    function rootController($scope, $location, $rootScope, myService, $window) {
 
-        $scope.MainSectionId = "content-not-logged-in"
+        //$scope.UserInfo = $rootScope.UserInfo;
+        //console.log($scope.UserInfo);
 
-        $scope.$on('loginEvent', function (event, args) {
-            displayUserInfo();
-        });
-
+       
         
+
+
+
+        //apiService.get('Api/UserMenu/list', null,
+        //   function (result) {
+        //       $scope.menuItems = result.data;
+        //   });
+
+        $scope.menuItems = MenuVM
+        
+
+
+
+
+        $scope.logoff =  function() {
+            myService.removeCredentials();
+            //console.log($window.location);
+            //console.log($location);
+            $window.location.href = $window.location.origin + _webRoot + "home/login";
+        }
+
+
         //$scope.menuItems = [
         //    {
         //        Title: "Dashboard",
@@ -52,43 +71,6 @@
         //    }
         //]
 
-
-
-        apiService.get('Api/UserMenu/list', null,
-           function (result) {
-               $scope.menuItems = result.data;
-           });
-
-
-        
-
-
-        //$scope.logout = logout;
-
-        //$scope.config.errorMessage = 'Welcome';
-        //$scope.config.showDiv = true;
-
-        function displayUserInfo() {
-
-            //var isLoggedIn = $cookies.get('loggedin');
-            //alert($cookies.get('loggedin'))
-
-            $scope.UserInfo = $cookies.getObject('UserInfo');
-
-            
-
-            if ($scope.UserInfo) {
-                $scope.MainSectionId = "main-content";
-            }
-        }
-
-        //function logout() {
-        //    membershipService.removeCredentials();
-        //    $location.path('#/');
-        //    $scope.userData.displayUserInfo();
-        //}
-
-        displayUserInfo();
     }
 
 })(angular.module('MyApp'));

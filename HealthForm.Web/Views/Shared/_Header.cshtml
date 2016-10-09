@@ -230,7 +230,7 @@
             <li class="dropdown umang-rheader-submenu umang-header-profile">
 
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span><b>{{UserInfo.UserName}}</b> <i class="fa fa-angle-down"></i></span>
+                    <span><b>{{UserInfo.UserId}}</b> <i class="fa fa-angle-down"></i></span>
                 </a>
                 <ul class="dropdown-menu ">
                     <li><a href="~/Proxy/Index"><i class="fa fa-user"></i>My Backup</a></li>
@@ -253,7 +253,7 @@
                     <li><a href="#"><i class="fa fa-power-off"></i>Logout</a></li>
                 </ul>
             </li>
-            <li style="margin-right:20px; margin-left:10px"><a href="~/Home/LogOff"><i class="fa fa-power-off"></i></a></li>
+            <li style="margin-right:20px; margin-left:10px"><a href="Javascript:void(0)" ng-click="logoff()"><i class="fa fa-power-off"></i></a></li>
             @*<li class="hidden-xs">
                     <a href="#" class="dropdown-toggle icon-circle" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
                 </li>*@

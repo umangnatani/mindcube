@@ -13,10 +13,11 @@ namespace HealthForm.Web.Controllers
     public class ListColumnValuesController : ApiController
     {
 
-        private IListColumnService _Service;
-        public ListColumnValuesController(IListColumnService Service)
+        private ListColumnService _Service;
+
+        public ListColumnValuesController()
         {
-            _Service = Service;
+            _Service = new ListColumnService();
         }
 
 

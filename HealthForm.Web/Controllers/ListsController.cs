@@ -18,11 +18,11 @@ namespace HealthForm.Web.Controllers
 {
     public class ListsController : ApiController
     {
-        private IEntityService<List> _Service;
+        private Service<List> _Service;
 
-        public ListsController(IEntityService<List> Service)
+        public ListsController()
         {
-            _Service = Service;
+            _Service = new Service<List>();
         }
 
 
@@ -35,7 +35,7 @@ namespace HealthForm.Web.Controllers
             //var Name = ClaimsPrincipal.Current.Identity.Name ;
             //var Name1 = User.Identity.Name;
 
-            return _Service.GetAll();
+            return _Service.Repository.GetAll();
         }
 
 
@@ -44,7 +44,7 @@ namespace HealthForm.Web.Controllers
         public IHttpActionResult Details(int id)
         {
 
-            return Ok(_Service.GetById(id));
+            return Ok(_Service.Repository.GetById(id));
         }
 
 

@@ -12,19 +12,19 @@ namespace HealthForm.Web.Controllers
 {
     public class CodeDetailsController : ApiController
     {
-        private IEntityService<CodeDetail> _Service;
+        private Service<CodeDetail> _Service;
 
 
-        public CodeDetailsController(IEntityService<CodeDetail> Service)
+        public CodeDetailsController()
         {
-            _Service = Service;
+            _Service = new Service<CodeDetail>();
         }
 
         [HttpGet]
         public IQueryable<CodeDetail> List(string id)
         {
-            var items = _Service.FindBy(x => x.MasterCode == id).ToList();
-            return _Service.FindBy(x => x.MasterCode == id);
+            //var items = _Service.FindBy(x => x.MasterCode == id).ToList();
+            return _Service.Repository.FindBy(x => x.MasterCode == id);
             //return _Service.GetAll();
         }
 
@@ -33,7 +33,7 @@ namespace HealthForm.Web.Controllers
         public IHttpActionResult Details(int id)
         {
 
-            return Ok(_Service.GetById(id));
+            return Ok(_Service.Repository.GetById(id));
         }
 
 
@@ -53,11 +53,6 @@ namespace HealthForm.Web.Controllers
         }
 
 
-        [HttpGet]
-        public IQueryable<CodeDetail> Search(string filter)
-        {
-            return _Service.FindBy(x => x.Code.ToLower().Contains(filter.Trim().ToLower()));
-        }
 
     }
 }

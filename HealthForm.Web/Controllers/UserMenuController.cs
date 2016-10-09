@@ -12,16 +12,16 @@ namespace HealthForm.Web.Controllers
     public class UserMenuController : ApiController
     {
 
-        private IEntityService<UserMenu> _Service;
-        public UserMenuController(IEntityService<UserMenu> Service)
+        private Service<UserMenu> _Service;
+        public UserMenuController()
         {
-            _Service = Service;
+            _Service = new Service<UserMenu>();
         }
 
         [HttpGet]
         public List<UserMenu> List()
         {
-            var items = _Service.GetAll();
+            var items = _Service.Repository.GetAll();
 
             Action<UserMenu> SetChildren = null;
                        

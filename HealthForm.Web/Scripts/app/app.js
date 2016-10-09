@@ -4,6 +4,7 @@
     'use strict';
 
     angular.module("MyApp", ['ngRoute',
+                            'ui.router', // UI Router for SPA
                             'ngCookies',
                             'base64',
                             'ui.bootstrap',
@@ -21,89 +22,51 @@
     ]).config(config)
     .run(run);
 
-    config.$inject = ['$routeProvider', '$httpProvider', 'formlyConfigProvider', 'toastrConfig', '$validationProvider'];
+    config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider', 'formlyConfigProvider', 'toastrConfig', '$validationProvider'];
 
 
 
-    function config($routeProvider, $httpProvider, formlyConfigProvider, toastrConfig, $validationProvider) {
-        $routeProvider.
-             when('/', {
+    function config($stateProvider, $urlRouterProvider, $httpProvider, formlyConfigProvider, toastrConfig, $validationProvider) {
+
+        
+
+        $stateProvider.
+             state('home', {
+                 url: '/',
                  templateUrl: 'Scripts/app/home/main.html',
                  controller: 'homeController'
              })
-            .when('/dashboard', {
-                templateUrl: 'Scripts/app/home/main.html',
-                controller: 'homeController'
-            })
-          .when('/client/maintain', {
-              templateUrl: 'Scripts/app/client/maintain.html',
-              controller: 'clientMaintController'
-          })
-            .when('/client/view', {
+            .state('client', {
+                url: '/client/view/',
                 templateUrl: 'Scripts/app/client/index.html',
                 controller: 'clientController'
             })
-           .when('/correspondence/maintain', {
-               templateUrl: 'Scripts/app/case/corresp-maintain.html',
-               controller: 'correspMaintController'
-           })
-            .when('/correspondence/maintain/:id', {
-                templateUrl: 'Scripts/app/case/corresp-maintain.html',
-                controller: 'correspMaintController'
+            .state('client_add', {
+                url: '/client/add',
+                templateUrl: 'Scripts/app/client/maintain.html',
+                //controller: 'clientMaintController'
             })
-
-
-          .when('/client/maintain/:id', {
+            .state('client_maintain', {
+                url: '/client/maintain/',
+                params: {
+                    id: null,
+                },
               templateUrl: 'Scripts/app/client/maintain.html',
-              controller: 'clientMaintController'
-          })
-
-            .when('/list/view', {
-                templateUrl: 'Scripts/app/list/index.html',
-                controller: 'listController'
-            })
-
-         .when('/list/maintain', {
-             templateUrl: 'Scripts/app/list/maintain.html',
-             controller: 'listMaintController',
-             resolve: { isAuthenticated: isAuthenticated }
-         })
-         .when('/list/maintain/:id', {
-             templateUrl: 'Scripts/app/list/maintain.html',
-             controller: 'listMaintController'
-         })
-             .when('/list/column/:id', {
-                 templateUrl: 'Scripts/app/list/column.html',
-                 controller: 'listcolumnController'
+              //controller: 'clientMaintController'
              })
-              .when('/list/form/:id', {
-                  templateUrl: 'Scripts/app/list/list-form.html',
-                  controller: 'listformController'
-              })
-         .when('/list/:ListId/column-maintain', {
-             templateUrl: 'Scripts/app/list/column-maintain.html',
-             controller: 'listcolumnMaintController'
-         })
-            .when('/list/column-maintain/:id/', {
-                templateUrl: 'Scripts/app/list/column-maintain.html',
-                controller: 'listcolumnMaintController'
-            })
-             .when('/patient/register', {
-                 templateUrl: 'Scripts/app/patient/maintain.html',
-                 controller: 'patientMaintController'
+            .state('correspondence_add', {
+                 url: '/correspondence/add',
+                 templateUrl: 'Scripts/app/case/corresp-maintain.html',
+                 controller: 'correspMaintController'
              })
-              .when('/account/register', {
-                  templateUrl: 'Scripts/app/account/maintain.html',
-                  controller: 'accountMaintController'
-              })
-            .when('/login', {
-                templateUrl: 'Scripts/app/account/login.html',
-                controller: 'accountLoginController'
-            })
-          .otherwise({
-              redirectTo: '/'
-          });
+            .state('correspondence_maintain', {
+                url: '/correspondence/maintain/:id',
+            templateUrl: 'Scripts/app/case/corresp-maintain.html',
+            controller: 'correspMaintController'
+        });
 
+        $urlRouterProvider.otherwise('/');
+           
 
         formlyConfigProvider.removeWrapperByName('bootstrapLabel');
 
@@ -161,14 +124,11 @@
     }
 
 
-    run.$inject = ['$rootScope', '$location', '$cookies', '$http'];
+    run.$inject = ['myService'];
 
-    function run($rootScope, $location, $cookies, $http) {
+    function run(myService) {
         // handle page refreshes
-        $rootScope.UserInfo = $cookies.getObject('UserInfo');
-        if ($rootScope.UserInfo) {
-            $http.defaults.headers.common['Authorization'] = "Bearer " + $rootScope.UserInfo.token;
-        }
+        myService.restoreCredentials();
     }
 
 
