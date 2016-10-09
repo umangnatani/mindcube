@@ -262,11 +262,11 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProgramId" Type="int" Nullable="false" />
-          <Property Name="CaseId" Type="int" />
-          <Property Name="CorrespId" Type="int" />
+          <Property Name="ObjectId" Type="int" />
+          <Property Name="ObjectType" Type="nvarchar" MaxLength="50" />
           <Property Name="IsInactive" Type="bit" Nullable="false" />
           <Property Name="EntBy" Type="int" />
-          <Property Name="EntDt" Type="datetime" Nullable="false" />
+          <Property Name="EntDt" Type="datetime" />
           <Property Name="ChgBy" Type="int" />
           <Property Name="ChgDt" Type="datetime" />
         </EntityType>
@@ -410,6 +410,18 @@
             </Principal>
             <Dependent Role="CaseAllegationsSubject">
               <PropertyRef Name="IndividualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CaseProgr__Progr__6442E2C9">
+          <End Role="Program" Type="Self.Program" Multiplicity="1" />
+          <End Role="CaseProgram" Type="Self.CaseProgram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseProgram">
+              <PropertyRef Name="ProgramId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -579,6 +591,10 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <AssociationSet Name="FK__CaseAlleg__Indiv__46B27FE2" Association="Self.FK__CaseAlleg__Indiv__46B27FE2">
             <End Role="Individual" EntitySet="Individual" />
             <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubject" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CaseProgr__Progr__6442E2C9" Association="Self.FK__CaseProgr__Progr__6442E2C9">
+            <End Role="Program" EntitySet="Program" />
+            <End Role="CaseProgram" EntitySet="CaseProgram" />
           </AssociationSet>
           <AssociationSet Name="FK__Entity__ClientId__17036CC0" Association="Self.FK__Entity__ClientId__17036CC0">
             <End Role="Client" EntitySet="Client" />
@@ -778,6 +794,7 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="ChgBy" Type="Int32" />
           <Property Name="ChgDt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Entity" Relationship="Self.FK__Program__EntityI__18EBB532" FromRole="Program" ToRole="Entity" />
+          <NavigationProperty Name="CasePrograms" Relationship="HealthForm.Data.FK__CaseProgr__Progr__6442E2C9" FromRole="Program" ToRole="CaseProgram" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -904,20 +921,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="ProbTerm" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="CommServiceHours" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="SpecialConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="CaseProgram">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProgramId" Type="Int32" Nullable="false" />
-          <Property Name="CaseId" Type="Int32" />
-          <Property Name="CorrespId" Type="Int32" />
-          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
-          <Property Name="EntBy" Type="Int32" />
-          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ChgBy" Type="Int32" />
-          <Property Name="ChgDt" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="CorrespondenceRRF">
           <Key>
@@ -1155,7 +1158,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <EntitySet Name="CaseAllegations" EntityType="Self.CaseAllegation" />
           <EntitySet Name="CaseAllegationsSubjects" EntityType="Self.CaseAllegationsSubject" />
           <EntitySet Name="CaseIndividuals" EntityType="Self.CaseIndividual" />
-          <EntitySet Name="CasePrograms" EntityType="Self.CaseProgram" />
           <EntitySet Name="CorrespondenceRRFs" EntityType="Self.CorrespondenceRRF" />
           <EntitySet Name="Individuals" EntityType="Self.Individual" />
           <AssociationSet Name="FK__Entity__ClientId__17036CC0" Association="Self.FK__Entity__ClientId__17036CC0">
@@ -1212,6 +1214,11 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           </AssociationSet>
           <EntitySet Name="Correspondences" EntityType="HealthForm.Data.Correspondence" />
           <EntitySet Name="Comments" EntityType="HealthForm.Data.Comment" />
+          <EntitySet Name="CasePrograms" EntityType="HealthForm.Data.CaseProgram" />
+          <AssociationSet Name="FK__CaseProgr__Progr__6442E2C9" Association="HealthForm.Data.FK__CaseProgr__Progr__6442E2C9">
+            <End Role="Program" EntitySet="Programs" />
+            <End Role="CaseProgram" EntitySet="CasePrograms" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Correspondence">
           <Key>
@@ -1272,6 +1279,33 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="ChgBy" Type="Int32" />
           <Property Name="ChgDt" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="CaseProgram">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectId" Type="Int32" />
+          <Property Name="ObjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Program" Relationship="HealthForm.Data.FK__CaseProgr__Progr__6442E2C9" FromRole="CaseProgram" ToRole="Program" />
+        </EntityType>
+        <Association Name="FK__CaseProgr__Progr__6442E2C9">
+          <End Type="HealthForm.Data.Program" Role="Program" Multiplicity="1" />
+          <End Type="HealthForm.Data.CaseProgram" Role="CaseProgram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseProgram">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1547,21 +1581,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CasePrograms">
-            <EntityTypeMapping TypeName="HealthForm.Data.CaseProgram">
-              <MappingFragment StoreEntitySet="CaseProgram">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
-                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
-                <ScalarProperty Name="CorrespId" ColumnName="CorrespId" />
-                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
-                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
-                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
-                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
-                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CorrespondenceRRFs">
             <EntityTypeMapping TypeName="HealthForm.Data.CorrespondenceRRF">
               <MappingFragment StoreEntitySet="CorrespondenceRRF">
@@ -1685,6 +1704,21 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CasePrograms">
+            <EntityTypeMapping TypeName="HealthForm.Data.CaseProgram">
+              <MappingFragment StoreEntitySet="CaseProgram">
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="ObjectType" ColumnName="ObjectType" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1706,6 +1740,46 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams>
+      <Diagram DiagramId="1883dffcab814a9485c33ee3984a7349" Name="Diagram1">
+        <EntityTypeShape EntityType="HealthForm.Data.Client" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CodeDetail" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CodeMaster" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Entity" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.List" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.ListColumn" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.ListColumnOption" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.ListColumnValue" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.ListValue" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.PatientInfo" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Program" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Role" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.User" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.UserMenu" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.UserRole" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseAllegation" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseAllegationsSubject" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseIndividual" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.CorrespondenceRRF" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Individual" Width="1.5" PointX="7.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Correspondence" Width="1.5" PointX="13.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HealthForm.Data.Comment" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="HealthForm.Data.FK__Entity__ClientId__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_List_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_User_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK__Entity__ParentId__19DFD96B" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK__Program__EntityI__18EBB532" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_ListColumn_List" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_ListValue_List" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_ListColumnOption_ListColumn" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_ListColumnValue_ListColumn" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_UserRole_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK_UserRole_User" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK__CaseAlleg__CaseA__45BE5BA9" ManuallyRouted="false" />
+        <AssociationConnector Association="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseProgram" Width="1.5" PointX="7.5" PointY="22" />
+        <AssociationConnector Association="HealthForm.Data.FK__CaseProgr__Progr__6442E2C9" />
+      </Diagram>
+    </Diagrams>
   </Designer>
 </edmx:Edmx>

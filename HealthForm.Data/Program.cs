@@ -14,6 +14,12 @@ namespace HealthForm.Data
     
     public partial class Program
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Program()
+        {
+            this.CasePrograms = new HashSet<CaseProgram>();
+        }
+    
         public int Id { get; set; }
         public string Desc { get; set; }
         public int EntityId { get; set; }
@@ -24,5 +30,7 @@ namespace HealthForm.Data
         public Nullable<System.DateTime> ChgDt { get; set; }
     
         public virtual Entity Entity { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CaseProgram> CasePrograms { get; set; }
     }
 }

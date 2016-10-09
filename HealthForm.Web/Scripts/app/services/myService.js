@@ -3,9 +3,9 @@
 
     app.factory('myService', myService);
 
-    myService.$inject = ['$http', '$location', '$rootScope', '$cookies', 'toastr'];
+    myService.$inject = ['$http', '$location', '$rootScope', '$cookies', 'toastr', '$uibModal'];
 
-    function myService($http, $location, $rootScope, $cookies, toastr) {
+    function myService($http, $location, $rootScope, $cookies, toastr, $uibModal) {
         var service = {
             save: save,
             get: get,
@@ -16,10 +16,25 @@
             deleteRecord: deleteRecord,
             login: login,
             removeCredentials: removeCredentials,
-            restoreCredentials: restoreCredentials
+            restoreCredentials: restoreCredentials,
+            loginPopUp: loginPopUp
         };
 
         return service;
+
+
+        function loginPopUp() {
+            $rootScope.modalInstance = $uibModal.open({
+                ariaLabelledBy: 'modal-title',
+                ariaDescribedBy: 'modal-body',
+                templateUrl: 'Scripts/app/account/login.html',
+                //size: size,
+            });
+
+            return $rootScope.modalInstance.result.then();
+
+            //modalInstance.result.then(modalInstance.close());
+        }
 
 
 
@@ -212,6 +227,63 @@
                 $http.defaults.headers.common['Authorization'] = "Bearer " + $rootScope.UserInfo.token;
             }
         }
+    }
+
+})(angular.module('MyApp'));
+
+
+(function (app) {
+    'use strict';
+
+    app.factory('ajaxGlobal', ajaxGlobal);
+
+    ajaxGlobal.$inject = ['$q', '$rootScope', '$log', '$timeout', '$injector'];
+
+    function ajaxGlobal($q, $rootScope, $log, $timeout, $injector) {
+
+        var myService, $http, $state;
+
+        // this trick must be done so that we don't receive
+        // `Uncaught Error: [$injector:cdep] Circular dependency found`
+        $timeout(function () {
+            myService = $injector.get('myService');
+            $http = $injector.get('$http');
+            $state = $injector.get('$state');
+        });
+
+        return {
+            request: function (config) {
+                //$rootScope.isBusy = true;
+                return config;
+            },
+            requestError: function (rejection) {
+                //$rootScope.isBusy = false;
+                $log.error('Request error:', rejection);
+                return $q.reject(rejection);
+            },
+            response: function (response) {
+                //$rootScope.isBusy = false;
+                return response;
+            },
+            responseError: function (rejection) {
+                //$rootScope.isBusy = false;
+                var deferred = $q.defer();
+                if (rejection.status == 401) {
+                    myService.loginPopUp().then(function () {
+                        deferred.resolve($http(rejection.config));
+                    });
+                    return rejection;
+                }
+                else {
+                    alert2(rejection.data);
+                    //$log.error('Response error:', rejection);
+                }
+                return $q.reject(rejection);
+            }
+        };
+
+
+
     }
 
 })(angular.module('MyApp'));

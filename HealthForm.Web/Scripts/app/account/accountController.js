@@ -45,10 +45,10 @@
 
     app.controller('accountLoginController', accountLoginController)
 
-    accountLoginController.$inject = ['$scope', '$routeParams', 'apiService', '$uibModal', 'myService', '$rootScope', '$location', '$window'];
+    accountLoginController.$inject = ['$scope', '$routeParams', 'apiService', 'myService', '$rootScope', '$location', '$window'];
 
 
-    function accountLoginController($scope, $routeParams, apiService, $uibModal, myService, $rootScope, $location, $window) {
+    function accountLoginController($scope, $routeParams, apiService, myService, $rootScope, $location, $window) {
 
 
         $scope.vm = {};
@@ -59,18 +59,11 @@
         }
 
         function afterLogin() {
-            //apiService.post('api/users/login', $scope);
-            //helperService.saveCredentials($scope.obj);
-            //$scope.$emit('loginEvent');
-            if ($rootScope.previousState)
-                $location.path($rootScope.previousState);
+            if ($rootScope.modalInstance)
+                $rootScope.modalInstance.close('a');
             else
-            {
-                //console.log($window.location);
-                //console.log($location);
-                $window.location.href = $window.location.origin + _webRoot;
-            }
-                
+                $window.location.href = $window.location.origin + _webRoot + '#/home';
+               
         }
 
 

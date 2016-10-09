@@ -16,12 +16,14 @@ namespace HealthForm.Data
     {
         public int Id { get; set; }
         public int ProgramId { get; set; }
-        public Nullable<int> CaseId { get; set; }
-        public Nullable<int> CorrespId { get; set; }
+        public Nullable<int> ObjectId { get; set; }
+        public string ObjectType { get; set; }
         public bool IsInactive { get; set; }
         public Nullable<int> EntBy { get; set; }
-        public System.DateTime EntDt { get; set; }
+        public Nullable<System.DateTime> EntDt { get; set; }
         public Nullable<int> ChgBy { get; set; }
         public Nullable<System.DateTime> ChgDt { get; set; }
+    
+        public virtual Program Program { get; set; }
     }
 }

@@ -1,29 +1,27 @@
-﻿<busy-indicator></busy-indicator>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        Login
-    </div>
-    <div class="panel-body">
-        <form role="form" novalidate angular-validator name="maintainPatientInfoForm" class="form-horizontal">
-            <div class="form-group">
-                <label class="col-md-2 control-label">User Id</label>
-                <div class="col-md-4">
-                    <input class="form-control" type="text" ng-model="obj.UserId"
-                           validate-on="blur" required required-message="'Title is required'">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-md-2 control-label">Password</label>
-                <div class="col-md-5">
-                    <input class="form-control" type="password" ng-model="obj.Password" />
-                </div>
+﻿<div ng-controller="accountLoginController">
+    <busy-indicator></busy-indicator>
+    <div class="card">
+        <div class="card-block">
+            <h4 class="card-title">Login</h4>
+            <form name="entryForm">
+                <div class="form-group">
 
-            </div>
-        </form>
-    </div>
-    <div class="clearfix">
-        <div class="pull-right">
-            <button type="button" class="btn btn-primary" ng-click="saveList()">Submit</button>
+
+                    <label class="col-form-label">User Id</label>
+                    <input class="form-control" type="text" ng-model="vm.UserId"
+                           validator="required" name="UserId">
+
+                </div>
+                <div class="form-group">
+
+
+                    <label class="col-form-label">Password</label>
+                    <input class="form-control" type="password" name="Password" ng-model="vm.Password" validator="required" />
+
+                </div>
+            </form>
+
+            <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="login()">Submit</button>
         </div>
     </div>
 </div>

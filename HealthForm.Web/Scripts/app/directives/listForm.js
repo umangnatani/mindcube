@@ -3,7 +3,7 @@
     var busyIndicator = function ($rootScope) {
         return {
             restrict: 'E',
-            template: "<div ng-if='$rootScope.isBusy'><h3>Please wait.. <i class='fa fa-cog fa-spin'></i></h3></div><div id='blockUiBackdrop' ng-if='$rootScope.isBusy'></div>",
+            template: "<div ng-if='$root.isBusy'><h3>Please wait.. <i class='fa fa-cog fa-spin'></i></h3></div><div id='blockUiBackdrop' ng-if='$root.isBusy'></div>",
             //link: function (scope, elem, attrs) {
             //    scope.isRouteLoading = false;
 

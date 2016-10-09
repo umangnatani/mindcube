@@ -14,7 +14,7 @@ using EntLib;
 
 namespace HealthForm.Web.Controllers
 {
-    
+    [Authorize]
     public class Clients1Controller : ApiController
     {
 
@@ -30,6 +30,7 @@ namespace HealthForm.Web.Controllers
         [HttpGet]
         public IQueryable<Client> List()
         {
+            //System.Threading.Thread.Sleep(2000);
             return _Service.Repository.GetAll();
         }
 
@@ -46,6 +47,7 @@ namespace HealthForm.Web.Controllers
         //[ResponseType(typeof(Client))]
         public IHttpActionResult Maintain(Client client)
         {
+            System.Threading.Thread.Sleep(4000);
             return Ok(_Service.Save(client));
 
         }

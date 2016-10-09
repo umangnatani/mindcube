@@ -43,10 +43,10 @@ namespace HealthForm.Data
         public virtual DbSet<CaseAllegation> CaseAllegations { get; set; }
         public virtual DbSet<CaseAllegationsSubject> CaseAllegationsSubjects { get; set; }
         public virtual DbSet<CaseIndividual> CaseIndividuals { get; set; }
-        public virtual DbSet<CaseProgram> CasePrograms { get; set; }
         public virtual DbSet<CorrespondenceRRF> CorrespondenceRRFs { get; set; }
         public virtual DbSet<Individual> Individuals { get; set; }
         public virtual DbSet<Correspondence> Correspondences { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<CaseProgram> CasePrograms { get; set; }
     }
 }

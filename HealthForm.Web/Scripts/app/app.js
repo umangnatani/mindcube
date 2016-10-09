@@ -31,8 +31,15 @@
         
 
         $stateProvider.
-             state('home', {
-                 url: '/',
+            state('login', {
+                url: '/',
+                templateUrl: 'Scripts/app/home/main.html',
+                data: {
+                    requireLogin: false
+                }
+            })
+             .state('home', {
+                 url: '/home',
                  templateUrl: 'Scripts/app/home/main.html',
                  controller: 'homeController'
              })
@@ -118,17 +125,37 @@
         //    wrapper: ['horizontalBootstrapLabel', 'bootstrapHasError']
         //});
 
-               
+        $httpProvider.interceptors.push('ajaxGlobal');
 
         //$httpProvider.interceptors.push(growlProvider.serverMessagesInterceptor);
     }
 
 
-    run.$inject = ['myService'];
+    run.$inject = ['myService', '$rootScope', '$state'];
 
-    function run(myService) {
+    function run(myService, $rootScope, $state) {
         // handle page refreshes
         myService.restoreCredentials();
+
+
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+
+            var requireLogin = true;
+
+            if (toState.data)
+                requireLogin = toState.data.requireLogin;
+
+            
+            if (requireLogin && typeof $rootScope.UserInfo === 'undefined') {
+                event.preventDefault();
+                //console.log(toState)
+                //alert('not allowed')
+                myService.loginPopUp().then(function () {
+                    return $state.go(toState.name, toParams);
+                });
+                // get me a login modal!
+            }
+        });
     }
 
 
