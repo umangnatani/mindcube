@@ -235,6 +235,7 @@
     <Compile Include="Controllers\ListFormsController.cs" />
     <Compile Include="Controllers\ListsController.cs" />
     <Compile Include="Controllers\ListValuesController.cs" />
+    <Compile Include="Controllers\ProgramsController.cs" />
     <Compile Include="Controllers\UserMenuController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UtilController.cs" />

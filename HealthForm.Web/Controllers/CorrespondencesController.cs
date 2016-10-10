@@ -31,7 +31,7 @@ namespace HealthForm.Web.Controllers
         public IHttpActionResult Details(int id)
         {
 
-            return Ok(_Service.Repository.GetById(id));
+            return Ok(_Service.GetById(id));
         }
 
 

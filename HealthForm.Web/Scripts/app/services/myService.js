@@ -54,7 +54,7 @@
                     scope[vm] = results.data;
                     //console.log(objScope);
                     if (success)
-                        success(result);
+                        success(results);
                 });
             }
         }
@@ -253,20 +253,20 @@
 
         return {
             request: function (config) {
-                //$rootScope.isBusy = true;
+                $rootScope.isBusy = true;
                 return config;
             },
             requestError: function (rejection) {
-                //$rootScope.isBusy = false;
+                $rootScope.isBusy = false;
                 $log.error('Request error:', rejection);
                 return $q.reject(rejection);
             },
             response: function (response) {
-                //$rootScope.isBusy = false;
+                $rootScope.isBusy = false;
                 return response;
             },
             responseError: function (rejection) {
-                //$rootScope.isBusy = false;
+                $rootScope.isBusy = false;
                 var deferred = $q.defer();
                 if (rejection.status == 401) {
                     myService.loginPopUp().then(function () {

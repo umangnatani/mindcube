@@ -14,7 +14,29 @@ namespace HealthForm.Data
         {
             poco.ClientId = 6;
             Repository.Maintain(poco);
-            return UoW.Save(poco);
+
+            RetrunType rt = UoW.Save(poco);
+
+            foreach (var item in poco.CasePrograms)
+            {
+                item.ObjectId = poco.Id;
+                getRepository<CaseProgram>().Maintain(item);
+            }
+
+            UoW.Commit();
+
+            return rt;
         }
+
+
+        public Correspondence GetById(int id)
+        {
+            var model = Repository.GetById(id);
+
+            model.CasePrograms = getRepository<CaseProgram>().FindBy(x => x.ObjectId == model.Id && x.ObjectType == "csp").ToList();
+
+            return model;
+        }
+
     }
 }

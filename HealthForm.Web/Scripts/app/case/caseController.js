@@ -24,10 +24,11 @@
             });
         }
 
-      
-        
+
+        $scope.vm.CasePrograms = [{ ObjectId: $scope.vm.Id, ObjectType: 'csp' }];
 
         myService.getById('api/correspondences/details', $scope, 'vm');
+       
 
         $scope.$on("modelUpdated", function (evt, data) {
             myService.getById('api/correspondences/details', $scope, 'vm');
@@ -44,11 +45,26 @@
         myService.getCode($scope, 'Categories', 'CORRESP_CATEGORY');
         myService.getCode($scope, 'Sources', 'CORRESP_SOURCE');
 
+        myService.getList('api/programs/list', $scope, null, 'Programs')
+
+        
+
+        $scope.addNewChoice = function () {
+            $scope.vm.CasePrograms.push({ ObjectId: $scope.vm.Id, ObjectType: 'csp' });
+        };
+
+        $scope.removeChoice = function (index) {
+            //var lastItem = $scope.choices.length - 1;
+            $scope.vm.CasePrograms.splice(index, 1);
+        };
+
        
 
         $scope.save = function () {
             
             var url = 'api/correspondences/maintain';
+
+            console.log($scope.vm);
 
             myService.save(url, $scope, 'vm', function () {
                 //$scope.EntityObject.ObjectId = $scope.vm.Id;

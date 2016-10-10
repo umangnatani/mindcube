@@ -25,9 +25,19 @@ namespace HealthForm.Data
 
     public partial class Correspondence : IEntityBase
     {
-
+        public ICollection<CaseProgram> CasePrograms { get; set; }
     }
     public partial class CorrespondenceRRF : IEntityBase
+    {
+
+    }
+
+    public partial class Program : IEntityBase
+    {
+
+    }
+
+    public partial class CaseProgram : IEntityBase
     {
 
     }
