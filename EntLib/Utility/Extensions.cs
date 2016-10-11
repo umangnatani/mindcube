@@ -13,5 +13,11 @@ namespace EntLib
             return string.IsNullOrEmpty(value) ? (DateTime?)null : DateTime.Parse(value);
 
         }
+
+        public static int ToInt(this int? value)
+        {
+            return value == null? 0 : (int)value;
+
+        }
     }
 }

@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <label for="Category" class="control-label">Category</label>
                                     <div>
-                                        <ui-select ng-model="vm.CategoryId" theme="select2" style="min-width: 300px;" title="Choose a Category">
+                                        <ui-select ng-model="vm.CategoryId" theme="select2" style="min-width: 300px;" title="Choose a Category" ng-required="true">
                                             <ui-select-match>{{$select.selected.Text}}</ui-select-match>
                                             <ui-select-choices repeat="option.Id as option in Categories | filter: $select.search">
                                                 <div ng-bind-html="option.Text | highlight: $select.search"></div>

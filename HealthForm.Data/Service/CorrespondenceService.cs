@@ -20,7 +20,11 @@ namespace HealthForm.Data
 
         public RetrunType SaveCorresp(Correspondence poco)
         {
-            poco.ClientId = 6;
+            poco.ClientId = SessionHandler.UserInfo.ClientId.ToInt();
+
+            var newChildren = poco.CasePrograms.ToList();
+
+            newChildren.RemoveAll(x => x.ProgramId == 0);
 
             poco.ReceivedDt = poco.strReceivedDate.ToDateTime();
 
@@ -31,34 +35,7 @@ namespace HealthForm.Data
 
             var oldChildren = programRep.FindBy(x => x.ObjectId == poco.Id && x.ObjectType == "csp").ToList();
 
-            var deletedChildren = oldChildren.Where(i => !poco.CasePrograms.Any(i2 => i2.Id == i.Id));
-
-            foreach (CaseProgram child in deletedChildren)
-            {
-                programRep.Delete(child);
-            }
-
-
-            var addedChildren = poco.CasePrograms.Where(i => !oldChildren.Any(i2 => i2.Id == i.Id));
-
-            foreach (CaseProgram child in addedChildren)
-            {
-                programRep.Add(child);
-            }
-
-
-            var modifiedChildren = poco.CasePrograms.Where(i => !addedChildren.Any(i2 => i2.Id == i.Id));
-
-            foreach (CaseProgram child in modifiedChildren)
-            {
-                programRep.Update(child);
-            }
-
-            //foreach (var item in poco.CasePrograms)
-            //{
-            //    item.ObjectId = poco.Id;
-            //    programRep.Maintain(item);
-            //}
+            programRep.updateChildren(oldChildren, newChildren);
 
             UoW.Commit();
 
