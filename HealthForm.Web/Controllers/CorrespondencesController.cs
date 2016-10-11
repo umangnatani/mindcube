@@ -20,6 +20,13 @@ namespace HealthForm.Web.Controllers
             _Service = new CorrespondenceService();
         }
 
+        [HttpGet]
+        public IQueryable<Correspondence> List()
+        {
+            //System.Threading.Thread.Sleep(2000);
+            return _Service.Repository.GetAll();
+        }
+
         [HttpPost]
         public IHttpActionResult Maintain(Correspondence poco)
         {

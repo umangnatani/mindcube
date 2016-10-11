@@ -63,7 +63,12 @@
                 },
               templateUrl: 'Scripts/app/client/maintain.html',
               //controller: 'clientMaintController'
-             })
+            })
+            .state('correspondence', {
+                url: '/correspondence/list',
+                templateUrl: 'Scripts/app/case/corresp-index.html',
+                controller: 'correspController'
+            })
             .state('correspondence_add', {
                  url: '/correspondence/add',
                  templateUrl: 'Scripts/app/case/corresp-maintain.html',

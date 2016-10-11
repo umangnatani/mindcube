@@ -352,6 +352,7 @@
     <Content Include="Scripts\app\account\login.html" />
     <Content Include="Scripts\app\account\maintain.html" />
     <Content Include="Scripts\app\case\caseController.js" />
+    <Content Include="Scripts\app\case\corresp-index.html" />
     <Content Include="Scripts\app\case\corresp-maintain.html" />
     <Content Include="Scripts\app\client\clientController.js" />
     <Content Include="Scripts\app\case\comments-maintain.html" />

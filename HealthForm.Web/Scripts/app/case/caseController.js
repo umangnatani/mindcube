@@ -1,6 +1,68 @@
 ﻿(function (app) {
     'use strict';
 
+
+    app.controller('correspController', correspController)
+
+    correspController.$inject = ['$scope', '$q', '$http', 'myService', '$uibModal', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile'];
+
+    // used angular datatables grid
+
+    function correspController($scope, $q, $http, myService, $uibModal, DTOptionsBuilder, DTColumnBuilder, $compile) {
+
+
+        $scope.search = function () {
+            myService.save('api/clients1/Search?Filter=' + $scope.filter, null,
+             success);
+        }
+
+
+        $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function () {
+            var defer = $q.defer();
+            $http.get('api/correspondences/list').then(function (result) {
+                defer.resolve(result.data);
+            });
+            return defer.promise;
+        }).withPaginationType('full_numbers')
+      .withOption('createdRow', function (row) {
+          // Recompiling so we can bind Angular directive to the DT
+          $compile(angular.element(row).contents())($scope);
+      });
+
+
+        $scope.dtColumns = [
+            DTColumnBuilder.newColumn('Id').withTitle('Id'),
+            DTColumnBuilder.newColumn('FirstName').withTitle('Received From'),
+            DTColumnBuilder.newColumn('strReceivedDate').withTitle('Received Date'),
+           DTColumnBuilder.newColumn(null).withTitle('Actions').notSortable()
+            .renderWith(actionsHtml)
+        ];
+
+
+        $scope.showMe = function (row) {
+            alert(row.entity.ClientName);
+        };
+
+        function actionsHtml(data, type, full, meta) {
+            return '<a class="btn btn-sm btn-warning" ui-sref="correspondence_maintain({id:' + data.Id + '})">' +
+    '   <i class="fa fa-edit"></i>' +
+    '</a>';
+
+        }
+
+
+
+
+    }
+
+
+
+
+})(angular.module('MyApp'));
+
+(function (app) {
+    'use strict';
+
     app.controller('correspMaintController', correspMaintController)
 
     correspMaintController.$inject = ['$scope', '$location', '$stateParams', 'myService', '$filter'];

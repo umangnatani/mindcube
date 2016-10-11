@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label for="ProgramId" class="control-label">Entity - Program/Department</label>
                                     <div ng-repeat="item in vm.CasePrograms" style="margin-bottom:5px">
-                                        <ui-select ng-model="item.ProgramId" theme="select2" style="min-width: 300px;" title="Choose a Program">
+                                        <ui-select ng-model="item.ProgramId" theme="bootstrap" style="min-width: 300px;" title="Choose a Program">
                                             <ui-select-match>{{$select.selected.formattedDesc}}</ui-select-match>
                                             <ui-select-choices repeat="option.Id as option in Programs | filter: {formattedDesc:$select.search}">
                                                 <div>
@@ -43,10 +43,10 @@
                                                 </div>
                                             </ui-select-choices>
                                         </ui-select>
-                                        <span style="margin:0 5px">
-                                            <a href="JavaScript:void(0)" ng-click="removeChoice($index)" ng-hide="$first" style="vertical-align:bottom">Remove</a>
+                                        <span style="margin-right:5px" ng-hide="$first">
+                                            <a href="JavaScript:void(0)" ng-click="removeChoice($index)" ng-hide="$first" style="vertical-align:bottom">Remove</a> &nbsp;&nbsp; |
                                         </span>
-                                        <span style="margin-right:5px">
+                                        <span>
                                             <a href="JavaScript:void(0)" ng-click="addNewChoice()" ng-show="$last" style="vertical-align:bottom">Add More</a>
                                         </span>
                                     </div>
@@ -61,7 +61,7 @@
                                 <div class="form-group">
                                     <label for="Category" class="control-label">Category</label>
                                     <div>
-                                        <ui-select ng-model="vm.CategoryId" theme="select2" style="min-width: 300px;" title="Choose a Category" ng-required="true">
+                                        <ui-select ng-model="vm.CategoryId" theme="bootstrap" style="min-width: 300px;" title="Choose a Category" ng-required="true">
                                             <ui-select-match>{{$select.selected.Text}}</ui-select-match>
                                             <ui-select-choices repeat="option.Id as option in Categories | filter: $select.search">
                                                 <div ng-bind-html="option.Text | highlight: $select.search"></div>
@@ -74,12 +74,17 @@
                                     </select>-->
                                 </div>
                             </div>
-                            <div class="col-sm-4 offset-sm-1">
+                            <div class="col-sm-4 col-offset-1">
                                 <div class="form-group">
                                     <label for="Category" class="control-label">Source</label>
-                                    <select ng-model="vm.SourceId" name="SourceId" class="form-control" ng-options="option.Id as option.Text for option in Sources" validator="required">
-                                        <option value="">-- Select --</option>
-                                    </select>
+                                    <div>
+                                        <ui-select ng-model="vm.SourceId" theme="bootstrap" style="min-width: 300px;" title="Choose a Source" ng-required="true">
+                                            <ui-select-match>{{$select.selected.Text}}</ui-select-match>
+                                            <ui-select-choices repeat="option.Id as option in Sources | filter: $select.search">
+                                                <div ng-bind-html="option.Text | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
                                 </div>
                             </div>
 
