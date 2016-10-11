@@ -25,6 +25,17 @@ namespace HealthForm.Data
 
     public partial class Correspondence : IEntityBase
     {
+        private string _strReceivedDate;
+
+        public string strReceivedDate
+        {
+            get {
+                return string.IsNullOrEmpty(_strReceivedDate) ? ReceivedDt.Value.ToShortDateString() : _strReceivedDate;
+            }
+            set{
+                _strReceivedDate = value;
+            }
+        }
         public ICollection<CaseProgram> CasePrograms { get; set; }
     }
     public partial class CorrespondenceRRF : IEntityBase
@@ -34,7 +45,17 @@ namespace HealthForm.Data
 
     public partial class Program : IEntityBase
     {
-
+        public string formattedDesc
+        {
+            get
+            {
+                return Entity.Desc + " -- " + Desc;
+            }
+            //set
+            //{
+            //    _strReceivedDate = value;
+            //}
+        }
     }
 
     public partial class CaseProgram : IEntityBase

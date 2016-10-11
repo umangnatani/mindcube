@@ -18,6 +18,7 @@ namespace HealthForm.Data
         public ICTSEntities()
             : base("name=ICTSEntities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

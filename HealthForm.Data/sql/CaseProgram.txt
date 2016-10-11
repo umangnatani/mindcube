@@ -1,0 +1,32 @@
+﻿USE [HealthForm]
+GO
+
+/****** Object:  Table [inv].[CaseProgram]    Script Date: 10/10/2016 7:20:20 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [inv].[CaseProgram](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ProgramId] [int] NOT NULL,
+	[ObjectId] [int] NULL,
+	[ObjectType] [nvarchar](50) NULL,
+	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
+	[EntBy] [int] NULL,
+	[EntDt] [datetime] NULL DEFAULT (getdate()),
+	[ChgBy] [int] NULL,
+	[ChgDt] [datetime] NULL,
+ CONSTRAINT [PK__CaseProg__3214EC07C5280A5C] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [inv].[CaseProgram]  WITH CHECK ADD FOREIGN KEY([ProgramId])
+REFERENCES [dbo].[Program] ([Id])
+GO
+

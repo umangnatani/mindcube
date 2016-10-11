@@ -10,18 +10,55 @@ namespace HealthForm.Data
     public class CorrespondenceService: Service<Correspondence>
     {
 
+        private IEntityBaseRepository<CaseProgram> programRep; 
+
+        public CorrespondenceService()
+        {
+            programRep = getRepository<CaseProgram>();
+        }
+
+
         public RetrunType SaveCorresp(Correspondence poco)
         {
             poco.ClientId = 6;
+
+            poco.ReceivedDt = poco.strReceivedDate.ToDateTime();
+
             Repository.Maintain(poco);
 
             RetrunType rt = UoW.Save(poco);
 
-            foreach (var item in poco.CasePrograms)
+
+            var oldChildren = programRep.FindBy(x => x.ObjectId == poco.Id && x.ObjectType == "csp").ToList();
+
+            var deletedChildren = oldChildren.Where(i => !poco.CasePrograms.Any(i2 => i2.Id == i.Id));
+
+            foreach (CaseProgram child in deletedChildren)
             {
-                item.ObjectId = poco.Id;
-                getRepository<CaseProgram>().Maintain(item);
+                programRep.Delete(child);
             }
+
+
+            var addedChildren = poco.CasePrograms.Where(i => !oldChildren.Any(i2 => i2.Id == i.Id));
+
+            foreach (CaseProgram child in addedChildren)
+            {
+                programRep.Add(child);
+            }
+
+
+            var modifiedChildren = poco.CasePrograms.Where(i => !addedChildren.Any(i2 => i2.Id == i.Id));
+
+            foreach (CaseProgram child in modifiedChildren)
+            {
+                programRep.Update(child);
+            }
+
+            //foreach (var item in poco.CasePrograms)
+            //{
+            //    item.ObjectId = poco.Id;
+            //    programRep.Maintain(item);
+            //}
 
             UoW.Commit();
 
@@ -33,7 +70,7 @@ namespace HealthForm.Data
         {
             var model = Repository.GetById(id);
 
-            model.CasePrograms = getRepository<CaseProgram>().FindBy(x => x.ObjectId == model.Id && x.ObjectType == "csp").ToList();
+            model.CasePrograms = programRep.FindBy(x => x.ObjectId == model.Id && x.ObjectType == "csp").ToList();
 
             return model;
         }

@@ -3,9 +3,9 @@
 
     app.controller('correspMaintController', correspMaintController)
 
-    correspMaintController.$inject = ['$scope', '$location', '$stateParams', 'myService'];
+    correspMaintController.$inject = ['$scope', '$location', '$stateParams', 'myService', '$filter'];
 
-    function correspMaintController($scope, $location, $stateParams, myService) {
+    function correspMaintController($scope, $location, $stateParams, myService, $filter) {
 
         $scope.vm = {
             Id: $stateParams.id,
@@ -25,9 +25,32 @@
         }
 
 
+
+
+        
+        $scope.valuationDatePickerIsOpen = false;
+        $scope.opens = [];
+
+        $scope.valuationDatePickerOpen = function ($event) {
+            if ($event) {
+                $event.preventDefault();
+                $event.stopPropagation(); // This is the magic
+            }
+            this.valuationDatePickerIsOpen = true;
+        };
+
         $scope.vm.CasePrograms = [{ ObjectId: $scope.vm.Id, ObjectType: 'csp' }];
 
-        myService.getById('api/correspondences/details', $scope, 'vm');
+        myService.getById('api/correspondences/details', $scope, 'vm', function () {
+            if($scope.vm.CasePrograms.length === 0)
+                $scope.vm.CasePrograms = [{ ObjectId: $scope.vm.Id, ObjectType: 'csp' }];
+            //$scope.vm.Category = { Id: $scope.vm.CategoryId, Text: 'Complaint' };
+            //$scope.vm.ReceivedDt = new Date(Date.parse($scope.vm.ReceivedDt));
+        });
+
+        //$scope.$watch('vm.ReceivedDt', function (newValue) {
+        //    $scope.vm.ReceivedDt = $filter('date')(newValue, 'MM/dd/yyyy');
+        //});
        
 
         $scope.$on("modelUpdated", function (evt, data) {

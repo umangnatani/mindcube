@@ -54,6 +54,7 @@
     <Compile Include="Repository\IUnitOfWork.cs" />
     <Compile Include="Models\Models.cs" />
     <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="Utility\Extensions.cs" />
     <Compile Include="Utility\Util.cs" />
     <Compile Include="Utility\UtilWeb.cs" />
   </ItemGroup>

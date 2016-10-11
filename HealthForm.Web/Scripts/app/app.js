@@ -18,7 +18,10 @@
                             'formly',
                             'formlyBootstrap',
                             'validation', // For form validation
-                            'validation.rule' // For form validation rules
+                            'validation.rule', // For form validation rules
+                            'ngSanitize', 
+                            'ui.select', // for select2
+                            'datetime' // for date formatting
     ]).config(config)
     .run(run);
 

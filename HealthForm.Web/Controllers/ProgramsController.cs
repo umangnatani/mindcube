@@ -6,6 +6,9 @@ using System.Net.Http;
 using System.Web.Http;
 using HealthForm.Data;
 using EntLib;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq.Expressions;
 
 namespace HealthForm.Web.Controllers
 {
@@ -24,7 +27,7 @@ namespace HealthForm.Web.Controllers
         public IQueryable<Program> List()
         {
             //System.Threading.Thread.Sleep(2000);
-            return _Service.Repository.GetAll();
+            return _Service.Repository.GetAll().Include("Entity");
         }
 
 

@@ -300,6 +300,7 @@
     <Content Include="Content\layout\shrink-effect.css" />
     <Content Include="Content\layout\theme-color.css" />
     <Content Include="Content\layout\umang.css" />
+    <Content Include="Content\Old.css" />
     <Content Include="Content\plugin\angular-datatables.css" />
     <Content Include="Content\plugin\angular-datatables.min.css" />
     <Content Include="Content\plugin\angular-growl.min.css" />
@@ -311,6 +312,7 @@
     <Content Include="Content\plugin\fullcalendar.print.css" />
     <Content Include="Content\plugin\jquery.dataTables.min.css" />
     <Content Include="Content\plugin\ngToast.min.css" />
+    <Content Include="Content\plugin\select.min.css" />
     <Content Include="Content\plugin\select2-bootstrap.css" />
     <Content Include="Content\plugin\select2-spinner.gif" />
     <Content Include="Content\plugin\select2.css" />
@@ -389,6 +391,7 @@
     <Content Include="Scripts\base\bootstrap.js" />
     <Content Include="Scripts\base\bootstrap.min.js" />
     <Content Include="Scripts\base\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\base\jquery-ui.min.js" />
     <Content Include="Scripts\base\jquery.fancybox-media.js" />
     <Content Include="Scripts\base\jquery.fancybox.js" />
     <Content Include="Scripts\base\jquery.raty.js" />
@@ -424,6 +427,7 @@
     <Content Include="Scripts\plugin\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\plugin\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\plugin\bootstrap-notify.min.js" />
+    <Content Include="Scripts\plugin\datetime.js" />
     <Content Include="Scripts\plugin\formly.min.js" />
     <Content Include="Scripts\plugin\fullcalendar.js" />
     <Content Include="Scripts\plugin\fullcalendar.min.js" />
@@ -435,6 +439,7 @@
     <Content Include="Scripts\plugin\moment.js" />
     <Content Include="Scripts\plugin\moment.min.js" />
     <Content Include="Scripts\plugin\ngToast.min.js" />
+    <Content Include="Scripts\plugin\select.min.js" />
     <Content Include="Scripts\plugin\select2.min.js" />
     <Content Include="Scripts\plugin\TimePickerAddon.js" />
     <Content Include="Scripts\app\client\index.html" />

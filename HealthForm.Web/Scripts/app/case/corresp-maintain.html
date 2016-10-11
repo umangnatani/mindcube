@@ -4,78 +4,89 @@
 </h4>
 
 
-<div class="card">
+<div class="card color3">
     <div class="card-block">
         
-
-            <uib-tabset active="activeForm">
+           <uib-tabset active="activeForm">
                 <uib-tab index="0" heading="General">
 
                     <form name="entryForm" novalidate>
+
+
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="RecFName" class="col-form-label">Received From</label>
+                                    <label for="RecFName" class="control-label">Received From</label>
                                     <input type="text" ng-model="vm.FirstName" name="FirstName" class="form-control" validator="required">
                                 </div>
                             </div>
                             <div class="col-sm-4 offset-sm-1">
-                                <div class="form-group">
-                                    <label for="ReceivedDt" class="col-form-label">Received Date</label>
+                                <div class="form-group has-feedback">
+                                    <label for="ReceivedDt" class="control-label">Received Date</label>
 
-                                    <input type="text" ng-model="vm.ReceivedDt" name="ReceivedDt" class="form-control" validator="required">
+                                        <input type="text" class="form-control" datepicker name="ReceivedDt" ng-model="vm.strReceivedDate" />
+                                        <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                                 </div>
                             </div>
 
                         </div>
-                        <div class="row" ng-repeat="item in vm.CasePrograms">
+                        <div class="row">
                             <div class="col-sm-5">
                                 <div class="form-group">
-                                    <label for="ProgramId" class="col-form-label">Program</label>
-                                    <div class="input-group">
-                                        <select ng-model="item.ProgramId" name="ProgramId" class="form-control" style="width:80%" ng-options="option.Id as option.Desc for option in Programs">
-                                            <option value="">-- Select --</option>
-                                        </select>
-                                        <span class="input-group-btn" style="margin-left:10px">
-                                            <button class="btn btn-default" ng-click="addNewChoice()" ng-show="$last">Add More</button>
-                                            </span>
+                                    <label for="ProgramId" class="control-label">Entity - Program/Department</label>
+                                    <div ng-repeat="item in vm.CasePrograms" style="margin-bottom:5px">
+                                        <ui-select ng-model="item.ProgramId" theme="select2" style="min-width: 300px;" title="Choose a Program">
+                                            <ui-select-match>{{$select.selected.formattedDesc}}</ui-select-match>
+                                            <ui-select-choices repeat="option.Id as option in Programs | filter: {formattedDesc:$select.search}">
+                                                <div>
+                                                    <span ng-bind-html="option.formattedDesc | highlight: $select.search"></span>
+                                                </div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span style="margin:0 5px">
+                                            <a href="JavaScript:void(0)" ng-click="removeChoice($index)" ng-hide="$first" style="vertical-align:bottom">Remove</a>
+                                        </span>
+                                        <span style="margin-right:5px">
+                                            <a href="JavaScript:void(0)" ng-click="addNewChoice()" ng-show="$last" style="vertical-align:bottom">Add More</a>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                                    <!--<div class="col-sm-4 offset-sm-1">
-                    <div class="form-group">
-                        <label for="Category" class="col-form-label">Source</label>
-                        <select ng-model="vm.SourceId" name="SourceId" class="form-control" ng-options="option.Id as option.Text for option in Sources" validator="required">
-                            <option value="">-- Select --</option>
-                        </select>
-                    </div>
-                </div>-->
-
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <label for="Category" class="col-form-label">Category</label>
-                                            <select ng-model="vm.CategoryId" name="CategoryId" class="form-control" ng-options="option.Id as option.Text for option in Categories" validator="required">
-                                                <option value="">-- Select --</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4 offset-sm-1">
-                                        <div class="form-group">
-                                            <label for="Category" class="col-form-label">Source</label>
-                                            <select ng-model="vm.SourceId" name="SourceId" class="form-control" ng-options="option.Id as option.Text for option in Sources" validator="required">
-                                                <option value="">-- Select --</option>
-                                            </select>
-                                        </div>
+                        
+                        <!--<p>Selected: <code>{{vm.CategoryId}}</code></p>-->
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="Category" class="control-label">Category</label>
+                                    <div>
+                                        <ui-select ng-model="vm.CategoryId" theme="select2" style="min-width: 300px;" title="Choose a Category">
+                                            <ui-select-match>{{$select.selected.Text}}</ui-select-match>
+                                            <ui-select-choices repeat="option.Id as option in Categories | filter: $select.search">
+                                                <div ng-bind-html="option.Text | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
 
+                                    <!--<select ng-model="vm.CategoryId" name="CategoryId" class="form-control" ng-options="option.Id as option.Text for option in Categories" validator="required">
+                                        <option value="">-- Select --</option>
+                                    </select>-->
                                 </div>
+                            </div>
+                            <div class="col-sm-4 offset-sm-1">
+                                <div class="form-group">
+                                    <label for="Category" class="control-label">Source</label>
+                                    <select ng-model="vm.SourceId" name="SourceId" class="form-control" ng-options="option.Id as option.Text for option in Sources" validator="required">
+                                        <option value="">-- Select --</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                                <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
-</form>
+                        </div>
+
+                        <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
+                    </form>
 
 
 
@@ -92,5 +103,6 @@
 
 </div>
 </div>
+
 
 
