@@ -102,6 +102,12 @@
                     <div ng-include src="'scripts/app/case/comments-maintain.html'"></div>
 
                 </uib-tab>
+               <uib-tab index="2" heading="Individual" ng-if="vm.Id > 0" select="tabClick('ind')">
+
+
+                   <div ng-include src="'scripts/app/case/individual-maintain.html'"></div>
+
+               </uib-tab>
             </uib-tabset>
                 
     
