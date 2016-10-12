@@ -23,7 +23,6 @@ namespace HealthForm.Data
         public Nullable<int> ChgBy { get; set; }
         public Nullable<System.DateTime> ChgDt { get; set; }
     
-        public virtual CaseAllegation CaseAllegation { get; set; }
         public virtual Individual Individual { get; set; }
     }
 }

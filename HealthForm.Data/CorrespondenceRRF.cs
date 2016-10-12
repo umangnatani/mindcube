@@ -30,5 +30,7 @@ namespace HealthForm.Data
         public System.DateTime EntDt { get; set; }
         public Nullable<int> ChgBy { get; set; }
         public Nullable<System.DateTime> ChgDt { get; set; }
+    
+        public virtual Correspondence Correspondence { get; set; }
     }
 }

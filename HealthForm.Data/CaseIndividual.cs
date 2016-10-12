@@ -16,8 +16,8 @@ namespace HealthForm.Data
     {
         public int Id { get; set; }
         public int IndividualId { get; set; }
-        public Nullable<int> CaseId { get; set; }
-        public Nullable<int> CorrespId { get; set; }
+        public int ObjectId { get; set; }
+        public string ObjectType { get; set; }
         public bool IsInactive { get; set; }
         public Nullable<int> EntBy { get; set; }
         public System.DateTime EntDt { get; set; }
@@ -50,5 +50,7 @@ namespace HealthForm.Data
         public string ProbTerm { get; set; }
         public string CommServiceHours { get; set; }
         public string SpecialConditions { get; set; }
+    
+        public virtual Individual Individual { get; set; }
     }
 }

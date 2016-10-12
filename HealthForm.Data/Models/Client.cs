@@ -17,10 +17,6 @@ namespace HealthForm.Data
 
     }
 
-    public partial class PatientInfo : IEntityBase
-    {
-
-    }
 
     public partial class User : IEntityBase
     {

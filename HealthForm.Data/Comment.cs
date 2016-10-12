@@ -15,7 +15,7 @@ namespace HealthForm.Data
     public partial class Comment
     {
         public int Id { get; set; }
-        public Nullable<int> ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public string ObjectType { get; set; }
         public string Comments { get; set; }
         public System.DateTime CommentDt { get; set; }

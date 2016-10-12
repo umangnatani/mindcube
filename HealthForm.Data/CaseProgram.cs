@@ -16,7 +16,7 @@ namespace HealthForm.Data
     {
         public int Id { get; set; }
         public int ProgramId { get; set; }
-        public Nullable<int> ObjectId { get; set; }
+        public int ObjectId { get; set; }
         public string ObjectType { get; set; }
         public bool IsInactive { get; set; }
         public Nullable<int> EntBy { get; set; }

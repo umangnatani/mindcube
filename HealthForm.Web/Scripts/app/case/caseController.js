@@ -199,3 +199,38 @@
     };
 
 })(angular.module('MyApp'));
+
+(function (app) {
+    'use strict';
+
+    app.controller('caseIndividualsController', caseIndividualsController)
+
+    caseIndividualsController.$inject = ['$scope', '$routeParams', 'myService'];
+
+    function caseIndividualsController($scope, $routeParams, myService) {
+
+        //$scope.$on("ind", function (evt, data) {
+        //    myService.getList('api/comments/list', $scope, $scope.EntityObject, 'list');
+        //    //$scope.childVm = {};
+        //    $scope.childVm.Comments = '';
+        //});
+
+
+
+        $scope.editChild = function (childVm) {
+            $scope.childVm = JSON.parse(JSON.stringify(childVm));
+        }
+
+
+
+        $scope.save = function () {
+            myService.save('api/CaseIndividuals/maintain', $scope, 'childVm', function () {
+                $scope.$emit("ind");
+            });
+
+        }
+
+
+    };
+
+})(angular.module('MyApp'));

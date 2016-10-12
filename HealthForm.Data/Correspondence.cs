@@ -14,6 +14,12 @@ namespace HealthForm.Data
     
     public partial class Correspondence
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Correspondence()
+        {
+            this.CorrespondenceRRFs = new HashSet<CorrespondenceRRF>();
+        }
+    
         public int Id { get; set; }
         public int ClientId { get; set; }
         public string CustomId { get; set; }
@@ -52,5 +58,8 @@ namespace HealthForm.Data
         public Nullable<System.DateTime> EntDt { get; set; }
         public Nullable<int> ChgBy { get; set; }
         public Nullable<System.DateTime> ChgDt { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CorrespondenceRRF> CorrespondenceRRFs { get; set; }
     }
 }

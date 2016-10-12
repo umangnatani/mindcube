@@ -18,6 +18,7 @@ namespace HealthForm.Data
         public Individual()
         {
             this.CaseAllegationsSubjects = new HashSet<CaseAllegationsSubject>();
+            this.CaseIndividuals = new HashSet<CaseIndividual>();
         }
     
         public int Id { get; set; }
@@ -57,5 +58,7 @@ namespace HealthForm.Data
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CaseAllegationsSubject> CaseAllegationsSubjects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CaseIndividual> CaseIndividuals { get; set; }
     }
 }

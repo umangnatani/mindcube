@@ -114,17 +114,6 @@
           <Property Name="ListId" Type="int" Nullable="false" />
           <Property Name="JSONText" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="PatientInfo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PatientId" Type="int" Nullable="false" />
-          <Property Name="ClientId" Type="int" Nullable="false" />
-          <Property Name="InsCompany" Type="nvarchar" MaxLength="100" />
-          <Property Name="InsId" Type="nvarchar" MaxLength="100" />
-          <Property Name="DtEnt" Type="datetime" />
-        </EntityType>
         <EntityType Name="Program">
           <Key>
             <PropertyRef Name="Id" />
@@ -192,9 +181,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AllegationId" Type="int" />
-          <Property Name="CaseId" Type="int" />
-          <Property Name="CorrespId" Type="int" />
+          <Property Name="AllegationId" Type="int" Nullable="false" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="ObjectType" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IsInactive" Type="bit" Nullable="false" />
           <Property Name="EntBy" Type="int" />
@@ -221,8 +210,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IndividualId" Type="int" Nullable="false" />
-          <Property Name="CaseId" Type="int" />
-          <Property Name="CorrespId" Type="int" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="ObjectType" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="IsInactive" Type="bit" Nullable="false" />
           <Property Name="EntBy" Type="int" />
           <Property Name="EntDt" Type="datetime" Nullable="false" />
@@ -262,8 +251,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProgramId" Type="int" Nullable="false" />
-          <Property Name="ObjectId" Type="int" />
-          <Property Name="ObjectType" Type="nvarchar" MaxLength="50" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="ObjectType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IsInactive" Type="bit" Nullable="false" />
           <Property Name="EntBy" Type="int" />
           <Property Name="EntDt" Type="datetime" />
@@ -275,8 +264,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ObjectId" Type="int" />
-          <Property Name="ObjectType" Type="nvarchar" MaxLength="10" />
+          <Property Name="ObjectId" Type="int" Nullable="false" />
+          <Property Name="ObjectType" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="Comments" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CommentDt" Type="datetime" Nullable="false" />
           <Property Name="CommentType" Type="nvarchar" MaxLength="10" />
@@ -389,18 +378,6 @@
           <Property Name="ChgBy" Type="int" />
           <Property Name="ChgDt" Type="datetime" />
         </EntityType>
-        <Association Name="FK__CaseAlleg__CaseA__45BE5BA9">
-          <End Role="CaseAllegations" Type="Self.CaseAllegations" Multiplicity="0..1" />
-          <End Role="CaseAllegationsSubject" Type="Self.CaseAllegationsSubject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseAllegations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseAllegationsSubject">
-              <PropertyRef Name="CaseAllegationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__CaseAlleg__Indiv__46B27FE2">
           <End Role="Individual" Type="Self.Individual" Multiplicity="0..1" />
           <End Role="CaseAllegationsSubject" Type="Self.CaseAllegationsSubject" Multiplicity="*" />
@@ -409,6 +386,18 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CaseAllegationsSubject">
+              <PropertyRef Name="IndividualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CaseIndiv__Indiv__6DCC4D03">
+          <End Role="Individual" Type="Self.Individual" Multiplicity="1" />
+          <End Role="CaseIndividual" Type="Self.CaseIndividual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individual">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseIndividual">
               <PropertyRef Name="IndividualId" />
             </Dependent>
           </ReferentialConstraint>
@@ -422,6 +411,18 @@
             </Principal>
             <Dependent Role="CaseProgram">
               <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Correspon__Corre__6CD828CA">
+          <End Role="Correspondence" Type="Self.Correspondence" Multiplicity="1" />
+          <End Role="CorrespondenceRRF" Type="Self.CorrespondenceRRF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Correspondence">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CorrespondenceRRF">
+              <PropertyRef Name="CorrespId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -570,7 +571,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <EntitySet Name="ListColumnOption" EntityType="Self.ListColumnOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListColumnValue" EntityType="Self.ListColumnValue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListValue" EntityType="Self.ListValue" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PatientInfo" EntityType="Self.PatientInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -584,17 +584,21 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <EntitySet Name="Correspondence" EntityType="Self.Correspondence" Schema="inv" store:Type="Tables" />
           <EntitySet Name="CorrespondenceRRF" EntityType="Self.CorrespondenceRRF" Schema="inv" store:Type="Tables" />
           <EntitySet Name="Individual" EntityType="Self.Individual" Schema="inv" store:Type="Tables" />
-          <AssociationSet Name="FK__CaseAlleg__CaseA__45BE5BA9" Association="Self.FK__CaseAlleg__CaseA__45BE5BA9">
-            <End Role="CaseAllegations" EntitySet="CaseAllegations" />
-            <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubject" />
-          </AssociationSet>
           <AssociationSet Name="FK__CaseAlleg__Indiv__46B27FE2" Association="Self.FK__CaseAlleg__Indiv__46B27FE2">
             <End Role="Individual" EntitySet="Individual" />
             <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubject" />
           </AssociationSet>
+          <AssociationSet Name="FK__CaseIndiv__Indiv__6DCC4D03" Association="Self.FK__CaseIndiv__Indiv__6DCC4D03">
+            <End Role="Individual" EntitySet="Individual" />
+            <End Role="CaseIndividual" EntitySet="CaseIndividual" />
+          </AssociationSet>
           <AssociationSet Name="FK__CaseProgr__Progr__6442E2C9" Association="Self.FK__CaseProgr__Progr__6442E2C9">
             <End Role="Program" EntitySet="Program" />
             <End Role="CaseProgram" EntitySet="CaseProgram" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Correspon__Corre__6CD828CA" Association="Self.FK__Correspon__Corre__6CD828CA">
+            <End Role="Correspondence" EntitySet="Correspondence" />
+            <End Role="CorrespondenceRRF" EntitySet="CorrespondenceRRF" />
           </AssociationSet>
           <AssociationSet Name="FK__Entity__ClientId__17036CC0" Association="Self.FK__Entity__ClientId__17036CC0">
             <End Role="Client" EntitySet="Client" />
@@ -770,17 +774,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="JSONText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="List" Relationship="Self.FK_ListValue_List" FromRole="ListValue" ToRole="List" />
         </EntityType>
-        <EntityType Name="PatientInfo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PatientId" Type="Int32" Nullable="false" />
-          <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="InsCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="InsId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DtEnt" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Program">
           <Key>
             <PropertyRef Name="Id" />
@@ -850,78 +843,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <NavigationProperty Name="Role" Relationship="Self.FK_UserRole_Role" FromRole="UserRole" ToRole="Role" />
           <NavigationProperty Name="User" Relationship="Self.FK_UserRole_User" FromRole="UserRole" ToRole="User" />
         </EntityType>
-        <EntityType Name="CaseAllegation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AllegationId" Type="Int32" />
-          <Property Name="CaseId" Type="Int32" />
-          <Property Name="CorrespId" Type="Int32" />
-          <Property Name="Desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
-          <Property Name="EntBy" Type="Int32" />
-          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ChgBy" Type="Int32" />
-          <Property Name="ChgDt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CaseAllegationsSubjects" Relationship="Self.FK__CaseAlleg__CaseA__45BE5BA9" FromRole="CaseAllegations" ToRole="CaseAllegationsSubject" />
-        </EntityType>
-        <EntityType Name="CaseAllegationsSubject">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CaseAllegationId" Type="Int32" />
-          <Property Name="IndividualId" Type="Int32" />
-          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
-          <Property Name="EntBy" Type="Int32" />
-          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ChgBy" Type="Int32" />
-          <Property Name="ChgDt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CaseAllegation" Relationship="Self.FK__CaseAlleg__CaseA__45BE5BA9" FromRole="CaseAllegationsSubject" ToRole="CaseAllegations" />
-          <NavigationProperty Name="Individual" Relationship="Self.FK__CaseAlleg__Indiv__46B27FE2" FromRole="CaseAllegationsSubject" ToRole="Individual" />
-        </EntityType>
-        <EntityType Name="CaseIndividual">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IndividualId" Type="Int32" Nullable="false" />
-          <Property Name="CaseId" Type="Int32" />
-          <Property Name="CorrespId" Type="Int32" />
-          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
-          <Property Name="EntBy" Type="Int32" />
-          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ChgBy" Type="Int32" />
-          <Property Name="ChgDt" Type="DateTime" Precision="3" />
-          <Property Name="IsComplainant" Type="Boolean" />
-          <Property Name="IsWB" Type="Boolean" />
-          <Property Name="WBComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsSubjectResponse" Type="Boolean" />
-          <Property Name="DraftSentDt" Type="DateTime" Precision="3" />
-          <Property Name="ResponseDueDt" Type="DateTime" Precision="3" />
-          <Property Name="RequestedExtension" Type="Boolean" />
-          <Property Name="ExtensionDueDt" Type="DateTime" Precision="3" />
-          <Property Name="ResponseReceiveDt" Type="DateTime" Precision="3" />
-          <Property Name="IsJudicialAction" Type="Boolean" />
-          <Property Name="ReferralStatusId" Type="Int32" />
-          <Property Name="IsLEA" Type="Boolean" />
-          <Property Name="LEADt" Type="DateTime" Precision="3" />
-          <Property Name="LEAgency" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsSA" Type="Boolean" />
-          <Property Name="SADt" Type="DateTime" Precision="3" />
-          <Property Name="SAResponseDt" Type="DateTime" Precision="3" />
-          <Property Name="IsSAProsecuting" Type="Boolean" />
-          <Property Name="IsGrandJury" Type="Boolean" />
-          <Property Name="IsIndicted" Type="Boolean" />
-          <Property Name="AcceptanceDt" Type="DateTime" Precision="3" />
-          <Property Name="RestAmount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsPTI" Type="Boolean" />
-          <Property Name="ProbTermId" Type="Int32" />
-          <Property Name="ProbTerm" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="CommServiceHours" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="SpecialConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="CorrespondenceRRF">
           <Key>
             <PropertyRef Name="Id" />
@@ -942,6 +863,7 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ChgBy" Type="Int32" />
           <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Correspondence" Relationship="HealthForm.Data.FK__Correspon__Corre__6CD828CA" FromRole="CorrespondenceRRF" ToRole="Correspondence" />
         </EntityType>
         <EntityType Name="Individual">
           <Key>
@@ -981,7 +903,8 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ChgBy" Type="Int32" />
           <Property Name="ChgDt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="CaseAllegationsSubjects" Relationship="Self.FK__CaseAlleg__Indiv__46B27FE2" FromRole="Individual" ToRole="CaseAllegationsSubject" />
+          <NavigationProperty Name="CaseAllegationsSubjects" Relationship="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2" FromRole="Individual" ToRole="CaseAllegationsSubject" />
+          <NavigationProperty Name="CaseIndividuals" Relationship="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03" FromRole="Individual" ToRole="CaseIndividual" />
         </EntityType>
         <Association Name="FK__Entity__ClientId__17036CC0">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
@@ -1115,30 +1038,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CaseAlleg__CaseA__45BE5BA9">
-          <End Role="CaseAllegations" Type="Self.CaseAllegation" Multiplicity="0..1" />
-          <End Role="CaseAllegationsSubject" Type="Self.CaseAllegationsSubject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseAllegations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseAllegationsSubject">
-              <PropertyRef Name="CaseAllegationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CaseAlleg__Indiv__46B27FE2">
-          <End Role="Individual" Type="Self.Individual" Multiplicity="0..1" />
-          <End Role="CaseAllegationsSubject" Type="Self.CaseAllegationsSubject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Individual">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseAllegationsSubject">
-              <PropertyRef Name="IndividualId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ICTSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="CodeDetails" EntityType="Self.CodeDetail" />
@@ -1149,15 +1048,11 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <EntitySet Name="ListColumnOptions" EntityType="Self.ListColumnOption" />
           <EntitySet Name="ListColumnValues" EntityType="Self.ListColumnValue" />
           <EntitySet Name="ListValues" EntityType="Self.ListValue" />
-          <EntitySet Name="PatientInfoes" EntityType="Self.PatientInfo" />
           <EntitySet Name="Programs" EntityType="Self.Program" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserMenus" EntityType="Self.UserMenu" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
-          <EntitySet Name="CaseAllegations" EntityType="Self.CaseAllegation" />
-          <EntitySet Name="CaseAllegationsSubjects" EntityType="Self.CaseAllegationsSubject" />
-          <EntitySet Name="CaseIndividuals" EntityType="Self.CaseIndividual" />
           <EntitySet Name="CorrespondenceRRFs" EntityType="Self.CorrespondenceRRF" />
           <EntitySet Name="Individuals" EntityType="Self.Individual" />
           <AssociationSet Name="FK__Entity__ClientId__17036CC0" Association="Self.FK__Entity__ClientId__17036CC0">
@@ -1204,20 +1099,27 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
             <End Role="User" EntitySet="Users" />
             <End Role="UserRole" EntitySet="UserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK__CaseAlleg__CaseA__45BE5BA9" Association="Self.FK__CaseAlleg__CaseA__45BE5BA9">
-            <End Role="CaseAllegations" EntitySet="CaseAllegations" />
-            <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CaseAlleg__Indiv__46B27FE2" Association="Self.FK__CaseAlleg__Indiv__46B27FE2">
-            <End Role="Individual" EntitySet="Individuals" />
-            <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubjects" />
-          </AssociationSet>
           <EntitySet Name="Correspondences" EntityType="HealthForm.Data.Correspondence" />
           <EntitySet Name="Comments" EntityType="HealthForm.Data.Comment" />
           <EntitySet Name="CasePrograms" EntityType="HealthForm.Data.CaseProgram" />
           <AssociationSet Name="FK__CaseProgr__Progr__6442E2C9" Association="HealthForm.Data.FK__CaseProgr__Progr__6442E2C9">
             <End Role="Program" EntitySet="Programs" />
             <End Role="CaseProgram" EntitySet="CasePrograms" />
+          </AssociationSet>
+          <EntitySet Name="CaseAllegations" EntityType="HealthForm.Data.CaseAllegation" />
+          <EntitySet Name="CaseAllegationsSubjects" EntityType="HealthForm.Data.CaseAllegationsSubject" />
+          <EntitySet Name="CaseIndividuals" EntityType="HealthForm.Data.CaseIndividual" />
+          <AssociationSet Name="FK__CaseAlleg__Indiv__46B27FE2" Association="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2">
+            <End Role="Individual" EntitySet="Individuals" />
+            <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CaseIndiv__Indiv__6DCC4D03" Association="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03">
+            <End Role="Individual" EntitySet="Individuals" />
+            <End Role="CaseIndividual" EntitySet="CaseIndividuals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Correspon__Corre__6CD828CA" Association="HealthForm.Data.FK__Correspon__Corre__6CD828CA">
+            <End Role="Correspondence" EntitySet="Correspondences" />
+            <End Role="CorrespondenceRRF" EntitySet="CorrespondenceRRFs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Correspondence">
@@ -1262,14 +1164,15 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="EntDt" Type="DateTime" Precision="3" />
           <Property Name="ChgBy" Type="Int32" />
           <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CorrespondenceRRFs" Relationship="HealthForm.Data.FK__Correspon__Corre__6CD828CA" FromRole="Correspondence" ToRole="CorrespondenceRRF" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ObjectId" Type="Int32" />
-          <Property Name="ObjectType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Comments" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CommentDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CommentType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -1285,8 +1188,8 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProgramId" Type="Int32" Nullable="false" />
-          <Property Name="ObjectId" Type="Int32" />
-          <Property Name="ObjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsInactive" Type="Boolean" Nullable="false" />
           <Property Name="EntBy" Type="Int32" />
           <Property Name="EntDt" Type="DateTime" Precision="3" />
@@ -1303,6 +1206,113 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
             </Principal>
             <Dependent Role="CaseProgram">
               <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CaseAllegation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AllegationId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="CaseAllegationsSubject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseAllegationId" Type="Int32" />
+          <Property Name="IndividualId" Type="Int32" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Individual" Relationship="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2" FromRole="CaseAllegationsSubject" ToRole="Individual" />
+        </EntityType>
+        <EntityType Name="CaseIndividual">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IndividualId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectId" Type="Int32" Nullable="false" />
+          <Property Name="ObjectType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="EntBy" Type="Int32" />
+          <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChgBy" Type="Int32" />
+          <Property Name="ChgDt" Type="DateTime" Precision="3" />
+          <Property Name="IsComplainant" Type="Boolean" />
+          <Property Name="IsWB" Type="Boolean" />
+          <Property Name="WBComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsSubjectResponse" Type="Boolean" />
+          <Property Name="DraftSentDt" Type="DateTime" Precision="3" />
+          <Property Name="ResponseDueDt" Type="DateTime" Precision="3" />
+          <Property Name="RequestedExtension" Type="Boolean" />
+          <Property Name="ExtensionDueDt" Type="DateTime" Precision="3" />
+          <Property Name="ResponseReceiveDt" Type="DateTime" Precision="3" />
+          <Property Name="IsJudicialAction" Type="Boolean" />
+          <Property Name="ReferralStatusId" Type="Int32" />
+          <Property Name="IsLEA" Type="Boolean" />
+          <Property Name="LEADt" Type="DateTime" Precision="3" />
+          <Property Name="LEAgency" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsSA" Type="Boolean" />
+          <Property Name="SADt" Type="DateTime" Precision="3" />
+          <Property Name="SAResponseDt" Type="DateTime" Precision="3" />
+          <Property Name="IsSAProsecuting" Type="Boolean" />
+          <Property Name="IsGrandJury" Type="Boolean" />
+          <Property Name="IsIndicted" Type="Boolean" />
+          <Property Name="AcceptanceDt" Type="DateTime" Precision="3" />
+          <Property Name="RestAmount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPTI" Type="Boolean" />
+          <Property Name="ProbTermId" Type="Int32" />
+          <Property Name="ProbTerm" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CommServiceHours" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SpecialConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Individual" Relationship="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03" FromRole="CaseIndividual" ToRole="Individual" />
+        </EntityType>
+        <Association Name="FK__CaseAlleg__Indiv__46B27FE2">
+          <End Type="HealthForm.Data.Individual" Role="Individual" Multiplicity="0..1" />
+          <End Type="HealthForm.Data.CaseAllegationsSubject" Role="CaseAllegationsSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individual">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseAllegationsSubject">
+              <PropertyRef Name="IndividualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CaseIndiv__Indiv__6DCC4D03">
+          <End Type="HealthForm.Data.Individual" Role="Individual" Multiplicity="1" />
+          <End Type="HealthForm.Data.CaseIndividual" Role="CaseIndividual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individual">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseIndividual">
+              <PropertyRef Name="IndividualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Correspon__Corre__6CD828CA">
+          <End Type="HealthForm.Data.Correspondence" Role="Correspondence" Multiplicity="1" />
+          <End Type="HealthForm.Data.CorrespondenceRRF" Role="CorrespondenceRRF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Correspondence">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CorrespondenceRRF">
+              <PropertyRef Name="CorrespId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1430,18 +1440,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PatientInfoes">
-            <EntityTypeMapping TypeName="HealthForm.Data.PatientInfo">
-              <MappingFragment StoreEntitySet="PatientInfo">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="InsCompany" ColumnName="InsCompany" />
-                <ScalarProperty Name="InsId" ColumnName="InsId" />
-                <ScalarProperty Name="DtEnt" ColumnName="DtEnt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Programs">
             <EntityTypeMapping TypeName="HealthForm.Data.Program">
               <MappingFragment StoreEntitySet="Program">
@@ -1506,78 +1504,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="DtEnt" ColumnName="DtEnt" />
                 <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CaseAllegations">
-            <EntityTypeMapping TypeName="HealthForm.Data.CaseAllegation">
-              <MappingFragment StoreEntitySet="CaseAllegations">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="AllegationId" ColumnName="AllegationId" />
-                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
-                <ScalarProperty Name="CorrespId" ColumnName="CorrespId" />
-                <ScalarProperty Name="Desc" ColumnName="Desc" />
-                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
-                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
-                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
-                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
-                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CaseAllegationsSubjects">
-            <EntityTypeMapping TypeName="HealthForm.Data.CaseAllegationsSubject">
-              <MappingFragment StoreEntitySet="CaseAllegationsSubject">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CaseAllegationId" ColumnName="CaseAllegationId" />
-                <ScalarProperty Name="IndividualId" ColumnName="IndividualId" />
-                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
-                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
-                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
-                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
-                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CaseIndividuals">
-            <EntityTypeMapping TypeName="HealthForm.Data.CaseIndividual">
-              <MappingFragment StoreEntitySet="CaseIndividual">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IndividualId" ColumnName="IndividualId" />
-                <ScalarProperty Name="CaseId" ColumnName="CaseId" />
-                <ScalarProperty Name="CorrespId" ColumnName="CorrespId" />
-                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
-                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
-                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
-                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
-                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
-                <ScalarProperty Name="IsComplainant" ColumnName="IsComplainant" />
-                <ScalarProperty Name="IsWB" ColumnName="IsWB" />
-                <ScalarProperty Name="WBComments" ColumnName="WBComments" />
-                <ScalarProperty Name="IsSubjectResponse" ColumnName="IsSubjectResponse" />
-                <ScalarProperty Name="DraftSentDt" ColumnName="DraftSentDt" />
-                <ScalarProperty Name="ResponseDueDt" ColumnName="ResponseDueDt" />
-                <ScalarProperty Name="RequestedExtension" ColumnName="RequestedExtension" />
-                <ScalarProperty Name="ExtensionDueDt" ColumnName="ExtensionDueDt" />
-                <ScalarProperty Name="ResponseReceiveDt" ColumnName="ResponseReceiveDt" />
-                <ScalarProperty Name="IsJudicialAction" ColumnName="IsJudicialAction" />
-                <ScalarProperty Name="ReferralStatusId" ColumnName="ReferralStatusId" />
-                <ScalarProperty Name="IsLEA" ColumnName="IsLEA" />
-                <ScalarProperty Name="LEADt" ColumnName="LEADt" />
-                <ScalarProperty Name="LEAgency" ColumnName="LEAgency" />
-                <ScalarProperty Name="IsSA" ColumnName="IsSA" />
-                <ScalarProperty Name="SADt" ColumnName="SADt" />
-                <ScalarProperty Name="SAResponseDt" ColumnName="SAResponseDt" />
-                <ScalarProperty Name="IsSAProsecuting" ColumnName="IsSAProsecuting" />
-                <ScalarProperty Name="IsGrandJury" ColumnName="IsGrandJury" />
-                <ScalarProperty Name="IsIndicted" ColumnName="IsIndicted" />
-                <ScalarProperty Name="AcceptanceDt" ColumnName="AcceptanceDt" />
-                <ScalarProperty Name="RestAmount" ColumnName="RestAmount" />
-                <ScalarProperty Name="IsPTI" ColumnName="IsPTI" />
-                <ScalarProperty Name="ProbTermId" ColumnName="ProbTermId" />
-                <ScalarProperty Name="ProbTerm" ColumnName="ProbTerm" />
-                <ScalarProperty Name="CommServiceHours" ColumnName="CommServiceHours" />
-                <ScalarProperty Name="SpecialConditions" ColumnName="SpecialConditions" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1719,6 +1645,78 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CaseAllegations">
+            <EntityTypeMapping TypeName="HealthForm.Data.CaseAllegation">
+              <MappingFragment StoreEntitySet="CaseAllegations">
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="ObjectType" ColumnName="ObjectType" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="AllegationId" ColumnName="AllegationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseAllegationsSubjects">
+            <EntityTypeMapping TypeName="HealthForm.Data.CaseAllegationsSubject">
+              <MappingFragment StoreEntitySet="CaseAllegationsSubject">
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="IndividualId" ColumnName="IndividualId" />
+                <ScalarProperty Name="CaseAllegationId" ColumnName="CaseAllegationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseIndividuals">
+            <EntityTypeMapping TypeName="HealthForm.Data.CaseIndividual">
+              <MappingFragment StoreEntitySet="CaseIndividual">
+                <ScalarProperty Name="SpecialConditions" ColumnName="SpecialConditions" />
+                <ScalarProperty Name="CommServiceHours" ColumnName="CommServiceHours" />
+                <ScalarProperty Name="ProbTerm" ColumnName="ProbTerm" />
+                <ScalarProperty Name="ProbTermId" ColumnName="ProbTermId" />
+                <ScalarProperty Name="IsPTI" ColumnName="IsPTI" />
+                <ScalarProperty Name="RestAmount" ColumnName="RestAmount" />
+                <ScalarProperty Name="AcceptanceDt" ColumnName="AcceptanceDt" />
+                <ScalarProperty Name="IsIndicted" ColumnName="IsIndicted" />
+                <ScalarProperty Name="IsGrandJury" ColumnName="IsGrandJury" />
+                <ScalarProperty Name="IsSAProsecuting" ColumnName="IsSAProsecuting" />
+                <ScalarProperty Name="SAResponseDt" ColumnName="SAResponseDt" />
+                <ScalarProperty Name="SADt" ColumnName="SADt" />
+                <ScalarProperty Name="IsSA" ColumnName="IsSA" />
+                <ScalarProperty Name="LEAgency" ColumnName="LEAgency" />
+                <ScalarProperty Name="LEADt" ColumnName="LEADt" />
+                <ScalarProperty Name="IsLEA" ColumnName="IsLEA" />
+                <ScalarProperty Name="ReferralStatusId" ColumnName="ReferralStatusId" />
+                <ScalarProperty Name="IsJudicialAction" ColumnName="IsJudicialAction" />
+                <ScalarProperty Name="ResponseReceiveDt" ColumnName="ResponseReceiveDt" />
+                <ScalarProperty Name="ExtensionDueDt" ColumnName="ExtensionDueDt" />
+                <ScalarProperty Name="RequestedExtension" ColumnName="RequestedExtension" />
+                <ScalarProperty Name="ResponseDueDt" ColumnName="ResponseDueDt" />
+                <ScalarProperty Name="DraftSentDt" ColumnName="DraftSentDt" />
+                <ScalarProperty Name="IsSubjectResponse" ColumnName="IsSubjectResponse" />
+                <ScalarProperty Name="WBComments" ColumnName="WBComments" />
+                <ScalarProperty Name="IsWB" ColumnName="IsWB" />
+                <ScalarProperty Name="IsComplainant" ColumnName="IsComplainant" />
+                <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
+                <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
+                <ScalarProperty Name="EntDt" ColumnName="EntDt" />
+                <ScalarProperty Name="EntBy" ColumnName="EntBy" />
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="ObjectType" ColumnName="ObjectType" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="IndividualId" ColumnName="IndividualId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1751,15 +1749,11 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
         <EntityTypeShape EntityType="HealthForm.Data.ListColumnOption" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.ListColumnValue" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.ListValue" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HealthForm.Data.PatientInfo" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.Program" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.Role" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.User" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.UserMenu" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.UserRole" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HealthForm.Data.CaseAllegation" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HealthForm.Data.CaseAllegationsSubject" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HealthForm.Data.CaseIndividual" Width="1.5" PointX="9.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.CorrespondenceRRF" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.Individual" Width="1.5" PointX="7.75" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.Correspondence" Width="1.5" PointX="13.75" PointY="4.75" IsExpanded="true" />
@@ -1775,10 +1769,14 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
         <AssociationConnector Association="HealthForm.Data.FK_ListColumnValue_ListColumn" ManuallyRouted="false" />
         <AssociationConnector Association="HealthForm.Data.FK_UserRole_Role" ManuallyRouted="false" />
         <AssociationConnector Association="HealthForm.Data.FK_UserRole_User" ManuallyRouted="false" />
-        <AssociationConnector Association="HealthForm.Data.FK__CaseAlleg__CaseA__45BE5BA9" ManuallyRouted="false" />
-        <AssociationConnector Association="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2" ManuallyRouted="false" />
         <EntityTypeShape EntityType="HealthForm.Data.CaseProgram" Width="1.5" PointX="7.5" PointY="22" />
         <AssociationConnector Association="HealthForm.Data.FK__CaseProgr__Progr__6442E2C9" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseAllegation" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseAllegationsSubject" Width="1.5" PointX="10" PointY="27" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseIndividual" Width="1.5" PointX="10" PointY="18.125" />
+        <AssociationConnector Association="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2" />
+        <AssociationConnector Association="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03" />
+        <AssociationConnector Association="HealthForm.Data.FK__Correspon__Corre__6CD828CA" />
       </Diagram>
     </Diagrams>
   </Designer>

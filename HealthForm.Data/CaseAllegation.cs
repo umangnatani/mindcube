@@ -14,24 +14,15 @@ namespace HealthForm.Data
     
     public partial class CaseAllegation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CaseAllegation()
-        {
-            this.CaseAllegationsSubjects = new HashSet<CaseAllegationsSubject>();
-        }
-    
         public int Id { get; set; }
-        public Nullable<int> AllegationId { get; set; }
-        public Nullable<int> CaseId { get; set; }
-        public Nullable<int> CorrespId { get; set; }
+        public int AllegationId { get; set; }
+        public int ObjectId { get; set; }
+        public string ObjectType { get; set; }
         public string Desc { get; set; }
         public bool IsInactive { get; set; }
         public Nullable<int> EntBy { get; set; }
         public System.DateTime EntDt { get; set; }
         public Nullable<int> ChgBy { get; set; }
         public Nullable<System.DateTime> ChgDt { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CaseAllegationsSubject> CaseAllegationsSubjects { get; set; }
     }
 }

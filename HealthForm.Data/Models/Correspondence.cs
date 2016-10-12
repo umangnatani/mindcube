@@ -62,4 +62,9 @@ namespace HealthForm.Data
     {
 
     }
+
+    public partial class CaseIndividual : IEntityBase
+    {
+
+    }
 }

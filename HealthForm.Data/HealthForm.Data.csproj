@@ -123,9 +123,6 @@
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Correspondence.cs" />
     <Compile Include="Models\List.cs" />
-    <Compile Include="PatientInfo.cs">
-      <DependentUpon>ICTSEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs">
       <DependentUpon>ICTSEntities.tt</DependentUpon>
     </Compile>
@@ -148,6 +145,7 @@
     <Compile Include="UserRole.cs">
       <DependentUpon>ICTSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\DomainUtil.cs" />
     <Compile Include="Utilities\SessionHandler.cs" />
   </ItemGroup>
   <ItemGroup>
