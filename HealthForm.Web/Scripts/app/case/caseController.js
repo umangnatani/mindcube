@@ -209,11 +209,11 @@
 
     function caseIndividualsController($scope, $routeParams, myService) {
 
-        //$scope.$on("ind", function (evt, data) {
-        //    myService.getList('api/comments/list', $scope, $scope.EntityObject, 'list');
-        //    //$scope.childVm = {};
-        //    $scope.childVm.Comments = '';
-        //});
+        $scope.$on("ind", function (evt, data) {
+            myService.getList('api/CaseIndividuals/list', $scope, $scope.EntityObject, 'list');
+            //$scope.childVm = {};
+            //$scope.childVm.Comments = '';
+        });
 
 
 

@@ -1,4 +1,21 @@
 ﻿<div ng-controller="caseIndividualsController">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="obj in list">
+            <td>{{obj.Individual.FirstName}}</td>
+            <td>{{obj.Individual.LastName}}</td>
+            <td>
+                <a href="JavaScript:void(0)" ng-click="editChild(obj)">Edit</a> |
+                <a href="JavaScript:void(0)" ng-click="deleteChild(obj.Id, 'ind')">Delete</a>
+            </td>
+        </tr>
+    </table>
     <form name="entryForm" novalidate>
         <div class="row">
             <div class="col-sm-3">
@@ -88,135 +105,141 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="WorkAddress1" class="control-label">Work Address 1</label>
-                    <input type="text" ng-model="childVm.Individual.WorkAddress1" name="WorkAddress1" class="form-control">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item color1">Contact Information</li>
+        </ul>
+
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="WorkAddress1" class="control-label">Work Address 1</label>
+                        <input type="text" ng-model="childVm.Individual.WorkAddress1" name="WorkAddress1" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="WorkAddress2" class="control-label">Work Address 2</label>
+                        <input type="text" ng-model="childVm.Individual.WorkAddress2" name="WorkAddress2" class="form-control">
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="WorkAddress2" class="control-label">Work Address 2</label>
-                    <input type="text" ng-model="childVm.Individual.WorkAddress2" name="WorkAddress2" class="form-control">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="WorkCity" class="control-label">Work City</label>
+                        <input type="text" ng-model="childVm.Individual.WorkCity" name="WorkCity" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="WorkState" class="control-label">Work State</label>
+                        <input type="text" ng-model="childVm.Individual.WorkState" name="WorkState" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="WorkZip" class="control-label">Work Zip</label>
+                        <input type="text" ng-model="childVm.Individual.WorkZip" name="WorkZip" class="form-control">
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="HomeAddress1" class="control-label">Home Address 1</label>
+                        <input type="text" ng-model="childVm.Individual.HomeAddress1" name="HomeAddress1" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="HomeAddress2" class="control-label">Home Address 2</label>
+                        <input type="text" ng-model="childVm.Individual.HomeAddress2" name="HomeAddress2" class="form-control">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="WorkCity" class="control-label">Work City</label>
-                    <input type="text" ng-model="childVm.Individual.WorkCity" name="WorkCity" class="form-control">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="HomeCity" class="control-label">Home City</label>
+                        <input type="text" ng-model="childVm.Individual.HomeCity" name="HomeCity" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="HomeState" class="control-label">Home State</label>
+                        <input type="text" ng-model="childVm.Individual.HomeState" name="HomeState" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="HomeZip" class="control-label">Home Zip</label>
+                        <input type="text" ng-model="childVm.Individual.HomeZip" name="HomeZip" class="form-control">
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="WorkPhone" class="control-label">Work Phone</label>
+                        <input type="text" ng-model="childVm.Individual.WorkPhone" name="WorkPhone" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="HomePhone" class="control-label">Home Phone</label>
+                        <input type="text" ng-model="childVm.Individual.HomePhone" name="HomePhone" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="CellPhone" class="control-label">Cell Phone</label>
+                        <input type="text" ng-model="childVm.Individual.CellPhone" name="CellPhone" class="form-control">
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Email" class="control-label">Email Address 1</label>
+                        <input type="text" ng-model="childVm.Individual.Email" name="Email" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Email2" class="control-label">Email Address 2</label>
+                        <input type="text" ng-model="childVm.Individual.Email2" name="Email2" class="form-control">
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="WorkState" class="control-label">Work State</label>
-                    <input type="text" ng-model="childVm.Individual.WorkState" name="WorkState" class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="WorkZip" class="control-label">Work Zip</label>
-                    <input type="text" ng-model="childVm.Individual.WorkZip" name="WorkZip" class="form-control">
+
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="childVm.IsWB" name="IsWB"> Whistle Blower
+                        </label>
+                    </div>
+                    <div class="form-group" ng-show="childVm.IsWB">
+                        <label for="WBComments" class="col-form-label">Comments</label>
+                        <textarea ng-model="childVm.WBComments" name="WBComments" class="form-control" />
+                    </div>
                 </div>
             </div>
 
 
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="HomeAddress1" class="control-label">Home Address 1</label>
-                    <input type="text" ng-model="childVm.Individual.HomeAddress1" name="HomeAddress1" class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="HomeAddress2" class="control-label">Home Address 2</label>
-                    <input type="text" ng-model="childVm.Individual.HomeAddress2" name="HomeAddress2" class="form-control">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="HomeCity" class="control-label">Home City</label>
-                    <input type="text" ng-model="childVm.Individual.HomeCity" name="HomeCity" class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="HomeState" class="control-label">Home State</label>
-                    <input type="text" ng-model="childVm.Individual.HomeState" name="HomeState" class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="HomeZip" class="control-label">Home Zip</label>
-                    <input type="text" ng-model="childVm.Individual.HomeZip" name="HomeZip" class="form-control">
-                </div>
-            </div>
-
-
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="WorkPhone" class="control-label">Work Phone</label>
-                    <input type="text" ng-model="childVm.Individual.WorkPhone" name="WorkPhone" class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="HomePhone" class="control-label">Home Phone</label>
-                    <input type="text" ng-model="childVm.Individual.HomePhone" name="HomePhone" class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="CellPhone" class="control-label">Cell Phone</label>
-                    <input type="text" ng-model="childVm.Individual.CellPhone" name="CellPhone" class="form-control">
-                </div>
-            </div>
-
-
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="Email" class="control-label">Email Address 1</label>
-                    <input type="text" ng-model="childVm.Individual.Email" name="Email" class="form-control">
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="Email2" class="control-label">Email Address 2</label>
-                    <input type="text" ng-model="childVm.Individual.Email2" name="Email2" class="form-control">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-9">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" ng-model="childVm.IsWB" name="IsWB"> Whistle Blower
-                    </label>
-                </div>
-                <div class="form-group" ng-show="childVm.IsWB">
-                    <label for="WBComments" class="col-form-label">Comments</label>
-                    <textarea ng-model="childVm.WBComments" name="WBComments" class="form-control" />
-                </div>
-            </div>
-        </div>
-
-
-        <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
-    </form>
+            <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
+</form>
 </div>

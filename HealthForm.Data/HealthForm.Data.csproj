@@ -130,6 +130,7 @@
     <Compile Include="Role.cs">
       <DependentUpon>ICTSEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Service\CaseIndividualService.cs" />
     <Compile Include="Service\CommonService.cs" />
     <Compile Include="Service\CorrespondenceService.cs" />
     <Compile Include="Service\Factory.cs" />
