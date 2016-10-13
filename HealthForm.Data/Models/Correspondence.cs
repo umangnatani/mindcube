@@ -67,4 +67,11 @@ namespace HealthForm.Data
     {
 
     }
+
+    public partial class CaseAllegation : IEntityBase
+    {
+        public string AllegationDetail { get; set; }
+        public string AllegationType { get; set; }
+        public int AllegationTypeId { get; set; }
+    }
 }

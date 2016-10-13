@@ -234,3 +234,42 @@
     };
 
 })(angular.module('MyApp'));
+
+(function (app) {
+    'use strict';
+
+    app.controller('caseAllegationsController', caseAllegationsController)
+
+    caseAllegationsController.$inject = ['$scope', '$routeParams', 'myService'];
+
+    function caseAllegationsController($scope, $routeParams, myService) {
+
+        $scope.$on("alleg", function (evt, data) {
+            myService.getList('api/CaseAllegations/list', $scope, $scope.EntityObject, 'list');
+            //$scope.childVm = {};
+            //$scope.childVm.Comments = '';
+        });
+
+        myService.getCode($scope, 'AllegationTypes', 'ALLEG_TYPE');
+        myService.getCode($scope, 'AllegationDetails', 'ALLEG_DETAIL');
+
+
+
+        $scope.editChild = function (childVm) {
+            console.log(childVm);
+            $scope.childVm = JSON.parse(JSON.stringify(childVm));
+        }
+
+
+
+        $scope.save = function () {
+            myService.save('api/CaseAllegations/maintain', $scope, 'childVm', function () {
+                $scope.$emit("alleg");
+            });
+
+        }
+
+
+    };
+
+})(angular.module('MyApp'));

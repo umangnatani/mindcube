@@ -1,0 +1,63 @@
+﻿<div ng-controller="caseAllegationsController">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Detail</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="obj in list">
+            <td>{{obj.AllegationType}}</td>
+            <td>{{obj.AllegationDetail}}</td>
+            <td>{{obj.Desc}}</td>
+            <td>
+                <a href="JavaScript:void(0)" ng-click="editChild(obj)">Edit</a> |
+                <a href="JavaScript:void(0)" ng-click="deleteChild(obj.Id, 'ind')">Delete</a>
+            </td>
+        </tr>
+    </table>
+
+    <form name="entryForm" novalidate>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="CommentDt" class="col-form-label">Allegation Type</label>
+
+                    <div>
+                        <ui-select ng-model="childVm.AllegationTypeId" theme="bootstrap" style="min-width: 300px;" title="Choose a Source" ng-required="true">
+                            <ui-select-match>{{$select.selected.Text}}</ui-select-match>
+                            <ui-select-choices repeat="option.Id as option in AllegationTypes | filter: $select.search">
+                                <div ng-bind-html="option.Text | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="CommentDt" class="col-form-label">Allegation Detail</label>
+
+                    <div>
+                        <ui-select ng-model="childVm.AllegationId" theme="bootstrap" style="min-width: 300px;" title="Choose a Source" ng-required="true">
+                            <ui-select-match>{{$select.selected.Text}}</ui-select-match>
+                            <ui-select-choices repeat="option.Id as option in AllegationDetails | filter: $select.search">
+                                <div ng-bind-html="option.Text | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="Desc" class="col-form-label">Allegation</label>
+                    <textarea ng-model="childVm.Desc" name="Desc" class="form-control" validator="required" />
+                </div>
+            </div>
+
+
+        </div>
+        <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
+    </form>
+</div>
