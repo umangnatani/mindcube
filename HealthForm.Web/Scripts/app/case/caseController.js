@@ -211,6 +211,7 @@
 
         $scope.$on("ind", function (evt, data) {
             myService.getList('api/CaseIndividuals/list', $scope, $scope.EntityObject, 'list');
+            $scope.isIndividual = false;
             //$scope.childVm = {};
             //$scope.childVm.Comments = '';
         });
@@ -218,7 +219,13 @@
 
 
         $scope.editChild = function (childVm) {
+            $scope.isIndividual = true;
             $scope.childVm = JSON.parse(JSON.stringify(childVm));
+        }
+
+        $scope.addNew = function () {
+            $scope.isIndividual = true;
+            $scope.childVm = JSON.parse(JSON.stringify($scope.EntityObject));
         }
 
 

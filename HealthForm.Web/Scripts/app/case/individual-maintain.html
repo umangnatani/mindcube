@@ -1,4 +1,7 @@
 ﻿<div ng-controller="caseIndividualsController">
+    <p>
+        <a href="javascript:void(0)" ng-click="addNew()">Add New</a>
+    </p>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -16,98 +19,99 @@
             </td>
         </tr>
     </table>
-    <form name="entryForm" novalidate>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="FirstName" class="control-label">First Name</label>
-                    <input type="text" ng-model="childVm.Individual.FirstName" name="FirstName" class="form-control">
+    <div ng-show="isIndividual">
+        <form name="entryForm" novalidate>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="FirstName" class="control-label">First Name</label>
+                        <input type="text" ng-model="childVm.Individual.FirstName" name="FirstName" class="form-control">
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="MiddleName" class="control-label">Middle Name</label>
-                    <input type="text" ng-model="childVm.Individual.MiddleName" name="MiddleName" class="form-control">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="MiddleName" class="control-label">Middle Name</label>
+                        <input type="text" ng-model="childVm.Individual.MiddleName" name="MiddleName" class="form-control">
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="FirstName" class="control-label">Last  Name</label>
-                    <input type="text" ng-model="childVm.Individual.LastName" name="LastName" class="form-control">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="FirstName" class="control-label">Last  Name</label>
+                        <input type="text" ng-model="childVm.Individual.LastName" name="LastName" class="form-control">
+                    </div>
                 </div>
+
+
+
             </div>
-
-
-
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="SurName" class="control-label">Sur Name</label>
-                    <input type="text" ng-model="childVm.Individual.SurName" name="SurName" class="form-control">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="SurName" class="control-label">Sur Name</label>
+                        <input type="text" ng-model="childVm.Individual.SurName" name="SurName" class="form-control">
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="NickName" class="control-label">Nick Name</label>
-                    <input type="text" ng-model="childVm.Individual.NickName" name="NickName" class="form-control">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="NickName" class="control-label">Nick Name</label>
+                        <input type="text" ng-model="childVm.Individual.NickName" name="NickName" class="form-control">
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="DOB" class="control-label">Middle Name</label>
-                    <input type="text" ng-model="childVm.Individual.DOB" name="DOB" class="form-control">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="DOB" class="control-label">Middle Name</label>
+                        <input type="text" ng-model="childVm.Individual.DOB" name="DOB" class="form-control">
+                    </div>
                 </div>
+
+
             </div>
 
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="Title" class="control-label">Title</label>
-                    <input type="text" ng-model="childVm.Individual.Title" name="Title" class="form-control">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="Title" class="control-label">Title</label>
+                        <input type="text" ng-model="childVm.Individual.Title" name="Title" class="form-control">
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="LicenseNo" class="control-label">License#</label>
-                    <input type="text" ng-model="childVm.Individual.LicenseNo" name="LicenseNo" class="form-control">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="LicenseNo" class="control-label">License#</label>
+                        <input type="text" ng-model="childVm.Individual.LicenseNo" name="LicenseNo" class="form-control">
+                    </div>
                 </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="SupFirstName" class="control-label">Supervisor Name</label>
+                        <div class="input-group">
+                            <input type="text" ng-model="childVm.Individual.SupFirstName" name="SupFirstName" class="form-control" placeholder="First">
+                            <span class="input-group-addon"></span>
+                            <input type="text" ng-model="childVm.Individual.SupMiddleName" name="SupMiddleName" class="form-control" placeholder="Middle">
+                            <span class="input-group-addon"></span>
+                            <input type="text" ng-model="childVm.Individual.SupLastName" name="SupLastName" class="form-control" placeholder="Last">
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
-            <div class="col-sm-3">
-                <div class="form-group">
-                    <label for="SupFirstName" class="control-label">Supervisor Name</label>
-                    <div class="input-group">
-                        <input type="text" ng-model="childVm.Individual.SupFirstName" name="SupFirstName" class="form-control" placeholder="First">
-                        <span class="input-group-addon"></span>
-                        <input type="text" ng-model="childVm.Individual.SupMiddleName" name="SupMiddleName" class="form-control" placeholder="Middle">
-                        <span class="input-group-addon"></span>
-                        <input type="text" ng-model="childVm.Individual.SupLastName" name="SupLastName" class="form-control" placeholder="Last">
+
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label for="Agency" class="control-label">Agency or Corporation</label>
+                        <input type="text" ng-model="childVm.Individual.Agency" name="Agency" class="form-control">
                     </div>
                 </div>
             </div>
 
-
-
-        </div>
-
-        <div class="row">
-            <div class="col-sm-9">
-                <div class="form-group">
-                    <label for="Agency" class="control-label">Agency or Corporation</label>
-                    <input type="text" ng-model="childVm.Individual.Agency" name="Agency" class="form-control">
-                </div>
-            </div>
-        </div>
-
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item color1">Contact Information</li>
-        </ul>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item color1">Contact Information</li>
+            </ul>
 
 
             <div class="row">
@@ -241,5 +245,31 @@
 
 
             <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
-</form>
+        </form>
+    </div>
+    <div ng-show="isSubjectAction">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="FirstName" class="control-label">Action Taken</label>
+                    <input type="text" ng-model="childVm.FirstName" name="FirstName" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="MiddleName" class="control-label">Days Suspended</label>
+                    <input type="text" ng-model="childVm.MiddleName" name="MiddleName" class="form-control">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="FirstName" class="control-label">Action Taken Date</label>
+                    <input type="text" ng-model="childVm.LastName" name="LastName" class="form-control">
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
 </div>
