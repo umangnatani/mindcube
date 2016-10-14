@@ -17,6 +17,11 @@ namespace HealthForm.Data
 
     }
 
+    public partial class CodeMaster : IEntityBase
+    {
+
+    }
+
 
     public partial class User : IEntityBase
     {

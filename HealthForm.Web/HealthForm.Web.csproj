@@ -226,6 +226,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CaseAllegationsController.cs" />
     <Compile Include="Controllers\CaseIndividualsController.cs" />
+    <Compile Include="Controllers\CodeMasterController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\Clients1Controller.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
@@ -361,6 +362,11 @@
     <Content Include="Scripts\app\client\clientController.js" />
     <Content Include="Scripts\app\case\comments-maintain.html" />
     <Content Include="Scripts\app\client\menu.html" />
+    <Content Include="Scripts\app\code\codeController.js" />
+    <Content Include="Scripts\app\code\detail-index.html" />
+    <Content Include="Scripts\app\code\detail-maintain.html" />
+    <Content Include="Scripts\app\code\index.html" />
+    <Content Include="Scripts\app\code\maintain.html" />
     <Content Include="Scripts\app\directives\listForm.js" />
     <Content Include="Scripts\app\home\homeController.js" />
     <Content Include="Scripts\app\home\main.html" />

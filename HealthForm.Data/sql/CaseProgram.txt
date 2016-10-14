@@ -1,51 +1,97 @@
-﻿/****** Object: Table [inv].[CaseIndividual]   Script Date: 10/13/2016 10:50:04 PM ******/
-USE [icts];
+﻿USE [icts]
 GO
-SET ANSI_NULLS ON;
+/****** Object:  Table [dbo].[CodeDetail]    Script Date: 10/14/2016 5:08:39 PM ******/
+SET ANSI_NULLS ON
 GO
-SET QUOTED_IDENTIFIER ON;
+SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [inv].[CaseIndividual] (
-[Id] int IDENTITY(1, 1) NOT NULL,
-[IndividualId] int NOT NULL,
-[ObjectId] int NOT NULL,
-[ObjectType] nvarchar(20) NOT NULL,
-[IsInactive] bit NOT NULL,
-[EntBy] int NULL,
-[EntDt] datetime NOT NULL,
-[ChgBy] int NULL,
-[ChgDt] datetime NULL,
-[SubjectType] nvarchar(2) NULL,
-[IsWB] bit NULL,
-[WBComments] nvarchar(MAX) NULL,
-[IsSubjectResponse] bit NULL,
-[DraftSentDt] datetime NULL,
-[ResponseDueDt] datetime NULL,
-[RequestedExtension] bit NULL,
-[ExtensionDueDt] datetime NULL,
-[ResponseReceiveDt] datetime NULL,
-[IsJudicialAction] bit NULL,
-[ReferralStatusId] int NULL,
-[IsLEA] bit NULL,
-[LEADt] datetime NULL,
-[LEAgency] nvarchar(MAX) NULL,
-[IsSA] bit NULL,
-[SADt] datetime NULL,
-[SAResponseDt] datetime NULL,
-[IsSAProsecuting] bit NULL,
-[IsGrandJury] bit NULL,
-[IsIndicted] bit NULL,
-[AcceptanceDt] datetime NULL,
-[RestAmount] nvarchar(MAX) NULL,
-[IsPTI] bit NULL,
-[ProbTermId] int NULL,
-[ProbTerm] char(10) NULL,
-[CommServiceHours] char(10) NULL,
-[SpecialConditions] nvarchar(MAX) NULL)
-ON [PRIMARY]
-TEXTIMAGE_ON [PRIMARY]
-WITH (DATA_COMPRESSION = NONE);
-GO
-ALTER TABLE [inv].[CaseIndividual] SET (LOCK_ESCALATION = TABLE);
-GO
+CREATE TABLE [dbo].[CodeDetail](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MasterCode] [nvarchar](20) NOT NULL,
+	[ClientId] [int] NULL,
+	[Code] [nvarchar](20) NOT NULL,
+	[Text] [nvarchar](200) NOT NULL,
+	[Description] [nvarchar](200) NULL,
+	[Field1] [nvarchar](400) NULL,
+	[Field2] [nvarchar](400) NULL,
+	[Field3] [nvarchar](400) NULL,
+	[Field4] [nvarchar](400) NULL,
+	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
+ CONSTRAINT [PK_dbo.CodeDetail] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 
+GO
+/****** Object:  Table [dbo].[CodeMaster]    Script Date: 10/14/2016 5:08:39 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CodeMaster](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ClientId] [int] NULL,
+	[Code] [nvarchar](20) NOT NULL,
+	[Text] [nvarchar](200) NOT NULL,
+	[Description] [nvarchar](200) NULL,
+	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
+	[IsTest] [bit] NOT NULL CONSTRAINT [DF_CodeMaster_IsTest]  DEFAULT ((0)),
+ CONSTRAINT [PK_dbo.CodeMaster] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET IDENTITY_INSERT [dbo].[CodeDetail] ON 
+
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1, N'OPTION_TYPE', NULL, N'N', N'No', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (2, N'OPTION_TYPE', NULL, N'Y', N'Yes', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (3, N'CORRESP_CATEGORY', NULL, N'C', N'Complaint', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (4, N'CORRESP_CATEGORY', NULL, N'I', N'Incident Reporting', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (5, N'CORRESP_CATEGORY', NULL, N'M', N'Miscellaneous', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (6, N'CORRESP_CATEGORY', NULL, N'P', N'Public Records Request', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (7, N'CORRESP_CATEGORY', NULL, N'R', N'Reference Check', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+SET IDENTITY_INSERT [dbo].[CodeDetail] OFF
+GO
+SET IDENTITY_INSERT [dbo].[CodeMaster] ON 
+
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (1, NULL, N'OPTION_TYPE', N'Option Type', N'Option Type', 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (2, NULL, N'CORRESP_CATEGORY', N'Correspondence Category', N'Correspondence Category', 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (3, NULL, N'CORRESP_SOURCE', N'Correspondence Source', N'Correspondence Source', 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (4, NULL, N'REPORT_SOURCE', N'Reporting Source', N'Reporting Source', 0, 1)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (5, NULL, N'ALLEG_TYPE', N'Allegation Type', N'Allegation Type', 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (6, NULL, N'ALLEG_DETAIL', N'Allegation Details', N'Allegation Details', 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (7, NULL, N'COMMENT_TYPE', N'Comment Type', N'Comment Type', 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (8, NULL, N'DISP_STATUS', N'Disposition Status', NULL, 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (9, NULL, N'ADMIN_ACTION', N'Admin Action Taken', NULL, 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (10, NULL, N'JUD_REF_STATUS', N'Judicial Referral Status', NULL, 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (11, NULL, N'JUD_ADJ', N'Judicial Adjudication', NULL, 0, 0)
+GO
+SET IDENTITY_INSERT [dbo].[CodeMaster] OFF
+GO
+ALTER TABLE [dbo].[CodeDetail]  WITH CHECK ADD  CONSTRAINT [FK_CodeDetail_CodeMaster] FOREIGN KEY([MasterCode])
+REFERENCES [dbo].[CodeMaster] ([Code])
+GO
+ALTER TABLE [dbo].[CodeDetail] CHECK CONSTRAINT [FK_CodeDetail_CodeMaster]
+GO

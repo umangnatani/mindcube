@@ -46,6 +46,17 @@
                  templateUrl: 'Scripts/app/home/main.html',
                  controller: 'homeController'
              })
+
+            .state('code', {
+                url: '/code/view/',
+                templateUrl: 'Scripts/app/code/index.html',
+                controller: 'codeController'
+            })
+            .state('code_detail', {
+                url: '/code/detail/:id',
+                templateUrl: 'Scripts/app/code/detail-index.html',
+                controller: 'codeDetailController'
+            })
             .state('client', {
                 url: '/client/view/',
                 templateUrl: 'Scripts/app/client/index.html',
