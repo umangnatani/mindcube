@@ -1,48 +1,51 @@
-﻿USE [icts]
+﻿/****** Object: Table [inv].[CaseIndividual]   Script Date: 10/13/2016 10:50:04 PM ******/
+USE [icts];
 GO
-SET IDENTITY_INSERT [dbo].[CodeMaster] ON 
+SET ANSI_NULLS ON;
+GO
+SET QUOTED_IDENTIFIER ON;
+GO
+CREATE TABLE [inv].[CaseIndividual] (
+[Id] int IDENTITY(1, 1) NOT NULL,
+[IndividualId] int NOT NULL,
+[ObjectId] int NOT NULL,
+[ObjectType] nvarchar(20) NOT NULL,
+[IsInactive] bit NOT NULL,
+[EntBy] int NULL,
+[EntDt] datetime NOT NULL,
+[ChgBy] int NULL,
+[ChgDt] datetime NULL,
+[SubjectType] nvarchar(2) NULL,
+[IsWB] bit NULL,
+[WBComments] nvarchar(MAX) NULL,
+[IsSubjectResponse] bit NULL,
+[DraftSentDt] datetime NULL,
+[ResponseDueDt] datetime NULL,
+[RequestedExtension] bit NULL,
+[ExtensionDueDt] datetime NULL,
+[ResponseReceiveDt] datetime NULL,
+[IsJudicialAction] bit NULL,
+[ReferralStatusId] int NULL,
+[IsLEA] bit NULL,
+[LEADt] datetime NULL,
+[LEAgency] nvarchar(MAX) NULL,
+[IsSA] bit NULL,
+[SADt] datetime NULL,
+[SAResponseDt] datetime NULL,
+[IsSAProsecuting] bit NULL,
+[IsGrandJury] bit NULL,
+[IsIndicted] bit NULL,
+[AcceptanceDt] datetime NULL,
+[RestAmount] nvarchar(MAX) NULL,
+[IsPTI] bit NULL,
+[ProbTermId] int NULL,
+[ProbTerm] char(10) NULL,
+[CommServiceHours] char(10) NULL,
+[SpecialConditions] nvarchar(MAX) NULL)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+WITH (DATA_COMPRESSION = NONE);
+GO
+ALTER TABLE [inv].[CaseIndividual] SET (LOCK_ESCALATION = TABLE);
+GO
 
-GO
-INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive]) VALUES (2, NULL, N'OPTION_TYPE', N'Option Type', N'Option Type', 0)
-GO
-INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive]) VALUES (1002, NULL, N'CORRESP_CATEGORY', N'Correspondence Category', N'Correspondence Category', 0)
-GO
-INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive]) VALUES (1004, NULL, N'CORRESP_SOURCE', N'Correspondence Source', N'Correspondence Source', 0)
-GO
-INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive]) VALUES (1005, NULL, N'ALLEG_TYPE', N'Allegation Type', N'Allegation Type', 0)
-GO
-INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive]) VALUES (1006, NULL, N'ALLEG_DETAIL', N'Allegation Detail', N'Allegation Detail', 0)
-GO
-SET IDENTITY_INSERT [dbo].[CodeMaster] OFF
-GO
-SET IDENTITY_INSERT [dbo].[CodeDetail] ON 
-
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1, N'OPTION_TYPE', NULL, N'D', N'Dropdown', N'Dropdown', N'M', NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (2, N'OPTION_TYPE', NULL, N'T', N'Textbox', N'Textbox', NULL, NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (5, N'OPTION_TYPE', NULL, N'TA', N'Textarea', N'Textarea', NULL, NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (6, N'OPTION_TYPE', NULL, N'C', N'Checkbox', N'Checkbox', N'M', NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (7, N'OPTION_TYPE', NULL, N'R', N'Radio', N'Radio', N'M', NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1002, N'CORRESP_SOURCE', NULL, N'E', N'Email', N'Email', NULL, NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1003, N'CORRESP_SOURCE', NULL, N'F', N'Fax', N'Fax', NULL, NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1004, N'CORRESP_CATEGORY', NULL, N'C', N'Complaint', N'Complaint', NULL, NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1005, N'CORRESP_CATEGORY', NULL, N'PR', N'Public Records', N'Public Records', NULL, NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1006, N'ALLEG_TYPE', NULL, N'1', N'Breach', N'Breach', NULL, NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1007, N'ALLEG_TYPE', NULL, N'1', N'Theft', N'Theft', NULL, NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1008, N'ALLEG_DETAIL', NULL, N'1', N'Misconduct', N'Misconduct', N'1007', NULL, NULL, NULL, 0)
-GO
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1010, N'ALLEG_DETAIL', NULL, N'1', N'Stolen Information', N'Stolen Information', N'1007', NULL, NULL, NULL, 0)
-GO
-SET IDENTITY_INSERT [dbo].[CodeDetail] OFF
-GO

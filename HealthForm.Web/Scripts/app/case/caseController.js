@@ -209,22 +209,25 @@
 
     function caseIndividualsController($scope, $routeParams, myService) {
 
+        
+
         $scope.$on("ind", function (evt, data) {
             myService.getList('api/CaseIndividuals/list', $scope, $scope.EntityObject, 'list');
-            $scope.isIndividual = false;
+            $scope.isEditing = {};
             //$scope.childVm = {};
             //$scope.childVm.Comments = '';
         });
 
 
 
-        $scope.editChild = function (childVm) {
-            $scope.isIndividual = true;
+        $scope.editChild = function (childVm, flag) {
+            $scope.isEditing = {}
+            $scope.isEditing[flag] = true;
             $scope.childVm = JSON.parse(JSON.stringify(childVm));
         }
 
         $scope.addNew = function () {
-            $scope.isIndividual = true;
+            $scope.isEditing['ind'] = true;
             $scope.childVm = JSON.parse(JSON.stringify($scope.EntityObject));
         }
 

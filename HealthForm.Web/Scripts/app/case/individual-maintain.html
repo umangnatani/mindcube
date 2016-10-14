@@ -14,13 +14,15 @@
             <td>{{obj.Individual.FirstName}}</td>
             <td>{{obj.Individual.LastName}}</td>
             <td>
-                <a href="JavaScript:void(0)" ng-click="editChild(obj)">Edit</a> |
-                <a href="JavaScript:void(0)" ng-click="deleteChild(obj.Id, 'ind')">Delete</a>
+                <a href="JavaScript:void(0)" ng-click="editChild(obj, 'ind')">Edit</a> |
+                <a href="JavaScript:void(0)" ng-click="deleteChild(obj.Id, 'ind')">Delete</a> |
+                <a href="JavaScript:void(0)" ng-click="editChild(obj, 'sub')">Subject Action</a>
             </td>
         </tr>
     </table>
-    <div ng-show="isIndividual">
-        <form name="entryForm" novalidate>
+
+    <form name="entryForm" novalidate>
+        <div ng-show="isEditing.ind">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
@@ -109,10 +111,9 @@
                 </div>
             </div>
 
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item color1">Contact Information</li>
-            </ul>
-
+            
+            <h4 class="border-bottom">Contact Information</h4>
+            <div class="bs-callout bs-callout-warning">
 
             <div class="row">
                 <div class="col-sm-3">
@@ -242,12 +243,147 @@
                     </div>
                 </div>
             </div>
+            </div>
+        </div>
+
+        <div ng-show="isEditing.sub">
+            <div class="card">
+                <div class="card-header">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="childVm.IsSubjectResponse" name="IsSubjectResponse"> Subject Response
+                        </label>
+                    </div>
+                </div>
+                    <div class="card-block" ng-show="childVm.IsSubjectResponse">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group has-feedback">
+                                    <label for="DraftSentDt" class="control-label">Draft Sent Date</label>
+                                    <input type="text" class="form-control" datepicker name="DraftSentDt" ng-model="childVm.DraftSentDt" />
+                                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group has-feedback">
+                                    <label for="ResponseDueDt" class="control-label">Response Due Date</label>
+                                    <input type="text" class="form-control" datepicker name="ResponseDueDt" ng-model="childVm.ResponseDueDt" />
+                                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group has-feedback">
+                                    <label for="ResponseReceiveDt" class="control-label">Response Received Date</label>
+                                    <input type="text" class="form-control" datepicker name="ResponseReceiveDt" ng-model="childVm.ResponseReceiveDt" />
+                                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="childVm.RequestedExtension" name="RequestedExtension"> Extension
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" ng-show="childVm.RequestedExtension">
+                                <div class="form-group has-feedback">
+                                    <label for="ExtensionDueDt" class="control-label">Extension Due Date</label>
+                                    <input type="text" class="form-control" datepicker name="ExtensionDueDt" ng-model="childVm.ExtensionDueDt" />
+                                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                                </div>
+                            </div>
 
 
-            <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
-        </form>
-    </div>
-    <div ng-show="isSubjectAction">
+                        </div>
+                    </div>
+
+                </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="childVm.IsJudicialAction" name="IsJudicialAction"> Judicial Action
+                        </label>
+                    </div>
+                </div>
+                <div class="card-block" ng-show="childVm.IsJudicialAction">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="ReferralStatusId" class="control-label">Referral Status</label>
+                                <input type="text" class="form-control" name="ReferralStatusId" ng-model="childVm.ReferralStatusId" />
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="childVm.IsLEA" name="IsLEA"> Referral to LEA
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3" ng-show="childVm.IsLEA">
+                            <div class="form-group has-feedback">
+                                <label for="LEADt" class="control-label">Referral Date</label>
+                                <input type="text" class="form-control" datepicker name="LEADt" ng-model="childVm.LEADt" />
+                                <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" ng-show="childVm.IsLEA">
+                            <div class="form-group">
+                                <label for="LEAgency" class="control-label">LE Agency</label>
+                                <input type="text" ng-model="childVm.LEAgency" name="LEAgency" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr class="hr-blue">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="childVm.IsSA" name="IsLEA"> Referral to SA
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3" ng-show="childVm.IsSA">
+                            <div class="form-group has-feedback">
+                                <label for="SADt" class="control-label">Referral Date</label>
+                                <input type="text" class="form-control" datepicker name="SADt" ng-model="childVm.SADt" />
+                                <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3" ng-show="childVm.IsSA">
+                            <div class="form-group has-feedback">
+                                <label for="SAResponseDt" class="control-label">Response Date</label>
+                                <input type="text" class="form-control" datepicker name="SAResponseDt" ng-model="childVm.SAResponseDt" />
+                                <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+                </div>
+
+
+                <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
+</form>
+
+    <!--<div ng-show="isSubjectAction">
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
@@ -271,5 +407,8 @@
 
 
         </div>
-    </div>
+    </div>-->
+
+
+
 </div>

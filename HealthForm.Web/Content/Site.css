@@ -18,6 +18,20 @@
   
 }
 
+.hr-blue {
+    margin:0;
+    border: 0;
+    border-top: 1px solid #E8F4FA;
+}
+
+.border-bottom {
+    margin-bottom:20px;
+    padding-bottom:5px;
+    border: 0;
+    border-bottom: 1px solid brown;
+}
+
+
 /* -- End  -- */
 
 .color1
@@ -43,8 +57,8 @@
 .color3
 {
 	background-color: #E8F4FA;
-	background-image:linear-gradient(#E8F4FA, #FCFEFE);
-	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#E8F4FA, endColorstr=#FCFEFE)";
+	background-image:linear-gradient(#FCFEFE, #E8F4FA);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FCFEFE, endColorstr=#E8F4FA)";
 	color: #333333
 }
 
@@ -407,4 +421,60 @@
   .card-columns .card {
     width: 100%;
   }
+}
+
+
+/* Base styles (regardless of theme) */
+.bs-callout {
+    margin: 20px 0;
+    padding: 15px 30px 15px 15px;
+    border-left: 5px solid #eee;
+}
+
+.bs-callout h4 {
+    margin-top: 0;
+}
+
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.bs-callout code,
+.bs-callout .highlight {
+    background-color: #fff;
+}
+
+/* Themes for different contexts */
+.bs-callout-danger {
+    /*background-color: #fcf2f2;*/
+    border-color: #dFb5b4;
+}
+
+.bs-callout-warning {
+    background-color: #fff;
+    border-color: #f1e7bc;
+}
+
+.bs-callout-info {
+    background-color: #f0f7fd;
+    border-color: #d0e3f0;
+}
+
+.bs-callout-danger h4,
+.bs-callout-danger a.alert-link {
+    color: #B94A48;
+}
+
+.bs-callout-warning h4,
+.bs-callout-warning a.alert-link {
+    color: #C09853;
+}
+
+.bs-callout-info h4,
+.bs-callout-info a.alert-link {
+    color: #3A87AD;
+}
+
+.bs-callout a.alert-link {
+    font-weight: bold;
 }

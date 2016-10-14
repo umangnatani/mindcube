@@ -217,7 +217,7 @@
           <Property Name="EntDt" Type="datetime" Nullable="false" />
           <Property Name="ChgBy" Type="int" />
           <Property Name="ChgDt" Type="datetime" />
-          <Property Name="IsComplainant" Type="bit" />
+          <Property Name="SubjectType" Type="nvarchar" MaxLength="2" />
           <Property Name="IsWB" Type="bit" />
           <Property Name="WBComments" Type="nvarchar(max)" />
           <Property Name="IsSubjectResponse" Type="bit" />
@@ -1108,18 +1108,18 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           </AssociationSet>
           <EntitySet Name="CaseAllegations" EntityType="HealthForm.Data.CaseAllegation" />
           <EntitySet Name="CaseAllegationsSubjects" EntityType="HealthForm.Data.CaseAllegationsSubject" />
-          <EntitySet Name="CaseIndividuals" EntityType="HealthForm.Data.CaseIndividual" />
           <AssociationSet Name="FK__CaseAlleg__Indiv__46B27FE2" Association="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2">
             <End Role="Individual" EntitySet="Individuals" />
             <End Role="CaseAllegationsSubject" EntitySet="CaseAllegationsSubjects" />
           </AssociationSet>
-          <AssociationSet Name="FK__CaseIndiv__Indiv__6DCC4D03" Association="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03">
-            <End Role="Individual" EntitySet="Individuals" />
-            <End Role="CaseIndividual" EntitySet="CaseIndividuals" />
-          </AssociationSet>
           <AssociationSet Name="FK__Correspon__Corre__6CD828CA" Association="HealthForm.Data.FK__Correspon__Corre__6CD828CA">
             <End Role="Correspondence" EntitySet="Correspondences" />
             <End Role="CorrespondenceRRF" EntitySet="CorrespondenceRRFs" />
+          </AssociationSet>
+          <EntitySet Name="CaseIndividuals" EntityType="HealthForm.Data.CaseIndividual" />
+          <AssociationSet Name="FK__CaseIndiv__Indiv__6DCC4D03" Association="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03">
+            <End Role="Individual" EntitySet="Individuals" />
+            <End Role="CaseIndividual" EntitySet="CaseIndividuals" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Correspondence">
@@ -1238,6 +1238,30 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="ChgDt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Individual" Relationship="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2" FromRole="CaseAllegationsSubject" ToRole="Individual" />
         </EntityType>
+        <Association Name="FK__CaseAlleg__Indiv__46B27FE2">
+          <End Type="HealthForm.Data.Individual" Role="Individual" Multiplicity="0..1" />
+          <End Type="HealthForm.Data.CaseAllegationsSubject" Role="CaseAllegationsSubject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individual">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseAllegationsSubject">
+              <PropertyRef Name="IndividualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Correspon__Corre__6CD828CA">
+          <End Type="HealthForm.Data.Correspondence" Role="Correspondence" Multiplicity="1" />
+          <End Type="HealthForm.Data.CorrespondenceRRF" Role="CorrespondenceRRF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Correspondence">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CorrespondenceRRF">
+              <PropertyRef Name="CorrespId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="CaseIndividual">
           <Key>
             <PropertyRef Name="Id" />
@@ -1251,7 +1275,7 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="EntDt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ChgBy" Type="Int32" />
           <Property Name="ChgDt" Type="DateTime" Precision="3" />
-          <Property Name="IsComplainant" Type="Boolean" />
+          <Property Name="SubjectType" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="IsWB" Type="Boolean" />
           <Property Name="WBComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsSubjectResponse" Type="Boolean" />
@@ -1280,18 +1304,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="SpecialConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Individual" Relationship="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03" FromRole="CaseIndividual" ToRole="Individual" />
         </EntityType>
-        <Association Name="FK__CaseAlleg__Indiv__46B27FE2">
-          <End Type="HealthForm.Data.Individual" Role="Individual" Multiplicity="0..1" />
-          <End Type="HealthForm.Data.CaseAllegationsSubject" Role="CaseAllegationsSubject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Individual">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseAllegationsSubject">
-              <PropertyRef Name="IndividualId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__CaseIndiv__Indiv__6DCC4D03">
           <End Type="HealthForm.Data.Individual" Role="Individual" Multiplicity="1" />
           <End Type="HealthForm.Data.CaseIndividual" Role="CaseIndividual" Multiplicity="*" />
@@ -1301,18 +1313,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
             </Principal>
             <Dependent Role="CaseIndividual">
               <PropertyRef Name="IndividualId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Correspon__Corre__6CD828CA">
-          <End Type="HealthForm.Data.Correspondence" Role="Correspondence" Multiplicity="1" />
-          <End Type="HealthForm.Data.CorrespondenceRRF" Role="CorrespondenceRRF" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Correspondence">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CorrespondenceRRF">
-              <PropertyRef Name="CorrespId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1704,7 +1704,7 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
                 <ScalarProperty Name="IsSubjectResponse" ColumnName="IsSubjectResponse" />
                 <ScalarProperty Name="WBComments" ColumnName="WBComments" />
                 <ScalarProperty Name="IsWB" ColumnName="IsWB" />
-                <ScalarProperty Name="IsComplainant" ColumnName="IsComplainant" />
+                <ScalarProperty Name="SubjectType" ColumnName="SubjectType" />
                 <ScalarProperty Name="ChgDt" ColumnName="ChgDt" />
                 <ScalarProperty Name="ChgBy" ColumnName="ChgBy" />
                 <ScalarProperty Name="EntDt" ColumnName="EntDt" />
@@ -1773,10 +1773,10 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
         <AssociationConnector Association="HealthForm.Data.FK__CaseProgr__Progr__6442E2C9" />
         <EntityTypeShape EntityType="HealthForm.Data.CaseAllegation" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="HealthForm.Data.CaseAllegationsSubject" Width="1.5" PointX="10" PointY="27" />
-        <EntityTypeShape EntityType="HealthForm.Data.CaseIndividual" Width="1.5" PointX="10" PointY="18.125" />
         <AssociationConnector Association="HealthForm.Data.FK__CaseAlleg__Indiv__46B27FE2" />
-        <AssociationConnector Association="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03" />
         <AssociationConnector Association="HealthForm.Data.FK__Correspon__Corre__6CD828CA" />
+        <EntityTypeShape EntityType="HealthForm.Data.CaseIndividual" Width="1.5" PointX="10" PointY="17.875" />
+        <AssociationConnector Association="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03" />
       </Diagram>
     </Diagrams>
   </Designer>
