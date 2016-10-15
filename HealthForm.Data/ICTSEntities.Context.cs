@@ -27,7 +27,6 @@ namespace HealthForm.Data
         }
     
         public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<CodeDetail> CodeDetails { get; set; }
         public virtual DbSet<CodeMaster> CodeMasters { get; set; }
         public virtual DbSet<Entity> Entities { get; set; }
         public virtual DbSet<List> Lists { get; set; }
@@ -38,7 +37,6 @@ namespace HealthForm.Data
         public virtual DbSet<Program> Programs { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserMenu> UserMenus { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<CorrespondenceRRF> CorrespondenceRRFs { get; set; }
         public virtual DbSet<Individual> Individuals { get; set; }
@@ -48,5 +46,7 @@ namespace HealthForm.Data
         public virtual DbSet<CaseAllegation> CaseAllegations { get; set; }
         public virtual DbSet<CaseAllegationsSubject> CaseAllegationsSubjects { get; set; }
         public virtual DbSet<CaseIndividual> CaseIndividuals { get; set; }
+        public virtual DbSet<UserMenu> UserMenus { get; set; }
+        public virtual DbSet<CodeDetail> CodeDetails { get; set; }
     }
 }

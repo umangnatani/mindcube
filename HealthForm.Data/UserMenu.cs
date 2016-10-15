@@ -20,9 +20,9 @@ namespace HealthForm.Data
         public string URL { get; set; }
         public string Icon { get; set; }
         public Nullable<int> ParentId { get; set; }
+        public string StateName { get; set; }
+        public string StateJSON { get; set; }
         public string Field1 { get; set; }
         public string Field2 { get; set; }
-        public string Field3 { get; set; }
-        public string Field4 { get; set; }
     }
 }

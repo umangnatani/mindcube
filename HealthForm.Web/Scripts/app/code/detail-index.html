@@ -1,59 +1,76 @@
-﻿<busy-indicator></busy-indicator>
-<p class="border-bottom">
-    {{vm.MasterCode}}
+﻿<h4 class="border-bottom">Maintain Code Details: <span class="text-danger">{{vm.MasterCode}}</span></h4>
+<busy-indicator></busy-indicator>
+<div>
+    <div class="text-right">
+        <h5>
+            Showing  {{1 + (gridOptions.paginationCurrentPage-1)*gridOptions.paginationPageSize}} to {{(gridOptions.paginationCurrentPage)*gridOptions.paginationPageSize}} of total {{gridOptions.totalItems}}
+        </h5>
+    </div>
+    <div id="grid1" ui-grid-pagination="" ui-grid-selection ui-grid="gridOptions" style="height:auto;"></div>
+    <div class="text-right">
+        <ul uib-pagination boundary-links="true" items-per-page="gridOptions.paginationPageSize" total-items="gridOptions.totalItems" ng-model="gridOptions.paginationCurrentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+    </div>
+</div>
+<p ng-show="vm.Id > 0">
+    <a href="javascript:void(0)" ng-click="vm={}"><i class="fa fa-plus" aria-hidden="true"></i> Add New Item</a>
 </p>
-<form name="entryForm" novalidate>
-    <div class="row">
-        <div class="col-sm-2">
-            <div class="form-group">
-                <label for="Code" class="control-label">Code</label>
-                <input type="text" ng-model="vm.Code" name="Code" class="form-control" validator="required">
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label for="Text" class="control-label">Text</label>
-                <input type="text" ng-model="vm.Text" name="Text" class="form-control" validator="required">
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label for="Description" class="control-label">Description</label>
-                <input type="text" ng-model="vm.Description" name="Description" class="form-control">
-            </div>
-        </div>
+<div class="card">
+    <div class="card-header">
+        <h5><span ng-hide="vm.Id > 0">You are adding a new item</span><span ng-show="vm.Id > 0">You are editing an existing item: <span class="text-danger"> {{vm.Text}} </span></span></h5>
     </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <div class="form-group">
-                <label for="Field1" class="control-label">Field1</label>
-                <input type="text" ng-model="vm.Field1" name="Field1" class="form-control">
+    <div class="card-block color3">
+        <form name="entryForm" novalidate>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="Code" class="control-label">Code</label>
+                        <input type="text" ng-model="vm.Code" name="Code" class="form-control" validator="required">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="Text" class="control-label">Text</label>
+                        <input type="text" ng-model="vm.Text" name="Text" class="form-control" validator="required">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="Description" class="control-label">Description</label>
+                        <input type="text" ng-model="vm.Description" name="Description" class="form-control">
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="form-group">
-                <label for="Field2" class="control-label">Field2</label>
-                <input type="text" ng-model="vm.Field2" name="Text" class="form-control">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="Field1" class="control-label">Field1</label>
+                        <input type="text" ng-model="vm.Field1" name="Field1" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="Field2" class="control-label">Field2</label>
+                        <input type="text" ng-model="vm.Field2" name="Text" class="form-control">
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2">
-            <div class="form-group">
-                <label for="Field3" class="control-label">Field3</label>
-                <input type="text" ng-model="vm.Field3" name="Field1" class="form-control">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="Field3" class="control-label">Field3</label>
+                        <input type="text" ng-model="vm.Field3" name="Field1" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="Field4" class="control-label">Field4</label>
+                        <input type="text" ng-model="vm.Field4" name="Text" class="form-control">
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-sm-2">
-            <div class="form-group">
-                <label for="Field4" class="control-label">Field4</label>
-                <input type="text" ng-model="vm.Field4" name="Text" class="form-control">
-            </div>
-        </div>
-    </div>
 
-    <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
-</form>
+            <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+        </form>
 
-<div class="border-bottom" style="margin:30px 0"></div>
-<table datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="row-border hover"></table>
+    </div>
+</div>

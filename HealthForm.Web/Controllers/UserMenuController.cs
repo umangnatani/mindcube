@@ -18,8 +18,24 @@ namespace HealthForm.Web.Controllers
             _Service = new Service<UserMenu>();
         }
 
+        public IHttpActionResult Maintain(UserMenu poco)
+        {
+            //System.Threading.Thread.Sleep(4000);
+            return Ok(_Service.Save(poco));
+
+        }
+
+
         [HttpGet]
-        public List<UserMenu> List()
+        public IQueryable<UserMenu> List()
+        {
+            //System.Threading.Thread.Sleep(2000);
+            return _Service.Repository.GetAll();
+        }
+
+
+        [HttpGet]
+        public List<UserMenu> ListTree()
         {
             var items = _Service.Repository.GetAll();
 

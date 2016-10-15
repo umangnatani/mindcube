@@ -13,6 +13,7 @@
                             'toastr', // For growl notifications
                             'ui.grid',
                             'ui.grid.pagination',
+                            'ui.grid.selection',
                             'ui.grid.saveState',
                             'datatables',
                             'formly',
@@ -31,65 +32,16 @@
 
     function config($stateProvider, $urlRouterProvider, $httpProvider, formlyConfigProvider, toastrConfig, $validationProvider) {
 
+
+        angular.forEach(StateVM, function (value, key) {
+            //console.log(value);
+            $stateProvider.state(value.StateName, JSON.parse(value.StateJSON));
+        });
+
+
         
 
-        $stateProvider.
-            state('login', {
-                url: '/',
-                templateUrl: 'Scripts/app/home/main.html',
-                data: {
-                    requireLogin: false
-                }
-            })
-             .state('home', {
-                 url: '/home',
-                 templateUrl: 'Scripts/app/home/main.html',
-                 controller: 'homeController'
-             })
-
-            .state('code', {
-                url: '/code/view/',
-                templateUrl: 'Scripts/app/code/index.html',
-                controller: 'codeController'
-            })
-            .state('code_detail', {
-                url: '/code/detail/:id',
-                templateUrl: 'Scripts/app/code/detail-index.html',
-                controller: 'codeDetailController'
-            })
-            .state('client', {
-                url: '/client/view/',
-                templateUrl: 'Scripts/app/client/index.html',
-                controller: 'clientController'
-            })
-            .state('client_add', {
-                url: '/client/add',
-                templateUrl: 'Scripts/app/client/maintain.html',
-                //controller: 'clientMaintController'
-            })
-            .state('client_maintain', {
-                url: '/client/maintain/',
-                params: {
-                    id: null,
-                },
-              templateUrl: 'Scripts/app/client/maintain.html',
-              //controller: 'clientMaintController'
-            })
-            .state('correspondence', {
-                url: '/correspondence/list',
-                templateUrl: 'Scripts/app/case/corresp-index.html',
-                controller: 'correspController'
-            })
-            .state('correspondence_add', {
-                 url: '/correspondence/add',
-                 templateUrl: 'Scripts/app/case/corresp-maintain.html',
-                 controller: 'correspMaintController'
-             })
-            .state('correspondence_maintain', {
-                url: '/correspondence/maintain/:id',
-            templateUrl: 'Scripts/app/case/corresp-maintain.html',
-            controller: 'correspMaintController'
-        });
+       
 
         $urlRouterProvider.otherwise('/');
            

@@ -1,0 +1,3 @@
+﻿For UI Grid
+
+Every feature needs to be included in the module like pagination, sorting, selection etc. and in the html file as tag.

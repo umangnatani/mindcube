@@ -127,8 +127,8 @@
 
         
 
-        myService.getCode($scope, 'Categories', 'CORRESP_CATEGORY');
-        myService.getCode($scope, 'Sources', 'CORRESP_SOURCE');
+        myService.getCode($scope, 'Categories', 'corresp_category');
+        myService.getCode($scope, 'Sources', 'corresp_source');
 
         myService.getList('api/programs/list', $scope, null, 'Programs')
 
@@ -260,8 +260,8 @@
             //$scope.childVm.Comments = '';
         });
 
-        myService.getCode($scope, 'AllegationTypes', 'ALLEG_TYPE');
-        myService.getCode($scope, 'AllegationDetails', 'ALLEG_DETAIL');
+        myService.getCode($scope, 'AllegationTypes', 'alleg_type');
+        myService.getCode($scope, 'AllegationDetails', 'alleg_detail');
 
 
 

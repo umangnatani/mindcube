@@ -1,4 +1,4 @@
-﻿@model List<HealthForm.Data.UserMenu>
+﻿@model HealthForm.Web.MenuVM
 
 <div id="umangapp-wrapper" class="umang-hide-lpanel" umang-device-type="desktop">
     @{Html.RenderPartial("_Header");}
@@ -24,7 +24,9 @@
 @section scripts {
 
 <script type="text/javascript">
-    MenuVM = @Html.Raw(Json.Encode(@Model));
+    MenuVM = @Html.Raw(Json.Encode(@Model.UserMenuTree));
+    StateVM = @Html.Raw(Json.Encode(@Model.UserMenu));
+    //console.log(StateVM);
 </script>
 
 }

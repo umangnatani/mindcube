@@ -4,45 +4,78 @@
 
     app.controller('codeController', codeController)
 
-    codeController.$inject = ['$scope', '$q', '$http', 'myService', '$uibModal', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile'];
+    codeController.$inject = ['$scope', 'myService', '$uibModal'];
 
     // used angular datatables grid
 
-    function codeController($scope, $q, $http, myService, $uibModal, DTOptionsBuilder, DTColumnBuilder, $compile) {
+    function codeController($scope, myService, $uibModal) {
 
 
-        $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function () {
-            var defer = $q.defer();
-            $http.get('api/codemaster/list').then(function (result) {
-                defer.resolve(result.data);
-            });
-            return defer.promise;
-        }).withPaginationType('full_numbers')
-      .withOption('createdRow', function (row) {
-          // Recompiling so we can bind Angular directive to the DT
-          $compile(angular.element(row).contents())($scope);
-      });
+        $scope.vm = {};
+        $scope.list = [];
 
 
-        $scope.dtColumns = [
-            DTColumnBuilder.newColumn('Id').withTitle('Id'),
-            DTColumnBuilder.newColumn('Code').withTitle('Code From'),
-            DTColumnBuilder.newColumn('Text').withTitle('Text'),
-           DTColumnBuilder.newColumn(null).withTitle('Actions').notSortable()
-            .renderWith(actionsHtml)
+        var columnDefs = [
+        { field: "Id" },
+        { field: "Code" },
+        { field: "Text" },
+        { field: "Description" },
+        { field: "StateName" },
+        { field: "IsTest" },
+        { name: 'Edit', cellTemplate: '<div class="ui-grid-cell-contents"><a href="JavaScript:void(0)" ng-click="grid.appScope.edit(row.entity)">Edit</a> | <a ng-href="#/code/detail/{{row.entity.Code}}">Code Detail</a></div>' }
         ];
 
 
-        $scope.showMe = function (row) {
-            alert(row.entity.ClientName);
+
+        $scope.gridOptions = {
+            totalItems: $scope.list.length,
+            paginationPageSize: 10,
+            enableSorting: true,
+            enableRowSelection: true,
+            multiSelect: false,
+            enableRowHeaderSelection: false,
+            columnDefs: columnDefs,
+            enableHorizontalScrollbar: 0,
+            enableVerticalScrollbar: 0,
+            enablePaginationControls: false,
+            paginationCurrentPage: 1,
+            //showFooter: true,
+
+            //rowModelType: 'pagination'
         };
 
-        function actionsHtml(data, type, full, meta) {
-            return '<a class="btn btn-sm btn-warning" ui-sref="code_detail({id:&quot;' + data.Code + '&quot;})">' +
-    '   <i class="fa fa-edit"></i>' +
-    '</a>';
+        //$scope.gridOptions.multiSelect = false;
+        $scope.gridOptions.onRegisterApi = function (gridApi) {
+            //set gridApi on scope
+            $scope.gridApi = gridApi;
+            gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                //var msg = 'row selected ' + row.isSelected;
+                $scope.vm = row.entity;
+            });
+        };
 
+
+        myService.get('Api/codemaster/list', function (result) {
+            $scope.list = result.data;
+            $scope.gridOptions.data = $scope.list;
+            //$interval(function () { $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]); }, 0, 1);
+        });
+
+
+        $scope.edit = function (obj) {
+            //console.log(obj);
+            $scope.vm = obj;
         }
+
+
+
+        $scope.save = function () {
+            myService.save('api/codemaster/maintain', $scope, 'vm', function () {
+                $scope.vm = {};
+                //$scope.dtInstance.reloadData();
+            })
+        }
+
 
 
 
@@ -61,56 +94,79 @@
 
     app.controller('codeDetailController', codeDetailController)
 
-    codeDetailController.$inject = ['$scope', '$q', '$http', 'myService', '$uibModal', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile', '$stateParams'];
+    codeDetailController.$inject = ['$scope', 'myService', '$uibModal', '$stateParams'];
 
     // used angular datatables grid
 
-    function codeDetailController($scope, $q, $http, myService, $uibModal, DTOptionsBuilder, DTColumnBuilder, $compile, $stateParams) {
+    function codeDetailController($scope, myService, $uibModal, $stateParams) {
 
-        $scope.vm = {};
-        $scope.vm.MasterCode = $stateParams.id;
+        $scope.init = function () {
+            $scope.vm = {};
+            $scope.vm.MasterCode = $stateParams.id;
+            getData();
+        }
 
-        $scope.dtOptions = DTOptionsBuilder.fromFnPromise(getData).withPaginationType('full_numbers')
-      .withOption('createdRow', function (row) {
-          // Recompiling so we can bind Angular directive to the DT
-          $compile(angular.element(row).contents())($scope);
-      });
+        $scope.list = [];
 
-        $scope.dtInstance = {};
+        $scope.init();
 
-        $scope.dtColumns = [
-            DTColumnBuilder.newColumn('Id').withTitle('Id'),
-            DTColumnBuilder.newColumn('Code').withTitle('Code From'),
-            DTColumnBuilder.newColumn('Text').withTitle('Text'),
-           DTColumnBuilder.newColumn(null).withTitle('Actions').notSortable()
-            .renderWith(actionsHtml)
+        var columnDefs = [
+        { field: "Id" },
+        { field: "Code" },
+        { field: "Text" },
+        { field: "Description" },
+        { field: "Field1" },
+        { name: 'Edit', cellTemplate: '<div class="ui-grid-cell-contents"><a href="JavaScript:void(0)" ng-click="grid.appScope.edit(row.entity)">Edit</a></div>' }
         ];
 
 
-        $scope.showMe = function (row) {
-            alert(row.entity.ClientName);
+        $scope.gridOptions = {
+            totalItems: $scope.list.length,
+            paginationPageSize: 10,
+            enableSorting: true,
+            enableRowSelection: true,
+            multiSelect: false,
+            enableRowHeaderSelection: false,
+            columnDefs: columnDefs,
+            enableHorizontalScrollbar: 0,
+            enableVerticalScrollbar: 0,
+            enablePaginationControls: false,
+            paginationCurrentPage: 1,
+            //showFooter: true,
+
+            //rowModelType: 'pagination'
         };
 
-        function actionsHtml(data, type, full, meta) {
-            return '<a class="btn btn-sm btn-warning" ui-sref="code_maintain({id:' + data.Id + '})">' +
-    '   <i class="fa fa-edit"></i>' +
-    '</a>';
-
-        }
-
+        //$scope.gridOptions.multiSelect = false;
+        $scope.gridOptions.onRegisterApi = function (gridApi) {
+            //set gridApi on scope
+            $scope.gridApi = gridApi;
+            gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                //var msg = 'row selected ' + row.isSelected;
+                $scope.vm = row.entity;
+            });
+        };
 
         function getData() {
-            var defer = $q.defer();
-            $http.get('api/codedetails/list/' + $scope.vm.MasterCode).then(function (result) {
-                defer.resolve(result.data);
+            myService.get('Api/codedetails/list/' + $scope.vm.MasterCode, function (result) {
+                $scope.list = result.data;
+                $scope.gridOptions.data = $scope.list;
+                //$interval(function () { $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]); }, 0, 1);
             });
-            return defer.promise;
         }
+
+
+        $scope.edit = function (obj) {
+            //console.log(obj);
+            $scope.vm = obj;
+        }
+
+
 
         $scope.save = function () {
             myService.save('api/codedetails/maintain', $scope, 'vm', function () {
-                $scope.vm.Id = '';
-                $scope.dtInstance.reloadData();
+                $scope.init();
+                //$scope.dtInstance.reloadData();
             })
         }
 

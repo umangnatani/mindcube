@@ -19,7 +19,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MasterCode" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="ClientId" Type="int" />
-          <Property Name="Code" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="20" />
           <Property Name="Text" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="Field1" Type="nvarchar" MaxLength="400" />
@@ -38,6 +38,7 @@
           <Property Name="Text" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="IsInactive" Type="bit" Nullable="false" />
+          <Property Name="IsTest" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Entity">
           <Key>
@@ -156,15 +157,15 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
           <Property Name="URL" Type="nvarchar" MaxLength="200" />
           <Property Name="Icon" Type="nvarchar" MaxLength="200" />
           <Property Name="ParentId" Type="int" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="200" />
+          <Property Name="StateJSON" Type="nvarchar(max)" />
           <Property Name="Field1" Type="nvarchar" MaxLength="200" />
           <Property Name="Field2" Type="nvarchar" MaxLength="200" />
-          <Property Name="Field3" Type="nvarchar" MaxLength="200" />
-          <Property Name="Field4" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -659,22 +660,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <NavigationProperty Name="Lists" Relationship="Self.FK_List_Client" FromRole="Client" ToRole="List" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_Client" FromRole="Client" ToRole="User" />
         </EntityType>
-        <EntityType Name="CodeDetail">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MasterCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ClientId" Type="Int32" />
-          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Field1" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Name="Field2" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Name="Field3" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Name="Field4" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
-          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="CodeMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -685,6 +670,7 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="IsTest" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Entity">
           <Key>
@@ -815,21 +801,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <Property Name="ClientId" Type="Int32" />
           <NavigationProperty Name="Client" Relationship="Self.FK_User_Client" FromRole="User" ToRole="Client" />
           <NavigationProperty Name="UserRoles" Relationship="Self.FK_UserRole_User" FromRole="User" ToRole="UserRole" />
-        </EntityType>
-        <EntityType Name="UserMenu">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="ParentId" Type="Int32" />
-          <Property Name="Field1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Field2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Field3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Field4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -1040,7 +1011,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
         </Association>
         <EntityContainer Name="ICTSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="Self.Client" />
-          <EntitySet Name="CodeDetails" EntityType="Self.CodeDetail" />
           <EntitySet Name="CodeMasters" EntityType="Self.CodeMaster" />
           <EntitySet Name="Entities" EntityType="Self.Entity" />
           <EntitySet Name="Lists" EntityType="Self.List" />
@@ -1051,7 +1021,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
           <EntitySet Name="Programs" EntityType="Self.Program" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="UserMenus" EntityType="Self.UserMenu" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
           <EntitySet Name="CorrespondenceRRFs" EntityType="Self.CorrespondenceRRF" />
           <EntitySet Name="Individuals" EntityType="Self.Individual" />
@@ -1121,6 +1090,8 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
             <End Role="Individual" EntitySet="Individuals" />
             <End Role="CaseIndividual" EntitySet="CaseIndividuals" />
           </AssociationSet>
+          <EntitySet Name="UserMenus" EntityType="HealthForm.Data.UserMenu" />
+          <EntitySet Name="CodeDetails" EntityType="HealthForm.Data.CodeDetail" />
         </EntityContainer>
         <EntityType Name="Correspondence">
           <Key>
@@ -1316,6 +1287,37 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserMenu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="StateName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StateJSON" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Field1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Field2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CodeDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasterCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Field1" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Field2" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Field3" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Field4" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1330,26 +1332,10 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CodeDetails">
-            <EntityTypeMapping TypeName="HealthForm.Data.CodeDetail">
-              <MappingFragment StoreEntitySet="CodeDetail">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="MasterCode" ColumnName="MasterCode" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Field1" ColumnName="Field1" />
-                <ScalarProperty Name="Field2" ColumnName="Field2" />
-                <ScalarProperty Name="Field3" ColumnName="Field3" />
-                <ScalarProperty Name="Field4" ColumnName="Field4" />
-                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CodeMasters">
             <EntityTypeMapping TypeName="HealthForm.Data.CodeMaster">
               <MappingFragment StoreEntitySet="CodeMaster">
+                <ScalarProperty Name="IsTest" ColumnName="IsTest" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
@@ -1477,22 +1463,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
                 <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserMenus">
-            <EntityTypeMapping TypeName="HealthForm.Data.UserMenu">
-              <MappingFragment StoreEntitySet="UserMenu">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="Icon" ColumnName="Icon" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="Field1" ColumnName="Field1" />
-                <ScalarProperty Name="Field2" ColumnName="Field2" />
-                <ScalarProperty Name="Field3" ColumnName="Field3" />
-                <ScalarProperty Name="Field4" ColumnName="Field4" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1717,6 +1687,39 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserMenus">
+            <EntityTypeMapping TypeName="HealthForm.Data.UserMenu">
+              <MappingFragment StoreEntitySet="UserMenu">
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="StateJSON" ColumnName="StateJSON" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CodeDetails">
+            <EntityTypeMapping TypeName="HealthForm.Data.CodeDetail">
+              <MappingFragment StoreEntitySet="CodeDetail">
+                <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+                <ScalarProperty Name="Field4" ColumnName="Field4" />
+                <ScalarProperty Name="Field3" ColumnName="Field3" />
+                <ScalarProperty Name="Field2" ColumnName="Field2" />
+                <ScalarProperty Name="Field1" ColumnName="Field1" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="MasterCode" ColumnName="MasterCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1741,7 +1744,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
     <Diagrams>
       <Diagram DiagramId="1883dffcab814a9485c33ee3984a7349" Name="Diagram1">
         <EntityTypeShape EntityType="HealthForm.Data.Client" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="HealthForm.Data.CodeDetail" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.CodeMaster" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.Entity" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.List" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
@@ -1752,7 +1754,6 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
         <EntityTypeShape EntityType="HealthForm.Data.Program" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.Role" Width="1.5" PointX="3" PointY="19.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.User" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HealthForm.Data.UserMenu" Width="1.5" PointX="11.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.UserRole" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.CorrespondenceRRF" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HealthForm.Data.Individual" Width="1.5" PointX="7.75" PointY="13" IsExpanded="true" />
@@ -1777,6 +1778,8 @@ warning 6035: The relationship 'FK_CodeDetail_CodeMaster' has columns that are n
         <AssociationConnector Association="HealthForm.Data.FK__Correspon__Corre__6CD828CA" />
         <EntityTypeShape EntityType="HealthForm.Data.CaseIndividual" Width="1.5" PointX="10" PointY="17.875" />
         <AssociationConnector Association="HealthForm.Data.FK__CaseIndiv__Indiv__6DCC4D03" />
+        <EntityTypeShape EntityType="HealthForm.Data.UserMenu" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="HealthForm.Data.CodeDetail" Width="1.5" PointX="10.375" PointY="4.75" />
       </Diagram>
     </Diagrams>
   </Designer>

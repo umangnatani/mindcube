@@ -16,7 +16,13 @@ namespace HealthForm.Web.Controllers
         {
             _Service = new Service<UserMenu>();
 
-            var items = _Service.Repository.GetAll();
+            MenuVM vm = new MenuVM();
+
+            var menuItems = _Service.Repository.GetAll();
+
+            vm.UserMenu = menuItems.Where(x=> !string.IsNullOrEmpty(x.StateName)).ToList();
+
+            var items = menuItems.Where(x => !string.IsNullOrEmpty(x.Code));
 
             Action<UserMenu> SetChildren = null;
 
@@ -40,10 +46,10 @@ namespace HealthForm.Web.Controllers
             //Call the SetChildren method to set the children on each root level item.
             hierarchicalItems.ForEach(SetChildren);
 
-            //return hierarchicalItems;
+            vm.UserMenuTree = hierarchicalItems;
 
 
-            return View(hierarchicalItems);
+            return View(vm);
         }
 
         public ActionResult Login()
