@@ -47,7 +47,7 @@ namespace HealthForm.Web.Controllers
         //[ResponseType(typeof(Client))]
         public IHttpActionResult Maintain(Client poco)
         {
-            System.Threading.Thread.Sleep(4000);
+            //System.Threading.Thread.Sleep(4000);
             return Ok(_Service.Save(poco));
 
         }

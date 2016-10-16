@@ -4,5 +4,5 @@
 //});
 
 function alert2(msg) {
-    $('#divError').html(msg);
+    $('#divError').html(msg).removeClass('hide');
 }

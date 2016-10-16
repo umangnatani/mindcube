@@ -19,15 +19,15 @@ namespace HealthForm.Data
             return (T)HttpContext.Current.Session[sessionId];
         }
 
-        public static string UserId
+        public static string UserName
         {
             get
             {
-                return GetSession<string>("UserId");
+                return GetSession<string>("UserName");
             }
             set
             {
-                SetSession<string>("UserId", value);
+                SetSession<string>("UserName", value);
             }
         }
 

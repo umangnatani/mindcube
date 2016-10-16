@@ -37,6 +37,8 @@ namespace HealthForm.Data
             }
         }
         public ICollection<CaseProgram> CasePrograms { get; set; }
+        public ICollection<AssignedTo> Assignees { get; set; }
+        public ICollection<User> Reviewers { get; set; }
     }
     public partial class CorrespondenceRRF : IEntityBase
     {
@@ -59,6 +61,11 @@ namespace HealthForm.Data
     }
 
     public partial class CaseProgram : IEntityBase
+    {
+
+    }
+
+    public partial class AssignedTo : IEntityBase
     {
 
     }

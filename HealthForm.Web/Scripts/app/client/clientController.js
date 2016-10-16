@@ -4,80 +4,84 @@
 
     app.controller('clientController', clientController)
 
-    clientController.$inject = ['$scope', '$q', '$http', 'myService', '$uibModal', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile'];
-
-    // used angular datatables grid
-
-    function clientController($scope, $q, $http, myService, $uibModal, DTOptionsBuilder, DTColumnBuilder, $compile) {
+    clientController.$inject = ['$scope', 'myService', '$uibModal'];
 
 
-        $scope.search = function () {
-            myService.save('api/clients1/Search?Filter=' + $scope.filter, null,
-             success);
+    function clientController($scope, myService, $uibModal) {
+
+        $scope.init = function () {
+            $scope.vm = {};
+            //$scope.vm.MasterCode = $stateParams.id;
+            getData();
         }
 
+        $scope.list = [{}];
 
-        $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function () {
-            var defer = $q.defer();
-            $http.get('Api/Clients1/list').then(function (result) {
-                defer.resolve(result.data);
-            });
-            return defer.promise;
-        }).withPaginationType('full_numbers')
-      .withOption('createdRow', function(row) {
-          // Recompiling so we can bind Angular directive to the DT
-          $compile(angular.element(row).contents())($scope);
-      });
-        
+        $scope.init();
 
-        $scope.dtColumns = [
-            DTColumnBuilder.newColumn('Id').withTitle('Id'),
-            DTColumnBuilder.newColumn('ClientName').withTitle('Client Name'),
-           DTColumnBuilder.newColumn(null).withTitle('Actions').notSortable()
-            .renderWith(actionsHtml)
+        var columnDefs = [
+        { field: "Id" },
+        { field: "ClientName" },
+        { name: 'Edit', cellTemplate: '<div class="ui-grid-cell-contents"><a href="JavaScript:void(0)" ng-click="grid.appScope.edit(row.entity)">Edit</a> | <a href="JavaScript:void(0)" ng-click="grid.appScope.delete(row.entity.Id)">Delete</a></div>' }
         ];
 
 
-        $scope.showMe = function (row) {
-            alert(row.entity.ClientName);
+        $scope.gridOptions = {
+            totalItems: $scope.list.length,
+            paginationPageSize: 10,
+            enableSorting: true,
+            enableRowSelection: true,
+            multiSelect: false,
+            enableRowHeaderSelection: false,
+            columnDefs: columnDefs,
+            enableHorizontalScrollbar: 0,
+            enableVerticalScrollbar: 0,
+            enablePaginationControls: false,
+            paginationCurrentPage: 1,
+            //showFooter: true,
+
+            //rowModelType: 'pagination'
         };
 
-        function actionsHtml(data, type, full, meta) {
-            return '<a class="btn btn-sm btn-warning" ui-sref="client_maintain({id:' + data.Id + '})">' +
-    '   <i class="fa fa-edit"></i>' +
-    '</a>';
-                
+        //$scope.gridOptions.multiSelect = false;
+        $scope.gridOptions.onRegisterApi = function (gridApi) {
+            //set gridApi on scope
+            $scope.gridApi = gridApi;
+            gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                //var msg = 'row selected ' + row.isSelected;
+                $scope.vm = row.entity;
+            });
+        };
+
+        function getData() {
+            myService.get('api/clients1/list', function (result) {
+                $scope.list = result.data;
+                $scope.gridOptions.data = $scope.list;
+                //$interval(function () { $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]); }, 0, 1);
+            });
+        }
+
+
+        $scope.edit = function (obj) {
+            //console.log(obj);
+            $scope.vm = obj;
+        }
+
+        $scope.delete = function (id) {
+            myService.deleteRecord(id, 'client', function () {
+                $scope.init();
+            });
         }
 
 
 
+        $scope.save = function () {
+            myService.save('api/clients1/maintain', $scope, 'vm', function () {
+                $scope.init();
+                //$scope.dtInstance.reloadData();
+            })
+        }
 
-      function success(result) {
-        //$scope.DisplayClients = result.data;
-          $scope.Clients = result.data;
-          $scope.gridOptions.data = $scope.Clients;
-
-          //$scope.gridOptions.api.refreshView();
-
-      }
-
-
-      $scope.openEditDialog = function (client) {
-          $scope.client = client;
-          $uibModal.open({
-              templateUrl: 'Scripts/app/client/maintain.html',
-              controller: 'clientMaintController',
-              scope: $scope
-          }).result.then(function ($scope) {
-              clearSearch();
-          }, function () {
-          });
-      }
-
-      function clearSearch() {
-          //$scope.filterCustomers = '';
-          //search();
-      }
 
     }
 

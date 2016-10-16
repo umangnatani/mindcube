@@ -28,6 +28,16 @@ namespace HealthForm.Web.Controllers
             //return _Service.GetAll();
         }
 
+
+        [HttpGet]
+        public IQueryable<CodeDetail> List(string id, string field1)
+        {
+            //var items = _Service.FindBy(x => x.MasterCode == id).ToList();
+            return _Service.Repository.FindBy(x => x.MasterCode == id && x.Field1 == field1);
+            //return _Service.GetAll();
+        }
+
+
         [HttpGet]
         [ResponseType(typeof(CodeDetail))]
         public IHttpActionResult Details(int id)

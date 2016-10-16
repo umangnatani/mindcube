@@ -12,10 +12,10 @@ namespace HealthForm.Data
     {
 
 
-        public User validateUser(string UserId, string Password)
+        public User validateUser(string UserName, string Password)
         {
 
-            var user = Repository.FindBy(x => x.UserId == UserId).SingleOrDefault();
+            var user = Repository.FindBy(x => x.UserName == UserName).SingleOrDefault();
 
             bool validUser = false;
 

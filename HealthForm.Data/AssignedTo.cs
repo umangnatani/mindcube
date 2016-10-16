@@ -12,26 +12,20 @@ namespace HealthForm.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class CorrespondenceRRF
+    public partial class AssignedTo
     {
         public int Id { get; set; }
-        public int CorrespId { get; set; }
-        public Nullable<int> ProgramId { get; set; }
-        public Nullable<bool> isPending { get; set; }
-        public Nullable<System.DateTime> RequestDt { get; set; }
-        public Nullable<System.DateTime> DueDt { get; set; }
-        public Nullable<System.DateTime> ReceivedDt { get; set; }
-        public Nullable<System.DateTime> CAPDueDt { get; set; }
-        public Nullable<System.DateTime> CAPReceivedDt { get; set; }
-        public Nullable<bool> isExtension { get; set; }
-        public Nullable<bool> IsInadequate { get; set; }
-        public Nullable<bool> IsAdditionalInfo { get; set; }
+        public int UserId { get; set; }
+        public int ObjectId { get; set; }
+        public string ObjectType { get; set; }
+        public string Comments { get; set; }
+        public string AssignType { get; set; }
         public bool IsInactive { get; set; }
         public Nullable<int> EntBy { get; set; }
         public System.DateTime EntDt { get; set; }
         public Nullable<int> ChgBy { get; set; }
         public Nullable<System.DateTime> ChgDt { get; set; }
     
-        public virtual Correspondence Correspondence { get; set; }
+        public virtual User User { get; set; }
     }
 }

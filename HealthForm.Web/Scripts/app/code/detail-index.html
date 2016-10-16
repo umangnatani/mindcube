@@ -1,6 +1,6 @@
 ﻿<h4 class="border-bottom">Maintain Code Details: <span class="text-danger">{{vm.MasterCode}}</span></h4>
 <busy-indicator></busy-indicator>
-<div>
+<div ng-show="list.length>0">
     <div class="text-right">
         <h5>
             Showing  {{1 + (gridOptions.paginationCurrentPage-1)*gridOptions.paginationPageSize}} to {{(gridOptions.paginationCurrentPage)*gridOptions.paginationPageSize}} of total {{gridOptions.totalItems}}

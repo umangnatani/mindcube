@@ -16,6 +16,10 @@ namespace HealthForm.Data
                     {
                         return new Service<Comment>().Delete(poco.ObjectId);
                     }
+                case "client":
+                    {
+                        return new Service<Client>().Delete(poco.ObjectId);
+                    }
                 default:
                     return new RetrunType();
 

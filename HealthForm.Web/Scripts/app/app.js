@@ -32,14 +32,11 @@
 
     function config($stateProvider, $urlRouterProvider, $httpProvider, formlyConfigProvider, toastrConfig, $validationProvider) {
 
-
         angular.forEach(StateVM, function (value, key) {
             //console.log(value);
             $stateProvider.state(value.StateName, JSON.parse(value.StateJSON));
         });
 
-
-        
 
        
 

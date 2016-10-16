@@ -77,6 +77,7 @@
             //CaseComments: [{ CommentDt: '10/8/2019', Comments: 'Test' }]
         };
 
+        $scope.tempVm = {};
         
 
         $scope.deleteChild = function (id, type) {
@@ -87,6 +88,10 @@
         }
 
 
+        $scope.initChild = function () {
+            this.ObjectId = $scope.vm.Id;
+            this.ObjectType = 'csp';
+        }
 
 
         
@@ -101,11 +106,29 @@
             this.valuationDatePickerIsOpen = true;
         };
 
-        $scope.vm.CasePrograms = [{ ObjectId: $scope.vm.Id, ObjectType: 'csp' }];
+        $scope.vm.CasePrograms = [new $scope.initChild()];
+        $scope.tempVm.AssigneesUser = [];
+
+        function User(UserId, Name) {
+            this.Id = UserId,
+            this.Name = Name
+        }
+
+        //$scope.vm.Assignees = [{ ObjectId: $scope.vm.Id, ObjectType: 'csp' }];
+        //console.log($scope.vm);
 
         myService.getById('api/correspondences/details', $scope, 'vm', function () {
+            $scope.tempVm.AssigneesUser = [];
             if($scope.vm.CasePrograms.length === 0)
-                $scope.vm.CasePrograms = [{ ObjectId: $scope.vm.Id, ObjectType: 'csp' }];
+                $scope.vm.CasePrograms = [new $scope.initChild()];
+            if ($scope.vm.Assignees) {
+                angular.forEach($scope.vm.Assignees, function (value, key) {
+                    $scope.tempVm.AssigneesUser.push(new User(value.UserId, value.User.Name));
+                    //console.log(value);
+                })
+                
+            }
+            //console.log($scope.vm);
             //$scope.vm.Category = { Id: $scope.vm.CategoryId, Text: 'Complaint' };
             //$scope.vm.ReceivedDt = new Date(Date.parse($scope.vm.ReceivedDt));
         });
@@ -120,7 +143,7 @@
         });
 
         $scope.tabClick = function (tabname) {
-            $scope.EntityObject = { ObjectId: $scope.vm.Id, ObjectType: 'csp' }
+            $scope.EntityObject = new $scope.initChild();
             $scope.childVm = $scope.EntityObject;
             $scope.$broadcast(tabname);
         };
@@ -129,13 +152,16 @@
 
         myService.getCode($scope, 'Categories', 'corresp_category');
         myService.getCode($scope, 'Sources', 'corresp_source');
+        myService.getCode($scope, 'ReportingSources', 'report_source');
+        myService.getCode($scope, 'Dispositions', 'disp_status');
+        myService.getList('api/users/list', $scope, 'Users');
 
-        myService.getList('api/programs/list', $scope, null, 'Programs')
+        myService.getListByPost('api/programs/list', $scope, 'Programs')
 
         
 
         $scope.addNewChoice = function () {
-            $scope.vm.CasePrograms.push({ ObjectId: $scope.vm.Id, ObjectType: 'csp' });
+            $scope.vm.CasePrograms.push(new $scope.initChild());
         };
 
         $scope.removeChoice = function (index) {
@@ -148,12 +174,19 @@
         $scope.save = function () {
             
             var url = 'api/correspondences/maintain';
+            $scope.vm.Assignees = [];
+            angular.forEach($scope.tempVm.AssigneesUser, function (value, key) {
+                $scope.vm.Assignees.push(new $scope.initChild());
+                $scope.vm.Assignees[key].UserId = value.Id;
+
+                //console.log(value);
+            })
 
             console.log($scope.vm);
 
             myService.save(url, $scope, 'vm', function () {
                 //$scope.EntityObject.ObjectId = $scope.vm.Id;
-                console.log($scope.vm);
+                //console.log($scope.vm);
             })
         }
 
@@ -175,7 +208,7 @@
     function caseCommentsController($scope, $location, $routeParams, myService) {
 
         $scope.$on("comments", function (evt, data) {
-            myService.getList('api/comments/list', $scope, $scope.EntityObject, 'list');
+            myService.getListByPost('api/comments/list', $scope, 'list', $scope.EntityObject);
             //$scope.childVm = {};
             $scope.childVm.Comments = '';
         });
@@ -212,7 +245,7 @@
         
 
         $scope.$on("ind", function (evt, data) {
-            myService.getList('api/CaseIndividuals/list', $scope, $scope.EntityObject, 'list');
+            myService.getListByPost('api/CaseIndividuals/list', $scope, 'list', $scope.EntityObject);
             $scope.isEditing = {};
             //$scope.childVm = {};
             //$scope.childVm.Comments = '';
@@ -255,16 +288,24 @@
     function caseAllegationsController($scope, $routeParams, myService) {
 
         $scope.$on("alleg", function (evt, data) {
-            myService.getList('api/CaseAllegations/list', $scope, $scope.EntityObject, 'list');
+            
+            myService.getListByPost('api/CaseAllegations/list', $scope, 'list', $scope.EntityObject);
+            $scope.childVm = angular.copy($scope.EntityObject);
             //$scope.childVm = {};
             //$scope.childVm.Comments = '';
         });
 
         myService.getCode($scope, 'AllegationTypes', 'alleg_type');
-        myService.getCode($scope, 'AllegationDetails', 'alleg_detail');
+        
+        
 
+        $scope.onAllegTypeSelected = function (selectedItem) {
+            $scope.childVm.AllegationId = '';
+            $scope.AllegationDetails = [{}];
+            myService.getList('api/codedetails/list/alleg_detail?field1=' + selectedItem.Id,  $scope, 'AllegationDetails');
+        }
 
-
+        
         $scope.editChild = function (childVm) {
             console.log(childVm);
             $scope.childVm = JSON.parse(JSON.stringify(childVm));
@@ -275,6 +316,41 @@
         $scope.save = function () {
             myService.save('api/CaseAllegations/maintain', $scope, 'childVm', function () {
                 $scope.$emit("alleg");
+            });
+
+        }
+
+
+    };
+
+})(angular.module('MyApp'));
+
+(function (app) {
+    'use strict';
+
+    app.controller('rrfController', rrfController)
+
+    rrfController.$inject = ['$scope', '$location', '$routeParams', 'myService'];
+
+    function rrfController($scope, $location, $routeParams, myService) {
+
+        $scope.$on("rrf", function (evt, data) {
+            myService.getListByPost('api/correspondencerrf/list', $scope, 'list', $scope.EntityObject);
+            $scope.childVm = { CorrespId: $scope.EntityObject.ObjectId};
+            //$scope.childVm.Comments = '';
+        });
+
+
+
+        $scope.editChild = function (childVm) {
+            $scope.childVm = JSON.parse(JSON.stringify(childVm));
+        }
+
+
+
+        $scope.save = function () {
+            myService.save('api/correspondencerrf/maintain', $scope, 'childVm', function () {
+                $scope.$emit("rrf");
             });
 
         }

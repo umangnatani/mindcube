@@ -4,17 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EntLib;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Linq.Expressions;
 
 namespace HealthForm.Data
 {
     public class CorrespondenceService: Service<Correspondence>
     {
 
-        private IEntityBaseRepository<CaseProgram> programRep; 
+        private IEntityBaseRepository<CaseProgram> programRep;
+        private IEntityBaseRepository<AssignedTo> assignRep;
 
         public CorrespondenceService()
         {
             programRep = getRepository<CaseProgram>();
+            assignRep = getRepository<AssignedTo>();
         }
 
 
@@ -22,9 +27,13 @@ namespace HealthForm.Data
         {
             poco.ClientId = SessionHandler.UserInfo.ClientId.ToInt();
 
-            var newChildren = poco.CasePrograms.ToList();
+            var newPrograms = poco.CasePrograms.ToList();
 
-            newChildren.RemoveAll(x => x.ProgramId == 0);
+            var newAssignees = poco.Assignees.ToList();
+
+            newAssignees.Where(w => w.EntDt == DateTime.MinValue).ToList().ForEach(f => f.EntDt = DateTime.Now);
+
+            newPrograms.RemoveAll(x => x.ProgramId == 0);
 
             poco.ReceivedDt = poco.strReceivedDate.ToDateTime();
 
@@ -33,9 +42,12 @@ namespace HealthForm.Data
             RetrunType rt = UoW.Save(poco);
 
 
-            var oldChildren = programRep.FindBy(x => x.ObjectId == poco.Id && x.ObjectType == "csp").ToList();
+            var oldPrograms = programRep.FindBy(x => x.ObjectId == poco.Id && x.ObjectType == "csp").ToList();
 
-            programRep.updateChildren(oldChildren, newChildren);
+            var oldAssignees = assignRep.FindBy(x => x.ObjectId == poco.Id && x.ObjectType == "csp").ToList();
+
+            programRep.updateChildren(oldPrograms, newPrograms);
+            assignRep.updateChildren(oldAssignees, newAssignees);
 
             UoW.Commit();
 
@@ -47,7 +59,10 @@ namespace HealthForm.Data
         {
             var model = Repository.GetById(id);
 
-            model.CasePrograms = programRep.FindBy(x => x.ObjectId == model.Id && x.ObjectType == "csp").ToList();
+            model.CasePrograms = programRep.FindBy(x => x.ObjectId == model.Id && x.ObjectType == "csp").Include("Program.Entity").ToList();
+
+            model.Assignees = assignRep.FindBy(x => x.ObjectId == model.Id && x.ObjectType == "csp").Include("User").ToList();
+
 
             return model;
         }

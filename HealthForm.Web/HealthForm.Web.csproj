@@ -231,6 +231,7 @@
     <Compile Include="Controllers\Clients1Controller.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\CodeDetailsController.cs" />
+    <Compile Include="Controllers\CorrespondenceRRFController.cs" />
     <Compile Include="Controllers\CorrespondencesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListColumnsController.cs" />
@@ -353,13 +354,16 @@
     <Content Include="Content\base\bootstrap.min.css.map" />
     <None Include="Properties\PublishProfiles\healthform - Web Deploy.pubxml" />
     <Content Include="Scripts\app\account\accountController.js" />
+    <Content Include="Scripts\app\account\index.html" />
     <Content Include="Scripts\app\account\login.html" />
     <Content Include="Scripts\app\account\maintain.html" />
     <Content Include="Scripts\app\case\allegation-maintain.html" />
     <Content Include="Scripts\app\case\caseController.js" />
     <Content Include="Scripts\app\case\corresp-index.html" />
     <Content Include="Scripts\app\case\corresp-maintain.html" />
+    <Content Include="Scripts\app\case\disp-maintain.html" />
     <Content Include="Scripts\app\case\individual-maintain.html" />
+    <Content Include="Scripts\app\case\rrf-maintain.html" />
     <Content Include="Scripts\app\client\clientController.js" />
     <Content Include="Scripts\app\case\comments-maintain.html" />
     <Content Include="Scripts\app\client\menu.html" />
@@ -386,7 +390,6 @@
     <Content Include="Scripts\app\patient\maintain.html" />
     <Content Include="Scripts\app\patient\patientController.js" />
     <Content Include="Scripts\app\services\apiService.js" />
-    <Content Include="Scripts\app\services\helperService.js" />
     <Content Include="Scripts\app\services\myService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
     <Content Include="Scripts\app\test\testController.js" />

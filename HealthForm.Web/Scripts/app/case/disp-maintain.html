@@ -1,0 +1,152 @@
+﻿<form name="entryForm" novalidate>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="vm.isLetterSent" name="isLetterSent"> Letter Sent
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="vm.isLetterSent">
+        <div class="col-sm-3">
+            <div class="form-group has-feedback">
+                <label for="LetterDt" class="control-label">Date Letter Sent</label>
+
+                <input type="text" class="form-control" datepicker name="LetterDt" ng-model="vm.LetterDt" />
+                <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-show="vm.isLetterSent">
+        <div class="col-sm-9">
+            <div class="form-group">
+                <label for="Explaination" class="col-form-label">Explaination</label>
+                <textarea ng-model="vm.Explaination" name="Explaination" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <h4 class="border-bottom">Closure Information</h4>
+        <div class="row">
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="DispositionId" class="control-label">Disposition</label>
+                    <div>
+                        <select ng-model="vm.DispositionId" name="DispositionId" class="form-control" ng-options="option.Id as option.Text for option in Dispositions" validator="required">
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group has-feedback">
+                    <label for="DecisionDt" class="control-label">Decision Date</label>
+
+                    <input type="text" class="form-control" datepicker name="DecisionDt" ng-model="vm.DecisionDt" />
+                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group has-feedback">
+                    <label for="ClosedDt" class="control-label">Closed Date</label>
+
+                    <input type="text" class="form-control" datepicker name="ClosedDt" ng-model="vm.ClosedDt" />
+                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                </div>
+            </div>
+
+        </div>
+
+    
+    <div class="bs-callout bs-callout-info">
+        <h4 class="border-bottom">Cost Information</h4>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="IdentifyCosts" class="control-label">Identify Costs</label>
+
+                    <input type="text" class="form-control" name="IdentifyCosts" ng-model="vm.IdentifyCosts" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group has-feedback">
+                    <label for="IdentifyCostsDt" class="control-label">Identify Costs Date</label>
+
+                    <input type="text" class="form-control" datepicker name="IdentifyCostsDt" ng-model="vm.IdentifyCostsDt" />
+                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="AvoidanceCosts" class="control-label">Avoidance Costs</label>
+
+                    <input type="text" class="form-control" name="AvoidanceCosts" ng-model="vm.AvoidanceCosts" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group has-feedback">
+                    <label for="AvoidanceCostsDt" class="control-label">Avoidance Costs Date</label>
+
+                    <input type="text" class="form-control" datepicker name="AvoidanceCostsDt" ng-model="vm.AvoidanceCostsDt" />
+                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="QuestionCosts" class="control-label">Questionable Costs</label>
+
+                    <input type="text" class="form-control" name="QuestionCosts" ng-model="vm.QuestionCosts" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group has-feedback">
+                    <label for="QuestionCostsDt" class="control-label">Identify Costs Date</label>
+
+                    <input type="text" class="form-control" datepicker name="QuestionCostsDt" ng-model="vm.QuestionCostsDt" />
+                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="RecoveredCosts" class="control-label">Recovered Costs</label>
+
+                    <input type="text" class="form-control" name="RecoveredCosts" ng-model="vm.RecoveredCosts" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group has-feedback">
+                    <label for="RecoveredCostsDt" class="control-label">Recovered Costs Date</label>
+
+                    <input type="text" class="form-control" datepicker name="RecoveredCostsDt" ng-model="vm.RecoveredCostsDt" />
+                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="form-group">
+                    <label for="RecordLocation" class="col-form-label">Record Location</label>
+                    <textarea ng-model="vm.RecordLocation" name="RecordLocation" class="form-control" />
+                </div>
+            </div>
+        </div>
+
+
+        <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
+</form>

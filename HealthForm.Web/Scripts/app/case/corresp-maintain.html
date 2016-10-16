@@ -14,24 +14,60 @@
 
 
                         <div class="row">
-                            <div class="col-sm-4">
+                            <div class="col-sm-9">
                                 <div class="form-group">
                                     <label for="RecFName" class="control-label">Received From</label>
-                                    <input type="text" ng-model="vm.FirstName" name="FirstName" class="form-control" validator="required">
+                                    <div class="input-group">
+                                        <input type="text" ng-model="vm.FirstName" name="FirstName" class="form-control" placeholder="First Name..">
+                                        <span class="input-group-addon"></span>
+                                        <input type="text" ng-model="vm.MiddleName" name="MiddleName" class="form-control" placeholder="Middle Name..">
+                                        <span class="input-group-addon"></span>
+                                        <input type="text" ng-model="vm.LastName" name="LastName" class="form-control" placeholder="Last Name..">
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="col-sm-4 offset-sm-1">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
                                 <div class="form-group has-feedback">
                                     <label for="ReceivedDt" class="control-label">Received Date</label>
 
-                                        <input type="text" class="form-control" datepicker name="ReceivedDt" ng-model="vm.strReceivedDate" />
-                                        <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                                    <input type="text" class="form-control" datepicker name="ReceivedDt" ng-model="vm.strReceivedDate" />
+                                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="ReportingId" class="control-label">Reporting Source</label>
+                                    <div>
+                                        <select ng-model="vm.ReportingId" name="ReportingId" class="form-control" ng-options="option.Id as option.Text for option in ReportingSources" validator="required">
+                                            <option value="">-- Select --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="Category" class="control-label">Category</label>
+                                    <div>
+                                        <ui-select ng-model="vm.CategoryId" theme="bootstrap" style="min-width: 300px;" title="Choose a Category" ng-required="true">
+                                            <ui-select-match>{{$select.selected.Text}}</ui-select-match>
+                                            <ui-select-choices repeat="option.Id as option in Categories | filter: $select.search">
+                                                <div ng-bind-html="option.Text | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+                                    <!--<select ng-model="vm.CategoryId" name="CategoryId" class="form-control" ng-options="option.Id as option.Text for option in Categories" validator="required">
+                <option value="">-- Select --</option>
+            </select>-->
                                 </div>
                             </div>
 
                         </div>
                         <div class="row">
-                            <div class="col-sm-5">
+                            <div class="col-sm-9">
                                 <div class="form-group">
                                     <label for="ProgramId" class="control-label">Entity - Program/Department</label>
                                     <div ng-repeat="item in vm.CasePrograms" style="margin-bottom:5px">
@@ -57,24 +93,8 @@
                         
                         <!--<p>Selected: <code>{{vm.CategoryId}}</code></p>-->
                         <div class="row">
+                            
                             <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label for="Category" class="control-label">Category</label>
-                                    <div>
-                                        <ui-select ng-model="vm.CategoryId" theme="bootstrap" style="min-width: 300px;" title="Choose a Category" ng-required="true">
-                                            <ui-select-match>{{$select.selected.Text}}</ui-select-match>
-                                            <ui-select-choices repeat="option.Id as option in Categories | filter: $select.search">
-                                                <div ng-bind-html="option.Text | highlight: $select.search"></div>
-                                            </ui-select-choices>
-                                        </ui-select>
-                                    </div>
-
-                                    <!--<select ng-model="vm.CategoryId" name="CategoryId" class="form-control" ng-options="option.Id as option.Text for option in Categories" validator="required">
-                                        <option value="">-- Select --</option>
-                                    </select>-->
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-offset-1">
                                 <div class="form-group">
                                     <label for="Category" class="control-label">Source</label>
                                     <div>
@@ -87,7 +107,65 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="AssignedTo" class="control-label">Assigned To</label>
+                                    <div>
+                                        <ui-select multiple ng-model="tempVm.AssigneesUser" theme="bootstrap" style="min-width: 300px;" title="Choose a Category">
+                                            <ui-select-match>{{$item.Name}}</ui-select-match>
+                                            <ui-select-choices repeat="option in Users | filter: $select.search">
+                                                <div ng-bind-html="option.Name | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
 
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="ReviewedBy" class="control-label">Reviewed By</label>
+                                    <div>
+                                        <ui-select multiple ng-model="tempVm.AssigneesUser" theme="bootstrap" style="min-width: 300px;" title="Choose a Category">
+                                            <ui-select-match>{{$item.Name}}</ui-select-match>
+                                            <ui-select-choices repeat="option in Users | filter: $select.search">
+                                                <div ng-bind-html="option.Name | highlight: $select.search"></div>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group has-feedback">
+                                    <label for="AssignedDt" class="control-label">Assigned Date</label>
+
+                                    <input type="text" class="form-control" datepicker name="AssignedDt" ng-model="vm.AssignedDt" />
+                                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group has-feedback">
+                                    <label for="ReviewDt" class="control-label">Review Date</label>
+
+                                    <input type="text" class="form-control" datepicker name="ReviewDt" ng-model="vm.ReviewDt" />
+                                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group has-feedback">
+                                    <label for="DueDt" class="control-label">Due Date</label>
+                                    <input type="text" class="form-control" datepicker name="DueDt" ng-model="vm.DueDt" />
+                                    <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="vm.isWB" name="isWB"> WB Assess
+                            </label>
                         </div>
 
                         <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
@@ -109,6 +187,16 @@
                <uib-tab index="3" heading="Allegations" ng-if="vm.Id > 0" select="tabClick('alleg')">
 
                    <div ng-include src="'scripts/app/case/allegation-maintain.html'"></div>
+
+               </uib-tab>
+               <uib-tab index="4" heading="RRF" ng-if="vm.Id > 0" select="tabClick('rrf')">
+
+                   <div ng-include src="'scripts/app/case/rrf-maintain.html'"></div>
+
+               </uib-tab>
+               <uib-tab index="5" heading="Disposition" ng-if="vm.Id > 0" select="tabClick('disp')">
+
+                   <div ng-include src="'scripts/app/case/disp-maintain.html'"></div>
 
                </uib-tab>
             </uib-tabset>

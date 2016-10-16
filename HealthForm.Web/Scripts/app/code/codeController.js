@@ -106,7 +106,7 @@
             getData();
         }
 
-        $scope.list = [];
+        $scope.list = [{}];
 
         $scope.init();
 

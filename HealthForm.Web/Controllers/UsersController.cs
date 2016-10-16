@@ -23,15 +23,22 @@ namespace HealthForm.Web.Controllers
         }
 
 
+        [HttpGet]
+        public IQueryable<User> List()
+        {
+            return _Service.Repository.GetAll();
+        }
+
+
         [HttpPost]
         public IHttpActionResult Maintain(HealthForm.Data.User poco)
         {
-            //User poco = new User { UserId = po.UserId, Password = po.Password, Email = po.Email };
-
-            poco.Salt = Encrypt.CreateSalt();
-            poco.HashedPassword = Encrypt.EncryptPassword(poco.Password , poco.Salt);
-            poco.DateCreated = DateTime.Now;
-            ////ListValue poco = new ListValue { ListId = 3, ObjectId = 2, ObjectCode = "CT", JSONText = po.JSONText };
+            if (poco.Id == 0)
+            { 
+                poco.Salt = Encrypt.CreateSalt();
+                poco.HashedPassword = Encrypt.EncryptPassword(poco.Password , poco.Salt);
+                poco.EntDt = DateTime.Now;
+            }
 
             RetrunType rt = _Service.Save(poco);
 
@@ -43,7 +50,7 @@ namespace HealthForm.Web.Controllers
         [HttpPost]
         public IHttpActionResult Login(HealthForm.Data.User poco)
         {
-            var user = _Service.validateUser(poco.UserId, poco.Password);
+            var user = _Service.validateUser(poco.UserName, poco.Password);
 
             
 

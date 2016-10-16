@@ -59,7 +59,7 @@ namespace HealthForm.Web.Controllers
 
         public ActionResult Test()
         {
-            SessionHandler.UserId = "test";
+            SessionHandler.UserName = "test";
             return View();
         }
     }

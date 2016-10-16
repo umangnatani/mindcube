@@ -36,9 +36,7 @@ namespace HealthForm.Data
         public virtual DbSet<ListValue> ListValues { get; set; }
         public virtual DbSet<Program> Programs { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
-        public virtual DbSet<CorrespondenceRRF> CorrespondenceRRFs { get; set; }
         public virtual DbSet<Individual> Individuals { get; set; }
         public virtual DbSet<Correspondence> Correspondences { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
@@ -46,7 +44,10 @@ namespace HealthForm.Data
         public virtual DbSet<CaseAllegation> CaseAllegations { get; set; }
         public virtual DbSet<CaseAllegationsSubject> CaseAllegationsSubjects { get; set; }
         public virtual DbSet<CaseIndividual> CaseIndividuals { get; set; }
-        public virtual DbSet<UserMenu> UserMenus { get; set; }
         public virtual DbSet<CodeDetail> CodeDetails { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserMenu> UserMenus { get; set; }
+        public virtual DbSet<AssignedTo> AssignedToes { get; set; }
+        public virtual DbSet<CorrespondenceRRF> CorrespondenceRRFs { get; set; }
     }
 }

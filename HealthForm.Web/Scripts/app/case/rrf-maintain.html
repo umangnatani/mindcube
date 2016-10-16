@@ -1,0 +1,106 @@
+﻿<div ng-controller="rrfController">
+    <!--<table class="table">
+        <tr ng-repeat="comment in list">
+            <td>{{comment.CommentDt | date : 'MM/dd/yyyy'}}</td>
+            <td>{{comment.Comments}}</td>
+            <td>
+                <a href="JavaScript:void(0)" ng-click="editChild(comment)">Edit</a> |
+                <a href="JavaScript:void(0)" ng-click="deleteChild(comment.Id, 'comments')">Delete</a>
+            </td>
+        </tr>
+    </table>-->
+    <form name="entryForm" novalidate>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label for="ProgramId" class="control-label">Reporting Source</label>
+                    <div>
+                        <select ng-model="vm.ProgramId" name="ProgramId" class="form-control" ng-options="option.Id as option.Program.formattedDesc for option in vm.CasePrograms">
+                            <option value="">-- Select --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="form-group has-feedback">
+                        <label for="RequestDt" class="control-label">Date RRF Requeted</label>
+                        <input type="text" class="form-control" datepicker name="RequestDt" ng-model="childVm.RequestDt" />
+                        <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group has-feedback">
+                        <label for="DueDt" class="control-label">Date RRF Due</label>
+                        <input type="text" class="form-control" datepicker name="DueDt" ng-model="childVm.DueDt" />
+                        <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group has-feedback">
+                        <label for="ReceivedDt" class="control-label">Date RRF Received</label>
+                        <input type="text" class="form-control" datepicker name="ReceivedDt" ng-model="childVm.ReceivedDt" />
+                        <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+
+                <div class="col-sm-4">
+                    <div class="form-group has-feedback">
+                        <label for="CAPDueDt" class="control-label">Date CAP Due</label>
+                        <input type="text" class="form-control" datepicker name="CAPDueDt" ng-model="childVm.CAPDueDt" />
+                        <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group has-feedback">
+                        <label for="CAPReceivedDt" class="control-label">Date CAP Received</label>
+                        <input type="text" class="form-control" datepicker name="CAPReceivedDt" ng-model="childVm.CAPReceivedDt" />
+                        <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="childVm.isPending" name="isPending"> Resposne Pending
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="childVm.isExtension" name="isExtension"> Extension Granted
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="childVm.IsInadequate" name="IsInadequate"> Is Inadequate
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" ng-model="childVm.IsAdditionalInfo" name="IsAdditionalInfo"> Additional Info Provided
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
+</form>
+</div>

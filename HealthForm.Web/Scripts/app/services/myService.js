@@ -13,6 +13,7 @@
             getCode: getCode,
             getById: getById,
             getList: getList,
+            getListByPost: getListByPost,
             deleteRecord: deleteRecord,
             login: login,
             removeCredentials: removeCredentials,
@@ -84,7 +85,18 @@
         }
 
 
-        function getList(url, scope, data, objList, success, failure) {
+        function getList(url, scope, objList, success, failure) {
+            preparePost();
+            return get(url, 
+                function (result) {
+                    scope[objList] = result.data;
+                    if (success)
+                        success(result);
+                }, failure);
+        }
+
+
+        function getListByPost(url, scope, objList, data, success, failure) {
             preparePost();
             return post(url, data,
                 function (result) {
@@ -174,13 +186,13 @@
         //login function
 
         function login(scope, vm, success, failure) {
-            var data = "grant_type=password&username=" + scope[vm].UserId + "&password=" + scope[vm].Password;
+            var data = "grant_type=password&username=" + scope[vm].UserName + "&password=" + scope[vm].Password;
 
             return $http.post('token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
                     .then(function (result) {
                         $rootScope.UserInfo = {
                             isLoggedIn: true,
-                            UserId: scope[vm].UserId,
+                            UserName: scope[vm].UserName,
                             token: result.data.access_token
                         };
                         //debugger;
@@ -188,13 +200,15 @@
                         $http.defaults.headers.common['Authorization'] = "Bearer " + $rootScope.UserInfo.token;
 
                         post('api/users/login', scope[vm], function (obj) {
-                            //console.log(obj.data);
+                            $rootScope.UserInfo.Name = obj.data.Name;
+
+                            $cookies.putObject('UserInfo', $rootScope.UserInfo, {
+                                //expires: new Date(2017, 1, 1),
+                                path: '/'
+                            });
+                            //console.log($rootScope.UserInfo);
                         })
 
-                        $cookies.putObject('UserInfo', $rootScope.UserInfo, {
-                            //expires: new Date(2017, 1, 1),
-                            path: '/'
-                        });
 
 
 
@@ -275,8 +289,8 @@
                     return rejection;
                 }
                 else {
-                    alert2(rejection.data);
-                    //$log.error('Response error:', rejection);
+                    alert2(rejection.data.StackTrace);
+                    $log.error('Response error:', rejection);
                 }
                 return $q.reject(rejection);
             }

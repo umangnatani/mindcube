@@ -48,7 +48,7 @@ namespace HealthForm.Web.Providers
 
             else
             {
-                IdentityUser user = new IdentityUser(user2.UserId);
+                IdentityUser user = new IdentityUser(user2.UserName);
             }
             //}
 

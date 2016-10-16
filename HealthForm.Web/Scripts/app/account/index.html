@@ -1,4 +1,4 @@
-﻿<h4 class="border-bottom">Maintain Clients</h4>
+﻿<h4 class="border-bottom">Maintain Users</h4>
 <busy-indicator></busy-indicator>
 <div ng-show="list.length>0">
     <div class="text-right">
@@ -16,18 +16,18 @@
 </p>
 <div class="card">
     <div class="card-header">
-        <h5><span ng-hide="vm.Id > 0">You are adding a new item</span><span ng-show="vm.Id > 0">You are editing an existing item: <span class="text-danger"> {{vm.ClientName}} </span></span></h5>
+        <h5><span ng-hide="vm.Id > 0">You are adding a new item</span><span ng-show="vm.Id > 0">You are editing an existing item: <span class="text-danger"> {{vm.Text}} </span></span></h5>
     </div>
     <div class="card-block color3">
         <form name="entryForm" novalidate>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="ClientName" class="control-label">Client Name</label>
-                        <input type="text" ng-model="vm.ClientName" name="ClientName" class="form-control" validator="required">
+                        <label for="UserName" class="control-label">User Name</label>
+                        <input type="text" ng-model="vm.UserName" name="UserName" class="form-control" validator="required">
                     </div>
                 </div>
-                <!--<div class="col-sm-3" ng-hide="vm.Id > 0">
+                <div class="col-sm-3" ng-hide="vm.Id > 0">
                     <div class="form-group">
                         <label for="Password" class="control-label">Password</label>
                         <input type="password" ng-model="vm.Password" name="Password" class="form-control" validator="required">
@@ -40,9 +40,9 @@
                             <option value=""></option>
                         </select>
                     </div>
-                </div>-->
+                </div>
             </div>
-            <!--<div class="row">
+            <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label for="FirstName" class="control-label">First Name</label>
@@ -81,7 +81,7 @@
                         <input type="text" ng-model="vm.JobTitle" name="JobTitle" class="form-control">
                     </div>
                 </div>
-            </div>-->
+            </div>
 
             <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
         </form>

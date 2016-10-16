@@ -52,6 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssignedTo.cs">
+      <DependentUpon>ICTSEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="CaseAllegation.cs">
       <DependentUpon>ICTSEntities.tt</DependentUpon>
     </Compile>

@@ -26,6 +26,14 @@ namespace HealthForm.Data
     public partial class User : IEntityBase
     {
         public string Password { get; set; }
+        public string Name
+        {
+            get
+            {
+                return FirstName + " " +  LastName;
+            }
+           
+        }
     }
 
 
