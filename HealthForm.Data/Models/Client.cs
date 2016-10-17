@@ -30,7 +30,7 @@ namespace HealthForm.Data
         {
             get
             {
-                return FirstName + " " +  LastName;
+                return Util.FormatName(FirstName, LastName, MiddleName);
             }
            
         }

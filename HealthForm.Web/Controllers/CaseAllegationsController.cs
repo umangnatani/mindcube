@@ -54,7 +54,6 @@ namespace HealthForm.Web.Controllers
 
         public IHttpActionResult Maintain(CaseAllegation poco)
         {
-            DomainUtil.setAuditParams(poco);
             return Ok(_Service.Save(poco));
 
         }

@@ -34,6 +34,7 @@ namespace HealthForm.Data
 
         public RetrunType Save(T entity)
         {
+            DomainUtil.setAuditParams(entity);
             Repository.Maintain(entity);
             return UoW.Save(entity);
 

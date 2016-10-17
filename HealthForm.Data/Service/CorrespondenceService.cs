@@ -25,7 +25,11 @@ namespace HealthForm.Data
 
         public RetrunType SaveCorresp(Correspondence poco)
         {
-            poco.ClientId = SessionHandler.UserInfo.ClientId.ToInt();
+            if (poco.Id == 0) { 
+                poco.ClientId = SessionHandler.UserInfo.ClientId.ToInt();
+
+                //poco.CustomId = 
+            }
 
             var newPrograms = poco.CasePrograms.ToList();
 
@@ -37,7 +41,7 @@ namespace HealthForm.Data
 
             poco.ReceivedDt = poco.strReceivedDate.ToDateTime();
 
-            Repository.Maintain(poco);
+            Save(poco);
 
             RetrunType rt = UoW.Save(poco);
 

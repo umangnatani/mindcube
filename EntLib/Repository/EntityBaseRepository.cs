@@ -77,15 +77,7 @@ namespace EntLib
 
         }
 
-        //public virtual IQueryable<T> FindBy(Expression<Func<T, bool>> predicate, string ChildProperty, params string[] includeProperties)
-        //{
-        //    //DbContext.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
-        //    var list = DbContext.Set<T>().Where(predicate);
-        //    //var sql = list.ToString();
-        //    return IncludeRelated(list, includeProperties);
-
-        //}
 
 
 

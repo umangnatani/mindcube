@@ -12,6 +12,15 @@ namespace EntLib
     public static class Util
     {
 
+        public static string FormatName(string FirstName, string LastName, string MiddleName, string NameSuffix = "")
+        {
+            string MName = string.IsNullOrEmpty(MiddleName) ? "" : " " + MiddleName;
+            return FirstName + MName + " " + LastName;
+
+
+        }
+
+
         //public static List<T> ToHierarchical<T>(List<T> items) where T : EntityBaseH
         //{
         //    Action<T> SetChildren = null;

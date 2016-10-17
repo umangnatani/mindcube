@@ -36,6 +36,17 @@ namespace HealthForm.Data
                 _strReceivedDate = value;
             }
         }
+
+
+        public string ReceivedFrom
+        {
+            get
+            {
+                return Util.FormatName(FirstName, LastName, MiddleName);
+            }
+
+        }
+
         public ICollection<CaseProgram> CasePrograms { get; set; }
         public ICollection<AssignedTo> Assignees { get; set; }
         public ICollection<User> Reviewers { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace HealthForm.Data
 {
@@ -15,16 +16,27 @@ namespace HealthForm.Data
 
             if ((int)t.GetProperty("Id").GetValue(obj) > 0)
             {
-                t.GetProperty("ChgDt").SetValue(obj, DateTime.Now, null);
-                //    poco.ChgDt = DateTime.Now;
-                //    //poco.ChgBy = SessionHandler.UserInfo.Id;
+                PropertyInfo ChgDt = t.GetProperty("ChgDt");
+                PropertyInfo ChgBy = t.GetProperty("ChgBy");
+                PropertyInfo ClientId = t.GetProperty("ClientId");
+
+                if (ChgDt != null)
+                    ChgDt.SetValue(obj, DateTime.Now, null);
+                if (ChgBy != null)
+                    ChgBy.SetValue(obj, SessionHandler.UserInfo.Id, null);
+
+                if (ClientId != null)
+                    ClientId.SetValue(obj, SessionHandler.UserInfo.ClientId, null);
 
             }
             else
             {
-                t.GetProperty("EntDt").SetValue(obj, DateTime.Now, null);
-                //    poco.EntDt = DateTime.Now;
-                //    //poco.EntBy = SessionHandler.UserInfo.Id;
+                PropertyInfo EntDt = t.GetProperty("EntDt");
+                PropertyInfo EntBy = t.GetProperty("EntBy");
+                if (EntDt != null)
+                    EntDt.SetValue(obj, DateTime.Now, null);
+                if (EntBy != null)
+                    EntBy.SetValue(obj, SessionHandler.UserInfo.Id, null);
             }
         }
 

@@ -4,53 +4,65 @@
 
     app.controller('correspController', correspController)
 
-    correspController.$inject = ['$scope', '$q', '$http', 'myService', '$uibModal', 'DTOptionsBuilder', 'DTColumnBuilder', '$compile'];
+    correspController.$inject = ['$scope', 'myService', '$uibModal'];
 
     // used angular datatables grid
 
-    function correspController($scope, $q, $http, myService, $uibModal, DTOptionsBuilder, DTColumnBuilder, $compile) {
+    function correspController($scope, myService, $uibModal) {
 
 
-        $scope.search = function () {
-            myService.save('api/clients1/Search?Filter=' + $scope.filter, null,
-             success);
+        $scope.init = function () {
+            $scope.vm = {};
+            //$scope.vm.MasterCode = $stateParams.id;
+            getData();
         }
 
+        $scope.list = [{}];
 
-        $scope.dtOptions = DTOptionsBuilder.fromFnPromise(function () {
-            var defer = $q.defer();
-            $http.get('api/correspondences/list').then(function (result) {
-                defer.resolve(result.data);
-            });
-            return defer.promise;
-        }).withPaginationType('full_numbers')
-      .withOption('createdRow', function (row) {
-          // Recompiling so we can bind Angular directive to the DT
-          $compile(angular.element(row).contents())($scope);
-      });
+        $scope.init();
 
-
-        $scope.dtColumns = [
-            DTColumnBuilder.newColumn('Id').withTitle('Id'),
-            DTColumnBuilder.newColumn('FirstName').withTitle('Received From'),
-            DTColumnBuilder.newColumn('strReceivedDate').withTitle('Received Date'),
-           DTColumnBuilder.newColumn(null).withTitle('Actions').notSortable()
-            .renderWith(actionsHtml)
+        var columnDefs = [
+        { field: "Id" },
+        { field: "ReceivedFrom" },
+        { field: "strReceivedDate", name: 'Received Date' },
+        { name: 'Edit', cellTemplate: '<div class="ui-grid-cell-contents"><a ng-href="#/correspondence/maintain/{{row.entity.Id}}">Edit</a></div>' }
         ];
 
 
-        $scope.showMe = function (row) {
-            alert(row.entity.ClientName);
+        $scope.gridOptions = {
+            totalItems: $scope.list.length,
+            paginationPageSize: 20,
+            enableSorting: true,
+            enableRowSelection: true,
+            multiSelect: false,
+            enableRowHeaderSelection: false,
+            columnDefs: columnDefs,
+            enableHorizontalScrollbar: 0,
+            enableVerticalScrollbar: 0,
+            enablePaginationControls: false,
+            paginationCurrentPage: 1,
+            //showFooter: true,
+
+            //rowModelType: 'pagination'
         };
 
-        function actionsHtml(data, type, full, meta) {
-            return '<a class="btn btn-sm btn-warning" ui-sref="correspondence_maintain({id:' + data.Id + '})">' +
-    '   <i class="fa fa-edit"></i>' +
-    '</a>';
+        //$scope.gridOptions.multiSelect = false;
+        $scope.gridOptions.onRegisterApi = function (gridApi) {
+            //set gridApi on scope
+            $scope.gridApi = gridApi;
+            gridApi.selection.on.rowSelectionChanged($scope, function (row) {
+                //var msg = 'row selected ' + row.isSelected;
+                $scope.vm = row.entity;
+            });
+        };
 
+        function getData() {
+            myService.get('api/correspondences/list', function (result) {
+                $scope.list = result.data;
+                $scope.gridOptions.data = $scope.list;
+                //$interval(function () { $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]); }, 0, 1);
+            });
         }
-
-
 
 
     }
