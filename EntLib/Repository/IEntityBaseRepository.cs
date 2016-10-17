@@ -22,6 +22,8 @@ namespace EntLib
         void Maintain(T entity);
         void Add(T entity);
         void Delete(T entity);
+
+        void Delete(IQueryable<T> list);
         void Edit(T entity);
 
         T Update(T entity);

@@ -24,7 +24,9 @@ namespace HealthForm.Web.Controllers
         [HttpPost]
         public IQueryable<Comment> List(EntityObject poco)
         {
-            return _Service.Repository.FindBy(x => x.ObjectId == poco.ObjectId && x.ObjectType==poco.ObjectType);
+            var list = _Service.Repository.FindBy(x => x.ObjectId == poco.ObjectId && x.ObjectType == poco.ObjectType);
+            list.Where(w => w.EntBy != null).ToList().ForEach(f => f.ByUser =  _Service.getRepository<User>().GetById((int)f.EntBy).Name);
+            return list;
         }
 
         [HttpPost]

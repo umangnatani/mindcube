@@ -145,5 +145,11 @@ namespace EntLib
             DbEntityEntry dbEntityEntry = DbContext.Entry<T>(entity);
             dbEntityEntry.State = EntityState.Deleted;
         }
+
+        public virtual void Delete(IQueryable<T> list)
+        {
+            DbContext.Set<T>().RemoveRange(list);
+        }
+
     }
 }

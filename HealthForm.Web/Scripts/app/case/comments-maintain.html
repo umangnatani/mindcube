@@ -1,23 +1,17 @@
 ﻿<div ng-controller="caseCommentsController">
-    <table class="table">
-        <tr ng-repeat="comment in list">
-            <td>{{comment.CommentDt | date : 'MM/dd/yyyy'}}</td>
-            <td>{{comment.Comments}}</td>
-            <td><a href="JavaScript:void(0)" ng-click="editChild(comment)">Edit</a> | 
-<a href="JavaScript:void(0)" ng-click="deleteChild(comment.Id, 'comments')">Delete</a></td>
-        </tr>
-    </table>
-        <form name="entryForm" novalidate>
-            <div class="row">
-                <div class="col-sm-2">
-                    <div class="form-group has-feedback">
-                        <label for="CommentDt" class="col-form-label">Date</label>
+    <div class="card" style="margin-top:10px">
+        <div class="card-block">
+            <form name="entryForm" novalidate>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group has-feedback">
+                            <label for="CommentDt" class="col-form-label">Date</label>
 
-                        <input type="text" ng-model="childVm.CommentDt" datepicker name="CommentDt" class="form-control" validator="required">
-                        <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                            <input type="text" ng-model="childVm.CommentDt" datepicker name="CommentDt" class="form-control" validator="required">
+                            <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
@@ -29,5 +23,37 @@
 
                 </div>
                 <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="save()">Save</button>
-</form>
+            </form>
+        </div>
+
+    </div>
+    <p ng-show="childVm.Id > 0">
+        <a href="javascript:void(0)" ng-click="addNew()">Add New</a>
+    </p>
+    <div class="card" ng-show="list.length > 0" style="margin-top:30px">
+        <div class="card-block">
+          
+            <h4 class="border-bottom">Existing Status</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Status Date</th>
+                        <th>By</th>
+                        <th>Comments</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="obj in list">
+                    <td>{{obj.CommentDt | date : 'MM/dd/yyyy'}}</td>
+                    <td>{{obj.ByUser}}</td>
+                    <td>{{obj.Comments}}</td>
+                    <td>
+                        <a href="JavaScript:void(0)" ng-click="editChild(obj)">Edit</a> |
+                        <a href="JavaScript:void(0)" ng-click="deleteChild(obj.Id, 'comments')">Delete</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 </div>

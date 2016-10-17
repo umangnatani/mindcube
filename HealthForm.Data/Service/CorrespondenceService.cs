@@ -15,11 +15,32 @@ namespace HealthForm.Data
 
         private IEntityBaseRepository<CaseProgram> programRep;
         private IEntityBaseRepository<AssignedTo> assignRep;
+        private IEntityBaseRepository<Comment> commentRep;
+        private IEntityBaseRepository<CaseIndividual> indRep;
+        private IEntityBaseRepository<CaseAllegation> allegRep;
+        private IEntityBaseRepository<CorrespondenceRRF> rrfRep;
 
         public CorrespondenceService()
         {
             programRep = getRepository<CaseProgram>();
             assignRep = getRepository<AssignedTo>();
+            commentRep = getRepository<Comment>();
+            indRep = getRepository<CaseIndividual>();
+            allegRep = getRepository<CaseAllegation>();
+            rrfRep = getRepository<CorrespondenceRRF>();
+        }
+
+        public override RetrunType Delete(int id)
+        {
+            programRep.Delete(programRep.FindBy(x => x.ObjectId == id && x.ObjectType == "csp"));
+            assignRep.Delete(assignRep.FindBy(x => x.ObjectId == id && x.ObjectType == "csp"));
+            commentRep.Delete(commentRep.FindBy(x => x.ObjectId == id && x.ObjectType == "csp"));
+            indRep.Delete(indRep.FindBy(x => x.ObjectId == id && x.ObjectType == "csp"));
+            allegRep.Delete(allegRep.FindBy(x => x.ObjectId == id && x.ObjectType == "csp"));
+            rrfRep.Delete(rrfRep.FindBy(x => x.CorrespId == id));
+
+            return Delete(Repository.GetById(id));
+
         }
 
 
@@ -73,3 +94,4 @@ namespace HealthForm.Data
 
     }
 }
+

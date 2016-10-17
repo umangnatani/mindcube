@@ -20,7 +20,7 @@ namespace HealthForm.Data
 
     public partial class Comment : IEntityBase
     {
-
+        public string ByUser { get; set; }
     }
 
     public partial class Correspondence : IEntityBase

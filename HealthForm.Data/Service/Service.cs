@@ -40,7 +40,7 @@ namespace HealthForm.Data
 
         }
 
-        public RetrunType Delete(int id)
+        public virtual RetrunType Delete(int id)
         {
             return Delete(Repository.GetById(id));
 

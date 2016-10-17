@@ -1,1055 +1,334 @@
-﻿ALTER TABLE [inv].[CorrespondenceRRF] DROP CONSTRAINT [FK__Correspon__Corre__6CD828CA]
+﻿USE [icts]
 GO
-ALTER TABLE [inv].[CaseProgram] DROP CONSTRAINT [FK__CaseProgr__Progr__6442E2C9]
-GO
-ALTER TABLE [inv].[CaseIndividual] DROP CONSTRAINT [FK__CaseIndiv__Indiv__6DCC4D03]
-GO
-ALTER TABLE [inv].[CaseAllegationsSubject] DROP CONSTRAINT [FK__CaseAlleg__Indiv__46B27FE2]
-GO
-ALTER TABLE [inv].[AssignedTo] DROP CONSTRAINT [FK__AssignedT__UserI__1B9317B3]
-GO
-ALTER TABLE [dbo].[UserRole] DROP CONSTRAINT [FK_UserRole_User]
-GO
-ALTER TABLE [dbo].[UserRole] DROP CONSTRAINT [FK_UserRole_Role]
-GO
-ALTER TABLE [dbo].[User] DROP CONSTRAINT [FK_User_Client]
-GO
-ALTER TABLE [dbo].[Program] DROP CONSTRAINT [FK__Program__EntityI__18EBB532]
-GO
-ALTER TABLE [dbo].[ListValue] DROP CONSTRAINT [FK_ListValue_List]
-GO
-ALTER TABLE [dbo].[ListColumnValue] DROP CONSTRAINT [FK_ListColumnValue_ListColumn]
-GO
-ALTER TABLE [dbo].[ListColumnOption] DROP CONSTRAINT [FK_ListColumnOption_ListColumn]
-GO
-ALTER TABLE [dbo].[ListColumn] DROP CONSTRAINT [FK_ListColumn_List]
-GO
-ALTER TABLE [dbo].[List] DROP CONSTRAINT [FK_List_Client]
-GO
-ALTER TABLE [dbo].[Entity] DROP CONSTRAINT [FK__Entity__ParentId__19DFD96B]
-GO
-ALTER TABLE [dbo].[Entity] DROP CONSTRAINT [FK__Entity__ClientId__17036CC0]
-GO
-ALTER TABLE [dbo].[CodeDetail] DROP CONSTRAINT [FK_CodeDetail_CodeMaster]
-GO
-ALTER TABLE [inv].[CaseAllegationsSubject] DROP CONSTRAINT [DF__CaseAlleg__EntDt__42E1EEFE]
-GO
-ALTER TABLE [inv].[CaseAllegationsSubject] DROP CONSTRAINT [DF__CaseAlleg__IsIna__41EDCAC5]
-GO
-/****** Object:  Table [inv].[Individual]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [inv].[Individual]
-GO
-/****** Object:  Table [inv].[CorrespondenceRRF]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [inv].[CorrespondenceRRF]
-GO
-/****** Object:  Table [inv].[Correspondence]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [inv].[Correspondence]
-GO
-/****** Object:  Table [inv].[Comments]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [inv].[Comments]
-GO
-/****** Object:  Table [inv].[CaseProgram]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [inv].[CaseProgram]
-GO
-/****** Object:  Table [inv].[CaseIndividual]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [inv].[CaseIndividual]
-GO
-/****** Object:  Table [inv].[CaseAllegationsSubject]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [inv].[CaseAllegationsSubject]
-GO
-/****** Object:  Table [inv].[CaseAllegations]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [inv].[CaseAllegations]
-GO
-/****** Object:  Table [inv].[AssignedTo]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [inv].[AssignedTo]
-GO
-/****** Object:  Table [dbo].[UserRole]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[UserRole]
-GO
-/****** Object:  Table [dbo].[UserMenu]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[UserMenu]
-GO
-/****** Object:  Table [dbo].[User]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[User]
-GO
-/****** Object:  Table [dbo].[Role]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[Role]
-GO
-/****** Object:  Table [dbo].[Program]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[Program]
-GO
-/****** Object:  Table [dbo].[ListValue]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[ListValue]
-GO
-/****** Object:  Table [dbo].[ListColumnValue]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[ListColumnValue]
-GO
-/****** Object:  Table [dbo].[ListColumnOption]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[ListColumnOption]
-GO
-/****** Object:  Table [dbo].[ListColumn]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[ListColumn]
-GO
-/****** Object:  Table [dbo].[List]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[List]
-GO
-/****** Object:  Table [dbo].[Entity]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[Entity]
-GO
-/****** Object:  Table [dbo].[CodeMaster]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[CodeMaster]
-GO
-/****** Object:  Table [dbo].[CodeDetail]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[CodeDetail]
-GO
-/****** Object:  Table [dbo].[Client]    Script Date: 10/16/2016 7:12:35 PM ******/
-DROP TABLE [dbo].[Client]
-GO
-/****** Object:  Table [dbo].[Client]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Client](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ClientName] [nvarchar](200) NOT NULL,
- CONSTRAINT [PK_Client] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[CodeDetail]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CodeDetail](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[MasterCode] [nvarchar](20) NOT NULL,
-	[ClientId] [int] NULL,
-	[Code] [nvarchar](20) NULL,
-	[Text] [nvarchar](200) NOT NULL,
-	[Description] [nvarchar](200) NULL,
-	[Field1] [nvarchar](400) NULL,
-	[Field2] [nvarchar](400) NULL,
-	[Field3] [nvarchar](400) NULL,
-	[Field4] [nvarchar](400) NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
- CONSTRAINT [PK_dbo.CodeDetail] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[CodeMaster]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[CodeMaster](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ClientId] [int] NULL,
-	[Code] [nvarchar](20) NOT NULL,
-	[Text] [nvarchar](200) NOT NULL,
-	[Description] [nvarchar](200) NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[IsTest] [bit] NOT NULL DEFAULT ((0)),
- CONSTRAINT [PK_dbo.CodeMaster] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[Entity]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Entity](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Desc] [nvarchar](200) NOT NULL,
-	[ParentId] [int] NULL,
-	[ClientId] [int] NOT NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NOT NULL DEFAULT (getdate()),
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[List]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[List](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ListTitle] [nvarchar](100) NOT NULL,
-	[ClientId] [int] NULL,
-	[ObjectId] [int] NULL,
-	[ObjectCode] [nvarchar](20) NULL,
-	[Active] [bit] NOT NULL CONSTRAINT [DF_List_Active]  DEFAULT ((1)),
- CONSTRAINT [PK_List] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[ListColumn]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ListColumn](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ListId] [int] NOT NULL,
-	[ColumnTitle] [nvarchar](100) NOT NULL,
-	[ColumnDesc] [nvarchar](500) NULL,
-	[ColumnType] [nvarchar](10) NULL,
-	[ColumnOrder] [int] NULL,
-	[LabelCols] [nvarchar](10) NULL,
-	[ValueCols] [nvarchar](10) NULL,
-	[ValueLength] [int] NULL,
-	[IsRequired] [bit] NOT NULL CONSTRAINT [DF_ListColumn_IsRequired]  DEFAULT ((0)),
-	[TextAreaCols] [int] NULL,
-	[TextAreaRows] [int] NULL,
-	[Active] [bit] NOT NULL CONSTRAINT [DF_ListColumn_Active]  DEFAULT ((1)),
- CONSTRAINT [PK_ListColumn] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[ListColumnOption]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ListColumnOption](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Text] [nvarchar](100) NOT NULL,
-	[ListColumnId] [int] NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
- CONSTRAINT [PK_ListColumnOption] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[ListColumnValue]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ListColumnValue](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ObjectId] [int] NOT NULL,
-	[ObjectCode] [nvarchar](20) NOT NULL,
-	[ListColumnId] [int] NOT NULL,
-	[OptionId] [int] NULL,
-	[OptionText] [nvarchar](4000) NULL,
-	[DtEnt] [date] NOT NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
- CONSTRAINT [PK_ListColumnValue] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[ListValue]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[ListValue](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ObjectId] [int] NOT NULL,
-	[ObjectCode] [nvarchar](20) NOT NULL,
-	[ListId] [int] NOT NULL,
-	[JSONText] [nvarchar](max) NULL,
- CONSTRAINT [PK_ListValue] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[Program]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Program](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Desc] [nvarchar](200) NOT NULL,
-	[EntityId] [int] NOT NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NOT NULL DEFAULT (getdate()),
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[Role]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Role](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Code] [nvarchar](100) NOT NULL,
-	[Desc] [nvarchar](200) NOT NULL,
-	[ObjectCode] [nvarchar](100) NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
- CONSTRAINT [PK_dbo.Role] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[User]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[User](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[UserName] [nvarchar](100) NOT NULL,
-	[Email] [nvarchar](200) NOT NULL,
-	[HashedPassword] [nvarchar](200) NULL,
-	[Salt] [nvarchar](200) NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[IsLocked] [bit] NOT NULL DEFAULT ((0)),
-	[EntDt] [datetime] NOT NULL,
-	[ClientId] [int] NULL,
-	[FirstName] [nvarchar](100) NULL,
-	[LastName] [nvarchar](100) NULL,
-	[MiddleName] [nvarchar](100) NULL,
-	[NameSuffix] [nvarchar](100) NULL,
-	[JobTitle] [nvarchar](200) NULL,
- CONSTRAINT [PK_dbo.User] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[UserMenu]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[UserMenu](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Code] [nvarchar](100) NULL,
-	[Title] [nvarchar](200) NULL,
-	[URL] [nvarchar](200) NULL,
-	[Icon] [nvarchar](200) NULL,
-	[ParentId] [int] NULL,
-	[StateName] [nvarchar](200) NULL,
-	[StateJSON] [nvarchar](max) NULL,
-	[Field1] [nvarchar](200) NULL,
-	[Field2] [nvarchar](200) NULL,
-	[SortOrder] [int] NULL,
- CONSTRAINT [PK_dbo.UserMenu] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-/****** Object:  Table [dbo].[UserRole]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[UserRole](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[UserId] [int] NOT NULL,
-	[RoleId] [int] NOT NULL,
-	[DtEnt] [date] NOT NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
- CONSTRAINT [PK_dbo.UserRole] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [inv].[AssignedTo]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [inv].[AssignedTo](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[UserId] [int] NOT NULL,
-	[ObjectId] [int] NOT NULL,
-	[ObjectType] [nvarchar](10) NOT NULL,
-	[Comments] [nvarchar](max) NULL,
-	[AssignType] [nvarchar](10) NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NOT NULL DEFAULT (getdate()),
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
- CONSTRAINT [PK__Assigned__3214EC0762FD2056] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-/****** Object:  Table [inv].[CaseAllegations]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [inv].[CaseAllegations](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[AllegationId] [int] NOT NULL,
-	[ObjectId] [int] NOT NULL,
-	[ObjectType] [nvarchar](20) NOT NULL,
-	[Desc] [nvarchar](max) NOT NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NOT NULL DEFAULT (getdate()),
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
- CONSTRAINT [PK__CaseAlle__3214EC0794F30297] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-/****** Object:  Table [inv].[CaseAllegationsSubject]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [inv].[CaseAllegationsSubject](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[CaseAllegationId] [int] NULL,
-	[IndividualId] [int] NULL,
-	[IsInactive] [bit] NOT NULL,
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NOT NULL,
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [inv].[CaseIndividual]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
-CREATE TABLE [inv].[CaseIndividual](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[IndividualId] [int] NOT NULL,
-	[ObjectId] [int] NOT NULL,
-	[ObjectType] [nvarchar](20) NOT NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NOT NULL DEFAULT (getdate()),
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
-	[SubjectType] [nvarchar](2) NULL,
-	[IsWB] [bit] NULL,
-	[WBComments] [nvarchar](max) NULL,
-	[IsSubjectResponse] [bit] NULL,
-	[DraftSentDt] [datetime] NULL,
-	[ResponseDueDt] [datetime] NULL,
-	[RequestedExtension] [bit] NULL,
-	[ExtensionDueDt] [datetime] NULL,
-	[ResponseReceiveDt] [datetime] NULL,
-	[IsJudicialAction] [bit] NULL,
-	[ReferralStatusId] [int] NULL,
-	[IsLEA] [bit] NULL,
-	[LEADt] [datetime] NULL,
-	[LEAgency] [nvarchar](max) NULL,
-	[IsSA] [bit] NULL,
-	[SADt] [datetime] NULL,
-	[SAResponseDt] [datetime] NULL,
-	[IsSAProsecuting] [bit] NULL,
-	[IsGrandJury] [bit] NULL,
-	[IsIndicted] [bit] NULL,
-	[AcceptanceDt] [datetime] NULL,
-	[RestAmount] [nvarchar](max) NULL,
-	[IsPTI] [bit] NULL,
-	[ProbTermId] [int] NULL,
-	[ProbTerm] [char](10) NULL,
-	[CommServiceHours] [char](10) NULL,
-	[SpecialConditions] [nvarchar](max) NULL,
- CONSTRAINT [PK__CaseIndi__3214EC074702BC60] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-SET ANSI_PADDING OFF
-GO
-/****** Object:  Table [inv].[CaseProgram]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [inv].[CaseProgram](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ProgramId] [int] NOT NULL,
-	[ObjectId] [int] NOT NULL,
-	[ObjectType] [nvarchar](50) NOT NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NULL DEFAULT (getdate()),
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
- CONSTRAINT [PK__CaseProg__3214EC07C5280A5C] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [inv].[Comments]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [inv].[Comments](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ObjectId] [int] NOT NULL,
-	[ObjectType] [nvarchar](10) NOT NULL,
-	[Comments] [nvarchar](max) NOT NULL,
-	[CommentDt] [datetime] NOT NULL DEFAULT (getdate()),
-	[CommentType] [nvarchar](10) NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NOT NULL DEFAULT (getdate()),
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
- CONSTRAINT [PK__CaseComm__3214EC071F3F7F73] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-/****** Object:  Table [inv].[Correspondence]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [inv].[Correspondence](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ClientId] [int] NOT NULL,
-	[CustomId] [nvarchar](50) NULL,
-	[ForeignId] [nvarchar](50) NULL,
-	[FirstName] [nvarchar](100) NULL,
-	[MiddleName] [nvarchar](100) NULL,
-	[LastName] [nvarchar](100) NULL,
-	[ReportingId] [int] NULL,
-	[CategoryId] [int] NULL,
-	[SourceId] [int] NULL,
-	[AssignedId] [int] NULL,
-	[ReviewedId] [int] NULL,
-	[isSelf] [bit] NULL,
-	[ReceivedDt] [datetime] NULL,
-	[AssignedDt] [datetime] NULL,
-	[DueDt] [datetime] NULL,
-	[ReviewDt] [datetime] NULL,
-	[isWB] [bit] NULL,
-	[isLetterSent] [bit] NULL,
-	[LetterDt] [datetime] NULL,
-	[Explaination] [nvarchar](max) NULL,
-	[RecordLocation] [nvarchar](max) NULL,
-	[DispositionId] [int] NULL,
-	[DecisionDt] [datetime] NULL,
-	[ClosedDt] [datetime] NULL,
-	[IdentifyCosts] [nvarchar](50) NULL,
-	[IdentifyCostsDt] [datetime] NULL,
-	[AvoidanceCosts] [nvarchar](50) NULL,
-	[AvoidanceCostsDt] [datetime] NULL,
-	[QuestionCosts] [nvarchar](50) NULL,
-	[QuestionCostsDt] [datetime] NULL,
-	[RecoveredCosts] [nvarchar](50) NULL,
-	[RecoveredCostsDt] [datetime] NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NULL,
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
- CONSTRAINT [PK__Correspo__3214EC07D370CD87] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-/****** Object:  Table [inv].[CorrespondenceRRF]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [inv].[CorrespondenceRRF](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[CorrespId] [int] NOT NULL,
-	[ProgramId] [int] NULL,
-	[isPending] [bit] NULL,
-	[RequestDt] [datetime] NULL,
-	[DueDt] [datetime] NULL,
-	[ReceivedDt] [datetime] NULL,
-	[CAPDueDt] [datetime] NULL,
-	[CAPReceivedDt] [datetime] NULL,
-	[isExtension] [bit] NULL,
-	[IsInadequate] [bit] NULL,
-	[IsAdditionalInfo] [bit] NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NOT NULL DEFAULT (getdate()),
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
- CONSTRAINT [PK__Correspo__3214EC0776AE2FE9] PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-/****** Object:  Table [inv].[Individual]    Script Date: 10/16/2016 7:12:35 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
-CREATE TABLE [inv].[Individual](
-	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[ClientId] [int] NOT NULL,
-	[FirstName] [nvarchar](max) NULL,
-	[MiddleName] [nvarchar](max) NULL,
-	[LastName] [nvarchar](max) NULL,
-	[Title] [varchar](max) NULL,
-	[SurName] [nvarchar](max) NULL,
-	[NickName] [nvarchar](max) NULL,
-	[Address1] [nvarchar](max) NULL,
-	[ddress2] [nvarchar](max) NULL,
-	[City] [nvarchar](max) NULL,
-	[State] [nvarchar](max) NULL,
-	[Zip] [nvarchar](max) NULL,
-	[LicenseNo] [nvarchar](max) NULL,
-	[Agency] [nvarchar](max) NULL,
-	[SupLastName] [nvarchar](max) NULL,
-	[SupFirstName] [nvarchar](max) NULL,
-	[SupMiddleName] [nvarchar](max) NULL,
-	[WorkAddress1] [nvarchar](max) NULL,
-	[WorkAddress2] [nvarchar](max) NULL,
-	[WorkCity] [nvarchar](max) NULL,
-	[WorkPhone] [nvarchar](max) NULL,
-	[WorkZip] [nvarchar](max) NULL,
-	[WorkState] [nvarchar](max) NULL,
-	[CellPhone] [nvarchar](max) NULL,
-	[HomePhone] [nvarchar](max) NULL,
-	[Email] [nvarchar](max) NULL,
-	[Email2] [nvarchar](max) NULL,
-	[DOB] [nvarchar](max) NULL,
-	[IsInactive] [bit] NOT NULL DEFAULT ((0)),
-	[EntBy] [int] NULL,
-	[EntDt] [datetime] NOT NULL DEFAULT (getdate()),
-	[ChgBy] [int] NULL,
-	[ChgDt] [datetime] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 100) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-GO
-SET ANSI_PADDING OFF
-GO
-SET IDENTITY_INSERT [dbo].[Client] ON 
-
-INSERT [dbo].[Client] ([Id], [ClientName]) VALUES (1, N'OIG JAX')
-INSERT [dbo].[Client] ([Id], [ClientName]) VALUES (6, N'OIG')
-SET IDENTITY_INSERT [dbo].[Client] OFF
 SET IDENTITY_INSERT [dbo].[CodeDetail] ON 
 
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (1, N'corresp_category', NULL, NULL, N'Complaint', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (2, N'corresp_category', NULL, NULL, N'Incident Reporting', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (3, N'corresp_category', NULL, NULL, N'Miscellaneous', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (4, N'corresp_category', NULL, NULL, N'Public Records Request', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (5, N'corresp_category', NULL, NULL, N'Reference Check', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (6, N'corresp_source', NULL, NULL, N'Email', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (7, N'corresp_source', NULL, NULL, N'Fax', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (8, N'corresp_source', NULL, NULL, N'In Person', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (9, N'corresp_source', NULL, NULL, N'Letter', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (10, N'corresp_source', NULL, NULL, N'Phone', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (11, N'corresp_source', NULL, NULL, N'Website', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (12, N'report_source', NULL, NULL, N'Private Citizen', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (13, N'report_source', NULL, NULL, N'Anonymous', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (14, N'report_source', NULL, NULL, N'Contractor Employee (Current/Former)', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (15, N'report_source', NULL, NULL, N'Employee (Current/Former)', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (16, N'report_source', NULL, NULL, N'Media', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (17, N'report_source', NULL, NULL, N'Other – City/County/State/Federal Agencies', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (18, N'report_source', NULL, NULL, N'Other – All Other', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (19, N'alleg_type', NULL, NULL, N'Breach of Information', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (20, N'alleg_type', NULL, NULL, N'Complainant/Client Abuse', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (21, N'alleg_type', NULL, NULL, N'Computer Related Misconduct', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (22, N'alleg_type', NULL, NULL, N'Contract Improprieties', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (23, N'alleg_type', NULL, NULL, N'Employee Misconduct', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (24, N'alleg_type', NULL, NULL, N'Falsification, Omission or Misrepresentation', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (25, N'alleg_type', NULL, NULL, N'Financial Improprieties', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (26, N'alleg_type', NULL, NULL, N'Fraud', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (27, N'alleg_type', NULL, NULL, N'Impairment', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (28, N'alleg_type', NULL, NULL, N'Insufficient Complaint', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (29, N'alleg_type', NULL, NULL, N'Management Review', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (30, N'alleg_type', NULL, NULL, N'Mishandling of Case', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (31, N'alleg_type', NULL, NULL, N'Misuse of  Property and Personnel (Non Computer)', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (32, N'alleg_type', NULL, NULL, N'N/A', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (33, N'alleg_type', NULL, NULL, N'Negligence of Duties', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (34, N'alleg_type', NULL, NULL, N'Non-Jurisdiction', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (35, N'alleg_type', NULL, NULL, N'Personnel Improprieties', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (36, N'alleg_type', NULL, NULL, N'Public Records', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (37, N'alleg_type', NULL, NULL, N'Theft', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (38, N'alleg_type', NULL, NULL, N'Unauthorized Solicitation/Kickbacks', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (39, N'alleg_type', NULL, NULL, N'Violation of Law, Rule or Procedure', NULL, NULL, NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (40, N'alleg_detail', NULL, NULL, N'Disclosing privileged or confidential information to unauthorized persons', NULL, N'19', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (41, N'alleg_detail', NULL, NULL, N'Unauthorized distribution of written or printed materials', NULL, N'19', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (42, N'alleg_detail', NULL, NULL, N'Harassment of Complainant/Client', NULL, N'20', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (43, N'alleg_detail', NULL, NULL, N'Verbal or Physical Abuse of Complainant/Client', NULL, N'20', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (44, N'alleg_detail', NULL, NULL, N'Assessing Pornographic Information', NULL, N'21', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (45, N'alleg_detail', NULL, NULL, N'Deleting and Destruction of Data', NULL, N'21', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (46, N'alleg_detail', NULL, NULL, N'Failure to Secure Computer', NULL, N'21', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (47, N'alleg_detail', NULL, NULL, N'Non job related internet browsing', NULL, N'21', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (48, N'alleg_detail', NULL, NULL, N'Unauthorized Access to information System', NULL, N'21', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (49, N'alleg_detail', NULL, NULL, N'Unauthorized sharing of passwords', NULL, N'21', NULL, NULL, NULL, 0)
-INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (50, N'alleg_detail', NULL, NULL, N'Utilizing computer for personal use', NULL, N'21', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (19, N'alleg_type', 1, N'2', N'Breach of Information', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (20, N'alleg_type', 1, N'25', N'Complainant/Client Abuse', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (21, N'alleg_type', 1, N'16', N'Computer Related Misconduct', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (22, N'alleg_type', 1, N'4', N'Contract Improprieties', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (23, N'alleg_type', 1, N'8', N'Employee Misconduct', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (24, N'alleg_type', 1, N'5', N'Falsification, Omission or Misrepresentation', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (25, N'alleg_type', 1, N'6', N'Financial Improprieties', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (26, N'alleg_type', 1, N'26', N'Fraud', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (27, N'alleg_type', 1, N'17', N'Impairment', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (28, N'alleg_type', 1, N'21', N'Insufficient Complaint', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (29, N'alleg_type', 1, N'18', N'Management Review', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (30, N'alleg_type', 1, N'27', N'Mishandling of Case', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (31, N'alleg_type', 1, N'10', N'Misuse of  Property and Personnel (Non Computer)', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (32, N'alleg_type', 1, N'24', N'N/A', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (33, N'alleg_type', 1, N'9', N'Negligence of Duties', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (34, N'alleg_type', 1, N'22', N'Non-Jurisdiction', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (35, N'alleg_type', 1, N'11', N'Personnel Improprieties', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (36, N'alleg_type', 1, N'23', N'Public Records', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (37, N'alleg_type', 1, N'12', N'Theft', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (38, N'alleg_type', 1, N'13', N'Unauthorized Solicitation/Kickbacks', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (39, N'alleg_type', 1, N'14', N'Violation of Law, Rule or Procedure', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (51, N'jud_ref_status', NULL, NULL, N'Closed', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (52, N'jud_ref_status', NULL, NULL, N'N/A', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (53, N'jud_ref_status', NULL, NULL, N'Pending', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (54, N'admin_action', NULL, NULL, N'Demotion', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (55, N'admin_action', NULL, NULL, N'Dismissal', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (56, N'admin_action', NULL, NULL, N'None - No Action Taken', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (57, N'admin_action', NULL, NULL, N'None - Performance Improvement Plan Counseling', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (58, N'admin_action', NULL, NULL, N'Oral Reprimand', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (59, N'admin_action', NULL, NULL, N'Resigned', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (60, N'admin_action', NULL, NULL, N'Suspended', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (61, N'admin_action', NULL, NULL, N'Written Reprimand', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (62, N'disp_status', NULL, NULL, N'Closed - No Action', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (63, N'disp_status', NULL, NULL, N'Closed-Incorporated with Another Correspondence', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (64, N'disp_status', NULL, NULL, N'Complaint Handled', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (65, N'disp_status', NULL, NULL, N'Full Investigation', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (66, N'disp_status', NULL, NULL, N'IG Notification', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (67, N'disp_status', NULL, NULL, N'Information Only', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (68, N'disp_status', NULL, NULL, N'Investigation/Incorporated', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (69, N'disp_status', NULL, NULL, N'Limited Review', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (70, N'disp_status', NULL, NULL, N'Management Inquiry', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (71, N'disp_status', NULL, NULL, N'Management Referral', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (72, N'disp_status', NULL, NULL, N'Management Review', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (73, N'disp_status', NULL, NULL, N'Management Review (WB)', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (74, N'disp_status', NULL, NULL, N'Non-Jurisdictional Referral to Federal Agency', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (75, N'disp_status', NULL, NULL, N'Non-Jurisdictional Referral to SAO', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (76, N'disp_status', NULL, NULL, N'Non-Jurisdictional Referral to State Agency', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (77, N'disp_status', NULL, NULL, N'Non-jurisdictional(Other)', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (78, N'disp_status', NULL, NULL, N'Preliminary/Incorporated', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (79, N'disp_status', NULL, NULL, N'Whistle-Blower Investigation', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (80, N'option_type', NULL, N'T', N'Textbox', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (81, N'yes_no', NULL, NULL, N'Yes', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (82, N'yes_no', NULL, NULL, N'No', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (83, N'jud_adj', NULL, NULL, N'Adjudicated', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (84, N'jud_adj', NULL, NULL, N'Adjudication Withheld', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (85, N'jud_adj', NULL, NULL, N'Dismissed', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (86, N'jud_adj', NULL, NULL, N'Guilty Plea', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (87, N'jud_adj', NULL, NULL, N'Jury Trial – Guilty', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (88, N'jud_adj', NULL, NULL, N'Jury Trial – Not Guilty', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (89, N'jud_adj', NULL, NULL, N'No Information Filed', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (90, N'jud_adj', NULL, NULL, N'Nolle Prosse', NULL, NULL, NULL, NULL, NULL, 0)
+GO
 INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (91, N'jud_adj', NULL, NULL, N'Nolo Contendere (No Contest)', NULL, NULL, NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (162, N'alleg_detail', NULL, NULL, N'Assessing Pornographic Information', NULL, N'21', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (163, N'alleg_detail', NULL, NULL, N'Bias and Favoritism in Awarding of Contract', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (164, N'alleg_detail', NULL, NULL, N'Bribery', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (165, N'alleg_detail', NULL, NULL, N'Bribery', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (166, N'alleg_detail', NULL, NULL, N'Cases of Personal Interest', NULL, N'25', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (167, N'alleg_detail', NULL, NULL, N'City/Municipality', NULL, N'34', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (168, N'alleg_detail', NULL, NULL, N'Conduct unbecoming a public employee', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (169, N'alleg_detail', NULL, NULL, N'Conducting personal activities during work hours', NULL, N'31', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (170, N'alleg_detail', NULL, NULL, N'Conflict of Interest', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (171, N'alleg_detail', NULL, NULL, N'Constitutional Officer', NULL, N'34', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (172, N'alleg_detail', NULL, NULL, N'Deleting and Destruction of Data', NULL, N'21', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (173, N'alleg_detail', NULL, NULL, N'Destruction or abuse of Government property or equipment or the property of co-workers', NULL, N'31', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (174, N'alleg_detail', NULL, NULL, N'Disclosing privileged or confidential information to unauthorized persons', NULL, N'19', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (175, N'alleg_detail', NULL, NULL, N'Dishonesty', NULL, N'24', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (176, N'alleg_detail', NULL, NULL, N'Employee receiving Kickbacks or gifts', NULL, N'25', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (177, N'alleg_detail', NULL, NULL, N'Employment Applications/History', NULL, N'24', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (178, N'alleg_detail', NULL, NULL, N'Excessive Absenteeism', NULL, N'35', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (179, N'alleg_detail', NULL, NULL, N'Excessive Fees', NULL, N'36', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (180, N'alleg_detail', NULL, NULL, N'Excessive Tardiness', NULL, N'35', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (181, N'alleg_detail', NULL, NULL, N'Failure to monitor contracts', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (182, N'alleg_detail', NULL, NULL, N'Failure to perform assigned duties', NULL, N'33', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (183, N'alleg_detail', NULL, NULL, N'Failure to perform assigned duties', NULL, N'35', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (184, N'alleg_detail', NULL, NULL, N'Failure to perform assigned duties', NULL, N'35', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (185, N'alleg_detail', NULL, NULL, N'Failure to release', NULL, N'36', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (186, N'alleg_detail', NULL, NULL, N'Failure to release in a timely manner', NULL, N'36', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (187, N'alleg_detail', NULL, NULL, N'Failure to report an injury or accident', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (188, N'alleg_detail', NULL, NULL, N'Failure to Secure Computer', NULL, N'21', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (189, N'alleg_detail', NULL, NULL, N'Falsification of records including omission or knowingly submitting inaccurate or untruthful information', NULL, N'24', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (190, N'alleg_detail', NULL, NULL, N'falsification of timesheet', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (191, N'alleg_detail', NULL, NULL, N'Federal agency', NULL, N'34', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (192, N'alleg_detail', NULL, NULL, N'Fraud', NULL, N'25', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (193, N'alleg_detail', NULL, NULL, N'Fraudulent billing', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (194, N'alleg_detail', NULL, NULL, N'Giving False Information', NULL, N'24', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (195, N'alleg_detail', NULL, NULL, N'Harassment of Complainant/Client', NULL, N'20', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (196, N'alleg_detail', NULL, NULL, N'Illegal bidding practices', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (197, N'alleg_detail', NULL, NULL, N'Improper Leasing', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (198, N'alleg_detail', NULL, NULL, N'Improper subcontracting of client services', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (199, N'alleg_detail', NULL, NULL, N'Insubordination', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (200, N'alleg_detail', NULL, NULL, N'Insufficient complaint information', NULL, N'28', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (201, N'alleg_detail', NULL, NULL, N'Insurance', NULL, N'26', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (202, N'alleg_detail', NULL, NULL, N'Landlord Tenant', NULL, N'34', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (203, N'alleg_detail', NULL, NULL, N'Law Enforcement', NULL, N'34', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (204, N'alleg_detail', NULL, NULL, N'Misappropriation of funds', NULL, N'25', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (205, N'alleg_detail', NULL, NULL, N'Mismanagement', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (206, N'alleg_detail', NULL, NULL, N'Negligence of Duties', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (207, N'alleg_detail', NULL, NULL, N'Non job related internet browsing', NULL, N'21', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (208, N'alleg_detail', NULL, NULL, N'Non-compliance with contract', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (209, N'alleg_detail', NULL, NULL, N'Non-Performance', NULL, N'22', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (210, N'alleg_detail', NULL, NULL, N'Other Administrative Records', NULL, N'24', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (211, N'alleg_detail', NULL, NULL, N'Other Personnel Misconduct', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (212, N'alleg_detail', NULL, NULL, N'Private Sector', NULL, N'34', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (213, N'alleg_detail', NULL, NULL, N'Selling/Buying Stolen Property', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (214, N'alleg_detail', NULL, NULL, N'Sleeping while on duty', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (215, N'alleg_detail', NULL, NULL, N'State Agency', NULL, N'34', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (216, N'alleg_detail', NULL, NULL, N'Theft of property or equipment', NULL, N'37', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (217, N'alleg_detail', NULL, NULL, N'Trading or Trafficking with Client', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (218, N'alleg_detail', NULL, NULL, N'Unauthorized Access to information System', NULL, N'21', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (219, N'alleg_detail', NULL, NULL, N'Unauthorized distribution of written or printed materials', NULL, N'19', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (220, N'alleg_detail', NULL, NULL, N'Unauthorized possession of a weapon', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (221, N'alleg_detail', NULL, NULL, N'Unauthorized sharing of passwords', NULL, N'21', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (222, N'alleg_detail', NULL, NULL, N'Unauthorized solicitation or sales while on duty', NULL, N'23', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (223, N'alleg_detail', NULL, NULL, N'Unauthorized solicitation or sales while on duty', NULL, N'38', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (224, N'alleg_detail', NULL, NULL, N'Unauthorized Taking Client Property or Funds', NULL, N'37', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (225, N'alleg_detail', NULL, NULL, N'Unauthorized use of Government property or equipment', NULL, N'31', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (226, N'alleg_detail', NULL, NULL, N'Under the influences of alcohol or non-prescription controlled substance', NULL, N'27', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (227, N'alleg_detail', NULL, NULL, N'Unproductive use of time', NULL, N'33', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (228, N'alleg_detail', NULL, NULL, N'Utilizing computer for personal use', NULL, N'21', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (229, N'alleg_detail', NULL, NULL, N'Verbal or Physical Abuse of Complainant/Client', NULL, N'20', NULL, NULL, NULL, 0)
+GO
+INSERT [dbo].[CodeDetail] ([Id], [MasterCode], [ClientId], [Code], [Text], [Description], [Field1], [Field2], [Field3], [Field4], [IsInactive]) VALUES (230, N'alleg_detail', NULL, NULL, N'Withholding Information', NULL, N'30', NULL, NULL, NULL, 0)
+GO
 SET IDENTITY_INSERT [dbo].[CodeDetail] OFF
+GO
 SET IDENTITY_INSERT [dbo].[CodeMaster] ON 
 
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (1, NULL, N'option_type', N'Option Type', N'Option Type', 0, 0)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (2, NULL, N'corresp_category', N'Correspondence Category', N'Correspondence Category', 0, 0)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (3, NULL, N'corresp_source', N'Correspondence Source', N'Correspondence Source', 0, 0)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (4, NULL, N'report_source', N'Reporting Source', N'Reporting Source', 0, 1)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (5, NULL, N'alleg_type', N'Allegation Type', N'Allegation Type', 0, 0)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (6, NULL, N'alleg_detail', N'Allegation Details', N'Allegation Details', 0, 0)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (7, NULL, N'comment_type', N'Comment Type', N'Comment Type', 0, 0)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (8, NULL, N'disp_status', N'Disposition Status', N'Disposition Status', 0, 0)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (9, NULL, N'admin_action', N'Admin Action Taken', N'Admin Action Taken', 0, 0)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (10, NULL, N'jud_ref_status', N'Judicial Referral Status', N'Judicial Referral Status', 0, 0)
+GO
 INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (11, NULL, N'jud_adj', N'Judicial Adjudication', NULL, 0, 0)
-INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (1007, NULL, N'yes_no', N'Yes No', NULL, 0, 0)
+GO
+INSERT [dbo].[CodeMaster] ([Id], [ClientId], [Code], [Text], [Description], [IsInactive], [IsTest]) VALUES (12, NULL, N'yes_no', N'Yes No', NULL, 0, 0)
+GO
 SET IDENTITY_INSERT [dbo].[CodeMaster] OFF
-SET IDENTITY_INSERT [dbo].[Entity] ON 
-
-INSERT [dbo].[Entity] ([Id], [Desc], [ParentId], [ClientId], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (1, N'City', NULL, 6, 0, NULL, CAST(N'2016-10-09 18:22:49.843' AS DateTime), NULL, NULL)
-INSERT [dbo].[Entity] ([Id], [Desc], [ParentId], [ClientId], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (2, N'SWA', NULL, 6, 0, NULL, CAST(N'2016-10-09 18:23:04.767' AS DateTime), NULL, NULL)
-SET IDENTITY_INSERT [dbo].[Entity] OFF
-SET IDENTITY_INSERT [dbo].[List] ON 
-
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (3, N'Test List1 updated 1234', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (4, N'Test List 2 updated 242233', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1002, N'List 2', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1003, N'List 3', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1004, N'List 4', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1005, N'Listy 33', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1006, N'Lissddfjf f', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1007, N'sdggggg', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1008, N'ggghhhh', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1009, N'hhhjjj', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1010, N'nnmmmmm', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1011, N'mmnm,,,', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1012, N'mjjj', 6, NULL, NULL, 1)
-INSERT [dbo].[List] ([Id], [ListTitle], [ClientId], [ObjectId], [ObjectCode], [Active]) VALUES (1013, N'Test List1', 6, NULL, NULL, 0)
-SET IDENTITY_INSERT [dbo].[List] OFF
-SET IDENTITY_INSERT [dbo].[ListColumn] ON 
-
-INSERT [dbo].[ListColumn] ([Id], [ListId], [ColumnTitle], [ColumnDesc], [ColumnType], [ColumnOrder], [LabelCols], [ValueCols], [ValueLength], [IsRequired], [TextAreaCols], [TextAreaRows], [Active]) VALUES (1062, 3, N'Name', N'Test column description', N'D', NULL, N'col-md-2', N'col-md-4', 1, 1, NULL, 1, 1)
-INSERT [dbo].[ListColumn] ([Id], [ListId], [ColumnTitle], [ColumnDesc], [ColumnType], [ColumnOrder], [LabelCols], [ValueCols], [ValueLength], [IsRequired], [TextAreaCols], [TextAreaRows], [Active]) VALUES (1063, 3, N'Age', N'Test column updated again 23', N'T', NULL, N'col-md-2', N'col-md-5', 1, 0, NULL, 1, 1)
-INSERT [dbo].[ListColumn] ([Id], [ListId], [ColumnTitle], [ColumnDesc], [ColumnType], [ColumnOrder], [LabelCols], [ValueCols], [ValueLength], [IsRequired], [TextAreaCols], [TextAreaRows], [Active]) VALUES (1064, 3, N'Email', N'Email Address', N'T', NULL, N'col-md-2', N'col-md-5', 1, 1, NULL, 1, 1)
-SET IDENTITY_INSERT [dbo].[ListColumn] OFF
-SET IDENTITY_INSERT [dbo].[ListColumnOption] ON 
-
-INSERT [dbo].[ListColumnOption] ([Id], [Text], [ListColumnId], [IsInactive]) VALUES (50, N'No', 1062, 0)
-INSERT [dbo].[ListColumnOption] ([Id], [Text], [ListColumnId], [IsInactive]) VALUES (58, N'Yes', 1062, 0)
-INSERT [dbo].[ListColumnOption] ([Id], [Text], [ListColumnId], [IsInactive]) VALUES (61, N'MayBe', 1062, 0)
-INSERT [dbo].[ListColumnOption] ([Id], [Text], [ListColumnId], [IsInactive]) VALUES (63, N'Catcj', 1063, 0)
-INSERT [dbo].[ListColumnOption] ([Id], [Text], [ListColumnId], [IsInactive]) VALUES (65, N'New changed', 1062, 0)
-SET IDENTITY_INSERT [dbo].[ListColumnOption] OFF
-SET IDENTITY_INSERT [dbo].[ListColumnValue] ON 
-
-INSERT [dbo].[ListColumnValue] ([Id], [ObjectId], [ObjectCode], [ListColumnId], [OptionId], [OptionText], [DtEnt], [IsInactive]) VALUES (1, 1, N'CT', 1062, 58, N'Umang Natani', CAST(N'2016-09-23' AS Date), 0)
-INSERT [dbo].[ListColumnValue] ([Id], [ObjectId], [ObjectCode], [ListColumnId], [OptionId], [OptionText], [DtEnt], [IsInactive]) VALUES (4, 1, N'CT', 1063, NULL, N'35', CAST(N'2106-09-23' AS Date), 0)
-INSERT [dbo].[ListColumnValue] ([Id], [ObjectId], [ObjectCode], [ListColumnId], [OptionId], [OptionText], [DtEnt], [IsInactive]) VALUES (5, 1, N'CT', 1064, NULL, N'unatani@gmail.com', CAST(N'2016-09-23' AS Date), 0)
-INSERT [dbo].[ListColumnValue] ([Id], [ObjectId], [ObjectCode], [ListColumnId], [OptionId], [OptionText], [DtEnt], [IsInactive]) VALUES (6, 1, N'CT', 1062, 50, NULL, CAST(N'2016-09-24' AS Date), 0)
-SET IDENTITY_INSERT [dbo].[ListColumnValue] OFF
-SET IDENTITY_INSERT [dbo].[ListValue] ON 
-
-INSERT [dbo].[ListValue] ([Id], [ObjectId], [ObjectCode], [ListId], [JSONText]) VALUES (1, 1, N'CT', 3, N'{"1062":[58,50],"1063":"35","1064":"unatani@gmail.com"}')
-INSERT [dbo].[ListValue] ([Id], [ObjectId], [ObjectCode], [ListId], [JSONText]) VALUES (2, 2, N'CT', 3, NULL)
-INSERT [dbo].[ListValue] ([Id], [ObjectId], [ObjectCode], [ListId], [JSONText]) VALUES (3, 2, N'CT', 3, NULL)
-INSERT [dbo].[ListValue] ([Id], [ObjectId], [ObjectCode], [ListId], [JSONText]) VALUES (4, 2, N'CT', 3, NULL)
-INSERT [dbo].[ListValue] ([Id], [ObjectId], [ObjectCode], [ListId], [JSONText]) VALUES (5, 2, N'CT', 3, NULL)
-INSERT [dbo].[ListValue] ([Id], [ObjectId], [ObjectCode], [ListId], [JSONText]) VALUES (6, 2, N'CT', 3, N'{"1062":[58,61],"1063":"35","1064":"unatani@gmail.com"}')
-INSERT [dbo].[ListValue] ([Id], [ObjectId], [ObjectCode], [ListId], [JSONText]) VALUES (7, 3, N'CT', 3, NULL)
-INSERT [dbo].[ListValue] ([Id], [ObjectId], [ObjectCode], [ListId], [JSONText]) VALUES (8, 2, N'CT', 3, NULL)
-SET IDENTITY_INSERT [dbo].[ListValue] OFF
-SET IDENTITY_INSERT [dbo].[Program] ON 
-
-INSERT [dbo].[Program] ([Id], [Desc], [EntityId], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (1, N'Court', 1, 0, NULL, CAST(N'2016-10-09 18:23:38.873' AS DateTime), NULL, NULL)
-INSERT [dbo].[Program] ([Id], [Desc], [EntityId], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (2, N'Finance', 1, 0, NULL, CAST(N'2016-10-09 18:23:48.950' AS DateTime), NULL, NULL)
-INSERT [dbo].[Program] ([Id], [Desc], [EntityId], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (3, N'Other', 2, 0, NULL, CAST(N'2016-10-09 18:23:56.940' AS DateTime), NULL, NULL)
-SET IDENTITY_INSERT [dbo].[Program] OFF
-SET IDENTITY_INSERT [dbo].[Role] ON 
-
-INSERT [dbo].[Role] ([Id], [Code], [Desc], [ObjectCode], [IsInactive]) VALUES (1, N'DEF', N'Default', NULL, 0)
-INSERT [dbo].[Role] ([Id], [Code], [Desc], [ObjectCode], [IsInactive]) VALUES (2, N'ADMIN', N'Admin', NULL, 0)
-INSERT [dbo].[Role] ([Id], [Code], [Desc], [ObjectCode], [IsInactive]) VALUES (3, N'INV', N'Investigations', NULL, 0)
-INSERT [dbo].[Role] ([Id], [Code], [Desc], [ObjectCode], [IsInactive]) VALUES (4, N'SUP', N'Supervisor', NULL, 0)
-SET IDENTITY_INSERT [dbo].[Role] OFF
-SET IDENTITY_INSERT [dbo].[User] ON 
-
-INSERT [dbo].[User] ([Id], [UserName], [Email], [HashedPassword], [Salt], [IsInactive], [IsLocked], [EntDt], [ClientId], [FirstName], [LastName], [MiddleName], [NameSuffix], [JobTitle]) VALUES (31, N'unatani', N'unatani@abc.com', N'wzZSYPWOqbIu+92Qtctax3vOQy12nhZEFqng6gi4Ai0=', N'DMgGBrf7R0DYy1PdhGbeqw==', 0, 0, CAST(N'2016-10-15 21:34:27.447' AS DateTime), 1, N'Umang', N'Natani', NULL, NULL, N'Sr Manager')
-INSERT [dbo].[User] ([Id], [UserName], [Email], [HashedPassword], [Salt], [IsInactive], [IsLocked], [EntDt], [ClientId], [FirstName], [LastName], [MiddleName], [NameSuffix], [JobTitle]) VALUES (1003, N'chsakell', N'chsakell@g.com', N'bQYXdfF+nv6TlbAw0nUf/B3j2g6QuscED8gIJnl6i8Q=', N'2+o5Y5gelruz2A9VM7EqMw==', 0, 0, CAST(N'2016-10-01 16:25:29.977' AS DateTime), 1, NULL, NULL, NULL, NULL, NULL)
-INSERT [dbo].[User] ([Id], [UserName], [Email], [HashedPassword], [Salt], [IsInactive], [IsLocked], [EntDt], [ClientId], [FirstName], [LastName], [MiddleName], [NameSuffix], [JobTitle]) VALUES (1004, N'jdoe', N'jdoe@abc.com', N'ixJXAQUzpT4cg0gXDoT1rYUZAgLWheUgysm6nApeCjo=', N'QisOMqeoDzC6Fiat2O+mPw==', 0, 0, CAST(N'2016-10-15 21:33:11.130' AS DateTime), 1, N'John', N'Doe', N'D', N'Jr', N'Sr Programmer')
-SET IDENTITY_INSERT [dbo].[User] OFF
-SET IDENTITY_INSERT [dbo].[UserMenu] ON 
-
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (1, N'Dashboard', N'Dashboard', N'donothing', N'fa fa-tachometer', NULL, NULL, NULL, NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (4, N'List', N'List', NULL, N'fa fa-cube', NULL, NULL, NULL, NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (5, N'ViewList', N'View List', N'#/list/view', NULL, 4, NULL, NULL, NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (6, N'Client', N'Client', N'#/client', NULL, 15, N'client', N'{"url":"/client","templateUrl":"Scripts/app/client/index.html","controller":"clientController"}', NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (7, N'Correspondence', N'Correspondence', N'javascript:void(0)', N'fa fa-cube', NULL, NULL, NULL, NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (8, N'Maintain', N'Maintain', N'#/correspondence/add', NULL, 7, N'correspondence_add', N'{"url":"/correspondence/add","templateUrl":"Scripts/app/case/corresp-maintain.html","controller":"correspMaintController"}', NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (9, N'Menu', N'Menu', N'#/menu', NULL, 15, N'menu', N'{"url":"/menu","templateUrl":"Scripts/app/home/menu.html","controller":"menuController"}', NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (10, N'Code', N'Code Master', N'#/code', NULL, 15, N'code', N'{"url":"/code","templateUrl":"Scripts/app/code/index.html","controller":"codeController"}', NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (11, N'', N'', N'#/code/detail/:id', NULL, NULL, N'code_detail', N'{"url":"/code/detail/:id","templateUrl":"Scripts/app/code/detail-index.html","controller":"codeDetailController"}', NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (12, NULL, NULL, N'/', NULL, NULL, N'login', N'{"url":"/","templateUrl":"Scripts/app/home/main.html","data":{"requireLogin":false}}', N'', N'', NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (13, N'View', N'View', N'#/correspondence/list', NULL, 7, N'correspondence', N'{"url":"/correspondence/list","templateUrl":"Scripts/app/case/corresp-index.html","controller":"correspController"}', N'', N'', NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (14, NULL, NULL, N'#/correspondence/maintain/:id', NULL, NULL, N'correspondence_maintain', N'{"url":"/correspondence/maintain/:id","templateUrl":"Scripts/app/case/corresp-maintain.html","controller":"correspMaintController"}', NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (15, N'Admin', N'Admin', N'javascript:void(0)', N'fa fa-cog', NULL, NULL, NULL, NULL, NULL, NULL)
-INSERT [dbo].[UserMenu] ([Id], [Code], [Title], [URL], [Icon], [ParentId], [StateName], [StateJSON], [Field1], [Field2], [SortOrder]) VALUES (16, N'User', N'User', N'#/user', NULL, 15, N'user', N'{"url":"/user","templateUrl":"scripts/app/account/index.html","controller":"accountController"}', NULL, NULL, NULL)
-SET IDENTITY_INSERT [dbo].[UserMenu] OFF
-SET IDENTITY_INSERT [dbo].[UserRole] ON 
-
-INSERT [dbo].[UserRole] ([Id], [UserId], [RoleId], [DtEnt], [IsInactive]) VALUES (1, 31, 1, CAST(N'2016-10-01' AS Date), 0)
-INSERT [dbo].[UserRole] ([Id], [UserId], [RoleId], [DtEnt], [IsInactive]) VALUES (3, 31, 3, CAST(N'2016-10-01' AS Date), 0)
-INSERT [dbo].[UserRole] ([Id], [UserId], [RoleId], [DtEnt], [IsInactive]) VALUES (4, 31, 4, CAST(N'2016-10-01' AS Date), 0)
-SET IDENTITY_INSERT [dbo].[UserRole] OFF
-SET IDENTITY_INSERT [inv].[AssignedTo] ON 
-
-INSERT [inv].[AssignedTo] ([Id], [UserId], [ObjectId], [ObjectType], [Comments], [AssignType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (10, 31, 21, N'csp', NULL, NULL, 0, NULL, CAST(N'2016-10-16 18:34:51.773' AS DateTime), NULL, NULL)
-SET IDENTITY_INSERT [inv].[AssignedTo] OFF
-SET IDENTITY_INSERT [inv].[CaseAllegations] ON 
-
-INSERT [inv].[CaseAllegations] ([Id], [AllegationId], [ObjectId], [ObjectType], [Desc], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (2, 1010, 21, N'csp', N'Test to save 123', 0, NULL, CAST(N'2016-10-12 21:52:04.290' AS DateTime), NULL, CAST(N'2016-10-12 22:28:35.360' AS DateTime))
-INSERT [inv].[CaseAllegations] ([Id], [AllegationId], [ObjectId], [ObjectType], [Desc], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (3, 41, 15, N'csp', N'Test', 0, NULL, CAST(N'2016-10-15 17:02:19.427' AS DateTime), NULL, NULL)
-INSERT [inv].[CaseAllegations] ([Id], [AllegationId], [ObjectId], [ObjectType], [Desc], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (4, 40, 21, N'csp', N'test123', 0, NULL, CAST(N'2016-10-16 18:56:21.533' AS DateTime), NULL, CAST(N'2016-10-16 18:57:16.310' AS DateTime))
-INSERT [inv].[CaseAllegations] ([Id], [AllegationId], [ObjectId], [ObjectType], [Desc], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (5, 43, 21, N'csp', N'ddd', 0, NULL, CAST(N'2016-10-16 19:03:40.967' AS DateTime), NULL, NULL)
-INSERT [inv].[CaseAllegations] ([Id], [AllegationId], [ObjectId], [ObjectType], [Desc], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (6, 42, 21, N'csp', N'ddd', 0, NULL, CAST(N'2016-10-16 19:04:58.430' AS DateTime), NULL, NULL)
-INSERT [inv].[CaseAllegations] ([Id], [AllegationId], [ObjectId], [ObjectType], [Desc], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (7, 41, 21, N'csp', N'ddd', 0, NULL, CAST(N'2016-10-16 19:05:38.283' AS DateTime), NULL, NULL)
-INSERT [inv].[CaseAllegations] ([Id], [AllegationId], [ObjectId], [ObjectType], [Desc], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (8, 42, 21, N'csp', N'dddd', 0, NULL, CAST(N'2016-10-16 19:07:46.907' AS DateTime), NULL, NULL)
-INSERT [inv].[CaseAllegations] ([Id], [AllegationId], [ObjectId], [ObjectType], [Desc], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (9, 45, 21, N'csp', N'inserting again', 0, NULL, CAST(N'2016-10-16 19:08:03.997' AS DateTime), NULL, NULL)
-INSERT [inv].[CaseAllegations] ([Id], [AllegationId], [ObjectId], [ObjectType], [Desc], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (10, 46, 21, N'csp', N'7th one m', 0, NULL, CAST(N'2016-10-16 19:08:17.467' AS DateTime), NULL, CAST(N'2016-10-16 19:08:30.757' AS DateTime))
-SET IDENTITY_INSERT [inv].[CaseAllegations] OFF
-SET IDENTITY_INSERT [inv].[CaseIndividual] ON 
-
-INSERT [inv].[CaseIndividual] ([Id], [IndividualId], [ObjectId], [ObjectType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt], [SubjectType], [IsWB], [WBComments], [IsSubjectResponse], [DraftSentDt], [ResponseDueDt], [RequestedExtension], [ExtensionDueDt], [ResponseReceiveDt], [IsJudicialAction], [ReferralStatusId], [IsLEA], [LEADt], [LEAgency], [IsSA], [SADt], [SAResponseDt], [IsSAProsecuting], [IsGrandJury], [IsIndicted], [AcceptanceDt], [RestAmount], [IsPTI], [ProbTermId], [ProbTerm], [CommServiceHours], [SpecialConditions]) VALUES (1, 3, 21, N'csp', 0, NULL, CAST(N'2016-10-11 22:34:40.683' AS DateTime), NULL, CAST(N'2016-10-13 21:56:05.380' AS DateTime), NULL, 1, N'Test and see if Correspondence and Id hold', 1, CAST(N'2016-10-08 00:00:00.000' AS DateTime), CAST(N'2016-10-29 00:00:00.000' AS DateTime), NULL, NULL, CAST(N'2016-10-26 00:00:00.000' AS DateTime), 1, 3, 1, NULL, N'Test', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
-SET IDENTITY_INSERT [inv].[CaseIndividual] OFF
-SET IDENTITY_INSERT [inv].[CaseProgram] ON 
-
-INSERT [inv].[CaseProgram] ([Id], [ProgramId], [ObjectId], [ObjectType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (3, 2, 27, N'csp', 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[CaseProgram] ([Id], [ProgramId], [ObjectId], [ObjectType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (6, 3, 27, N'csp', 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[CaseProgram] ([Id], [ProgramId], [ObjectId], [ObjectType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (7, 3, 21, N'csp', 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[CaseProgram] ([Id], [ProgramId], [ObjectId], [ObjectType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (10, 3, 0, N'csp', 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[CaseProgram] ([Id], [ProgramId], [ObjectId], [ObjectType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (11, 2, 0, N'csp', 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[CaseProgram] ([Id], [ProgramId], [ObjectId], [ObjectType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (12, 2, 0, N'csp', 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[CaseProgram] ([Id], [ProgramId], [ObjectId], [ObjectType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (13, 3, 15, N'csp', 0, NULL, NULL, NULL, NULL)
-SET IDENTITY_INSERT [inv].[CaseProgram] OFF
-SET IDENTITY_INSERT [inv].[Comments] ON 
-
-INSERT [inv].[Comments] ([Id], [ObjectId], [ObjectType], [Comments], [CommentDt], [CommentType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (11, 21, N'csp', N'test with objectid update 122', CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, 0, NULL, CAST(N'2016-10-07 22:04:58.070' AS DateTime), NULL, NULL)
-INSERT [inv].[Comments] ([Id], [ObjectId], [ObjectType], [Comments], [CommentDt], [CommentType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (14, 21, N'csp', N'added one more', CAST(N'2016-10-03 00:00:00.000' AS DateTime), NULL, 0, NULL, CAST(N'2016-10-04 16:14:49.287' AS DateTime), NULL, NULL)
-INSERT [inv].[Comments] ([Id], [ObjectId], [ObjectType], [Comments], [CommentDt], [CommentType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (15, 21, N'csp', N'added one more 123', CAST(N'2016-10-03 00:00:00.000' AS DateTime), NULL, 0, NULL, CAST(N'2016-10-04 16:15:11.397' AS DateTime), NULL, NULL)
-INSERT [inv].[Comments] ([Id], [ObjectId], [ObjectType], [Comments], [CommentDt], [CommentType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (16, 21, N'csp', N'one more', CAST(N'2016-10-03 00:00:00.000' AS DateTime), NULL, 0, NULL, CAST(N'2016-10-04 16:15:42.370' AS DateTime), NULL, NULL)
-INSERT [inv].[Comments] ([Id], [ObjectId], [ObjectType], [Comments], [CommentDt], [CommentType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (18, 0, N'', N'uujj', CAST(N'2016-10-03 00:00:00.000' AS DateTime), NULL, 0, NULL, CAST(N'2016-10-04 16:17:32.037' AS DateTime), NULL, NULL)
-INSERT [inv].[Comments] ([Id], [ObjectId], [ObjectType], [Comments], [CommentDt], [CommentType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (19, 0, N'', N'jjkl', CAST(N'2019-10-06 00:00:00.000' AS DateTime), NULL, 0, NULL, CAST(N'2016-10-04 16:18:30.317' AS DateTime), NULL, NULL)
-INSERT [inv].[Comments] ([Id], [ObjectId], [ObjectType], [Comments], [CommentDt], [CommentType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (20, 21, N'csp', N'Update with git 1239635489', CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, 0, NULL, CAST(N'2016-10-08 08:00:42.520' AS DateTime), NULL, NULL)
-INSERT [inv].[Comments] ([Id], [ObjectId], [ObjectType], [Comments], [CommentDt], [CommentType], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (21, 0, N'', N'vvvv', CAST(N'2016-10-03 00:00:00.000' AS DateTime), NULL, 0, NULL, CAST(N'2016-10-04 16:20:59.827' AS DateTime), NULL, NULL)
-SET IDENTITY_INSERT [inv].[Comments] OFF
-SET IDENTITY_INSERT [inv].[Correspondence] ON 
-
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (15, 6, NULL, NULL, N'John Ode', NULL, NULL, NULL, 3, 7, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (16, 6, NULL, NULL, N'Jenny Doe', NULL, NULL, NULL, 1004, 1003, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (17, 6, NULL, NULL, N'Umang', NULL, NULL, NULL, 1004, 1002, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (18, 6, NULL, NULL, N'Umang', NULL, NULL, NULL, 1004, 1003, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (19, 6, NULL, NULL, N'Umang', NULL, NULL, NULL, 1005, 1002, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (20, 6, NULL, NULL, N'Umang', NULL, NULL, NULL, 1004, 1003, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (21, 1, NULL, NULL, N'Umang', NULL, N'Natani', 15, 2, 6, NULL, NULL, NULL, CAST(N'1993-10-01 00:00:00.000' AS DateTime), CAST(N'2016-10-08 00:00:00.000' AS DateTime), CAST(N'2016-10-28 00:00:00.000' AS DateTime), CAST(N'2016-10-29 00:00:00.000' AS DateTime), 1, 1, NULL, N'some c', N'Test location', 63, NULL, NULL, N'36', CAST(N'2016-10-28 00:00:00.000' AS DateTime), N'24', NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (22, 6, NULL, NULL, N'Brand New', NULL, NULL, NULL, 1004, 1003, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (23, 6, NULL, NULL, N'Brand New 2', NULL, NULL, NULL, 1005, 1003, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (24, 6, NULL, NULL, N'Umang ddddf', NULL, NULL, NULL, 1004, 1003, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (25, 6, NULL, NULL, N'Umang dfdf', NULL, NULL, NULL, 1004, 1003, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (26, 6, NULL, NULL, N'Umang enity', NULL, NULL, NULL, 1005, 1003, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (27, 6, NULL, NULL, N'Umang second updated', NULL, NULL, NULL, 1004, 1003, NULL, NULL, NULL, CAST(N'2016-10-02 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (28, 6, NULL, NULL, N'Umang', NULL, NULL, NULL, 1004, 1002, NULL, NULL, NULL, CAST(N'2016-10-01 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (29, 6, NULL, NULL, N'Umang', NULL, NULL, NULL, 1004, 1002, NULL, NULL, NULL, CAST(N'2016-10-14 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (30, 6, NULL, NULL, N'Umang', NULL, NULL, NULL, 1004, 1002, NULL, NULL, NULL, CAST(N'2016-10-14 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (31, 6, NULL, NULL, N'Umang', NULL, NULL, NULL, 1004, 1003, NULL, NULL, NULL, CAST(N'2016-10-13 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-INSERT [inv].[Correspondence] ([Id], [ClientId], [CustomId], [ForeignId], [FirstName], [MiddleName], [LastName], [ReportingId], [CategoryId], [SourceId], [AssignedId], [ReviewedId], [isSelf], [ReceivedDt], [AssignedDt], [DueDt], [ReviewDt], [isWB], [isLetterSent], [LetterDt], [Explaination], [RecordLocation], [DispositionId], [DecisionDt], [ClosedDt], [IdentifyCosts], [IdentifyCostsDt], [AvoidanceCosts], [AvoidanceCostsDt], [QuestionCosts], [QuestionCostsDt], [RecoveredCosts], [RecoveredCostsDt], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (32, 6, NULL, NULL, N'Umang with client', NULL, NULL, NULL, 1004, 1003, NULL, NULL, NULL, CAST(N'2016-10-13 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL)
-SET IDENTITY_INSERT [inv].[Correspondence] OFF
-SET IDENTITY_INSERT [inv].[CorrespondenceRRF] ON 
-
-INSERT [inv].[CorrespondenceRRF] ([Id], [CorrespId], [ProgramId], [isPending], [RequestDt], [DueDt], [ReceivedDt], [CAPDueDt], [CAPReceivedDt], [isExtension], [IsInadequate], [IsAdditionalInfo], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (2, 21, NULL, 1, CAST(N'2016-10-14 00:00:00.000' AS DateTime), NULL, CAST(N'2016-10-10 00:00:00.000' AS DateTime), NULL, NULL, NULL, NULL, 1, 0, NULL, CAST(N'2016-10-16 17:22:31.370' AS DateTime), NULL, NULL)
-SET IDENTITY_INSERT [inv].[CorrespondenceRRF] OFF
-SET IDENTITY_INSERT [inv].[Individual] ON 
-
-INSERT [inv].[Individual] ([Id], [ClientId], [FirstName], [MiddleName], [LastName], [Title], [SurName], [NickName], [Address1], [ddress2], [City], [State], [Zip], [LicenseNo], [Agency], [SupLastName], [SupFirstName], [SupMiddleName], [WorkAddress1], [WorkAddress2], [WorkCity], [WorkPhone], [WorkZip], [WorkState], [CellPhone], [HomePhone], [Email], [Email2], [DOB], [IsInactive], [EntBy], [EntDt], [ChgBy], [ChgDt]) VALUES (3, 0, N'Umang ddddf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, CAST(N'2016-10-11 22:34:40.687' AS DateTime), NULL, CAST(N'2016-10-13 21:56:05.380' AS DateTime))
-SET IDENTITY_INSERT [inv].[Individual] OFF
-ALTER TABLE [inv].[CaseAllegationsSubject] ADD  DEFAULT ((0)) FOR [IsInactive]
-GO
-ALTER TABLE [inv].[CaseAllegationsSubject] ADD  DEFAULT (getdate()) FOR [EntDt]
-GO
-ALTER TABLE [dbo].[CodeDetail]  WITH CHECK ADD  CONSTRAINT [FK_CodeDetail_CodeMaster] FOREIGN KEY([MasterCode])
-REFERENCES [dbo].[CodeMaster] ([Code])
-GO
-ALTER TABLE [dbo].[CodeDetail] CHECK CONSTRAINT [FK_CodeDetail_CodeMaster]
-GO
-ALTER TABLE [dbo].[Entity]  WITH CHECK ADD FOREIGN KEY([ClientId])
-REFERENCES [dbo].[Client] ([Id])
-GO
-ALTER TABLE [dbo].[Entity]  WITH CHECK ADD FOREIGN KEY([ParentId])
-REFERENCES [dbo].[Entity] ([Id])
-GO
-ALTER TABLE [dbo].[List]  WITH CHECK ADD  CONSTRAINT [FK_List_Client] FOREIGN KEY([ClientId])
-REFERENCES [dbo].[Client] ([Id])
-GO
-ALTER TABLE [dbo].[List] CHECK CONSTRAINT [FK_List_Client]
-GO
-ALTER TABLE [dbo].[ListColumn]  WITH CHECK ADD  CONSTRAINT [FK_ListColumn_List] FOREIGN KEY([ListId])
-REFERENCES [dbo].[List] ([Id])
-GO
-ALTER TABLE [dbo].[ListColumn] CHECK CONSTRAINT [FK_ListColumn_List]
-GO
-ALTER TABLE [dbo].[ListColumnOption]  WITH CHECK ADD  CONSTRAINT [FK_ListColumnOption_ListColumn] FOREIGN KEY([ListColumnId])
-REFERENCES [dbo].[ListColumn] ([Id])
-GO
-ALTER TABLE [dbo].[ListColumnOption] CHECK CONSTRAINT [FK_ListColumnOption_ListColumn]
-GO
-ALTER TABLE [dbo].[ListColumnValue]  WITH CHECK ADD  CONSTRAINT [FK_ListColumnValue_ListColumn] FOREIGN KEY([ListColumnId])
-REFERENCES [dbo].[ListColumn] ([Id])
-GO
-ALTER TABLE [dbo].[ListColumnValue] CHECK CONSTRAINT [FK_ListColumnValue_ListColumn]
-GO
-ALTER TABLE [dbo].[ListValue]  WITH CHECK ADD  CONSTRAINT [FK_ListValue_List] FOREIGN KEY([ListId])
-REFERENCES [dbo].[List] ([Id])
-GO
-ALTER TABLE [dbo].[ListValue] CHECK CONSTRAINT [FK_ListValue_List]
-GO
-ALTER TABLE [dbo].[Program]  WITH CHECK ADD FOREIGN KEY([EntityId])
-REFERENCES [dbo].[Entity] ([Id])
-GO
-ALTER TABLE [dbo].[User]  WITH CHECK ADD  CONSTRAINT [FK_User_Client] FOREIGN KEY([ClientId])
-REFERENCES [dbo].[Client] ([Id])
-GO
-ALTER TABLE [dbo].[User] CHECK CONSTRAINT [FK_User_Client]
-GO
-ALTER TABLE [dbo].[UserRole]  WITH CHECK ADD  CONSTRAINT [FK_UserRole_Role] FOREIGN KEY([RoleId])
-REFERENCES [dbo].[Role] ([Id])
-GO
-ALTER TABLE [dbo].[UserRole] CHECK CONSTRAINT [FK_UserRole_Role]
-GO
-ALTER TABLE [dbo].[UserRole]  WITH CHECK ADD  CONSTRAINT [FK_UserRole_User] FOREIGN KEY([UserId])
-REFERENCES [dbo].[User] ([Id])
-GO
-ALTER TABLE [dbo].[UserRole] CHECK CONSTRAINT [FK_UserRole_User]
-GO
-ALTER TABLE [inv].[AssignedTo]  WITH CHECK ADD FOREIGN KEY([UserId])
-REFERENCES [dbo].[User] ([Id])
-GO
-ALTER TABLE [inv].[CaseAllegationsSubject]  WITH CHECK ADD FOREIGN KEY([IndividualId])
-REFERENCES [inv].[Individual] ([Id])
-GO
-ALTER TABLE [inv].[CaseIndividual]  WITH CHECK ADD  CONSTRAINT [FK__CaseIndiv__Indiv__6DCC4D03] FOREIGN KEY([IndividualId])
-REFERENCES [inv].[Individual] ([Id])
-GO
-ALTER TABLE [inv].[CaseIndividual] CHECK CONSTRAINT [FK__CaseIndiv__Indiv__6DCC4D03]
-GO
-ALTER TABLE [inv].[CaseProgram]  WITH CHECK ADD  CONSTRAINT [FK__CaseProgr__Progr__6442E2C9] FOREIGN KEY([ProgramId])
-REFERENCES [dbo].[Program] ([Id])
-GO
-ALTER TABLE [inv].[CaseProgram] CHECK CONSTRAINT [FK__CaseProgr__Progr__6442E2C9]
-GO
-ALTER TABLE [inv].[CorrespondenceRRF]  WITH CHECK ADD  CONSTRAINT [FK__Correspon__Corre__6CD828CA] FOREIGN KEY([CorrespId])
-REFERENCES [inv].[Correspondence] ([Id])
-GO
-ALTER TABLE [inv].[CorrespondenceRRF] CHECK CONSTRAINT [FK__Correspon__Corre__6CD828CA]
 GO

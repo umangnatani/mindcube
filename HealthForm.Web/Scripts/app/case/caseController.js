@@ -25,7 +25,7 @@
         { field: "Id" },
         { field: "ReceivedFrom" },
         { field: "strReceivedDate", name: 'Received Date' },
-        { name: 'Edit', cellTemplate: '<div class="ui-grid-cell-contents"><a ng-href="#/correspondence/maintain/{{row.entity.Id}}">Edit</a></div>' }
+        { name: 'Edit', cellTemplate: '<div class="ui-grid-cell-contents"><a ng-href="#/correspondence/maintain/{{row.entity.Id}}">Edit</a> | <a href="JavaScript:void(0)" ng-click="grid.appScope.delete(row.entity.Id)">Delete</a></div>' }
         ];
 
 
@@ -61,6 +61,12 @@
                 $scope.list = result.data;
                 $scope.gridOptions.data = $scope.list;
                 //$interval(function () { $scope.gridApi.selection.selectRow($scope.gridOptions.data[0]); }, 0, 1);
+            });
+        }
+
+        $scope.delete = function (id) {
+            myService.deleteRecord(id, 'csp', function () {
+                $scope.init();
             });
         }
 
@@ -222,13 +228,17 @@
         $scope.$on("comments", function (evt, data) {
             myService.getListByPost('api/comments/list', $scope, 'list', $scope.EntityObject);
             //$scope.childVm = {};
-            $scope.childVm.Comments = '';
+            $scope.childVm = angular.copy($scope.EntityObject);
         });
 
         
 
         $scope.editChild = function (childVm) {
             $scope.childVm = JSON.parse(JSON.stringify(childVm));
+        }
+
+        $scope.addNew = function () {
+            $scope.childVm = angular.copy($scope.EntityObject);
         }
 
         

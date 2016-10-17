@@ -12,6 +12,10 @@ namespace HealthForm.Data
         public RetrunType Delete(EntityObject poco)
         {
             switch (poco.ObjectType) {
+                case "csp":
+                    {
+                        return new CorrespondenceService().Delete(poco.ObjectId);
+                    }
                 case "comments":
                     {
                         return new Service<Comment>().Delete(poco.ObjectId);
