@@ -328,6 +328,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Gruntfile.js" />
     <Content Include="index.html" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -352,6 +353,9 @@
     <Content Include="Content\base\bootstrap-theme.min.css.map" />
     <Content Include="Content\base\bootstrap.css.map" />
     <Content Include="Content\base\bootstrap.min.css.map" />
+    <Content Include="bower.json" />
+    <Content Include=".bowerrc" />
+    <Content Include="package.json" />
     <None Include="Properties\PublishProfiles\healthform - Web Deploy.pubxml" />
     <Content Include="Scripts\app\account\accountController.js" />
     <Content Include="Scripts\app\account\index.html" />
@@ -498,6 +502,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\app\layout\" />
+    <Folder Include="Scripts\build\" />
+    <Folder Include="Scripts\vendors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
