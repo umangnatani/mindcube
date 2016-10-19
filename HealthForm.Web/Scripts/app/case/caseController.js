@@ -221,9 +221,9 @@
 
     app.controller('caseCommentsController', caseCommentsController)
 
-    caseCommentsController.$inject = ['$scope', '$location', '$routeParams', 'myService'];
+    caseCommentsController.$inject = ['$scope', '$location', 'myService'];
 
-    function caseCommentsController($scope, $location, $routeParams, myService) {
+    function caseCommentsController($scope, $location, myService) {
 
         $scope.$on("comments", function (evt, data) {
             myService.getListByPost('api/comments/list', $scope, 'list', $scope.EntityObject);
@@ -260,9 +260,9 @@
 
     app.controller('caseIndividualsController', caseIndividualsController)
 
-    caseIndividualsController.$inject = ['$scope', '$routeParams', 'myService'];
+    caseIndividualsController.$inject = ['$scope', 'myService'];
 
-    function caseIndividualsController($scope, $routeParams, myService) {
+    function caseIndividualsController($scope, myService) {
 
         
 
@@ -305,9 +305,9 @@
 
     app.controller('caseAllegationsController', caseAllegationsController)
 
-    caseAllegationsController.$inject = ['$scope', '$routeParams', 'myService'];
+    caseAllegationsController.$inject = ['$scope', 'myService'];
 
-    function caseAllegationsController($scope, $routeParams, myService) {
+    function caseAllegationsController($scope, myService) {
 
         $scope.$on("alleg", function (evt, data) {
             
@@ -352,9 +352,9 @@
 
     app.controller('rrfController', rrfController)
 
-    rrfController.$inject = ['$scope', '$location', '$routeParams', 'myService'];
+    rrfController.$inject = ['$scope', '$location', 'myService'];
 
-    function rrfController($scope, $location, $routeParams, myService) {
+    function rrfController($scope, $location, myService) {
 
         $scope.$on("rrf", function (evt, data) {
             myService.getListByPost('api/correspondencerrf/list', $scope, 'list', $scope.EntityObject);

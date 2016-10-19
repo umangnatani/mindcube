@@ -3,10 +3,8 @@
 
     'use strict';
 
-    angular.module("MyApp", ['ngRoute',
-                            'ui.router', // UI Router for SPA
+    angular.module("MyApp", ['ui.router', // UI Router for SPA
                             'ngCookies',
-                            'base64',
                             'ui.bootstrap',
                             'ngMessages',
                             'ngAnimate',
@@ -15,7 +13,7 @@
                             'ui.grid.pagination',
                             'ui.grid.selection',
                             'ui.grid.saveState',
-                            'datatables',
+                            //'datatables',
                             'formly',
                             'formlyBootstrap',
                             'validation', // For form validation

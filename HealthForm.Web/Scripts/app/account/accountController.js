@@ -102,10 +102,10 @@
 
     app.controller('accountLoginController', accountLoginController)
 
-    accountLoginController.$inject = ['$scope', '$routeParams', 'myService', '$rootScope', '$location', '$window'];
+    accountLoginController.$inject = ['$scope', 'myService', '$rootScope', '$location', '$window'];
 
 
-    function accountLoginController($scope, $routeParams, myService, $rootScope, $location, $window) {
+    function accountLoginController($scope, myService, $rootScope, $location, $window) {
 
 
         $scope.vm = {};

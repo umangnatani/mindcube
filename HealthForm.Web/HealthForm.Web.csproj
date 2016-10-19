@@ -258,11 +258,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="assets\js\angular-animate.min.js" />
+    <Content Include="assets\js\angular-cookies.min.js" />
+    <Content Include="assets\js\angular-messages.min.js" />
+    <Content Include="assets\js\angular-sanitize.min.js" />
+    <Content Include="assets\js\angular-toastr.min.js" />
+    <Content Include="assets\js\angular-toastr.tpls.min.js" />
+    <Content Include="assets\js\angular-ui-router.min.js" />
     <Content Include="assets\js\angular.min.js" />
+    <Content Include="assets\js\api-check.min.js" />
     <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\formly.min.js" />
+    <Content Include="assets\js\jquery-ui.min.js" />
     <Content Include="assets\js\jquery.min.js" />
     <Content Include="assets\js\jquery.slim.min.js" />
+    <Content Include="assets\js\select.min.js" />
     <Content Include="assets\js\sizzle.min.js" />
+    <Content Include="assets\js\ui-bootstrap-tpls.min.js" />
+    <Content Include="assets\js\ui-bootstrap.min.js" />
+    <Content Include="assets\js\ui-grid.min.js" />
     <Content Include="Content\base\bootstrap-theme.css" />
     <Content Include="Content\base\bootstrap-theme.min.css" />
     <Content Include="Content\base\bootstrap.css" />
@@ -359,8 +373,8 @@
     <Content Include="Content\base\bootstrap.css.map" />
     <Content Include="Content\base\bootstrap.min.css.map" />
     <Content Include="bower.json" />
-    <Content Include=".bowerrc" />
     <Content Include="package.json" />
+    <Content Include=".bowerrc" />
     <None Include="Properties\PublishProfiles\healthform - Web Deploy.pubxml" />
     <Content Include="Scripts\app\account\accountController.js" />
     <Content Include="Scripts\app\account\index.html" />
@@ -396,8 +410,6 @@
     <Content Include="Scripts\app\list\maintain.html" />
     <Content Include="Scripts\app\list\menu.html" />
     <Content Include="Scripts\app\app.js" />
-    <Content Include="Scripts\app\patient\maintain.html" />
-    <Content Include="Scripts\app\patient\patientController.js" />
     <Content Include="Scripts\app\services\apiService.js" />
     <Content Include="Scripts\app\services\myService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />

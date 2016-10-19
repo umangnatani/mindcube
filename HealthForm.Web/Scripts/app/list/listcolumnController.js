@@ -4,15 +4,15 @@
 
     app.controller('listcolumnController', listcolumnController)
 
-    listcolumnController.$inject = ['$scope', '$routeParams', 'apiService', '$uibModal'];
+    listcolumnController.$inject = ['$scope', 'apiService', '$uibModal'];
 
 
-    function listcolumnController($scope, $routeParams, apiService, $uibModal) {
+    function listcolumnController($scope, apiService, $uibModal) {
 
-        $scope.ListId = $routeParams.id;
+        $scope.ListId = 2;
 
         
-        apiService.get('Api/listcolumns/list/' + $routeParams.id, null,
+        apiService.get('Api/listcolumns/list/' + $scope.ListId, null,
            success);
 
 
@@ -89,13 +89,13 @@
 
     app.controller('listcolumnMaintController', listcolumnMaintController)
 
-    listcolumnMaintController.$inject = ['$scope', '$routeParams', 'apiService', 'helperService', '$timeout'];
+    listcolumnMaintController.$inject = ['$scope', 'apiService', 'helperService', '$timeout'];
 
-    function listcolumnMaintController($scope, $routeParams, apiService, helperService, $timeout) {
+    function listcolumnMaintController($scope, apiService, helperService, $timeout) {
 
         $scope.obj = {};
 
-        $scope.obj.ListId = $routeParams.ListId;
+        $scope.obj.ListId = 2;
 
        
         apiService.get('Api/codedetails/list/OPTION_TYPE', null,
@@ -117,13 +117,13 @@
             $scope.obj.ListColumnOptions.splice(index,1);
         };
 
-        if ($routeParams.id > 0)
+        if ($scope.obj.ListId > 0)
             load();
 
 
         function load() {
             //$scope.loadingMovie = true;
-            apiService.get('Api/listcolumns/Details/' + $routeParams.id, null,
+            apiService.get('Api/listcolumns/Details/' + $scope.obj.ListId, null,
         successLoad);
         }
 
@@ -176,18 +176,18 @@
 
     app.controller('listformController', listformController)
 
-    listformController.$inject = ['$scope', '$routeParams', 'apiService', '$uibModal'];
+    listformController.$inject = ['$scope', 'apiService', '$uibModal'];
 
 
-    function listformController($scope, $routeParams, apiService, $uibModal) {
+    function listformController($scope, apiService, $uibModal) {
 
-        $scope.ListId = $routeParams.id;
+        $scope.ListId = 2;
 
 
-        apiService.get('Api/listcolumns/list/' + $routeParams.id, null,
+        apiService.get('Api/listcolumns/list/' + $scope.ListId, null,
           success);
 
-        apiService.get('Api/listvalues/list?ObjectId=1&ListId=' + $routeParams.id, null,
+        apiService.get('Api/listvalues/list?ObjectId=1&ListId=' + $scope.ListId, null,
          success2);
 
         $scope.obj = {};

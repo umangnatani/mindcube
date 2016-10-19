@@ -2,9 +2,22 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "jquery": "^3.1.1",
+    "jquery": "^2.2.3",
     "angular": "^1.5.8",
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "jquery-ui": "^1.12.1",
+    "angular-ui-router": "0.3.1",
+    "angular-animate": "^1.5.8",
+    "angular-bootstrap": "^2.2.0",
+    "angular-cookies": "^1.5.8",
+    "underscore": "^1.8.3",
+    "angular-messages": "^1.5.8",
+    "angular-sanitize": "^1.5.8",
+    "angular-formly": "^8.4.0",
+    "angular-ui-select": "^0.19.4",
+    "angular-ui-grid": "^3.2.9",
+    "angular-datetime": "^4.1.0",
+    "angular-toastr": "^2.1.1"
   },
   "resolutions": {
     "angular": "^1.5.8"

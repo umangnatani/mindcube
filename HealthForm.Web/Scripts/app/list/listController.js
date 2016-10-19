@@ -104,9 +104,9 @@
 
     app.controller('listMaintController', listMaintController)
 
-    listMaintController.$inject = ['$scope', '$location', '$routeParams', 'apiService', 'helperService'];
+    listMaintController.$inject = ['$scope', '$location', 'apiService', 'helperService'];
 
-    function listMaintController($scope, $location, $routeParams, apiService, helperService) {
+    function listMaintController($scope, $location, apiService, helperService) {
 
         //$scope.Vendors = {};
 
@@ -122,15 +122,15 @@
             });
 
 
-        if ($routeParams.id != '')
-            load();
+        //if ($routeParams.id != '')
+        //    load();
 
 
         function load() {
 
             //$scope.loadingMovie = true;
 
-            apiService.get('Api/Lists/details/' + $routeParams.id, null,
+            apiService.get('Api/Lists/details/', null,
             successLoad);
         }
 
