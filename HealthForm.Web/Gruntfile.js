@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         copy: {
             build: {
                 cwd: 'Scripts/Vendors',
-                src: ['**/*.min.js'],
+                src: ['**/*min.js'],
                 dest: 'assets/js',
                 expand: true,
                 flatten: true,

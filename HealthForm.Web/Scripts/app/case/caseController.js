@@ -10,6 +10,8 @@
 
     function correspController($scope, myService, $uibModal) {
 
+        $scope.menuInfo.code = 'View';
+        $scope.menuInfo.pageTitle = "Maintain Correspondences";
 
         $scope.init = function () {
             $scope.vm = {};
@@ -87,6 +89,8 @@
 
     function correspMaintController($scope, $location, $stateParams, myService, $filter) {
 
+        
+
         $scope.vm = {
             Id: $stateParams.id,
             FirstName: 'Umang',
@@ -94,6 +98,8 @@
             //CaseComments:[],
             //CaseComments: [{ CommentDt: '10/8/2019', Comments: 'Test' }]
         };
+
+        $scope.menuInfo.pageTitle = "Edit Correspondence " + $scope.vm.Id ;
 
         $scope.tempVm = {};
         

@@ -1,9 +1,9 @@
 ﻿<div ng-controller="caseCommentsController">
-    <div class="card" style="margin-top:10px">
-        <div class="card-block">
+    <div class="card" color3 style="margin-top:10px">
+        <div class="card-body card-padding">
             <form name="entryForm" novalidate>
                 <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                         <div class="form-group has-feedback">
                             <label for="CommentDt" class="col-form-label">Date</label>
 
@@ -31,9 +31,8 @@
         <a href="javascript:void(0)" ng-click="addNew()">Add New</a>
     </p>
     <div class="card" ng-show="list.length > 0" style="margin-top:30px">
-        <div class="card-block">
-          
-            <h4 class="border-bottom">Existing Status</h4>
+        <div class="card-header"><h4>Existing Status</h4></div>
+        <div class="card-body card-padding">
             <table class="table table-striped">
                 <thead>
                     <tr>

@@ -84,21 +84,29 @@
 
     <section id="content">
         <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li ng-repeat="bc in menuInfo.breadCrumb">
+                    <a href="">{{bc.Title}}</a>
+                </li>
+            </ol>
+            <h4 class="border-bottom">{{menuInfo.pageTitle}}</h4>
+            <busy-indicator></busy-indicator>
             <div ui-view=""></div>
         </div>
     </section>
 </section>
 
 <footer id="footer">
-    Copyright &copy; 2015 Material Admin
+    Copyright &copy; 2015 ICTS
 
-    <ul class="f-menu">
+    @*<ul class="f-menu">
         <li><a href="">Home</a></li>
         <li><a href="">Dashboard</a></li>
         <li><a href="">Reports</a></li>
         <li><a href="">Support</a></li>
         <li><a href="">Contact</a></li>
-    </ul>
+    </ul>*@
 </footer>
 
 <!-- Page Loader -->

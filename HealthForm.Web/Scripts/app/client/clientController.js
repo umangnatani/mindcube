@@ -9,6 +9,9 @@
 
     function clientController($scope, myService, $uibModal) {
 
+        $scope.menuInfo.code = 'Client';
+        //$scope.$emit("menuLoaded");
+
         $scope.init = function () {
             $scope.vm = {};
             //$scope.vm.MasterCode = $stateParams.id;

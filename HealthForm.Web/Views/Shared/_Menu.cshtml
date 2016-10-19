@@ -1,12 +1,12 @@
 ﻿<aside id="sidebar" class="sidebar c-overflow">
-    <div class="s-profile">
+    <div class="c-profile">
         <a href="" data-ma-action="profile-menu-toggle">
             <div class="sp-pic">
-                <img src="~/assets/img/demo/profile-pics/1.jpg" alt="">
+                @*<img src="~/assets/img/demo/profile-pics/1.jpg" alt="">*@
             </div>
 
             <div class="sp-info">
-                <b>{{UserInfo.Name}}</b>s
+                <b>{{UserInfo.Name}}</b>
 
                 <i class="zmdi zmdi-caret-down"></i>
             </div>
@@ -29,14 +29,14 @@
     </div>
 
     <ul class="main-menu">
-        <li ng-repeat="menu in menuItems" class="{{menu.Children.length > 0 ? 'sub-menu' : ''}}">
+        <li ng-repeat="menu in menuItems" class="{{menu.Children.length > 0 ? 'sub-menu' : ''}} {{menuInfo.curMenu.Code === menu.Code ? 'active' : ''}}">
             <a href="{{menu.URL}}" data-ma-action="submenu-toggle">
                 <i class="{{menu.Icon}}"></i>
                 {{menu.Title}}
             </a>
             <ul>
                 <li ng-repeat="child in menu.Children">
-                    <a href="{{child.URL}}">
+                    <a href="{{child.URL}}" class="{{child.Code === menuInfo.code ? 'active ' : ''}}">
                         {{child.Title}}
                     </a>
                 </li>

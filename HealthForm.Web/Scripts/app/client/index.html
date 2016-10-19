@@ -14,74 +14,32 @@
 <p ng-show="vm.Id > 0">
     <a href="javascript:void(0)" ng-click="vm={}"><i class="fa fa-plus" aria-hidden="true"></i> Add New Item</a>
 </p>
-<div class="card">
+<div class="card color3">
     <div class="card-header">
         <h5><span ng-hide="vm.Id > 0">You are adding a new item</span><span ng-show="vm.Id > 0">You are editing an existing item: <span class="text-danger"> {{vm.ClientName}} </span></span></h5>
     </div>
-    <div class="card-block color3">
+    <div class="card-body card-padding">
         <form name="entryForm" novalidate>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="ClientName" class="control-label">Client Name</label>
-                        <input type="text" ng-model="vm.ClientName" name="ClientName" class="form-control" validator="required">
+                        <label class="fg-label">Client Name</label>
+                        <div class="fg-line">
+                            <input type="text" ng-model="vm.ClientName" name="ClientName" class="form-control  fg-input" validator="required">
+                        </div>
                     </div>
                 </div>
-                <!--<div class="col-sm-3" ng-hide="vm.Id > 0">
-                    <div class="form-group">
-                        <label for="Password" class="control-label">Password</label>
-                        <input type="password" ng-model="vm.Password" name="Password" class="form-control" validator="required">
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="ClientId" class="control-label">Client</label>
-                        <select ng-model="vm.ClientId" name="ClientId" class="form-control" ng-options="option.Id as option.ClientName for option in Clients">
-                            <option value=""></option>
-                        </select>
-                    </div>
-                </div>-->
             </div>
             <!--<div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="FirstName" class="control-label">First Name</label>
-                        <input type="text" ng-model="vm.FirstName" name="FirstName" class="form-control">
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="MiddleName" class="control-label">Middle Name</label>
-                        <input type="text" ng-model="vm.MiddleName" name="MiddleName" class="form-control">
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="LastName" class="control-label">Last Name</label>
-                        <input type="text" ng-model="vm.LastName" name="LastName" class="form-control">
-                    </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="ClientName" class="control-label">Client Name</label>
+                    <input type="text" ng-model="vm.ClientName" name="ClientName" class="form-control" validator="required">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="NameSuffix" class="control-label">Name Suffix</label>
-                        <input type="text" ng-model="vm.NameSuffix" name="NameSuffix" class="form-control">
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="Email" class="control-label">Email</label>
-                        <input type="text" ng-model="vm.Email" name="Email" class="form-control">
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label for="JobTitle" class="control-label">Job Title</label>
-                        <input type="text" ng-model="vm.JobTitle" name="JobTitle" class="form-control">
-                    </div>
-                </div>
-            </div>-->
+
+        </div>-->
+
 
             <button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
         </form>

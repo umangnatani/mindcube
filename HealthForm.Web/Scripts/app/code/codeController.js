@@ -10,6 +10,8 @@
 
     function codeController($scope, myService, $uibModal) {
 
+        $scope.menuInfo.code = 'Code';
+        //$scope.$emit("menuLoaded");
 
         $scope.vm = {};
         $scope.list = [];
@@ -99,6 +101,7 @@
     // used angular datatables grid
 
     function codeDetailController($scope, myService, $uibModal, $stateParams) {
+
 
         $scope.init = function () {
             $scope.vm = {};
