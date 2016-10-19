@@ -1,263 +1,257 @@
-﻿<header id="umang-header" umang-lpanel-effect="shrink">
-    <div class="umang-left-header">
+﻿<header id="header" class="clearfix" data-ma-theme="blue">
+    <ul class="h-inner">
+        <li class="hi-trigger ma-trigger" data-ma-action="sidebar-open" data-ma-target="#sidebar">
+            <div class="line-wrap">
+                <div class="line top"></div>
+                <div class="line center"></div>
+                <div class="line bottom"></div>
+            </div>
+        </li>
 
-        @*<img src="~/Images/pbc_logo.png" style="max-width:60px; max-height:57px" />*@
-        <a href="#"><span style="margin:0 20px 0 10px">HealthForm</span></a>
-        <span class="umang-sidebar-toggle"><a href="#"></a></span>
-    </div>
+        <li class="hi-logo hidden-xs">
+            <a href="/">ICTS</a>
+        </li>
 
-    <div class="umang-right-header" umang-position-type="relative">
-        <span class="umang-sidebar-toggle"><a href="#"></a></span>
-        <ul class="left-navbar">
-            @*<li class="dropdown umang-rheader-submenu message-notification">
-                    <a href="#" class="dropdown-toggle icon-circle" data-toggle="dropdown">
-                        <i class="fa fa-envelope-o"></i>
-                        <span class="badge badge-danger">5</span>
+        <li class="pull-right">
+            <ul class="hi-menu">
+                <li>
+                    <span><b>{{UserInfo.Name}}</b></span>
+                </li>
+                <li data-ma-action="search-open">
+                    <a href=""><i class="him-icon zmdi zmdi-search"></i></a>
+                </li>
+
+                <li class="dropdown">
+                    <a data-toggle="dropdown" href="">
+                        <i class="him-icon zmdi zmdi-email"></i>
+                        <i class="him-counts">6</i>
                     </a>
-                    <ul class="dropdown-menu ">
-                        <li class="umang-submenu-label">
-                            <h3>You have <span class="bold">5</span> New Messages <a href="#">view all</a></h3>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <img src="images/avatar-1.jpg" class="img-circle notification-avatar" alt="Avatar">
-                                <span class="notification-title">Nanterey Reslaba</span>
-                                <span class="notification-ago  ">3 min ago</span>
-                                <p class="notification-message">Hi James, Don't go anywhere, i will be coming soon. </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <img src="images/avatar-2.jpg" class="img-circle notification-avatar" alt="Avatar">
-                                <span class="notification-title">Polly Paton</span>
-                                <span class="notification-ago  ">5 min ago</span>
-                                <p class="notification-message">Hi James, Everything is working just fine here. </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <img src="images/avatar-3.jpg" class="img-circle notification-avatar" alt="Avatar">
-                                <span class="notification-title">Smith Doe</span>
-                                <span class="notification-ago  ">8 min ago</span>
-                                <p class="notification-message">Please mail me the all files when you complete your task.</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <img src="images/avatar-4.jpg" class="img-circle notification-avatar" alt="Avatar">
-                                <span class="notification-title">Zoey Lombardo</span>
-                                <span class="notification-ago  ">15 min ago</span>
-                                <p class="notification-message">Hi James, How are you?</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <img src="images/avatar-5.jpg" class="img-circle notification-avatar" alt="Avatar">
-                                <span class="notification-title">Alan Doyle</span>
-                                <span class="notification-ago  ">30 min ago</span>
-                                <p class="notification-message">Call me when you complete your work.</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>*@
-            @*<li class="dropdown umang-rheader-submenu message-notification left-min-30">
-                    <a href="#" class="dropdown-toggle icon-circle" data-toggle="dropdown">
-                        <i class="fa fa-bell-o"></i>
-                        <span class="badge badge-success">6</span>
-                    </a>
-                    <ul class="dropdown-menu ">
-                        <li class="umang-submenu-label">
-                            <h3><span class="bold">6 pending</span> Notification <a href="#">view all</a></h3>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <i class="fa fa-database red-text"></i>
-                                <span class="notification-title">Database overload- Sav3090</span>
-                                <span class="notification-ago  ">3 min ago</span>
-                                <p class="notification-message">Database overload due to incorrect queries</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <i class="fa fa-exchange green-text"></i>
-                                <span class="notification-title">Installing App v1.2.1</span>
-                                <span class="notification-ago  ">60 % Done</span>
-                                <p class="notification-message">
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-striped active" role="progressbar"
-                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-                                            60%
-                                        </div>
+                    <div class="dropdown-menu dropdown-menu-lg pull-right">
+                        <div class="list-group">
+                            <div class="lg-header">
+                                Messages
+                            </div>
+                            <div class="lg-body">
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/1.jpg" alt="">
                                     </div>
-                                </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <i class="fa fa-exclamation-triangle red-text"></i>
-                                <span class="notification-title">Application Error - Sav3085</span>
-                                <span class="notification-ago  ">10 min ago</span>
-                                <p class="notification-message">failed to initialize the application due to error weblogic.application.moduleexception</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <i class="fa fa-server yellow-text"></i>
-                                <span class="notification-title">Server Status - Sav3080</span>
-                                <span class="notification-ago  ">30GB Free Space</span>
-                                <p class="notification-message">
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" style="width:40%">
-
-                                        </div>
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" style="width:10%">
-
-                                        </div>
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-
-                                        </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">David Belle</div>
+                                        <small class="lgi-text">Cum sociis natoque penatibus et magnis dis parturient montes</small>
                                     </div>
-                                </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <i class="fa fa-cogs green-text"></i>
-                                <span class="notification-title">Application Configured</span>
-                                <span class="notification-ago  ">30 min ago</span>
-                                <p class="notification-message">Your setting is updated on server Sav3060</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <i class="fa fa-server blue-text"></i>
-                                <span class="notification-title">Server Status</span>
-                                <span class="notification-ago  ">300GB Free Space</span>
-                                <p class="notification-message">
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" style="width:80%">
-                                            Free Space
-                                        </div>
+                                </a>
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/2.jpg" alt="">
                                     </div>
-                                </p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>*@
-            @*<li class="dropdown umang-rheader-submenu message-notification left-min-65">
-                    <a href="#" class="dropdown-toggle icon-circle" data-toggle="dropdown">
-                        <i class="fa fa-tasks"></i>
-                        <span class="badge badge-danger">4</span>
-                    </a>
-                    <ul class="dropdown-menu ">
-                        <li class="umang-submenu-label">
-                            <h3> You have <span class="bold">4 </span>pending Task <a href="#">view all</a></h3>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <img alt="Avatar" class="img-circle notification-avatar" src="images/avatar-1.jpg">
-                                <span class="notification-title"> Smith Doe Assigned new task </span>
-                                <span class="notification-ago-1 ">5 min ago</span>
-                                <p class="notification-message">Provide an Overview key mention characteristics for selected Keyword.</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <img alt="Avatar" class="img-circle notification-avatar" src="images/avatar-2.jpg">
-                                <span class="notification-title"> Polly Paton Done his work</span>
-                                <span class="notification-ago-1 ">10 min ago</span>
-                                <p class="notification-message">Polly Paton has completed his work. please assign her new task. </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <img alt="Avatar" class="img-circle notification-avatar" src="images/avatar-5.jpg">
-                                <span class="notification-title">Alan Installing App v1.2.1</span>
-                                <span class="notification-ago-1 ">15 min ago</span>
-                                <p class="notification-message">
-                                    Alan Installing App v1.2.1 on server Sav3080
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-striped active" role="progressbar"
-                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-                                            60%
-                                        </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">Jonathan Morris</div>
+                                        <small class="lgi-text">Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</small>
                                     </div>
-                                </p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="clearfix">
-                                <img alt="Avatar" class="img-circle notification-avatar" src="images/avatar-4.jpg">
-                                <span class="notification-title"> Zoey Lombardo like your task</span>
-                                <span class="notification-ago-1 ">20 min ago</span>
-                                <p class="notification-message">Zoey Lombardo like your server installation task.</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>*@
-            <li>
-                <div class="umang-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search..." />
-                        <span class="input-group-addon">
-                            <i class="fa fa-search"></i>
-                        </span>
+                                </a>
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/3.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">Fredric Mitchell Jr.</div>
+                                        <small class="lgi-text">Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies</small>
+                                    </div>
+                                </a>
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/4.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">Glenn Jecobs</div>
+                                        <small class="lgi-text">Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque</small>
+                                    </div>
+                                </a>
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/4.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">Bill Phillips</div>
+                                        <small class="lgi-text">Proin laoreet commodo eros id faucibus. Donec ligula quam, imperdiet vel ante placerat</small>
+                                    </div>
+                                </a>
+                            </div>
+                            <a class="view-more" href="">View All</a>
+                        </div>
                     </div>
-                </div>
+                </li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" href="">
+                        <i class="him-icon zmdi zmdi-notifications"></i>
+                        <i class="him-counts">9</i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg pull-right">
+                        <div class="list-group him-notification">
+                            <div class="lg-header">
+                                Notification
 
-                @*<div class="right-inner-addon">
-                                                <form method="post" class="umang-searchbar">
-                                                    <i class="fa fa-search"></i>
-                                                    <input type="search"
-                                                           class="form-control"
-                                                           placeholder="Search" />
-                                                    </form>
-                    </div>*@
+                                <ul class="actions">
+                                    <li class="dropdown">
+                                        <a href="" data-ma-action="clear-notification">
+                                            <i class="zmdi zmdi-check-all"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="lg-body">
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/1.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">David Belle</div>
+                                        <small class="lgi-text">Cum sociis natoque penatibus et magnis dis parturient montes</small>
+                                    </div>
+                                </a>
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/2.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">Jonathan Morris</div>
+                                        <small class="lgi-text">Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</small>
+                                    </div>
+                                </a>
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/3.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">Fredric Mitchell Jr.</div>
+                                        <small class="lgi-text">Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies</small>
+                                    </div>
+                                </a>
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/4.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">Glenn Jecobs</div>
+                                        <small class="lgi-text">Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque</small>
+                                    </div>
+                                </a>
+                                <a class="list-group-item media" href="">
+                                    <div class="pull-left">
+                                        <img class="lgi-img" src="~/assets/img/demo/profile-pics/4.jpg" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="lgi-heading">Bill Phillips</div>
+                                        <small class="lgi-text">Proin laoreet commodo eros id faucibus. Donec ligula quam, imperdiet vel ante placerat</small>
+                                    </div>
+                                </a>
+                            </div>
 
+                            <a class="view-more" href="">View Previous</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown hidden-xs">
+                    <a data-toggle="dropdown" href="">
+                        <i class="him-icon zmdi zmdi-view-list-alt"></i>
+                        <i class="him-counts">2</i>
+                    </a>
+                    <div class="dropdown-menu pull-right dropdown-menu-lg">
+                        <div class="list-group">
+                            <div class="lg-header">
+                                Tasks
+                            </div>
+                            <div class="lg-body">
+                                <div class="list-group-item">
+                                    <div class="lgi-heading m-b-5">HTML5 Validation Report</div>
 
-                @*<form method="post" class="umang-searchbar">
-                        <input type="text" placeholder="Search..." name="keyword" class="form-control">
-                        <span class="search-icon"><i class="fa fa-search"></i></span>
-                    </form>*@
-            </li>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
+                                            <span class="sr-only">95% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="lgi-heading m-b-5">Google Chrome Extension</div>
 
-        </ul>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="lgi-heading m-b-5">Social Intranet Projects</div>
 
-        <ul class="right-navbar">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                            <span class="sr-only">20% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="lgi-heading m-b-5">Bootstrap Admin Template</div>
 
-            <li class="dropdown umang-rheader-submenu umang-header-profile">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                            <span class="sr-only">60% Complete (warning)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item">
+                                    <div class="lgi-heading m-b-5">Youtube Client App</div>
 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span><b>{{UserInfo.Name}}</b> <i class="fa fa-angle-down"></i></span>
-                </a>
-                <ul class="dropdown-menu ">
-                    <li><a href="~/Proxy/Index"><i class="fa fa-user"></i>My Backup</a></li>
-                    @*<li><a href="#"><i class="fa fa-calendar"></i>My Calendar</a></li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-envelope"></i>My Inbox  <span class="badge badge-danger">
-                                    3
-                                </span>
-                            </a>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                            <span class="sr-only">80% Complete (danger)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a class="view-more" href="">View All</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a data-toggle="dropdown" href=""><i class="him-icon zmdi zmdi-more-vert"></i></a>
+                    <ul class="dropdown-menu dm-icon pull-right">
+                        <li class="skin-switch hidden-xs">
+                            <span class="ss-skin bgm-lightblue" data-ma-action="change-skin" data-ma-skin="lightblue"></span>
+                            <span class="ss-skin bgm-bluegray" data-ma-action="change-skin" data-ma-skin="bluegray"></span>
+                            <span class="ss-skin bgm-cyan" data-ma-action="change-skin" data-ma-skin="cyan"></span>
+                            <span class="ss-skin bgm-teal" data-ma-action="change-skin" data-ma-skin="teal"></span>
+                            <span class="ss-skin bgm-orange" data-ma-action="change-skin" data-ma-skin="orange"></span>
+                            <span class="ss-skin bgm-blue" data-ma-action="change-skin" data-sma-kin="blue"></span>
+                        </li>
+                        <li class="divider hidden-xs"></li>
+                        <li class="hidden-xs">
+                            <a data-ma-action="fullscreen" href=""><i class="zmdi zmdi-fullscreen"></i> Toggle Fullscreen</a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fa fa-rocket"></i>My Tasks <span class="badge badge-success">
-                                    7
-                                </span>
-                            </a>
+                            <a href="" ng-click="logoff()"><i class="zmdi zmdi-delete"></i> Log Off</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-lock"></i>Lock Screen</a></li>*@
-                    <li><a href="#"><i class="fa fa-power-off"></i>Logout</a></li>
-                </ul>
-            </li>
-            <li style="margin-right:20px; margin-left:10px"><a href="Javascript:void(0)" ng-click="logoff()"><i class="fa fa-power-off"></i></a></li>
-            @*<li class="hidden-xs">
-                    <a href="#" class="dropdown-toggle icon-circle" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
-                </li>*@
-        </ul>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-face"></i> Privacy Settings</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-settings"></i> Other Settings</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="hidden-xs ma-trigger" data-ma-action="sidebar-open" data-ma-target="#chat">
+                    <a href=""><i class="him-icon zmdi zmdi-comment-alt-text"></i></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
 
+    <!-- Top Search Content -->
+    <div class="h-search-wrap">
+        <div class="hsw-inner">
+            <i class="hsw-close zmdi zmdi-arrow-left" data-ma-action="search-close"></i>
+            <input type="text">
+        </div>
     </div>
 </header>

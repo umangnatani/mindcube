@@ -258,6 +258,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="assets\css\app_1.min.css" />
+    <Content Include="assets\css\app_2.min.css" />
+    <Content Include="assets\css\material-design-iconic-font.min.css" />
     <Content Include="assets\js\angular-animate.min.js" />
     <Content Include="assets\js\angular-cookies.min.js" />
     <Content Include="assets\js\angular-messages.min.js" />
@@ -267,6 +270,7 @@
     <Content Include="assets\js\angular-ui-router.min.js" />
     <Content Include="assets\js\angular.min.js" />
     <Content Include="assets\js\api-check.min.js" />
+    <Content Include="assets\js\app.min.js" />
     <Content Include="assets\js\bootstrap.min.js" />
     <Content Include="assets\js\formly.min.js" />
     <Content Include="assets\js\jquery-ui.min.js" />
@@ -518,7 +522,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\css\" />
     <Folder Include="Scripts\app\layout\" />
     <Folder Include="Scripts\build\" />
     <Folder Include="Scripts\vendors\" />

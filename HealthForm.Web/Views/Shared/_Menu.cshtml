@@ -1,27 +1,48 @@
-﻿<aside id="umang-left-panel" umang-position-type="absolute" ng-if="UserInfo.isLoggedIn">
-    <div class="profile-box">
-        <div class="media">
-
-            <div class="media-body">
-                <h5 class="media-heading"><span>Umang Natani</span></h5>
-                <small></small>
+﻿<aside id="sidebar" class="sidebar c-overflow">
+    <div class="s-profile">
+        <a href="" data-ma-action="profile-menu-toggle">
+            <div class="sp-pic">
+                <img src="~/assets/img/demo/profile-pics/1.jpg" alt="">
             </div>
-        </div>
+
+            <div class="sp-info">
+                <b>{{UserInfo.Name}}</b>s
+
+                <i class="zmdi zmdi-caret-down"></i>
+            </div>
+        </a>
+
+        <ul class="main-menu">
+            <li>
+                <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
+            </li>
+            <li>
+                <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+            </li>
+            <li>
+                <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
+            </li>
+            <li>
+                <a href="" ng-click="logoff()"><i class="zmdi zmdi-time-restore"></i> Logout</a>
+            </li>
+        </ul>
     </div>
-    <ul class="nav panel-list" ng-repeat="menu in menuItems">
-        <li id="{{menu.Id}}" class="{{menu.Children.length > 0 ? 'umang-has-menu' : ''}}">
-            <a href="{{menu.URL}}">
+
+    <ul class="main-menu">
+        <li ng-repeat="menu in menuItems" class="{{menu.Children.length > 0 ? 'sub-menu' : ''}}">
+            <a href="{{menu.URL}}" data-ma-action="submenu-toggle">
                 <i class="{{menu.Icon}}"></i>
-                <span class="menu-text"> {{menu.Title}}</span>
+                {{menu.Title}}
             </a>
-            <ul class="umang-sub-menu" ng-repeat="child in menu.Children">
-                <li data-parent-id="{{menu.Id}}">
+            <ul>
+                <li ng-repeat="child in menu.Children">
                     <a href="{{child.URL}}">
-                        <span class="menu-text">{{child.Title}}</span>
+                        {{child.Title}}
                     </a>
                 </li>
             </ul>
 
         </li>
     </ul>
+   
 </aside>
