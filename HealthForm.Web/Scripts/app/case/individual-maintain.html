@@ -20,25 +20,25 @@
             </td>
         </tr>
     </table>
-
+    <div style="margin-bottom:20px"></div>
     <form name="entryForm" novalidate>
         <div ng-show="isEditing.ind">
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="FirstName" class="control-label">First Name</label>
+                        <label for="FirstName" class="fg-label">First Name</label>
                         <input type="text" ng-model="childVm.Individual.FirstName" name="FirstName" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="MiddleName" class="control-label">Middle Name</label>
+                        <label for="MiddleName" class="fg-label">Middle Name</label>
                         <input type="text" ng-model="childVm.Individual.MiddleName" name="MiddleName" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="FirstName" class="control-label">Last  Name</label>
+                        <label for="FirstName" class="fg-label">Last  Name</label>
                         <input type="text" ng-model="childVm.Individual.LastName" name="LastName" class="form-control">
                     </div>
                 </div>
@@ -49,14 +49,14 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="SurName" class="control-label">Sur Name</label>
+                        <label for="SurName" class="fg-label">Sur Name</label>
                         <input type="text" ng-model="childVm.Individual.SurName" name="SurName" class="form-control">
                     </div>
                 </div>
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="NickName" class="control-label">Nick Name</label>
+                        <label for="NickName" class="fg-label">Nick Name</label>
                         <input type="text" ng-model="childVm.Individual.NickName" name="NickName" class="form-control">
                     </div>
                 </div>
@@ -64,7 +64,7 @@
 
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="DOB" class="control-label">Middle Name</label>
+                        <label for="DOB" class="fg-label">Middle Name</label>
                         <input type="text" ng-model="childVm.Individual.DOB" name="DOB" class="form-control">
                     </div>
                 </div>
@@ -75,19 +75,19 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="Title" class="control-label">Title</label>
+                        <label for="Title" class="fg-label">Title</label>
                         <input type="text" ng-model="childVm.Individual.Title" name="Title" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="LicenseNo" class="control-label">License#</label>
+                        <label for="LicenseNo" class="fg-label">License#</label>
                         <input type="text" ng-model="childVm.Individual.LicenseNo" name="LicenseNo" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="SupFirstName" class="control-label">Supervisor Name</label>
+                        <label for="SupFirstName" class="fg-label">Supervisor Name</label>
                         <div class="input-group">
                             <input type="text" ng-model="childVm.Individual.SupFirstName" name="SupFirstName" class="form-control" placeholder="First">
                             <span class="input-group-addon"></span>
@@ -105,7 +105,7 @@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="form-group">
-                        <label for="Agency" class="control-label">Agency or Corporation</label>
+                        <label for="Agency" class="fg-label">Agency or Corporation</label>
                         <input type="text" ng-model="childVm.Individual.Agency" name="Agency" class="form-control">
                     </div>
                 </div>
@@ -118,13 +118,13 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="WorkAddress1" class="control-label">Work Address 1</label>
+                        <label for="WorkAddress1" class="fg-label">Work Address 1</label>
                         <input type="text" ng-model="childVm.Individual.WorkAddress1" name="WorkAddress1" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="WorkAddress2" class="control-label">Work Address 2</label>
+                        <label for="WorkAddress2" class="fg-label">Work Address 2</label>
                         <input type="text" ng-model="childVm.Individual.WorkAddress2" name="WorkAddress2" class="form-control">
                     </div>
                 </div>
@@ -132,19 +132,19 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="WorkCity" class="control-label">Work City</label>
+                        <label for="WorkCity" class="fg-label">Work City</label>
                         <input type="text" ng-model="childVm.Individual.WorkCity" name="WorkCity" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="WorkState" class="control-label">Work State</label>
+                        <label for="WorkState" class="fg-label">Work State</label>
                         <input type="text" ng-model="childVm.Individual.WorkState" name="WorkState" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="WorkZip" class="control-label">Work Zip</label>
+                        <label for="WorkZip" class="fg-label">Work Zip</label>
                         <input type="text" ng-model="childVm.Individual.WorkZip" name="WorkZip" class="form-control">
                     </div>
                 </div>
@@ -156,13 +156,13 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="HomeAddress1" class="control-label">Home Address 1</label>
+                        <label for="HomeAddress1" class="fg-label">Home Address 1</label>
                         <input type="text" ng-model="childVm.Individual.HomeAddress1" name="HomeAddress1" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="HomeAddress2" class="control-label">Home Address 2</label>
+                        <label for="HomeAddress2" class="fg-label">Home Address 2</label>
                         <input type="text" ng-model="childVm.Individual.HomeAddress2" name="HomeAddress2" class="form-control">
                     </div>
                 </div>
@@ -170,19 +170,19 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="HomeCity" class="control-label">Home City</label>
+                        <label for="HomeCity" class="fg-label">Home City</label>
                         <input type="text" ng-model="childVm.Individual.HomeCity" name="HomeCity" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="HomeState" class="control-label">Home State</label>
+                        <label for="HomeState" class="fg-label">Home State</label>
                         <input type="text" ng-model="childVm.Individual.HomeState" name="HomeState" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="HomeZip" class="control-label">Home Zip</label>
+                        <label for="HomeZip" class="fg-label">Home Zip</label>
                         <input type="text" ng-model="childVm.Individual.HomeZip" name="HomeZip" class="form-control">
                     </div>
                 </div>
@@ -194,19 +194,19 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="WorkPhone" class="control-label">Work Phone</label>
+                        <label for="WorkPhone" class="fg-label">Work Phone</label>
                         <input type="text" ng-model="childVm.Individual.WorkPhone" name="WorkPhone" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="HomePhone" class="control-label">Home Phone</label>
+                        <label for="HomePhone" class="fg-label">Home Phone</label>
                         <input type="text" ng-model="childVm.Individual.HomePhone" name="HomePhone" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="CellPhone" class="control-label">Cell Phone</label>
+                        <label for="CellPhone" class="fg-label">Cell Phone</label>
                         <input type="text" ng-model="childVm.Individual.CellPhone" name="CellPhone" class="form-control">
                     </div>
                 </div>
@@ -218,13 +218,13 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="Email" class="control-label">Email Address 1</label>
+                        <label for="Email" class="fg-label">Email Address 1</label>
                         <input type="text" ng-model="childVm.Individual.Email" name="Email" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group">
-                        <label for="Email2" class="control-label">Email Address 2</label>
+                        <label for="Email2" class="fg-label">Email Address 2</label>
                         <input type="text" ng-model="childVm.Individual.Email2" name="Email2" class="form-control">
                     </div>
                 </div>
@@ -234,7 +234,7 @@
                 <div class="col-sm-9">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="childVm.IsWB" name="IsWB"> Whistle Blower
+                            <input type="checkbox" ng-model="childVm.IsWB" name="IsWB"> <i class="input-helper"></i> Whistle Blower
                         </label>
                     </div>
                     <div class="form-group" ng-show="childVm.IsWB">
@@ -251,22 +251,22 @@
                 <div class="card-header">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="childVm.IsSubjectResponse" name="IsSubjectResponse"> Subject Response
+                            <input type="checkbox" ng-model="childVm.IsSubjectResponse" name="IsSubjectResponse"><i class="input-helper"></i> Subject Response
                         </label>
                     </div>
                 </div>
-                    <div class="card-block" ng-show="childVm.IsSubjectResponse">
+                    <div class="card-body card-padding" ng-show="childVm.IsSubjectResponse">
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group has-feedback">
-                                    <label for="DraftSentDt" class="control-label">Draft Sent Date</label>
+                                    <label for="DraftSentDt" class="fg-label">Draft Sent Date</label>
                                     <input type="text" class="form-control" datepicker name="DraftSentDt" ng-model="childVm.DraftSentDt" />
                                     <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group has-feedback">
-                                    <label for="ResponseDueDt" class="control-label">Response Due Date</label>
+                                    <label for="ResponseDueDt" class="fg-label">Response Due Date</label>
                                     <input type="text" class="form-control" datepicker name="ResponseDueDt" ng-model="childVm.ResponseDueDt" />
                                     <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                                 </div>
@@ -274,7 +274,7 @@
 
                             <div class="col-sm-3">
                                 <div class="form-group has-feedback">
-                                    <label for="ResponseReceiveDt" class="control-label">Response Received Date</label>
+                                    <label for="ResponseReceiveDt" class="fg-label">Response Received Date</label>
                                     <input type="text" class="form-control" datepicker name="ResponseReceiveDt" ng-model="childVm.ResponseReceiveDt" />
                                     <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                                 </div>
@@ -286,13 +286,13 @@
                             <div class="col-sm-3">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" ng-model="childVm.RequestedExtension" name="RequestedExtension"> Extension
+                                        <input type="checkbox" ng-model="childVm.RequestedExtension" name="RequestedExtension"><i class="input-helper"></i> Extension
                                     </label>
                                 </div>
                             </div>
                             <div class="col-sm-3" ng-show="childVm.RequestedExtension">
                                 <div class="form-group has-feedback">
-                                    <label for="ExtensionDueDt" class="control-label">Extension Due Date</label>
+                                    <label for="ExtensionDueDt" class="fg-label">Extension Due Date</label>
                                     <input type="text" class="form-control" datepicker name="ExtensionDueDt" ng-model="childVm.ExtensionDueDt" />
                                     <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                                 </div>
@@ -308,15 +308,15 @@
                 <div class="card-header">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="childVm.IsJudicialAction" name="IsJudicialAction"> Judicial Action
+                            <input type="checkbox" ng-model="childVm.IsJudicialAction" name="IsJudicialAction"><i class="input-helper"></i> Judicial Action
                         </label>
                     </div>
                 </div>
-                <div class="card-block" ng-show="childVm.IsJudicialAction">
+                <div class="card-body card-padding" ng-show="childVm.IsJudicialAction">
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label for="ReferralStatusId" class="control-label">Referral Status</label>
+                                <label for="ReferralStatusId" class="fg-label">Referral Status</label>
                                 <input type="text" class="form-control" name="ReferralStatusId" ng-model="childVm.ReferralStatusId" />
                             </div>
                         </div>
@@ -327,13 +327,13 @@
                         <div class="col-sm-3">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" ng-model="childVm.IsLEA" name="IsLEA"> Referral to LEA
+                                    <input type="checkbox" ng-model="childVm.IsLEA" name="IsLEA"><i class="input-helper"></i> Referral to LEA
                                 </label>
                             </div>
                         </div>
                         <div class="col-sm-3" ng-show="childVm.IsLEA">
                             <div class="form-group has-feedback">
-                                <label for="LEADt" class="control-label">Referral Date</label>
+                                <label for="LEADt" class="fg-label">Referral Date</label>
                                 <input type="text" class="form-control" datepicker name="LEADt" ng-model="childVm.LEADt" />
                                 <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                             </div>
@@ -341,7 +341,7 @@
 
                         <div class="col-sm-3" ng-show="childVm.IsLEA">
                             <div class="form-group">
-                                <label for="LEAgency" class="control-label">LE Agency</label>
+                                <label for="LEAgency" class="fg-label">LE Agency</label>
                                 <input type="text" ng-model="childVm.LEAgency" name="LEAgency" class="form-control">
                             </div>
                         </div>
@@ -352,13 +352,13 @@
                         <div class="col-sm-3">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" ng-model="childVm.IsSA" name="IsLEA"> Referral to SA
+                                    <input type="checkbox" ng-model="childVm.IsSA" name="IsSA"> <i class="input-helper"></i>Referral to SA
                                 </label>
                             </div>
                         </div>
                         <div class="col-sm-3" ng-show="childVm.IsSA">
                             <div class="form-group has-feedback">
-                                <label for="SADt" class="control-label">Referral Date</label>
+                                <label for="SADt" class="fg-label">Referral Date</label>
                                 <input type="text" class="form-control" datepicker name="SADt" ng-model="childVm.SADt" />
                                 <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                             </div>
@@ -366,7 +366,7 @@
 
                         <div class="col-sm-3" ng-show="childVm.IsSA">
                             <div class="form-group has-feedback">
-                                <label for="SAResponseDt" class="control-label">Response Date</label>
+                                <label for="SAResponseDt" class="fg-label">Response Date</label>
                                 <input type="text" class="form-control" datepicker name="SAResponseDt" ng-model="childVm.SAResponseDt" />
                                 <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                             </div>
@@ -387,19 +387,19 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="FirstName" class="control-label">Action Taken</label>
+                    <label for="FirstName" class="fg-label">Action Taken</label>
                     <input type="text" ng-model="childVm.FirstName" name="FirstName" class="form-control">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="MiddleName" class="control-label">Days Suspended</label>
+                    <label for="MiddleName" class="fg-label">Days Suspended</label>
                     <input type="text" ng-model="childVm.MiddleName" name="MiddleName" class="form-control">
                 </div>
             </div>
             <div class="col-sm-3">
                 <div class="form-group">
-                    <label for="FirstName" class="control-label">Action Taken Date</label>
+                    <label for="FirstName" class="fg-label">Action Taken Date</label>
                     <input type="text" ng-model="childVm.LastName" name="LastName" class="form-control">
                 </div>
             </div>

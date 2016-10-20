@@ -53,14 +53,20 @@
     padding-top: 80px;
 }
 
-#content:not(.content-alt) {
+/*#content:not(.content-alt) {
     padding-left: 270px;
     padding-right: 15px;
-}
+}*/
 
 .main-menu .active>a, .main-menu a.active, .main-menu a:hover {
     background-color: #F1F1FA;
     color: #262626;
+}
+
+.form-control:not(.fc-alt) {
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
 }
     
 

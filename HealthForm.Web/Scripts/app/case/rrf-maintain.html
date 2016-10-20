@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="form-group">
-                    <label for="ProgramId" class="control-label">Reporting Source</label>
+                    <label for="ProgramId" class="fg-label">Reporting Source</label>
                     <div>
                         <select ng-model="vm.ProgramId" name="ProgramId" class="form-control" ng-options="option.Id as option.Program.formattedDesc for option in vm.CasePrograms">
                             <option value="">-- Select --</option>
@@ -27,21 +27,21 @@
 
                 <div class="col-sm-4">
                     <div class="form-group has-feedback">
-                        <label for="RequestDt" class="control-label">Date RRF Requeted</label>
+                        <label for="RequestDt" class="fg-label">Date RRF Requeted</label>
                         <input type="text" class="form-control" datepicker name="RequestDt" ng-model="childVm.RequestDt" />
                         <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group has-feedback">
-                        <label for="DueDt" class="control-label">Date RRF Due</label>
+                        <label for="DueDt" class="fg-label">Date RRF Due</label>
                         <input type="text" class="form-control" datepicker name="DueDt" ng-model="childVm.DueDt" />
                         <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group has-feedback">
-                        <label for="ReceivedDt" class="control-label">Date RRF Received</label>
+                        <label for="ReceivedDt" class="fg-label">Date RRF Received</label>
                         <input type="text" class="form-control" datepicker name="ReceivedDt" ng-model="childVm.ReceivedDt" />
                         <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                     </div>
@@ -53,14 +53,14 @@
 
                 <div class="col-sm-4">
                     <div class="form-group has-feedback">
-                        <label for="CAPDueDt" class="control-label">Date CAP Due</label>
+                        <label for="CAPDueDt" class="fg-label">Date CAP Due</label>
                         <input type="text" class="form-control" datepicker name="CAPDueDt" ng-model="childVm.CAPDueDt" />
                         <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group has-feedback">
-                        <label for="CAPReceivedDt" class="control-label">Date CAP Received</label>
+                        <label for="CAPReceivedDt" class="fg-label">Date CAP Received</label>
                         <input type="text" class="form-control" datepicker name="CAPReceivedDt" ng-model="childVm.CAPReceivedDt" />
                         <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                     </div>
@@ -73,14 +73,14 @@
                 <div class="col-sm-4">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="childVm.isPending" name="isPending"> Resposne Pending
+                            <input type="checkbox" ng-model="childVm.isPending" name="isPending"><i class="input-helper"></i> Resposne Pending
                         </label>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="childVm.isExtension" name="isExtension"> Extension Granted
+                            <input type="checkbox" ng-model="childVm.isExtension" name="isExtension"><i class="input-helper"></i> Extension Granted
                         </label>
                     </div>
                 </div>
@@ -89,14 +89,14 @@
                 <div class="col-sm-4">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="childVm.IsInadequate" name="IsInadequate"> Is Inadequate
+                            <input type="checkbox" ng-model="childVm.IsInadequate" name="IsInadequate"><i class="input-helper"></i> Is Inadequate
                         </label>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" ng-model="childVm.IsAdditionalInfo" name="IsAdditionalInfo"> Additional Info Provided
+                            <input type="checkbox" ng-model="childVm.IsAdditionalInfo" name="IsAdditionalInfo"><i class="input-helper"></i> Additional Info Provided
                         </label>
                     </div>
                 </div>
