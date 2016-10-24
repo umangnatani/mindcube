@@ -172,8 +172,8 @@
                 </uib-tab>
                 <uib-tab index="1" heading="Status" ng-if="vm.Id > 0" select="tabClick('comments')">
 
-                    
-                    <div ng-include src="'scripts/app/case/comments-maintain.html'"></div>
+                    <our-component entity-object="EntityObject"></our-component>
+                    <!--<div ng-include src="'scripts/app/case/comments-maintain.html'"></div>-->
 
                 </uib-tab>
                <uib-tab index="2" heading="Individual" ng-if="vm.Id > 0" select="tabClick('ind')">

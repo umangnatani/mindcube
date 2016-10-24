@@ -1,5 +1,71 @@
 ﻿(function (app) {
 
+
+    function caseCommentsController($scope, $location, myService) {
+
+        var ctrl = this;
+
+        //alert(ctrl.entityObject.ObjectType);
+
+        //myService.getListByPost('api/comments/list', ctrl, 'list', ctrl.entityObject);
+
+
+
+        $scope.$on("comments", function (evt, data) {
+            //alert('ff');
+            console.log(ctrl.entityObject);
+            myService.getListByPost('api/comments/list', ctrl, 'list', ctrl.entityObject);
+            //$scope.childVm = {};
+            ctrl.childVm = angular.copy(ctrl.entityObject);
+        });
+
+
+
+        ctrl.editChild = function (childVm) {
+            ctrl.childVm = JSON.parse(JSON.stringify(childVm));
+        }
+
+        ctrl.addNew = function () {
+            ctrl.childVm = angular.copy(ctrl.entityObject);
+        }
+
+
+
+        ctrl.save = function () {
+            myService.save('api/comments/maintain', ctrl, 'childVm', function () {
+                $scope.$emit("comments");
+            });
+
+        }
+
+
+    };
+
+
+
+    var ourComponent = {
+        // isolated scope binding
+        bindings: {
+            entityObject: '='
+        },
+
+        // Inline template which is binded to message variable
+        // in the component controller
+        templateUrl: 'scripts/app/case/comments.html',
+
+        // The controller that handles our component logic
+        controller: caseCommentsController
+    };
+
+    app.component('ourComponent', ourComponent);
+
+})(angular.module('MyApp'));
+
+
+
+
+(function (app) {
+
     var busyIndicator = function ($rootScope) {
         return {
             restrict: 'E',

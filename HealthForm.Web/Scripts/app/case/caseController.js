@@ -117,6 +117,7 @@
             this.ObjectType = 'csp';
         }
 
+        $scope.EntityObject = {ObjectType: 'csp'};
 
         
         $scope.valuationDatePickerIsOpen = false;
@@ -167,7 +168,7 @@
         });
 
         $scope.tabClick = function (tabname) {
-            $scope.EntityObject = new $scope.initChild();
+            $scope.EntityObject.ObjectId = $scope.vm.Id;
             $scope.childVm = $scope.EntityObject;
             $scope.$broadcast(tabname);
         };

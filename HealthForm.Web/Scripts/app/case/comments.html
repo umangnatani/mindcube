@@ -1,0 +1,57 @@
+﻿    <div class="card" color3 style="margin-top:10px">
+        <div class="card-body card-padding">
+            <form name="entryForm" novalidate>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group has-feedback">
+                            <label for="CommentDt" class="col-form-label">Date</label>
+
+                            <input type="text" ng-model="$ctrl.childVm.CommentDt" datepicker name="CommentDt" class="form-control" validator="required">
+                            <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="Comments" class="col-form-label">Work Log</label>
+                            <textarea ng-model="$ctrl.childVm.Comments" name="Comments" class="form-control" validator="required" />
+                        </div>
+                    </div>
+
+
+                </div>
+                <button type="submit" validation-submit="entryForm" class="btn btn-primary" ng-click="$ctrl.save()">Save</button>
+            </form>
+        </div>
+
+    </div>
+    <p ng-show="$ctrl.childVm.Id > 0">
+        <a href="javascript:void(0)" ng-click="addNew()">Add New</a>
+    </p>
+    <div class="card" ng-show="$ctrl.list.length > 0" style="margin-top:30px">
+        <div class="card-header"><h4>Existing Status</h4></div>
+        <div class="card-body card-padding">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Status Date</th>
+                        <th>By</th>
+                        <th>Comments</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="obj in $ctrl.list">
+                    <td>{{obj.CommentDt | date : 'MM/dd/yyyy'}}</td>
+                    <td>{{obj.ByUser}}</td>
+                    <td>{{obj.Comments}}</td>
+                    <td>
+                        <a href="JavaScript:void(0)" ng-click="$ctrl.editChild(obj)">Edit</a> |
+                        <a href="JavaScript:void(0)" ng-click="$ctrl.deleteChild(obj.Id, 'comments')">Delete</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
