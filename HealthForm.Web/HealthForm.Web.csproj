@@ -258,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="assets\css\app.css" />
     <Content Include="assets\css\app_1.min.css" />
     <Content Include="assets\css\app_2.min.css" />
     <Content Include="assets\css\jquery.mCustomScrollbar.min.css" />
