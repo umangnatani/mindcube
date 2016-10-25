@@ -1,0 +1,20 @@
+﻿<div ng-controller="ParentController">
+    <h3>
+        Two way data-binding
+    </h3>
+    <div class="section">
+        <h4>
+            Parent
+        </h4>
+        <p>
+            Object: {{ someObject }}
+        </p>
+        <p>
+            Primitive: {{ somePrimitive }}
+        </p>
+        <a href="" ng-click="updateValues();">
+            Change Parent Values
+        </a>
+    </div>
+    <example obj="someObject" prim="somePrimitive"></example>
+</div>

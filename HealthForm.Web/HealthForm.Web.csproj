@@ -395,7 +395,9 @@
     <Content Include="Scripts\app\account\login.html" />
     <Content Include="Scripts\app\account\maintain.html" />
     <Content Include="Scripts\app\case\allegation-maintain.html" />
+    <Content Include="Scripts\app\case\caseComponent.js" />
     <Content Include="Scripts\app\case\caseController.js" />
+    <Content Include="Scripts\app\case\comments-list.html" />
     <Content Include="Scripts\app\case\comments.html" />
     <Content Include="Scripts\app\case\corresp-index.html" />
     <Content Include="Scripts\app\case\corresp-maintain.html" />
@@ -428,6 +430,7 @@
     <Content Include="Scripts\app\services\apiService.js" />
     <Content Include="Scripts\app\services\myService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
+    <Content Include="Scripts\app\test\test.html" />
     <Content Include="Scripts\app\test\testController.js" />
     <Content Include="Scripts\base\angular-animate.min.js" />
     <Content Include="Scripts\base\angular-base64.js" />

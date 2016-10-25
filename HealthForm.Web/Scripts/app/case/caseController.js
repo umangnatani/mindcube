@@ -168,7 +168,7 @@
         });
 
         $scope.tabClick = function (tabname) {
-            $scope.EntityObject.ObjectId = $scope.vm.Id;
+            $scope.EntityObject = new $scope.initChild();
             $scope.childVm = $scope.EntityObject;
             $scope.$broadcast(tabname);
         };

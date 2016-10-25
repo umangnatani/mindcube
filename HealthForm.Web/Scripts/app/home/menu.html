@@ -15,23 +15,23 @@
 <p ng-show="vm.Id > 0">
     <a href="javascript:void(0)" ng-click="vm={}"><i class="fa fa-plus" aria-hidden="true"></i> Add New Item</a>
 </p>
-<div class="card">
+<div class="card color3">
     <div class="card-header">
         <h5><span ng-hide="vm.Id > 0">You are adding a new menu item</span><span ng-show="vm.Id > 0">You are editing an existing Menu item: <span class="text-danger"> {{vm.Title}} </span></span></h5>
     </div>
-    <div class="card-block color3">
+    <div class="card-body card-padding">
         <form name="entryForm" novalidate>
             <div class="row">
                 <div class="col-sm-2">
                     <div class="form-group">
                         <label for="Code" class="control-label">Code</label>
-                        <input type="text" ng-model="vm.Code" name="Code" class="form-control" validator="required">
+                        <input type="text" ng-model="vm.Code" name="Code" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="Title" class="control-label">Title</label>
-                        <input type="text" ng-model="vm.Title" name="Title" class="form-control" validator="required">
+                        <input type="text" ng-model="vm.Title" name="Title" class="form-control">
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label for="Title" class="control-label">Parent Menu</label>
                         <div>
-                            <ui-select ng-model="vm.ParentId" theme="bootstrap" style="min-width: 300px;" title="Choose a Category" ng-required="true">
+                            <ui-select ng-model="vm.ParentId" theme="bootstrap" style="min-width: 300px;" title="Choose a Category">
                                 <ui-select-match>{{$select.selected.Code}}</ui-select-match>
                                 <ui-select-choices repeat="option.Id as option in list | filter: $select.search">
                                     <div ng-bind-html="option.Code | highlight: $select.search"></div>

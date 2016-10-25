@@ -15,6 +15,13 @@
 
         //$scope.menuInfo.code = 'Menu';
 
+        $rootScope.delete = function (id, type) {
+            //alert(type);
+            myService.deleteRecord(id, type, function () {
+                $scope.$broadcast(type);
+            });
+        }
+
         $scope.$watch('menuInfo.code', function (newValue, oldValue, scope) {
             $scope.menuInfo.breadCrumb = [];
 

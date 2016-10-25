@@ -27,31 +27,9 @@
 
     </div>
     <p ng-show="$ctrl.childVm.Id > 0">
-        <a href="javascript:void(0)" ng-click="addNew()">Add New</a>
+        <a href="javascript:void(0)" ng-click="$ctrl.addNew()">Add New</a>
     </p>
-    <div class="card" ng-show="$ctrl.list.length > 0" style="margin-top:30px">
-        <div class="card-header"><h4>Existing Status</h4></div>
-        <div class="card-body card-padding">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Status Date</th>
-                        <th>By</th>
-                        <th>Comments</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tr ng-repeat="obj in $ctrl.list">
-                    <td>{{obj.CommentDt | date : 'MM/dd/yyyy'}}</td>
-                    <td>{{obj.ByUser}}</td>
-                    <td>{{obj.Comments}}</td>
-                    <td>
-                        <a href="JavaScript:void(0)" ng-click="$ctrl.editChild(obj)">Edit</a> |
-                        <a href="JavaScript:void(0)" ng-click="$ctrl.deleteChild(obj.Id, 'comments')">Delete</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
+    
+    <comments-list entity-object="$ctrl.entityObject" on-update="$ctrl.editChild(childVm)"></comments-list>
 
 
