@@ -20,20 +20,74 @@ namespace HealthForm.Data
 
     public partial class Comment : IEntityBase
     {
+        private string _strCommentDt;
+
         public string ByUser { get; set; }
+
+        public string strCommentDt
+        {
+            get
+            {
+                return Util.ToDateString(_strCommentDt, CommentDt);
+            }
+            set
+            {
+                _strCommentDt = value;
+            }
+        }
+
     }
 
     public partial class Correspondence : IEntityBase
     {
-        private string _strReceivedDate;
+        private string _strReceivedDt;
+        private string _strAssignedDt;
+        private string _strReviewDt;
+        private string _strDueDt;
 
-        public string strReceivedDate
+        public string strReceivedDt
         {
             get {
-                return string.IsNullOrEmpty(_strReceivedDate) ? ReceivedDt.Value.ToShortDateString() : _strReceivedDate;
+                return Util.ToDateString(_strReceivedDt, ReceivedDt);
             }
             set{
-                _strReceivedDate = value;
+                _strReceivedDt = value;
+            }
+        }
+
+        public string strAssignedDt
+        {
+            get
+            {
+                return Util.ToDateString(_strAssignedDt, AssignedDt);
+            }
+            set
+            {
+                _strAssignedDt = value;
+            }
+        }
+
+        public string strReviewDt
+        {
+            get
+            {
+                return Util.ToDateString(_strReviewDt, ReviewDt);
+            }
+            set
+            {
+                _strReviewDt = value;
+            }
+        }
+
+        public string strDueDt
+        {
+            get
+            {
+                return Util.ToDateString(_strDueDt, DueDt);
+            }
+            set
+            {
+                _strDueDt = value;
             }
         }
 
@@ -50,6 +104,8 @@ namespace HealthForm.Data
         public ICollection<CaseProgram> CasePrograms { get; set; }
         public ICollection<AssignedTo> Assignees { get; set; }
         public ICollection<User> Reviewers { get; set; }
+
+
     }
     public partial class CorrespondenceRRF : IEntityBase
     {

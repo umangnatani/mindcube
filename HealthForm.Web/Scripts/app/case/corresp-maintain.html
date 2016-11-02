@@ -9,10 +9,13 @@
 
                         <div class="row">
                             <div class="col-sm-9">
-                                <div class="form-group">
-                                    <label for="RecFName" class="fg-label">Received From</label>
+                                <div class="form-group" ng-class="{'has-error': entryForm.FirstName.$touched && entryForm.FirstName.$invalid }">
+                                    <label for="RecFName" class="control-label">Received From</label>
                                     <div class="input-group">
-                                        <input type="text" ng-model="vm.FirstName" name="FirstName" class="form-control" placeholder="First Name..">
+                                        <input type="text" ng-model="vm.FirstName" name="FirstName" class="form-control" placeholder="First Name.." required>
+                                        <div class="help-block" ng-messages="entryForm.FirstName.$error" ng-show="entryForm.FirstName.$touched">
+                                            <p ng-message="required">This field is required</p>
+                                        </div>
                                         <span class="input-group-addon"></span>
                                         <input type="text" ng-model="vm.MiddleName" name="MiddleName" class="form-control" placeholder="Middle Name..">
                                         <span class="input-group-addon"></span>
@@ -25,15 +28,15 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group has-feedback">
-                                    <label for="ReceivedDt" class="fg-label">Received Date</label>
+                                    <label for="ReceivedDt" class="control-label">Received Date</label>
 
-                                    <input type="text" class="form-control" datepicker name="ReceivedDt" ng-model="vm.strReceivedDate" />
+                                    <input type="text" class="form-control" datepicker name="ReceivedDt" ng-model="vm.strReceivedDt" />
                                     <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="ReportingId" class="fg-label">Reporting Source</label>
+                                    <label for="ReportingId" class="control-label">Reporting Source</label>
                                     <div>
                                         <select ng-model="vm.ReportingId" name="ReportingId" class="form-control" ng-options="option.Id as option.Text for option in ReportingSources" validator="required">
                                             <option value="">-- Select --</option>
@@ -43,7 +46,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="Category" class="fg-label">Category</label>
+                                    <label for="Category" class="control-label">Category</label>
                                     <div>
                                         <ui-select ng-model="vm.CategoryId" theme="bootstrap" style="min-width: 300px;" title="Choose a Category" ng-required="true">
                                             <ui-select-match>{{$select.selected.Text}}</ui-select-match>
@@ -63,7 +66,7 @@
                         <div class="row">
                             <div class="col-sm-9">
                                 <div class="form-group">
-                                    <label for="ProgramId" class="fg-label">Entity - Program/Department</label>
+                                    <label for="ProgramId" class="control-label">Entity - Program/Department</label>
                                     <div ng-repeat="item in vm.CasePrograms" style="margin-bottom:5px">
                                         <ui-select ng-model="item.ProgramId" theme="bootstrap" style="min-width: 300px;" title="Choose a Program">
                                             <ui-select-match>{{$select.selected.formattedDesc}}</ui-select-match>
@@ -92,7 +95,7 @@
                             
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="Category" class="fg-label">Source</label>
+                                    <label for="Category" class="control-label">Source</label>
                                     <div>
                                         <ui-select ng-model="vm.SourceId" theme="bootstrap" style="min-width: 300px;" title="Choose a Source" ng-required="true">
                                             <ui-select-match>{{$select.selected.Text}}</ui-select-match>
@@ -105,7 +108,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="AssignedTo" class="fg-label">Assigned To</label>
+                                    <label for="AssignedTo" class="control-label">Assigned To</label>
                                     <div>
                                         <ui-select multiple ng-model="tempVm.AssigneesUser" theme="bootstrap" style="min-width: 300px;" title="Choose a Category">
                                             <ui-select-match>{{$item.Name}}</ui-select-match>
@@ -119,7 +122,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="ReviewedBy" class="fg-label">Reviewed By</label>
+                                    <label for="ReviewedBy" class="control-label">Reviewed By</label>
                                     <div>
                                         <ui-select multiple ng-model="tempVm.AssigneesUser" theme="bootstrap" style="min-width: 300px;" title="Choose a Category">
                                             <ui-select-match>{{$item.Name}}</ui-select-match>
@@ -135,24 +138,24 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group has-feedback">
-                                    <label for="AssignedDt" class="fg-label">Assigned Date</label>
+                                    <label for="AssignedDt" class="control-label">Assigned Date</label>
 
-                                    <input type="text" class="form-control" datepicker name="AssignedDt" ng-model="vm.AssignedDt" />
+                                    <input type="text" class="form-control" datepicker name="AssignedDt" ng-model="vm.strAssignedDt" />
                                     <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group has-feedback">
-                                    <label for="ReviewDt" class="fg-label">Review Date</label>
+                                    <label for="ReviewDt" class="control-label">Review Date</label>
 
-                                    <input type="text" class="form-control" datepicker name="ReviewDt" ng-model="vm.ReviewDt" />
+                                    <input type="text" class="form-control" datepicker name="ReviewDt" ng-model="vm.strReviewDt" />
                                     <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group has-feedback">
-                                    <label for="DueDt" class="fg-label">Due Date</label>
-                                    <input type="text" class="form-control" datepicker name="DueDt" ng-model="vm.DueDt" />
+                                    <label for="DueDt" class="control-label">Due Date</label>
+                                    <input type="text" class="form-control" datepicker name="DueDt" ng-model="vm.strDueDt" />
                                     <span class="glyphicon glyphicon-calendar text-success form-control-feedback"></span>
                                 </div>
                             </div>

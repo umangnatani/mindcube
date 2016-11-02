@@ -11087,9 +11087,9 @@ html:not(.ie9) .select.fg-line:before {
   top: -20px;
   font-size: 11px;
 }
-.control-label {
+/*.control-label {
   font-weight: normal;
-}
+}*/
 /*-------------------------
     Toggle Switch
 --------------------------*/

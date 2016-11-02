@@ -33,6 +33,7 @@ namespace HealthForm.Web.Controllers
         public IHttpActionResult Maintain(Comment poco)
         {
             poco.EntDt = DateTime.Now;
+            poco.CommentDt = Convert.ToDateTime(poco.strCommentDt);
             return Ok(_Service.Save(poco));
         }
 

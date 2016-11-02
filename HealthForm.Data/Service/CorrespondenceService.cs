@@ -60,7 +60,10 @@ namespace HealthForm.Data
 
             newPrograms.RemoveAll(x => x.ProgramId == 0);
 
-            poco.ReceivedDt = poco.strReceivedDate.ToDateTime();
+            poco.ReceivedDt = poco.strReceivedDt.ToDateTime();
+            poco.AssignedDt = poco.strAssignedDt.ToDateTime();
+            poco.ReviewDt = poco.strReviewDt.ToDateTime();
+            poco.DueDt = poco.strDueDt.ToDateTime();
 
             Save(poco);
 

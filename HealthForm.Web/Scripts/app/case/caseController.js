@@ -94,7 +94,7 @@
         $scope.vm = {
             Id: $stateParams.id,
             FirstName: 'Umang',
-            ReceivedDt: '10/1/2016',
+            //strReceivedDt: '10/1/2016',
             //CaseComments:[],
             //CaseComments: [{ CommentDt: '10/8/2019', Comments: 'Test' }]
         };

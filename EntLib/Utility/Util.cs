@@ -69,7 +69,18 @@ namespace EntLib
 
 
         }
-        
+
+
+        public static string ToDateString(string inputString, DateTime? inputDate)
+        {
+            if (string.IsNullOrEmpty(inputString))
+                return (inputDate == null)? null:  inputDate.Value.ToShortDateString();
+            else
+                return inputString;
+
+        }
+
+
         public static string getAltValue(string curValue, string value1, string value2)
         {
 
